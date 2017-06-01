@@ -44,8 +44,8 @@
         self.navigationItem.titleView = [self.collectionView createNavigationBarForSearchBar];
         [_collectionView.settingsButton addTarget:self action:@selector(gotoSettings:) forControlEvents:UIControlEventTouchUpInside];
         
-    //    self.collectionView.delegate = _dataProvider;
-      //  self.collectionView.dataSource = _dataProvider;
+        self.collectionView.delegate = _dataProvider;
+        self.collectionView.dataSource = _dataProvider;
         
         self.collectionView.searchBar.delegate = self;
     }
