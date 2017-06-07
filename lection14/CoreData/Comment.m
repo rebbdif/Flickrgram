@@ -15,4 +15,14 @@
 @dynamic url;
 @dynamic author;
 
++ (Comment *)commentWithDictionary:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)moc {
+    Comment *comment = nil;
+    comment = [NSEntityDescription insertNewObjectForEntityForName:@"Comment" inManagedObjectContext:moc];
+    comment.author = dict[@"author"];
+    comment.url = dict[@"url"];
+    comment.comment = dict[@"comment"];
+    
+    return comment;
+}
+
 @end

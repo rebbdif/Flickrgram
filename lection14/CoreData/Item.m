@@ -20,6 +20,21 @@
 @dynamic title;
 @dynamic largePhoto;
 @dynamic thumbnail;
+@dynamic identifier;
+
++ (Item *)itemWithDictionary:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)moc {
+    Item *item = nil;
+    item = [NSEntityDescription insertNewObjectForEntityForName:@"Item" inManagedObjectContext:moc];
+    item.liked = [dict[@"liked"] integerValue];
+    item.favorited = [dict[@"favorited"] integerValue];
+    item.photoURL = [dict[@"photoURL"] absoluteString];
+    item.highQualityPhotoURL = [dict[@"highQualityPhotoURL"] absoluteString];
+    item.thumbnail = dict[@"thumbnail"];
+    item.largePhoto = dict[@"largePhoto"];
+    
+    item.identifier = item.photoURL;
+    return item;
+}
 
 @end
 

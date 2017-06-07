@@ -12,12 +12,14 @@
 @class SLVItem;
 @class ImageDownloadOperation;
 @class SLVNetworkManager;
+@class NSManagedObjectContext;
 
 @interface SLVSearchResultsModel : NSObject
 
 @property (copy, nonatomic) NSArray<SLVItem *> *items;
 @property (strong, nonatomic) NSString *searchRequest;
 @property (strong, nonatomic) NSCache *imageCache;
+@property (strong, nonatomic) NSManagedObjectContext *context;
 @property (strong, nonatomic) SLVItem *selectedItem;
 
 - (void)getItemsForRequest:(NSString *)request withCompletionHandler: (void (^)(void))completionHandler;

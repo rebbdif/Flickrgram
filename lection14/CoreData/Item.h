@@ -21,6 +21,8 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) UIImage *largePhoto;
 @property (nonatomic, strong) UIImage *thumbnail;
+@property (nonatomic, strong) NSString *identifier;
 
++ (Item *)itemWithDictionary:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)moc;
 
 @end

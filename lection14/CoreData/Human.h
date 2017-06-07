@@ -17,4 +17,6 @@
 @property (nonatomic, strong) NSURL *url;
 @property (nonatomic, strong) UIImage *avatar;
 
++ (Human *)humanWithDictionary:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)moc;
+
 @end

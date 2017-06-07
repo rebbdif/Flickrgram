@@ -44,6 +44,7 @@
     NSString *escapedString = [normalizedRequest stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
     NSString *apiKey = @"&api_key=6a719063cc95dcbcbfb5ee19f627e05e";
     NSString *urls = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&per_page=10&tags=%@%@&page=%lu",escapedString,apiKey,self.page];
+    
     NSURL *url = [NSURL URLWithString:urls];
     [SLVNetworkManager getModelWithSession:self.session fromURL:url withCompletionHandler:^(NSDictionary *json) {
         NSArray *newItems = [self parseData:json];
@@ -95,10 +96,10 @@
 - (void)loadImageForItem:(SLVItem *)currentItem withCompletionHandler:(void (^)(void))completionHandler {
     if (![self.imageCache objectForKey:currentItem.photoURL]) {
         ImageDownloadOperation *imageDownloadOperation = [ImageDownloadOperation new];
-        //   imageDownloadOperation.indexPath = indexPath;
         imageDownloadOperation.item = currentItem;
         imageDownloadOperation.session = self.session;
         imageDownloadOperation.imageCache = self.imageCache;
+        imageDownloadOperation.context = self.context;
         imageDownloadOperation.name = [NSString stringWithFormat:@"imageDownloadOperation for url %@",currentItem.highQualityPhotoURL];
         imageDownloadOperation.completionBlock = ^{
             completionHandler();

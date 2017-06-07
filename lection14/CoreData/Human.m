@@ -15,4 +15,15 @@
 @dynamic url;
 @dynamic avatar;
 
++ (Human *)humanWithDictionary:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)moc {
+    Human *human = nil;
+    human = [NSEntityDescription insertNewObjectForEntityForName:@"Human" inManagedObjectContext:moc];
+    human.avatarURL = dict[@"avatarURL"];
+    human.name = dict[@"name"];
+    human.url = dict[@"url"];
+    human.avatar = dict[@"avatar"];
+    
+    return human;
+}
+
 @end

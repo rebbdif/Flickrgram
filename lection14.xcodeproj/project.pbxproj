@@ -31,6 +31,7 @@
 		6392D20F1EE875790050728D /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D20E1EE875790050728D /* Comment.m */; };
 		6392D2121EE875980050728D /* Human.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D2111EE875980050728D /* Human.m */; };
 		6392D2151EE875A50050728D /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D2141EE875A50050728D /* Item.m */; };
+		6392D21E1EE88F410050728D /* SLVStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D21D1EE88F410050728D /* SLVStorageService.m */; };
 		63ABAB831ED60E8900941726 /* SLVImageProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 63ABAB821ED60E8900941726 /* SLVImageProcessing.m */; };
 		63ABAB881ED873CC00941726 /* SLVImageDownloadOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63ABAB871ED873CB00941726 /* SLVImageDownloadOperationTests.m */; };
 		63ACEF3E1EBD3F53007C0D41 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63ACEF3C1EBD3B37007C0D41 /* Masonry.framework */; };
@@ -94,6 +95,8 @@
 		6392D2111EE875980050728D /* Human.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Human.m; path = CoreData/Human.m; sourceTree = "<group>"; };
 		6392D2131EE875A50050728D /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Item.h; path = CoreData/Item.h; sourceTree = "<group>"; };
 		6392D2141EE875A50050728D /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Item.m; path = CoreData/Item.m; sourceTree = "<group>"; };
+		6392D21C1EE88F410050728D /* SLVStorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVStorageService.h; path = CoreData/SLVStorageService.h; sourceTree = "<group>"; };
+		6392D21D1EE88F410050728D /* SLVStorageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVStorageService.m; path = CoreData/SLVStorageService.m; sourceTree = "<group>"; };
 		63ABAB811ED60E8900941726 /* SLVImageProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVImageProcessing.h; path = Services/SLVImageProcessing.h; sourceTree = "<group>"; };
 		63ABAB821ED60E8900941726 /* SLVImageProcessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVImageProcessing.m; path = Services/SLVImageProcessing.m; sourceTree = "<group>"; };
 		63ABAB871ED873CB00941726 /* SLVImageDownloadOperationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVImageDownloadOperationTests.m; path = lection14Tests/SLVImageDownloadOperationTests.m; sourceTree = "<group>"; };
@@ -287,6 +290,8 @@
 				6392D1F51EE84A920050728D /* Model.xcdatamodeld */,
 				6392D20A1EE874BF0050728D /* CoreDataStack.h */,
 				6392D20B1EE874BF0050728D /* CoreDataStack.m */,
+				6392D21C1EE88F410050728D /* SLVStorageService.h */,
+				6392D21D1EE88F410050728D /* SLVStorageService.m */,
 				6392D20D1EE875790050728D /* Comment.h */,
 				6392D20E1EE875790050728D /* Comment.m */,
 				6392D2101EE875980050728D /* Human.h */,
@@ -477,6 +482,7 @@
 				63ABAB831ED60E8900941726 /* SLVImageProcessing.m in Sources */,
 				6392D1D91EE04CFD0050728D /* SLVPostViewController.m in Sources */,
 				6392D20C1EE874BF0050728D /* CoreDataStack.m in Sources */,
+				6392D21E1EE88F410050728D /* SLVStorageService.m in Sources */,
 				6392D2121EE875980050728D /* Human.m in Sources */,
 				6392D1D71EE04CFD0050728D /* SLVCollectionViewDataProvider.m in Sources */,
 				6392D1E11EE04D3A0050728D /* SLVCollectionViewLayout.m in Sources */,

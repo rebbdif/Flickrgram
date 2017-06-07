@@ -16,4 +16,6 @@
 @property (nonatomic, strong) NSURL *url;
 @property (nonatomic, strong) Human *author;
 
++ (Comment *)commentWithDictionary:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)moc;
+
 @end
