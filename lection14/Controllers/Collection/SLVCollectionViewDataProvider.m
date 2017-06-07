@@ -7,12 +7,45 @@
 //
 
 #import "SLVCollectionViewDataProvider.h"
+#import "SLVSearchResultsModel.h"
+#import "SLVCollectionViewCell.h"
+
+@interface SLVCollectionViewDataProvider()
+
+@property (nonatomic, weak, readonly) SLVSearchResultsModel *model;
+
+@end
 
 @implementation SLVCollectionViewDataProvider
 
+static NSString * const reuseIdentifier = @"Cell";
+
+- (instancetype)initWithModel:(SLVSearchResultsModel *)model {
+    self = [super init];
+    if (self) {
+        _model = model;
+    }
+    return self;
+}
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+     SLVCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    return nil;
+    UIImage *image = [self.model.imageCache objectForKey:indexPath];
+    if (image) {
+        cell.imageView.image = image;
+    } else {
+        cell.activityIndicator.hidden = NO;
+        [cell.activityIndicator startAnimating];
+        [self.model loadImageForIndexPath:indexPath withCompletionHandler:^{
+           dispatch_async(dispatch_get_main_queue(), ^{
+               SLVCollectionViewCell *cvc = ((SLVCollectionViewCell *)([collectionView cellForItemAtIndexPath:indexPath]));
+               [cell.activityIndicator stopAnimating];
+               cvc.imageView.image = [self.model.imageCache objectForKey:indexPath];
+           });
+        }];
+    }
+    return cell;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -20,8 +53,9 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 10;
+    return self.model.items.count;
 }
+
 
 
 @end

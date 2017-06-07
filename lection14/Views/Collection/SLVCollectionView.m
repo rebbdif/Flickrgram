@@ -12,14 +12,11 @@
 
 @implementation SLVCollectionView
 
-static NSString * const reuseIdentifier = @"Cell";
-
-
 - (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout {
     self = [super initWithFrame:frame collectionViewLayout:layout];
     if (self) {
         self.backgroundColor = [UIColor myGray];
-       // [self registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+        
     }
     return self;
 }

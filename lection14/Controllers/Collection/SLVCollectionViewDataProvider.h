@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 @import UIKit;
 
-@interface SLVCollectionViewDataProvider : NSObject <UICollectionViewDelegate, UICollectionViewDataSource>
+@class SLVSearchResultsModel;
+
+@interface SLVCollectionViewDataProvider : NSObject <UICollectionViewDataSource>
+
+- (instancetype)initWithModel:(SLVSearchResultsModel *)model;
 
 @end

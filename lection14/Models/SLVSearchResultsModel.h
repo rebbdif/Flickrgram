@@ -21,6 +21,7 @@
 - (void)getItemsForRequest:(NSString *)request withCompletionHandler: (void (^)(void))completionHandler;
 - (void)loadImageForIndexPath:(NSIndexPath *)indexPath withCompletionHandler:(void(^)(void))completionHandler;
 - (void)cancelOperations;
+- (void)resumeOperations;
 - (void)filterItemAtIndexPath:(NSIndexPath *)indexPath filter:(BOOL)filter withCompletionBlock:(void(^)(UIImage *image))completion;
 - (void)clearModel;
 

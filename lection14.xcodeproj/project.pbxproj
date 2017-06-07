@@ -25,6 +25,8 @@
 		6392D1E11EE04D3A0050728D /* SLVCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1DF1EE04D3A0050728D /* SLVCollectionViewLayout.m */; };
 		6392D1E71EE04D4E0050728D /* UIColor+SLVColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1E41EE04D4E0050728D /* UIColor+SLVColor.m */; };
 		6392D1E81EE04D4E0050728D /* UIFont+SLVFonts.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1E61EE04D4E0050728D /* UIFont+SLVFonts.m */; };
+		6392D1EF1EE741BE0050728D /* SLVCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1EE1EE741BE0050728D /* SLVCollectionViewCell.m */; };
+		6392D1F21EE7F92E0050728D /* SLVPostViewCells.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1F11EE7F92E0050728D /* SLVPostViewCells.m */; };
 		63ABAB831ED60E8900941726 /* SLVImageProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 63ABAB821ED60E8900941726 /* SLVImageProcessing.m */; };
 		63ABAB881ED873CC00941726 /* SLVImageDownloadOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63ABAB871ED873CB00941726 /* SLVImageDownloadOperationTests.m */; };
 		63ACEF3E1EBD3F53007C0D41 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63ACEF3C1EBD3B37007C0D41 /* Masonry.framework */; };
@@ -76,6 +78,10 @@
 		6392D1E41EE04D4E0050728D /* UIColor+SLVColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SLVColor.m"; sourceTree = "<group>"; };
 		6392D1E51EE04D4E0050728D /* UIFont+SLVFonts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+SLVFonts.h"; sourceTree = "<group>"; };
 		6392D1E61EE04D4E0050728D /* UIFont+SLVFonts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+SLVFonts.m"; sourceTree = "<group>"; };
+		6392D1ED1EE741BE0050728D /* SLVCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVCollectionViewCell.h; sourceTree = "<group>"; };
+		6392D1EE1EE741BE0050728D /* SLVCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVCollectionViewCell.m; sourceTree = "<group>"; };
+		6392D1F01EE7F92E0050728D /* SLVPostViewCells.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPostViewCells.h; path = Views/Post/SLVPostViewCells.h; sourceTree = "<group>"; };
+		6392D1F11EE7F92E0050728D /* SLVPostViewCells.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVPostViewCells.m; path = Views/Post/SLVPostViewCells.m; sourceTree = "<group>"; };
 		63ABAB811ED60E8900941726 /* SLVImageProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVImageProcessing.h; path = Services/SLVImageProcessing.h; sourceTree = "<group>"; };
 		63ABAB821ED60E8900941726 /* SLVImageProcessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVImageProcessing.m; path = Services/SLVImageProcessing.m; sourceTree = "<group>"; };
 		63ABAB871ED873CB00941726 /* SLVImageDownloadOperationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVImageDownloadOperationTests.m; path = lection14Tests/SLVImageDownloadOperationTests.m; sourceTree = "<group>"; };
@@ -181,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				6392D1DB1EE04D3A0050728D /* Collection */,
+				6392D1F31EE7F9350050728D /* Post */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -232,6 +239,8 @@
 			children = (
 				6392D1DC1EE04D3A0050728D /* SLVCollectionView.h */,
 				6392D1DD1EE04D3A0050728D /* SLVCollectionView.m */,
+				6392D1ED1EE741BE0050728D /* SLVCollectionViewCell.h */,
+				6392D1EE1EE741BE0050728D /* SLVCollectionViewCell.m */,
 				6392D1DE1EE04D3A0050728D /* SLVCollectionViewLayout.h */,
 				6392D1DF1EE04D3A0050728D /* SLVCollectionViewLayout.m */,
 			);
@@ -248,6 +257,15 @@
 				6392D1E61EE04D4E0050728D /* UIFont+SLVFonts.m */,
 			);
 			path = Extentions;
+			sourceTree = "<group>";
+		};
+		6392D1F31EE7F9350050728D /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				6392D1F01EE7F92E0050728D /* SLVPostViewCells.h */,
+				6392D1F11EE7F92E0050728D /* SLVPostViewCells.m */,
+			);
+			name = Post;
 			sourceTree = "<group>";
 		};
 		63ABAB891ED873D500941726 /* UnitTests */ = {
@@ -416,6 +434,7 @@
 			files = (
 				6350EF8C1ED5843000D7C8CE /* SLVSearchResultsModel.m in Sources */,
 				04E2FFA81EBB90A50074C5D9 /* lection14.xcdatamodeld in Sources */,
+				6392D1EF1EE741BE0050728D /* SLVCollectionViewCell.m in Sources */,
 				6350EF8B1ED5843000D7C8CE /* SLVItem.m in Sources */,
 				6392D1E81EE04D4E0050728D /* UIFont+SLVFonts.m in Sources */,
 				04E2FF9F1EBB90A50074C5D9 /* AppDelegate.m in Sources */,
@@ -423,6 +442,7 @@
 				04E2FF9C1EBB90A50074C5D9 /* main.m in Sources */,
 				6392D1E01EE04D3A0050728D /* SLVCollectionView.m in Sources */,
 				6392D1D61EE04CFD0050728D /* SLVCollectionViewController.m in Sources */,
+				6392D1F21EE7F92E0050728D /* SLVPostViewCells.m in Sources */,
 				6392D1DA1EE04CFD0050728D /* SLVSettingsViewController.m in Sources */,
 				6392D1E71EE04D4E0050728D /* UIColor+SLVColor.m in Sources */,
 				6350EF861ED5841F00D7C8CE /* SLVNetworkManager.m in Sources */,

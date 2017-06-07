@@ -19,7 +19,7 @@
     NSString *farm = dict[@"farm"];
     NSString *idd = dict[@"id"];
     
-    NSString *url = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_h.jpg", farm, server, idd, secret];
+    NSString *url = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_n.jpg", farm, server, idd, secret]; //z
     
     item.photoURL = [NSURL URLWithString:url];
     

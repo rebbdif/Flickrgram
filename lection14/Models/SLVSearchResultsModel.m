@@ -119,6 +119,15 @@
     }];
 }
 
+- (void)resumeOperations {
+    [self.imageOperations enumerateKeysAndObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id key, id object, BOOL *stop) {
+        ImageDownloadOperation *operation = (ImageDownloadOperation *)object;
+        if (operation.isCancelled) {
+            [operation resume];
+        }
+    }];
+}
+
 - (void)clearModel {
     self.items = [NSArray new];
     [self.imageCache removeAllObjects];
