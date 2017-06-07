@@ -38,6 +38,9 @@
 }
 
 - (void)main {
+    if (!self.indexPath) {
+        self.indexPath = [NSIndexPath indexPathForRow:99 inSection:99];
+    }
     NSLog(@"operation %ld began", (long)self.indexPath.row);
     dispatch_semaphore_t imageDownloadedSemaphore = dispatch_semaphore_create(0);
     

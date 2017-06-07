@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		04E2FF9C1EBB90A50074C5D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2FF9B1EBB90A50074C5D9 /* main.m */; };
 		04E2FF9F1EBB90A50074C5D9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2FF9E1EBB90A50074C5D9 /* AppDelegate.m */; };
-		04E2FFA81EBB90A50074C5D9 /* lection14.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04E2FFA61EBB90A50074C5D9 /* lection14.xcdatamodeld */; };
 		04E2FFAA1EBB90A50074C5D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04E2FFA91EBB90A50074C5D9 /* Assets.xcassets */; };
 		04E2FFAD1EBB90A50074C5D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E2FFAB1EBB90A50074C5D9 /* LaunchScreen.storyboard */; };
 		6350EF861ED5841F00D7C8CE /* SLVNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6350EF851ED5841F00D7C8CE /* SLVNetworkManager.m */; };
@@ -27,6 +26,11 @@
 		6392D1E81EE04D4E0050728D /* UIFont+SLVFonts.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1E61EE04D4E0050728D /* UIFont+SLVFonts.m */; };
 		6392D1EF1EE741BE0050728D /* SLVCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1EE1EE741BE0050728D /* SLVCollectionViewCell.m */; };
 		6392D1F21EE7F92E0050728D /* SLVPostViewCells.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1F11EE7F92E0050728D /* SLVPostViewCells.m */; };
+		6392D1F71EE84A920050728D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1F51EE84A920050728D /* Model.xcdatamodeld */; };
+		6392D20C1EE874BF0050728D /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D20B1EE874BF0050728D /* CoreDataStack.m */; };
+		6392D20F1EE875790050728D /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D20E1EE875790050728D /* Comment.m */; };
+		6392D2121EE875980050728D /* Human.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D2111EE875980050728D /* Human.m */; };
+		6392D2151EE875A50050728D /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D2141EE875A50050728D /* Item.m */; };
 		63ABAB831ED60E8900941726 /* SLVImageProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 63ABAB821ED60E8900941726 /* SLVImageProcessing.m */; };
 		63ABAB881ED873CC00941726 /* SLVImageDownloadOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63ABAB871ED873CB00941726 /* SLVImageDownloadOperationTests.m */; };
 		63ACEF3E1EBD3F53007C0D41 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63ACEF3C1EBD3B37007C0D41 /* Masonry.framework */; };
@@ -47,7 +51,6 @@
 		04E2FF9B1EBB90A50074C5D9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		04E2FF9D1EBB90A50074C5D9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04E2FF9E1EBB90A50074C5D9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		04E2FFA71EBB90A50074C5D9 /* lection14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = lection14.xcdatamodel; sourceTree = "<group>"; };
 		04E2FFA91EBB90A50074C5D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04E2FFAC1EBB90A50074C5D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04E2FFAE1EBB90A50074C5D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -82,6 +85,15 @@
 		6392D1EE1EE741BE0050728D /* SLVCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVCollectionViewCell.m; sourceTree = "<group>"; };
 		6392D1F01EE7F92E0050728D /* SLVPostViewCells.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPostViewCells.h; path = Views/Post/SLVPostViewCells.h; sourceTree = "<group>"; };
 		6392D1F11EE7F92E0050728D /* SLVPostViewCells.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVPostViewCells.m; path = Views/Post/SLVPostViewCells.m; sourceTree = "<group>"; };
+		6392D1F61EE84A920050728D /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		6392D20A1EE874BF0050728D /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataStack.h; path = CoreData/CoreDataStack.h; sourceTree = "<group>"; };
+		6392D20B1EE874BF0050728D /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataStack.m; path = CoreData/CoreDataStack.m; sourceTree = "<group>"; };
+		6392D20D1EE875790050728D /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Comment.h; path = CoreData/Comment.h; sourceTree = "<group>"; };
+		6392D20E1EE875790050728D /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Comment.m; path = CoreData/Comment.m; sourceTree = "<group>"; };
+		6392D2101EE875980050728D /* Human.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Human.h; path = CoreData/Human.h; sourceTree = "<group>"; };
+		6392D2111EE875980050728D /* Human.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Human.m; path = CoreData/Human.m; sourceTree = "<group>"; };
+		6392D2131EE875A50050728D /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Item.h; path = CoreData/Item.h; sourceTree = "<group>"; };
+		6392D2141EE875A50050728D /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Item.m; path = CoreData/Item.m; sourceTree = "<group>"; };
 		63ABAB811ED60E8900941726 /* SLVImageProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVImageProcessing.h; path = Services/SLVImageProcessing.h; sourceTree = "<group>"; };
 		63ABAB821ED60E8900941726 /* SLVImageProcessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVImageProcessing.m; path = Services/SLVImageProcessing.m; sourceTree = "<group>"; };
 		63ABAB871ED873CB00941726 /* SLVImageDownloadOperationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVImageDownloadOperationTests.m; path = lection14Tests/SLVImageDownloadOperationTests.m; sourceTree = "<group>"; };
@@ -129,6 +141,7 @@
 		04E2FF991EBB90A50074C5D9 /* lection14 */ = {
 			isa = PBXGroup;
 			children = (
+				6392D1F41EE84A580050728D /* CoreData */,
 				6392D1E21EE04D4E0050728D /* Extentions */,
 				63ACEF371EBC951A007C0D41 /* Application */,
 				04E2FFD71EBBAC620074C5D9 /* Views */,
@@ -268,6 +281,22 @@
 			name = Post;
 			sourceTree = "<group>";
 		};
+		6392D1F41EE84A580050728D /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				6392D1F51EE84A920050728D /* Model.xcdatamodeld */,
+				6392D20A1EE874BF0050728D /* CoreDataStack.h */,
+				6392D20B1EE874BF0050728D /* CoreDataStack.m */,
+				6392D20D1EE875790050728D /* Comment.h */,
+				6392D20E1EE875790050728D /* Comment.m */,
+				6392D2101EE875980050728D /* Human.h */,
+				6392D2111EE875980050728D /* Human.m */,
+				6392D2131EE875A50050728D /* Item.h */,
+				6392D2141EE875A50050728D /* Item.m */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
 		63ABAB891ED873D500941726 /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,7 +311,6 @@
 				04E2FFA91EBB90A50074C5D9 /* Assets.xcassets */,
 				04E2FFAB1EBB90A50074C5D9 /* LaunchScreen.storyboard */,
 				04E2FFAE1EBB90A50074C5D9 /* Info.plist */,
-				04E2FFA61EBB90A50074C5D9 /* lection14.xcdatamodeld */,
 				04E2FF9D1EBB90A50074C5D9 /* AppDelegate.h */,
 				04E2FF9E1EBB90A50074C5D9 /* AppDelegate.m */,
 			);
@@ -433,13 +461,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6350EF8C1ED5843000D7C8CE /* SLVSearchResultsModel.m in Sources */,
-				04E2FFA81EBB90A50074C5D9 /* lection14.xcdatamodeld in Sources */,
 				6392D1EF1EE741BE0050728D /* SLVCollectionViewCell.m in Sources */,
 				6350EF8B1ED5843000D7C8CE /* SLVItem.m in Sources */,
 				6392D1E81EE04D4E0050728D /* UIFont+SLVFonts.m in Sources */,
 				04E2FF9F1EBB90A50074C5D9 /* AppDelegate.m in Sources */,
 				6350EF8F1ED5923100D7C8CE /* ImageDownloadOperation.m in Sources */,
 				04E2FF9C1EBB90A50074C5D9 /* main.m in Sources */,
+				6392D20F1EE875790050728D /* Comment.m in Sources */,
 				6392D1E01EE04D3A0050728D /* SLVCollectionView.m in Sources */,
 				6392D1D61EE04CFD0050728D /* SLVCollectionViewController.m in Sources */,
 				6392D1F21EE7F92E0050728D /* SLVPostViewCells.m in Sources */,
@@ -448,9 +476,13 @@
 				6350EF861ED5841F00D7C8CE /* SLVNetworkManager.m in Sources */,
 				63ABAB831ED60E8900941726 /* SLVImageProcessing.m in Sources */,
 				6392D1D91EE04CFD0050728D /* SLVPostViewController.m in Sources */,
+				6392D20C1EE874BF0050728D /* CoreDataStack.m in Sources */,
+				6392D2121EE875980050728D /* Human.m in Sources */,
 				6392D1D71EE04CFD0050728D /* SLVCollectionViewDataProvider.m in Sources */,
 				6392D1E11EE04D3A0050728D /* SLVCollectionViewLayout.m in Sources */,
+				6392D1F71EE84A920050728D /* Model.xcdatamodeld in Sources */,
 				6392D1D81EE04CFD0050728D /* SLVFavouritesViewController.m in Sources */,
+				6392D2151EE875A50050728D /* Item.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,13 +697,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		04E2FFA61EBB90A50074C5D9 /* lection14.xcdatamodeld */ = {
+		6392D1F51EE84A920050728D /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				04E2FFA71EBB90A50074C5D9 /* lection14.xcdatamodel */,
+				6392D1F61EE84A920050728D /* Model.xcdatamodel */,
 			);
-			currentVersion = 04E2FFA71EBB90A50074C5D9 /* lection14.xcdatamodel */;
-			path = lection14.xcdatamodeld;
+			currentVersion = 6392D1F61EE84A920050728D /* Model.xcdatamodel */;
+			name = Model.xcdatamodeld;
+			path = CoreData/Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

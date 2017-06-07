@@ -19,9 +19,13 @@
     NSString *farm = dict[@"farm"];
     NSString *idd = dict[@"id"];
     
-    NSString *url = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_n.jpg", farm, server, idd, secret]; //z
+    NSString *url = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_n.jpg", farm, server, idd, secret];
+    NSString *hdURl = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_z.jpg", farm, server, idd, secret];
     
     item.photoURL = [NSURL URLWithString:url];
+    item.highQualityPhotoURL = [NSURL URLWithString:hdURl];
+    
+    item.text = dict[@"title"];
     
     item.applyFilterSwitherValue = NO;
     

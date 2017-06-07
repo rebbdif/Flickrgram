@@ -10,6 +10,7 @@
 #import "ImageDownloadOperation.h"
 #import "SLVImageProcessing.h"
 #import "SLVNetworkManager.h"
+#import "SLVItem.h"
 
 @interface SLVSearchResultsModel() <NSURLSessionDownloadDelegate>
 
@@ -91,13 +92,31 @@
     }
 }
 
+- (void)loadImageForItem:(SLVItem *)currentItem withCompletionHandler:(void (^)(void))completionHandler {
+    if (![self.imageCache objectForKey:currentItem.photoURL]) {
+        ImageDownloadOperation *imageDownloadOperation = [ImageDownloadOperation new];
+        //   imageDownloadOperation.indexPath = indexPath;
+        imageDownloadOperation.item = currentItem;
+        imageDownloadOperation.session = self.session;
+        imageDownloadOperation.imageCache = self.imageCache;
+        imageDownloadOperation.name = [NSString stringWithFormat:@"imageDownloadOperation for url %@",currentItem.highQualityPhotoURL];
+        imageDownloadOperation.completionBlock = ^{
+            completionHandler();
+        };
+        [self.imagesQueue addOperation:imageDownloadOperation];
+        
+    } else {
+        completionHandler();
+    }
+}
+
 - (void)filterItemAtIndexPath:(NSIndexPath *)indexPath filter:(BOOL)filter withCompletionBlock:(void(^)(UIImage *image)) completion {
     if (filter == YES) {
         SLVItem *currentItem = self.items[indexPath.row];
         currentItem.applyFilterSwitherValue = YES;
         NSOperation *filterOperation = [NSBlockOperation blockOperationWithBlock:^{
-                UIImage *filteredImage = [SLVImageProcessing applyFilterToImage:[self.imageCache objectForKey:indexPath]];
-                completion(filteredImage);
+            UIImage *filteredImage = [SLVImageProcessing applyFilterToImage:[self.imageCache objectForKey:indexPath]];
+            completion(filteredImage);
         }];
         [filterOperation addDependency:[self.imageOperations objectForKey:indexPath]];
         [self.imagesQueue addOperation:filterOperation];

@@ -12,7 +12,9 @@
 @interface SLVItem : NSObject
 
 @property (strong, nonatomic) NSURL *photoURL;
+@property (strong, nonatomic) NSURL *highQualityPhotoURL;
 @property (strong, nonatomic) NSString *title;
+@property (strong, nonatomic) NSString *text;
 @property (assign, nonatomic) BOOL applyFilterSwitherValue;
 @property (assign, nonatomic) float downloadProgress;
 

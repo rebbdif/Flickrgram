@@ -21,7 +21,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.contentView.backgroundColor = [UIColor grayColor];
+       // self.contentView.backgroundColor = [UIColor grayColor];
         _photoView = [UIImageView new];
         [_photoView setAutoresizingMask:YES];
         _photoView.clipsToBounds = YES;
@@ -101,7 +101,7 @@
         make.centerY.equalTo(self.mas_centerY);
     }];
     [_commentsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left).with.offset(6);
+        make.left.equalTo(_commentsImageView.mas_right).with.offset(6);
         make.centerY.equalTo(self.mas_centerY);
     }];
     [super updateConstraints];
@@ -121,7 +121,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier: reuseIdentifier];
     if (self) {
-        self.contentView.backgroundColor = [UIColor greenColor];
+      //  self.contentView.backgroundColor = [UIColor greenColor];
         _avatarImageView = [UIImageView new];
         _avatarImageView.backgroundColor = [UIColor blueColor];
         [_avatarImageView setAutoresizingMask:YES];
@@ -133,6 +133,7 @@
         [self.contentView addSubview:_nameLabel];
         
         _eventLabel = [UILabel new];
+        _eventLabel.textColor = [UIColor grayColor];
         [self.contentView addSubview:_eventLabel];
     }
     return self;
@@ -152,7 +153,7 @@
     }];
     [_eventLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_avatarImageView.mas_right).with.offset(8);
-        make.top.equalTo(_nameLabel.mas_top).with.offset(1);
+        make.top.equalTo(_nameLabel.mas_bottom).with.offset(1);
         make.right.equalTo(contentView.mas_right).with.offset(8);
     }];
     

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class SLVSearchResultsModel;
 
 @interface SLVPostViewController : UIViewController
+
+- (instancetype)initWithModel:(SLVSearchResultsModel *)model;
 
 @end

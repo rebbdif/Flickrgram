@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SLVItem.h"
 
+@class UIImage;
+@class SLVItem;
 @class ImageDownloadOperation;
 @class SLVNetworkManager;
 
@@ -17,9 +18,11 @@
 @property (copy, nonatomic) NSArray<SLVItem *> *items;
 @property (strong, nonatomic) NSString *searchRequest;
 @property (strong, nonatomic) NSCache *imageCache;
+@property (strong, nonatomic) SLVItem *selectedItem;
 
 - (void)getItemsForRequest:(NSString *)request withCompletionHandler: (void (^)(void))completionHandler;
 - (void)loadImageForIndexPath:(NSIndexPath *)indexPath withCompletionHandler:(void(^)(void))completionHandler;
+- (void)loadImageForItem:(SLVItem *)currentItem withCompletionHandler:(void(^)(void))completionHandler;
 - (void)cancelOperations;
 - (void)resumeOperations;
 - (void)filterItemAtIndexPath:(NSIndexPath *)indexPath filter:(BOOL)filter withCompletionBlock:(void(^)(UIImage *image))completion;

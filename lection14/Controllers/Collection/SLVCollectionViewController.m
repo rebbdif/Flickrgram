@@ -89,26 +89,22 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (IBAction)gotoSettings:(id)sender {
     [self pauseDownloads];
-    UIBarButtonItem *newBackButton =
-    [[UIBarButtonItem alloc] initWithTitle:@" "
-                                     style:UIBarButtonItemStylePlain
-                                    target:nil
-                                    action:nil];
-    [[self navigationItem] setBackBarButtonItem:newBackButton];
+    UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:newBackButton];
     [self.navigationController pushViewController:[SLVSettingsViewController new] animated:YES];
 }
 
 #pragma mark - CollectionView delegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    self.model.selectedItem = self.model.items[indexPath.row];
+    SLVPostViewController *postViewController = [[SLVPostViewController alloc] initWithModel:self.model];
     [self pauseDownloads];
-    UIBarButtonItem *newBackButton =
-    [[UIBarButtonItem alloc] initWithTitle:@" "
-                                     style:UIBarButtonItemStylePlain
-                                    target:nil
-                                    action:nil];
-    [[self navigationItem] setBackBarButtonItem:newBackButton];
-    [self.navigationController pushViewController:[SLVPostViewController new] animated:YES];
+    
+    UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:newBackButton];
+    
+    [self.navigationController pushViewController:postViewController animated:YES];
 }
 
 - (void)pauseDownloads {
