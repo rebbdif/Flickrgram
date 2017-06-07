@@ -40,4 +40,17 @@
     return fetchedItem.thumbnail;
 }
 
++ (void)saveImage:(UIImage *)image forKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *) moc {
+    NSArray *fetched = [SLVStorageService fetchEntity:@"Item" forKey:key inManagedObjectContext:moc];
+    Item *fetchedItem = fetched[0];
+    fetchedItem.largePhoto = image;
+}
+
++ (void)saveThumbnail:(UIImage *)image forKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *) moc {
+    NSArray *fetched = [SLVStorageService fetchEntity:@"Item" forKey:key inManagedObjectContext:moc];
+    Item *fetchedItem = fetched[0];
+    fetchedItem.thumbnail = image;
+}
+
+
 @end

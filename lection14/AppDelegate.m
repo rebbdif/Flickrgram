@@ -10,6 +10,7 @@
 #import "SLVCollectionViewController.h"
 #import "SLVFavouritesViewController.h"
 #import "SLVSearchResultsModel.h"
+#import "CoreDataStack.h"
 
 @interface AppDelegate ()
 
@@ -22,6 +23,8 @@
     self.window=[[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     
     SLVSearchResultsModel *model = [SLVSearchResultsModel new];
+    CoreDataStack *stack = [CoreDataStack stack];
+    model.context = stack.coreDataContext;
     SLVCollectionViewController *collectionViewController=[[SLVCollectionViewController alloc] initWithModel:model];
     SLVFavouritesViewController *favouritesViewController=[SLVFavouritesViewController new];
     
