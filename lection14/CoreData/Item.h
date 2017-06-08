@@ -22,7 +22,11 @@
 @property (nonatomic, strong) UIImage *largePhoto;
 @property (nonatomic, strong) UIImage *thumbnail;
 @property (nonatomic, strong) NSString *identifier;
+@property (nonatomic, assign) BOOL applyFilterSwitherValue;
+@property (nonatomic, assign) float downloadProgress;
 
 + (Item *)itemWithDictionary:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)moc;
+
++ (SLVItem *)itemWithDictionary:(NSDictionary *)dict;
 
 @end

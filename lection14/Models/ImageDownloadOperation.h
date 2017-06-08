@@ -30,6 +30,7 @@ typedef NS_ENUM(NSInteger, SLVImageStatus) {
 @property (weak, nonatomic) NSCache *imageCache;
 @property (weak, nonatomic) NSURLSession *session;
 @property (weak, nonatomic) NSManagedObjectContext *context;
+@property (weak, nonatomic) NSURL *url;
 
 - (void)pause;
 - (void)resume;

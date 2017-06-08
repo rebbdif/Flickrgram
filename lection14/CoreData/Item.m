@@ -21,6 +21,8 @@
 @dynamic largePhoto;
 @dynamic thumbnail;
 @dynamic identifier;
+@dynamic downloadProgress;
+@dynamic applyFilterSwitherValue;
 
 + (Item *)itemWithDictionary:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)moc {
     Item *item = nil;
@@ -35,6 +37,26 @@
     item.identifier = item.photoURL;
     return item;
 }
+
++ (SLVItem *)itemWithDictionary:(NSDictionary *)dict {
+    SLVItem *item=[SLVItem new];
+    item.title = dict[@"title"];
+    NSString *secret = dict[@"secret"];
+    NSString *server = dict[@"server"];
+    NSString *farm = dict[@"farm"];
+    NSString *idd = dict[@"id"];
+    
+    NSString *url = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_n.jpg", farm, server, idd, secret];
+    NSString *hdURl = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_z.jpg", farm, server, idd, secret];
+    item.photoURL = [NSURL URLWithString:url];
+    item.highQualityPhotoURL = [NSURL URLWithString:hdURl];
+    
+    item.text = dict[@"title"];
+    item.applyFilterSwitherValue = NO;
+    
+    return item;
+}
+
 
 @end
 

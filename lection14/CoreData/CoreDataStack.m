@@ -49,15 +49,6 @@
     _coreDataContext.persistentStoreCoordinator = coreDataPSC;
 }
 
-- (void)save {
-    if (_coreDataContext.hasChanges) {
-        NSError *error = nil;
-        [_coreDataContext save:&error];
-        
-        if (error) {
-            NSLog(@"%@", error.localizedDescription);
-        }
-    }
-}
+
 
 @end

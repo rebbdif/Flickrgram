@@ -11,6 +11,7 @@
 #import "SLVSearchResultsModel.h"
 #import "SLVNetworkManager.h"
 #import "SLVImageProcessing.h"
+#import "SLVStorageService.h"
 
 
 @interface ImageDownloadOperation()
@@ -38,9 +39,6 @@
 }
 
 - (void)main {
-    if (!self.indexPath) {
-        self.indexPath = [NSIndexPath indexPathForRow:99 inSection:99];
-    }
     NSLog(@"operation %ld began", (long)self.indexPath.row);
     dispatch_semaphore_t imageDownloadedSemaphore = dispatch_semaphore_create(0);
     
@@ -91,11 +89,17 @@
     NSLog(@"operation %ld cropped", (long)self.indexPath.row);
     
     if (self.downloadedImage) {
-        [self.imageCache setObject:self.downloadedImage forKey:self.indexPath];
+        [self saveImage:self.downloadedImage];
     } else {
         self.status = SLVImageStatusNone;
     }
     NSLog(@"operation %ld finished", (long)self.indexPath.row);
+}
+
+- (void)saveImage:(UIImage *)image {
+    if (self.context) {
+        [SLVStorageService saveImage:image forKey:self.item.photoURL inManagedObjectContext:self.context];
+    }
 }
 
 - (void)resume {

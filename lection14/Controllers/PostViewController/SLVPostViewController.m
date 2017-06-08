@@ -80,12 +80,13 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     __weak typeof(self) weakself = self;
-    [self.model loadImageForItem:self.item withCompletionHandler:^{
+    
+    [self.model imageForItem:self.model.selectedItem withCompletionHandler:^(UIImage *image) {
         __strong typeof(self) strongself = weakself;
         if (strongself) {
             dispatch_async(dispatch_get_main_queue(), ^{
                SLVImageCell *cell = [strongself.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    //            cell.photoView.image = [self.model.imageCache objectForKey:[NSIndexPath indexPathForRow:99 inSection:99]];
+                cell.photoView.image = image;
             });
         }
     }];

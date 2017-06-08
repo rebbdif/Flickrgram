@@ -10,10 +10,11 @@
 #import "Item.h"
 @import CoreData;
 @import UIKit;
+#import "CoreDataStack.h"
 
 @implementation SLVStorageService
 
-+ (id)fetchEntity:(NSString *)entity forKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *)moc {
++ (id)fetchEntity:(NSString *)entity forKey:(NSURL *)key inManagedObjectContext:(NSManagedObjectContext *)moc {
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entity];
     request.predicate = [NSPredicate predicateWithFormat:@"identifier == %@",key];
@@ -28,29 +29,48 @@
     return nil;
 }
 
-+ (UIImage *)imageForKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *) moc {
++ (UIImage *)imageForKey:(NSURL *)key inManagedObjectContext:(NSManagedObjectContext *) moc {
     NSArray *fetched = [SLVStorageService fetchEntity:@"Item" forKey:key inManagedObjectContext:moc];
+    if (!fetched || fetched.count == 0) {
+        return nil;
+    }
     Item *fetchedItem = fetched[0];
     return fetchedItem.largePhoto;
 }
 
-+ (UIImage *)thumbnailForKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *) moc {
++ (UIImage *)thumbnailForKey:(NSURL *)key inManagedObjectContext:(NSManagedObjectContext *) moc {
     NSArray *fetched = [SLVStorageService fetchEntity:@"Item" forKey:key inManagedObjectContext:moc];
+    if (!fetched || fetched.count == 0) {
+        return nil;
+    }
     Item *fetchedItem = fetched[0];
     return fetchedItem.thumbnail;
 }
 
-+ (void)saveImage:(UIImage *)image forKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *) moc {
++ (void)saveImage:(UIImage *)image forKey:(NSURL *)key inManagedObjectContext:(NSManagedObjectContext *) moc {
     NSArray *fetched = [SLVStorageService fetchEntity:@"Item" forKey:key inManagedObjectContext:moc];
     Item *fetchedItem = fetched[0];
     fetchedItem.largePhoto = image;
+    [SLVStorageService saveInContext:moc];
 }
 
-+ (void)saveThumbnail:(UIImage *)image forKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *) moc {
++ (void)saveThumbnail:(UIImage *)image forKey:(NSURL *)key inManagedObjectContext:(NSManagedObjectContext *) moc {
     NSArray *fetched = [SLVStorageService fetchEntity:@"Item" forKey:key inManagedObjectContext:moc];
     Item *fetchedItem = fetched[0];
     fetchedItem.thumbnail = image;
+    [SLVStorageService saveInContext:moc];
+    
 }
 
++ (void)saveInContext:(NSManagedObjectContext *)moc {
+    if (moc.hasChanges) {
+        NSError *error = nil;
+        [moc save:&error];
+        
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }
+}
 
 @end

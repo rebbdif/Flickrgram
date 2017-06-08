@@ -11,6 +11,8 @@
 #import "SLVImageProcessing.h"
 #import "SLVNetworkManager.h"
 #import "SLVItem.h"
+#import "SLVStorageService.h"
+#import "Item.h"
 
 @interface SLVSearchResultsModel() <NSURLSessionDownloadDelegate>
 
@@ -19,6 +21,7 @@
 @property (strong, nonatomic) NSOperationQueue *imagesQueue;
 @property (strong, nonatomic) SLVNetworkManager *networkManager;
 @property (strong, nonatomic) NSURLSession *session;
+
 
 @end
 
@@ -60,7 +63,9 @@
     if (json) {
         NSMutableArray *parsingResults = [NSMutableArray new];
         for (NSDictionary * dict in json[@"photos"][@"photo"]) {
-            [parsingResults addObject:[SLVItem itemWithDictionary:dict]];
+            SLVItem *item = [SLVItem itemWithDictionary:dict];
+            [parsingResults addObject:item];
+          //  [Item itemWithDictionary:<#(NSDictionary *)#> inManagedObjectContext:self.context]
         }
         return [parsingResults copy];
     } else {
@@ -75,6 +80,7 @@
             ImageDownloadOperation *imageDownloadOperation = [ImageDownloadOperation new];
             imageDownloadOperation.indexPath = indexPath;
             imageDownloadOperation.item = currentItem;
+            imageDownloadOperation.url = currentItem.photoURL;
             imageDownloadOperation.session = self.session;
             imageDownloadOperation.imageCache = self.imageCache;
             imageDownloadOperation.name = [NSString stringWithFormat:@"imageDownloadOperation for index %lu",indexPath.row];
@@ -93,21 +99,24 @@
     }
 }
 
-- (void)loadImageForItem:(SLVItem *)currentItem withCompletionHandler:(void (^)(void))completionHandler {
-    if (![self.imageCache objectForKey:currentItem.photoURL]) {
+- (void)imageForItem:(SLVItem *)currentItem withCompletionHandler:(void (^)(UIImage *image))completionHandler {
+    if (![SLVStorageService imageForKey:currentItem.photoURL inManagedObjectContext:self.context]) {
         ImageDownloadOperation *imageDownloadOperation = [ImageDownloadOperation new];
         imageDownloadOperation.item = currentItem;
+        imageDownloadOperation.url = currentItem.highQualityPhotoURL;
         imageDownloadOperation.session = self.session;
         imageDownloadOperation.imageCache = self.imageCache;
         imageDownloadOperation.context = self.context;
         imageDownloadOperation.name = [NSString stringWithFormat:@"imageDownloadOperation for url %@",currentItem.highQualityPhotoURL];
         imageDownloadOperation.completionBlock = ^{
-            completionHandler();
+            UIImage *image = [SLVStorageService imageForKey:currentItem.photoURL inManagedObjectContext:self.context];
+            completionHandler(image);
         };
         [self.imagesQueue addOperation:imageDownloadOperation];
         
     } else {
-        completionHandler();
+        UIImage *image = [SLVStorageService imageForKey:currentItem.photoURL inManagedObjectContext:self.context];
+        completionHandler(image);
     }
 }
 

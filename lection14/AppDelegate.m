@@ -18,10 +18,7 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window=[[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
-    
     SLVSearchResultsModel *model = [SLVSearchResultsModel new];
     CoreDataStack *stack = [CoreDataStack stack];
     model.context = stack.coreDataContext;
@@ -34,9 +31,10 @@
     UITabBarController *tabbarController = [UITabBarController new];
     [tabbarController setViewControllers: @[ncCollection, ncFavourites]];
     
+    self.window=[[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     self.window.rootViewController= tabbarController;
     [self.window makeKeyAndVisible];
     return YES;
-
 }
+
 @end
