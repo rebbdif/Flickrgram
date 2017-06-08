@@ -15,8 +15,8 @@
 @property (nonatomic, assign) uint16_t liked;
 @property (nonatomic, assign) float latitude;
 @property (nonatomic, assign) float longitude;
-@property (nonatomic, strong) NSString *highQualityPhotoURL;
-@property (nonatomic, strong) NSString *photoURL;
+@property (nonatomic, strong) NSString *largePhotoURL;
+@property (nonatomic, strong) NSString *thumbnailURL;
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) UIImage *largePhoto;

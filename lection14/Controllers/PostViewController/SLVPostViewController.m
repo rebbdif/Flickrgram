@@ -26,7 +26,6 @@
     self = [super init];
     if (self) {
         _model = model;
-        
         UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithCustomView:[self configureNavigationBar]];
         [self.navigationItem setLeftBarButtonItem:bbi];
         [self.navigationItem setHidesBackButton:NO];
@@ -48,7 +47,7 @@
     self.tableView.dataSource = self;
     
     self.navigationItem.hidesBackButton = NO;
-
+    
 }
 
 - (UIView *)configureNavigationBar {
@@ -76,22 +75,6 @@
     
     return view;
 }
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    __weak typeof(self) weakself = self;
-    
-    [self.model imageForItem:self.model.selectedItem withCompletionHandler:^(UIImage *image) {
-        __strong typeof(self) strongself = weakself;
-        if (strongself) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-               SLVImageCell *cell = [strongself.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-                cell.photoView.image = image;
-            });
-        }
-    }];
-}
-
 
 #pragma mark - TableView
 
@@ -124,7 +107,20 @@
     switch (indexPath.section) {
         case 0: {
             SLVImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell"];
-    ///////////////
+            cell.spinner.hidden = NO;
+            [cell.spinner startAnimating];
+            cell.photoView.image = self.model.selectedItem.thumbnail;
+            __weak typeof(self) weakself = self;
+            [self.model loadImageForItem:self.model.selectedItem withCompletionHandler:^(UIImage *image) {
+                __strong typeof(self) strongself = weakself;
+                if (strongself) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        SLVImageCell *cell = [strongself.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+                        cell.photoView.image = image;
+                        [cell.spinner stopAnimating];
+                    });
+                }
+            }];
             cell.descriptionText.text = @"description";
             return cell;
             break;

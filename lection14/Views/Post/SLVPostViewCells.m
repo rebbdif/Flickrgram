@@ -21,7 +21,6 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-       // self.contentView.backgroundColor = [UIColor grayColor];
         _photoView = [UIImageView new];
         [_photoView setAutoresizingMask:YES];
         _photoView.clipsToBounds = YES;
@@ -51,6 +50,10 @@
         make.left.equalTo(contentView.mas_left).with.offset(16);
         make.right.equalTo(contentView.mas_right).with.offset(-16);
         make.bottom.equalTo(contentView.mas_bottom).with.offset(-12);
+    }];
+    [_spinner mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(_photoView.mas_centerX);
+        make.centerY.equalTo(_photoView.mas_centerY);
     }];
     [super updateConstraints];
 }

@@ -23,8 +23,9 @@
 
 - (void)getItemsForRequest:(NSString *)request withCompletionHandler: (void (^)(void))completionHandler;
 - (UIImage *)imageForIndexPath:(NSIndexPath *)indexPath;
+- (UIImage *)imageForKey:(NSString *)key;
 - (void)loadImageForIndexPath:(NSIndexPath *)indexPath withCompletionHandler:(void(^)(void))completionHandler;
-- (void)imageForItem:(SLVItem *)currentItem withCompletionHandler:(void (^)(UIImage *image))completionHandler;
+- (void)loadImageForItem:(SLVItem *)currentItem withCompletionHandler:(void (^)(UIImage *image))completionHandler;
 - (void)cancelOperations;
 - (void)resumeOperations;
 - (void)clearModel;

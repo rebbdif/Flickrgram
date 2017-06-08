@@ -14,8 +14,8 @@
 @dynamic liked;
 @dynamic latitude;
 @dynamic longitude;
-@dynamic highQualityPhotoURL;
-@dynamic photoURL;
+@dynamic largePhotoURL;
+@dynamic thumbnailURL;
 @dynamic text;
 @dynamic title;
 @dynamic largePhoto;
@@ -34,12 +34,12 @@
     
     NSString *url = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_n.jpg", farm, server, idd, secret];
     NSString *hdUrl = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_z.jpg", farm, server, idd, secret];
-    item.photoURL = url;
-    item.highQualityPhotoURL = hdUrl;
+    item.thumbnailURL = url;
+    item.largePhotoURL = hdUrl;
     
     item.text = dict[@"title"];
     
-    item.identifier = item.photoURL;
+    item.identifier = item.thumbnailURL;
     return item;
 }
 

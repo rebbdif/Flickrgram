@@ -72,19 +72,24 @@
 
 - (UIImage *)imageForIndexPath:(NSIndexPath *)indexPath {
     SLVItem *currentItem = self.items[indexPath.row];
-    NSString *key = currentItem.photoURL;
+    NSString *key = currentItem.thumbnailURL;
+    UIImage *image = [SLVStorageService imageForKey:key inManagedObjectContext:self.context];
+    return image;
+}
+
+- (UIImage *)imageForKey:(NSString *)key {
     UIImage *image = [SLVStorageService imageForKey:key inManagedObjectContext:self.context];
     return image;
 }
 
 - (void)loadImageForIndexPath:(NSIndexPath *)indexPath withCompletionHandler:(void(^)(void))completionHandler {
     SLVItem *currentItem = self.items[indexPath.row];
-    if (![SLVStorageService imageForKey:currentItem.photoURL inManagedObjectContext:self.context]) {
+    if (![SLVStorageService imageForKey:currentItem.thumbnailURL inManagedObjectContext:self.context]) {
         if (!self.imageOperations[indexPath]) {
             ImageDownloadOperation *imageDownloadOperation = [ImageDownloadOperation new];
             imageDownloadOperation.indexPath = indexPath;
-            imageDownloadOperation.key = currentItem.photoURL;
-            imageDownloadOperation.url = currentItem.photoURL;
+            imageDownloadOperation.key = currentItem.thumbnailURL;
+            imageDownloadOperation.url = currentItem.thumbnailURL;
             imageDownloadOperation.session = self.session;
             imageDownloadOperation.context = self.context;
             imageDownloadOperation.name = [NSString stringWithFormat:@"imageDownloadOperation for index %lu",indexPath.row];
@@ -103,22 +108,21 @@
     }
 }
 
-- (void)imageForItem:(SLVItem *)currentItem withCompletionHandler:(void (^)(UIImage *image))completionHandler {
-    if (![SLVStorageService imageForKey:currentItem.photoURL inManagedObjectContext:self.context]) {
+- (void)loadImageForItem:(SLVItem *)currentItem withCompletionHandler:(void (^)(UIImage *image))completionHandler {
+    if (![SLVStorageService imageForKey:currentItem.largePhotoURL inManagedObjectContext:self.context]) {
         ImageDownloadOperation *imageDownloadOperation = [ImageDownloadOperation new];
-        imageDownloadOperation.key = currentItem.photoURL;
-        imageDownloadOperation.url = currentItem.highQualityPhotoURL;
+        imageDownloadOperation.key = currentItem.thumbnailURL;
+        imageDownloadOperation.url = currentItem.largePhotoURL;
         imageDownloadOperation.session = self.session;
         imageDownloadOperation.context = self.context;
-        imageDownloadOperation.name = [NSString stringWithFormat:@"imageDownloadOperation for url %@",currentItem.highQualityPhotoURL];
+        imageDownloadOperation.name = [NSString stringWithFormat:@"imageDownloadOperation for url %@",currentItem.largePhotoURL];
         imageDownloadOperation.completionBlock = ^{
-            UIImage *image = [SLVStorageService imageForKey:currentItem.photoURL inManagedObjectContext:self.context];
+            UIImage *image = [SLVStorageService imageForKey:currentItem.thumbnailURL inManagedObjectContext:self.context];
             completionHandler(image);
         };
         [self.imagesQueue addOperation:imageDownloadOperation];
-        
     } else {
-        UIImage *image = [SLVStorageService imageForKey:currentItem.photoURL inManagedObjectContext:self.context];
+        UIImage *image = [SLVStorageService imageForKey:currentItem.thumbnailURL inManagedObjectContext:self.context];
         completionHandler(image);
     }
 }
