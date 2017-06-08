@@ -7,7 +7,6 @@
 //
 
 #import "ImageDownloadOperation.h"
-#import "SLVItem.h"
 #import "SLVSearchResultsModel.h"
 #import "SLVNetworkManager.h"
 #import "SLVImageProcessing.h"
@@ -39,12 +38,12 @@
 }
 
 - (void)main {
-    NSLog(@"operation %ld began", (long)self.indexPath.row);
+ //   NSLog(@"operation %ld began", (long)self.indexPath.row);
     dispatch_semaphore_t imageDownloadedSemaphore = dispatch_semaphore_create(0);
     
     self.downloadOperation = [NSBlockOperation blockOperationWithBlock:^{
         __weak typeof(self) weakself = self;
-        weakself.task = [SLVNetworkManager downloadImageWithSession:self.session fromURL:self.item.photoURL withCompletionHandler:^(NSData *data) {
+        weakself.task = [SLVNetworkManager downloadImageWithSession:self.session fromURL:[NSURL URLWithString:self.url] withCompletionHandler:^(NSData *data) {
             weakself.downloadedImage = [UIImage imageWithData:data];
             weakself.status = SLVImageStatusDownloaded;
             dispatch_semaphore_signal(imageDownloadedSemaphore);
@@ -62,31 +61,16 @@
     [self.applyFilterOperation addDependency:self.cropOperation];
     
     self.status = SLVImageStatusDownloading;
-    NSLog(@"operation %ld downloading", (long)self.indexPath.row);
+  //  NSLog(@"operation %ld downloading", (long)self.indexPath.row);
     [self.innerQueue addOperation:self.downloadOperation];
     
-    __weak typeof(self) weakself = self;
-    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, nil);
-    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC, 0.1 * NSEC_PER_SEC);
-    dispatch_source_set_event_handler(timer, ^{
-        float received = weakself.task.countOfBytesReceived;
-        float expected = weakself.task.countOfBytesExpectedToReceive;
-        if (expected!=0) {
-            weakself.item.downloadProgress = received/expected;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"updateProgressNotification" object:self.indexPath];
-            });
-        }
-    });
-    dispatch_resume(timer);
     
     dispatch_semaphore_wait(imageDownloadedSemaphore, DISPATCH_TIME_FOREVER);
-    dispatch_cancel(timer);
-    NSLog(@"operation %ld downloaded", (long)self.indexPath.row);
+  //  NSLog(@"operation %ld downloaded", (long)self.indexPath.row);
     
     [self.innerQueue addOperations:@[self.cropOperation] waitUntilFinished:YES];
     self.status = SLVImageStatusCropped;
-    NSLog(@"operation %ld cropped", (long)self.indexPath.row);
+  //  NSLog(@"operation %ld cropped", (long)self.indexPath.row);
     
     if (self.downloadedImage) {
         [self saveImage:self.downloadedImage];
@@ -98,7 +82,7 @@
 
 - (void)saveImage:(UIImage *)image {
     if (self.context) {
-        [SLVStorageService saveImage:image forKey:self.item.photoURL inManagedObjectContext:self.context];
+        [SLVStorageService saveImage:image forKey:self.key inManagedObjectContext:self.context];
     }
 }
 

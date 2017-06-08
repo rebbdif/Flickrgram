@@ -23,14 +23,14 @@ typedef NS_ENUM(NSInteger, SLVImageStatus) {
 
 @interface ImageDownloadOperation : NSOperation
 
-@property (weak, nonatomic) SLVItem *item;
+@property (weak, nonatomic) NSString *key;
 @property (strong, nonatomic) NSIndexPath *indexPath;
 @property (assign, nonatomic) SLVImageStatus status;
 @property (assign, nonatomic) CGSize imageViewSize;
 @property (weak, nonatomic) NSCache *imageCache;
 @property (weak, nonatomic) NSURLSession *session;
 @property (weak, nonatomic) NSManagedObjectContext *context;
-@property (weak, nonatomic) NSURL *url;
+@property (weak, nonatomic) NSString *url;
 
 - (void)pause;
 - (void)resume;

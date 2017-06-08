@@ -12,7 +12,6 @@
 		04E2FFAA1EBB90A50074C5D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04E2FFA91EBB90A50074C5D9 /* Assets.xcassets */; };
 		04E2FFAD1EBB90A50074C5D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E2FFAB1EBB90A50074C5D9 /* LaunchScreen.storyboard */; };
 		6350EF861ED5841F00D7C8CE /* SLVNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6350EF851ED5841F00D7C8CE /* SLVNetworkManager.m */; };
-		6350EF8B1ED5843000D7C8CE /* SLVItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6350EF881ED5843000D7C8CE /* SLVItem.m */; };
 		6350EF8C1ED5843000D7C8CE /* SLVSearchResultsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6350EF8A1ED5843000D7C8CE /* SLVSearchResultsModel.m */; };
 		6350EF8F1ED5923100D7C8CE /* ImageDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6350EF8E1ED5923100D7C8CE /* ImageDownloadOperation.m */; };
 		6392D1D61EE04CFD0050728D /* SLVCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1CA1EE04CFD0050728D /* SLVCollectionViewController.m */; };
@@ -30,7 +29,7 @@
 		6392D20C1EE874BF0050728D /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D20B1EE874BF0050728D /* CoreDataStack.m */; };
 		6392D20F1EE875790050728D /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D20E1EE875790050728D /* Comment.m */; };
 		6392D2121EE875980050728D /* Human.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D2111EE875980050728D /* Human.m */; };
-		6392D2151EE875A50050728D /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D2141EE875A50050728D /* Item.m */; };
+		6392D2151EE875A50050728D /* SLVItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D2141EE875A50050728D /* SLVItem.m */; };
 		6392D21E1EE88F410050728D /* SLVStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D21D1EE88F410050728D /* SLVStorageService.m */; };
 		63ABAB831ED60E8900941726 /* SLVImageProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 63ABAB821ED60E8900941726 /* SLVImageProcessing.m */; };
 		63ABAB881ED873CC00941726 /* SLVImageDownloadOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63ABAB871ED873CB00941726 /* SLVImageDownloadOperationTests.m */; };
@@ -58,8 +57,6 @@
 		04E2FFB31EBB90A50074C5D9 /* lection14Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lection14Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6350EF841ED5841F00D7C8CE /* SLVNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVNetworkManager.h; path = Services/SLVNetworkManager.h; sourceTree = "<group>"; };
 		6350EF851ED5841F00D7C8CE /* SLVNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVNetworkManager.m; path = Services/SLVNetworkManager.m; sourceTree = "<group>"; };
-		6350EF871ED5843000D7C8CE /* SLVItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVItem.h; path = Models/SLVItem.h; sourceTree = "<group>"; };
-		6350EF881ED5843000D7C8CE /* SLVItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVItem.m; path = Models/SLVItem.m; sourceTree = "<group>"; };
 		6350EF891ED5843000D7C8CE /* SLVSearchResultsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVSearchResultsModel.h; path = Models/SLVSearchResultsModel.h; sourceTree = "<group>"; };
 		6350EF8A1ED5843000D7C8CE /* SLVSearchResultsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVSearchResultsModel.m; path = Models/SLVSearchResultsModel.m; sourceTree = "<group>"; };
 		6350EF8D1ED5923100D7C8CE /* ImageDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageDownloadOperation.h; path = Models/ImageDownloadOperation.h; sourceTree = "<group>"; };
@@ -93,8 +90,8 @@
 		6392D20E1EE875790050728D /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Comment.m; path = CoreData/Comment.m; sourceTree = "<group>"; };
 		6392D2101EE875980050728D /* Human.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Human.h; path = CoreData/Human.h; sourceTree = "<group>"; };
 		6392D2111EE875980050728D /* Human.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Human.m; path = CoreData/Human.m; sourceTree = "<group>"; };
-		6392D2131EE875A50050728D /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Item.h; path = CoreData/Item.h; sourceTree = "<group>"; };
-		6392D2141EE875A50050728D /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Item.m; path = CoreData/Item.m; sourceTree = "<group>"; };
+		6392D2131EE875A50050728D /* SLVItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVItem.h; path = CoreData/SLVItem.h; sourceTree = "<group>"; };
+		6392D2141EE875A50050728D /* SLVItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVItem.m; path = CoreData/SLVItem.m; sourceTree = "<group>"; };
 		6392D21C1EE88F410050728D /* SLVStorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVStorageService.h; path = CoreData/SLVStorageService.h; sourceTree = "<group>"; };
 		6392D21D1EE88F410050728D /* SLVStorageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVStorageService.m; path = CoreData/SLVStorageService.m; sourceTree = "<group>"; };
 		63ABAB811ED60E8900941726 /* SLVImageProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVImageProcessing.h; path = Services/SLVImageProcessing.h; sourceTree = "<group>"; };
@@ -180,8 +177,6 @@
 			children = (
 				6350EF8D1ED5923100D7C8CE /* ImageDownloadOperation.h */,
 				6350EF8E1ED5923100D7C8CE /* ImageDownloadOperation.m */,
-				6350EF871ED5843000D7C8CE /* SLVItem.h */,
-				6350EF881ED5843000D7C8CE /* SLVItem.m */,
 				6350EF891ED5843000D7C8CE /* SLVSearchResultsModel.h */,
 				6350EF8A1ED5843000D7C8CE /* SLVSearchResultsModel.m */,
 			);
@@ -296,8 +291,8 @@
 				6392D20E1EE875790050728D /* Comment.m */,
 				6392D2101EE875980050728D /* Human.h */,
 				6392D2111EE875980050728D /* Human.m */,
-				6392D2131EE875A50050728D /* Item.h */,
-				6392D2141EE875A50050728D /* Item.m */,
+				6392D2131EE875A50050728D /* SLVItem.h */,
+				6392D2141EE875A50050728D /* SLVItem.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -467,7 +462,6 @@
 			files = (
 				6350EF8C1ED5843000D7C8CE /* SLVSearchResultsModel.m in Sources */,
 				6392D1EF1EE741BE0050728D /* SLVCollectionViewCell.m in Sources */,
-				6350EF8B1ED5843000D7C8CE /* SLVItem.m in Sources */,
 				6392D1E81EE04D4E0050728D /* UIFont+SLVFonts.m in Sources */,
 				04E2FF9F1EBB90A50074C5D9 /* AppDelegate.m in Sources */,
 				6350EF8F1ED5923100D7C8CE /* ImageDownloadOperation.m in Sources */,
@@ -488,7 +482,7 @@
 				6392D1E11EE04D3A0050728D /* SLVCollectionViewLayout.m in Sources */,
 				6392D1F71EE84A920050728D /* Model.xcdatamodeld in Sources */,
 				6392D1D81EE04CFD0050728D /* SLVFavouritesViewController.m in Sources */,
-				6392D2151EE875A50050728D /* Item.m in Sources */,
+				6392D2151EE875A50050728D /* SLVItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

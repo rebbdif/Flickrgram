@@ -18,16 +18,15 @@
 
 @property (copy, nonatomic) NSArray<SLVItem *> *items;
 @property (strong, nonatomic) NSString *searchRequest;
-@property (strong, nonatomic) NSCache *imageCache;
 @property (strong, nonatomic) NSManagedObjectContext *context;
 @property (strong, nonatomic) SLVItem *selectedItem;
 
 - (void)getItemsForRequest:(NSString *)request withCompletionHandler: (void (^)(void))completionHandler;
+- (UIImage *)imageForIndexPath:(NSIndexPath *)indexPath;
 - (void)loadImageForIndexPath:(NSIndexPath *)indexPath withCompletionHandler:(void(^)(void))completionHandler;
 - (void)imageForItem:(SLVItem *)currentItem withCompletionHandler:(void (^)(UIImage *image))completionHandler;
 - (void)cancelOperations;
 - (void)resumeOperations;
-- (void)filterItemAtIndexPath:(NSIndexPath *)indexPath filter:(BOOL)filter withCompletionBlock:(void(^)(UIImage *image))completion;
 - (void)clearModel;
 
 @end

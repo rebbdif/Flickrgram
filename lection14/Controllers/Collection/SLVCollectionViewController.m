@@ -69,7 +69,7 @@ static NSString * const reuseIdentifier = @"Cell";
     ////
     __weak typeof(self) weakself = self;
     [self.collectionView.searchBar endEditing:YES];
-    self.model.searchRequest = @"cat";
+    self.model.searchRequest = @"tree";
     [self.model getItemsForRequest:self.model.searchRequest withCompletionHandler:^{
         [weakself.collectionView reloadData];
     }];

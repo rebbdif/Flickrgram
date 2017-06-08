@@ -28,10 +28,15 @@ static NSString * const reuseIdentifier = @"Cell";
     return self;
 }
 
+- (void)showImage:(UIImage *)image forIndexPath:(NSIndexPath *)indexPath {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+    });
+}
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-     SLVCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
-    UIImage *image = [self.model.imageCache objectForKey:indexPath];
+    SLVCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    UIImage *image = [self.model imageForIndexPath:indexPath];
     if (image) {
         cell.imageView.image = image;
     } else {
@@ -41,7 +46,7 @@ static NSString * const reuseIdentifier = @"Cell";
            dispatch_async(dispatch_get_main_queue(), ^{
                SLVCollectionViewCell *cvc = ((SLVCollectionViewCell *)([collectionView cellForItemAtIndexPath:indexPath]));
                [cell.activityIndicator stopAnimating];
-               cvc.imageView.image = [self.model.imageCache objectForKey:indexPath];
+               cvc.imageView.image = [self.model imageForIndexPath:indexPath];
            });
         }];
     }

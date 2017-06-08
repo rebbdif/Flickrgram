@@ -9,7 +9,7 @@
 #import <CoreData/CoreData.h>
 @class UIImage;
 
-@interface Item : NSManagedObject
+@interface SLVItem : NSManagedObject
 
 @property (nonatomic, assign) uint16_t favorited;
 @property (nonatomic, assign) uint16_t liked;
@@ -22,11 +22,7 @@
 @property (nonatomic, strong) UIImage *largePhoto;
 @property (nonatomic, strong) UIImage *thumbnail;
 @property (nonatomic, strong) NSString *identifier;
-@property (nonatomic, assign) BOOL applyFilterSwitherValue;
-@property (nonatomic, assign) float downloadProgress;
 
-+ (Item *)itemWithDictionary:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)moc;
-
-+ (SLVItem *)itemWithDictionary:(NSDictionary *)dict;
++ (SLVItem *)itemWithDictionary:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)moc;
 
 @end

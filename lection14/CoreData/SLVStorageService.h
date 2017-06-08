@@ -13,16 +13,18 @@
 
 @interface SLVStorageService : NSObject
 
-+ (id)fetchEntity:(NSString *)entity forKey:(NSURL *)key inManagedObjectContext:(NSManagedObjectContext *)moc;
++ (id)fetchEntity:(NSString *)entity forKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *)moc;
 
-+ (UIImage *)imageForKey:(NSURL *)key inManagedObjectContext:(NSManagedObjectContext *) moc;
++ (UIImage *)imageForKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *) moc;
 
-+ (UIImage *)thumbnailForKey:(NSURL *)key inManagedObjectContext:(NSManagedObjectContext *) moc;
++ (UIImage *)thumbnailForKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *) moc;
 
-+ (void)saveImage:(UIImage *)image forKey:(NSURL *)key inManagedObjectContext:(NSManagedObjectContext *) moc;
++ (void)saveImage:(UIImage *)image forKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *) moc;
 
-+ (void)saveThumbnail:(UIImage *)image forKey:(NSURL *)key inManagedObjectContext:(NSManagedObjectContext *) moc;
++ (void)saveThumbnail:(UIImage *)image forKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *) moc;
 
 + (void)saveInContext:(NSManagedObjectContext *)moc;
+
++ (void)clearCoreData;
 
 @end

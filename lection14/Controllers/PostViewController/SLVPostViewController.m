@@ -124,14 +124,13 @@
     switch (indexPath.section) {
         case 0: {
             SLVImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell"];
-       //     cell.photoView.image = [self.model.imageCache objectForKey:[NSIndexPath indexPathForRow:99 inSection:99]];;
+    ///////////////
             cell.descriptionText.text = @"description";
             return cell;
             break;
         }
         case 1: {
             SLVCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commentsCell"];
-         //   cell.avatarImageView.image = [self.model.imageCache objectForKey:[NSIndexPath indexPathForRow:99 inSection:99]];
             cell.nameLabel.text = @"rebbdif";
             cell.eventLabel.text = @"liked photo";
             return cell;
