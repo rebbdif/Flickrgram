@@ -10,8 +10,9 @@
 
 @implementation SLVItem
 
-@dynamic favorited;
-@dynamic liked;
+@dynamic isFavorite;
+@dynamic likes;
+@dynamic comments;
 @dynamic latitude;
 @dynamic longitude;
 @dynamic largePhotoURL;

@@ -11,8 +11,9 @@
 
 @interface SLVItem : NSManagedObject
 
-@property (nonatomic, assign) uint16_t favorited;
-@property (nonatomic, assign) uint16_t liked;
+@property (nonatomic, assign) BOOL isFavorite;
+@property (nonatomic, assign) uint16_t likes;
+@property (nonatomic, assign) uint16_t comments;
 @property (nonatomic, assign) float latitude;
 @property (nonatomic, assign) float longitude;
 @property (nonatomic, strong) NSString *largePhotoURL;

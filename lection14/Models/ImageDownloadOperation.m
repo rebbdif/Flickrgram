@@ -50,16 +50,6 @@
         }];
     }];
     
-    self.cropOperation = [NSBlockOperation blockOperationWithBlock:^{
-        self.downloadedImage = [SLVImageProcessing cropImage:self.downloadedImage toSize:self.imageViewSize];
-    }];
-    [self.cropOperation addDependency:self.downloadOperation];
-    
-    self.applyFilterOperation = [NSBlockOperation blockOperationWithBlock:^{
-        self.downloadedImage = [SLVImageProcessing applyFilterToImage:self.downloadedImage];
-    }];
-    [self.applyFilterOperation addDependency:self.cropOperation];
-    
     self.status = SLVImageStatusDownloading;
   //  NSLog(@"operation %ld downloading", (long)self.indexPath.row);
     [self.innerQueue addOperation:self.downloadOperation];
@@ -68,14 +58,11 @@
     dispatch_semaphore_wait(imageDownloadedSemaphore, DISPATCH_TIME_FOREVER);
   //  NSLog(@"operation %ld downloaded", (long)self.indexPath.row);
     
-    [self.innerQueue addOperations:@[self.cropOperation] waitUntilFinished:YES];
-    self.status = SLVImageStatusCropped;
-  //  NSLog(@"operation %ld cropped", (long)self.indexPath.row);
-    
-    if (self.downloadedImage) {
+        if (self.downloadedImage) {
         [self saveImage:self.downloadedImage];
     } else {
         self.status = SLVImageStatusNone;
+        NSLog(@"operation %ld failed", (long)self.indexPath.row);
     }
     NSLog(@"operation %ld finished", (long)self.indexPath.row);
 }

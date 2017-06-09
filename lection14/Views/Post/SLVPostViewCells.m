@@ -7,6 +7,8 @@
 //
 
 #import "SLVPostViewCells.h"
+#import "UIFont+SLVFonts.h"
+#import "UIColor+SLVColor.h"
 @import Masonry;
 
 
@@ -21,13 +23,14 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.backgroundColor = [UIColor myGray];
         _photoView = [UIImageView new];
+        _photoView.contentMode = UIViewContentModeScaleAspectFill;
         [_photoView setAutoresizingMask:YES];
         _photoView.clipsToBounds = YES;
-        _photoView.backgroundColor = [UIColor blueColor];
         [self.contentView addSubview:_photoView];
         
-        _descriptionText = [UITextView new];
+        _descriptionText = [UILabel new];
         [self.contentView addSubview:_descriptionText];
         
         _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -75,6 +78,7 @@
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
+    self.opaque = YES;
     self = [super initWithFrame:frame];
     if (self) {
         _likesImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"heart"]];
@@ -124,7 +128,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier: reuseIdentifier];
     if (self) {
-      //  self.contentView.backgroundColor = [UIColor greenColor];
+        self.backgroundColor = [UIColor myGray];
         _avatarImageView = [UIImageView new];
         _avatarImageView.backgroundColor = [UIColor blueColor];
         [_avatarImageView setAutoresizingMask:YES];
@@ -133,10 +137,12 @@
         [self.contentView addSubview:_avatarImageView];
         
         _nameLabel = [UILabel new];
+        _nameLabel.font = [UIFont sanFranciscoDisplayMedium14];
         [self.contentView addSubview:_nameLabel];
         
         _eventLabel = [UILabel new];
         _eventLabel.textColor = [UIColor grayColor];
+        _eventLabel.font = [UIFont sanFranciscoDisplayMedium13];
         [self.contentView addSubview:_eventLabel];
     }
     return self;
@@ -145,7 +151,7 @@
 - (void)updateConstraints {
     UIView *contentView = self.contentView;
     [_avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(contentView.mas_centerY);
+        make.top.equalTo(contentView.mas_top).with.offset(11);
         make.size.equalTo(@38);
         make.left.equalTo(contentView.mas_left).with.offset(16);
     }];
@@ -158,6 +164,7 @@
         make.left.equalTo(_avatarImageView.mas_right).with.offset(8);
         make.top.equalTo(_nameLabel.mas_bottom).with.offset(1);
         make.right.equalTo(contentView.mas_right).with.offset(8);
+        make.height.equalTo(@16);
     }];
     
     [super updateConstraints];

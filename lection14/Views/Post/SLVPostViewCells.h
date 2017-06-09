@@ -11,7 +11,7 @@
 @interface SLVImageCell : UITableViewCell
 
 @property (nonatomic, strong) UIImageView *photoView;
-@property (nonatomic, strong) UITextView *descriptionText;
+@property (nonatomic, strong) UILabel *descriptionText;
 @property (nonatomic, strong) UIActivityIndicatorView *spinner;
 
 @end

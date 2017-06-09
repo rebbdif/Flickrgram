@@ -147,9 +147,21 @@
 
 - (void)clearModel {
     self.items = [NSArray new];
-    [SLVStorageService clearCoreData];
+    [SLVStorageService clearCoreData:self.context];
     self.page = 0;
     [self.imageOperations removeAllObjects];
 }
+
+- (void)makeFavorite:(BOOL)favorite {
+    self.selectedItem.isFavorite = favorite;
+    [SLVStorageService saveInContext:self.context];
+}
+
+- (void)getFavoriteItemsWithCompletionHandler:(Block)completionHandler {
+    [SLVStorageService fetchEntities:@"SLVItem" withPredicate:@"isFavorite == YES" inManagedObjectContext:self.context withCompletionBlock:^(NSArray *result) {
+        completionHandler();
+    }];
+}
+
 
 @end

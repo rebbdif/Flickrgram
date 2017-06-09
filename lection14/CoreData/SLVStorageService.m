@@ -14,23 +14,36 @@
 
 @implementation SLVStorageService
 
+static NSString *const item = @"SLVItem";
+
 + (id)fetchEntity:(NSString *)entity forKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *)moc {
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entity];
-    request.predicate = [NSPredicate predicateWithFormat:@"identifier == %@",key];
+    request.predicate = [NSPredicate predicateWithFormat:@"identifier == %@", key];
     NSError *error = nil;
     NSArray *results = [moc executeFetchRequest:request error:&error];
-    if (results) {
-        return results;
-    } else {
+    if (!results) {
         NSLog(@"error while fetching %@",error);
     }
-    
-    return nil;
+    return results;
+}
+
++ (void)fetchEntities:(NSString *)entity withPredicate:(NSString *)predicate inManagedObjectContext:(NSManagedObjectContext *)moc withCompletionBlock:(void (^)(NSArray *))completion {
+    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:entity];
+    request.predicate = [NSPredicate predicateWithFormat:predicate];
+    NSAsynchronousFetchRequest *asyncRequest = [[NSAsynchronousFetchRequest alloc] initWithFetchRequest:request completionBlock:^(NSAsynchronousFetchResult * _Nonnull result) {
+        NSArray *fetchedArray = result.finalResult;
+        completion(fetchedArray);
+    }];
+    NSError *error = nil;
+    [moc executeRequest:asyncRequest error:&error];
+    if (error) {
+        NSLog(@"error while fetching %@",error);
+    }
 }
 
 + (UIImage *)imageForKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *) moc {
-    NSArray *fetched = [SLVStorageService fetchEntity:@"SLVItem" forKey:key inManagedObjectContext:moc];
+    NSArray *fetched = [SLVStorageService fetchEntity:item forKey:key inManagedObjectContext:moc];
     if (!fetched || fetched.count == 0) {
         return nil;
     }
@@ -39,7 +52,7 @@
 }
 
 + (UIImage *)thumbnailForKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *) moc {
-    NSArray *fetched = [SLVStorageService fetchEntity:@"SLVItem" forKey:key inManagedObjectContext:moc];
+    NSArray *fetched = [SLVStorageService fetchEntity:item forKey:key inManagedObjectContext:moc];
     if (!fetched || fetched.count == 0) {
         return nil;
     }
@@ -48,14 +61,14 @@
 }
 
 + (void)saveImage:(UIImage *)image forKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *) moc {
-    NSArray *fetched = [SLVStorageService fetchEntity:@"SLVItem" forKey:key inManagedObjectContext:moc];
+    NSArray *fetched = [SLVStorageService fetchEntity:item forKey:key inManagedObjectContext:moc];
     SLVItem *fetchedItem = fetched[0];
     fetchedItem.largePhoto = image;
     [SLVStorageService saveInContext:moc];
 }
 
 + (void)saveThumbnail:(UIImage *)image forKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *) moc {
-    NSArray *fetched = [SLVStorageService fetchEntity:@"SLVItem" forKey:key inManagedObjectContext:moc];
+    NSArray *fetched = [SLVStorageService fetchEntity:item forKey:key inManagedObjectContext:moc];
     SLVItem *fetchedItem = fetched[0];
     fetchedItem.thumbnail = image;
     [SLVStorageService saveInContext:moc];
@@ -72,8 +85,13 @@
     }
 }
 
-+ (void)clearCoreData {
-#warning implement!
++ (void)clearCoreData:(NSManagedObjectContext *)moc {
+    NSError *err;
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:item];
+    request.predicate = [NSPredicate predicateWithFormat:@"isFavorite == NO"];
+    
+    [moc executeFetchRequest:request error:&err];
+    NSLog(@"%@", err.localizedDescription);
 }
 
 

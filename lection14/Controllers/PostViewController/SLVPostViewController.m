@@ -11,6 +11,8 @@
 #import "SLVPostViewCells.h"
 #import "SLVItem.h"
 #import "SLVSearchResultsModel.h"
+#import "UIFont+SLVFonts.h"
+@import Masonry;
 
 @interface SLVPostViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -26,54 +28,82 @@
     self = [super init];
     if (self) {
         _model = model;
-        UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithCustomView:[self configureNavigationBar]];
-        [self.navigationItem setLeftBarButtonItem:bbi];
-        [self.navigationItem setHidesBackButton:NO];
-        self.navigationItem.leftItemsSupplementBackButton = YES;
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor myGray];
+    self.tabBarController.tabBar.hidden = YES;
+    
+    UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithCustomView:[self configureNavigationBar]];
+    [self.navigationItem setLeftBarButtonItem:bbi];
+    self.navigationItem.leftItemsSupplementBackButton = YES;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addToFavorites:)];
+    
     CGRect frame = self.view.frame;
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), CGRectGetHeight(frame))];
+    self.tableView.backgroundColor = [UIColor myGray];
+    self.tableView.separatorColor = [UIColor separatorColor];
     [self.view addSubview:self.tableView];
     [self.tableView registerClass:[SLVImageCell class] forCellReuseIdentifier:@"imageCell"];
     [self.tableView registerClass:[SLVCommentsCell class] forCellReuseIdentifier:@"commentsCell"];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
-    self.navigationItem.hidesBackButton = NO;
-    
 }
 
 - (UIView *)configureNavigationBar {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - 44, 44)];
-    view.backgroundColor = [UIColor cyanColor];
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor redColor];
     UIImageView *avatarView = [UIImageView new];
-    avatarView.backgroundColor = [UIColor blueColor];
+    avatarView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:170/255.0 alpha:0.5];
     avatarView.layer.cornerRadius = 16;
     avatarView.clipsToBounds = YES;
     [avatarView setAutoresizesSubviews:YES];
     [view addSubview:avatarView];
     
     UILabel *nameLabel = [UILabel new];
+    nameLabel.font = [UIFont sanFranciscoDisplayMedium14];
     [view addSubview:nameLabel];
     
     UIImageView *locationSign = [UIImageView new];
     locationSign.image = [UIImage imageNamed:@"location"];
     [view addSubview:locationSign];
     UILabel *locationLabel = [UILabel new];
-    locationLabel.textColor = [UIColor grayColor];
+    locationLabel.font = [UIFont sanFranciscoDisplayMedium13];
+    locationLabel.textColor = [UIColor colorWithRed:170/255.0 green:170/255.0 blue:170/255.0 alpha:1];
     [view addSubview:locationLabel];
     
-    nameLabel.text = @"rebb dif";
-    locationLabel.text = @"gorod dorog";
+    nameLabel.text = @"rebbdifserebr";
+    locationLabel.text = @"Kauaii, Hawai";
     
+    [avatarView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(view.mas_left);
+        make.centerY.equalTo(view.mas_centerY);
+        make.size.equalTo(@32);
+    }];
+    [nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(avatarView.mas_right).with.offset(16);
+        make.top.equalTo(avatarView.mas_top).with.offset(1);
+        make.height.equalTo(@16);
+    }];
+    [locationLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(avatarView.mas_right).with.offset(28);
+        make.top.equalTo(nameLabel.mas_bottom).with.offset(3);
+        make.height.equalTo(@15);
+    }];
+    [locationSign mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(nameLabel.mas_left);
+        make.top.equalTo(nameLabel.mas_bottom).with.offset(6);
+        make.width.equalTo(@8);
+        make.height.equalTo(@10);
+    }];
     return view;
+}
+
+- (IBAction)addToFavorites:(id)sender {
+    [self.model makeFavorite:YES];
 }
 
 #pragma mark - TableView
@@ -147,6 +177,10 @@
         return footer;
     }
     return [UITableViewHeaderFooterView new];
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section {
+    view.backgroundColor = [UIColor myGray];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

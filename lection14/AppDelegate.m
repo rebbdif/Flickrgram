@@ -23,7 +23,7 @@
     CoreDataStack *stack = [CoreDataStack stack];
     model.context = stack.coreDataContext;
     SLVCollectionViewController *collectionViewController=[[SLVCollectionViewController alloc] initWithModel:model];
-    SLVFavouritesViewController *favouritesViewController=[SLVFavouritesViewController new];
+    SLVFavouritesViewController *favouritesViewController=[[SLVFavouritesViewController alloc] initWithModel:model];
     
     UINavigationController *ncCollection = [[UINavigationController alloc] initWithRootViewController:collectionViewController];
     UINavigationController *ncFavourites = [[UINavigationController alloc] initWithRootViewController:favouritesViewController];

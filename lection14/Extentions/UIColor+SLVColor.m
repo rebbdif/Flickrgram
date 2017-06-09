@@ -15,4 +15,13 @@
     return myGray;
 }
 
++ (UIColor *)myOpaqueGray {
+    UIColor *myGray = [UIColor colorWithRed:250/255.0 green:250/255.0 blue:250/255.0 alpha:1];
+    return myGray;
+}
+
++ (UIColor *)separatorColor {
+    return [UIColor colorWithRed:151/255.0 green:151/255.0 blue:151/255.0 alpha:1];
+}
+
 @end

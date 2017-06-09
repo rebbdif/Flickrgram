@@ -10,4 +10,6 @@
 
 @interface SLVFavouritesViewController : UIViewController
 
+- (instancetype)initWithModel:(id)model;
+
 @end

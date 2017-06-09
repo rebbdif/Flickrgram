@@ -10,4 +10,7 @@
 
 @interface UIFont (SLVFonts)
 
++ (UIFont *)sanFranciscoDisplayMedium14;
++ (UIFont *)sanFranciscoDisplayMedium13;
+
 @end

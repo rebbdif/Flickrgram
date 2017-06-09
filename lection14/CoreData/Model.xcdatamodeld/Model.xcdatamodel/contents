@@ -15,12 +15,13 @@
         <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SLVItem" inverseName="author" inverseEntity="SLVItem" syncable="YES"/>
     </entity>
     <entity name="SLVItem" representedClassName="SLVItem" syncable="YES">
-        <attribute name="favorited" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="comments" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="largePhoto" optional="YES" attributeType="Transformable" storedInTruthFile="YES" syncable="YES"/>
         <attribute name="largePhotoURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="liked" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="likes" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumbnail" optional="YES" attributeType="Transformable" storedInTruthFile="YES" syncable="YES"/>
@@ -30,7 +31,7 @@
         <relationship name="comment" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Comment" inverseName="item" inverseEntity="Comment" syncable="YES"/>
     </entity>
     <elements>
-        <element name="SLVItem" positionX="-261" positionY="-189" width="128" height="238"/>
+        <element name="SLVItem" positionX="-261" positionY="-189" width="128" height="253"/>
         <element name="Human" positionX="-54" positionY="63" width="128" height="133"/>
         <element name="Comment" positionX="-324" positionY="150" width="128" height="103"/>
     </elements>

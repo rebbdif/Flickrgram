@@ -11,5 +11,7 @@
 @interface UIColor (SLVColor)
 
 + (UIColor *)myGray;
++ (UIColor *)myOpaqueGray;
++ (UIColor *)separatorColor;
 
 @end
