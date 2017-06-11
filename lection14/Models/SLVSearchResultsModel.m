@@ -43,12 +43,12 @@
     NSString *normalizedRequest = [request stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSString *escapedString = [normalizedRequest stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
     NSString *apiKey = @"&api_key=6a719063cc95dcbcbfb5ee19f627e05e";
-    NSString *urls = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&per_page=30&tags=%@%@&page=%lu",escapedString,apiKey,self.page];
+    NSString *urls = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&per_page=1&tags=%@%@&page=%lu",escapedString,apiKey,self.page];
     
     NSURL *url = [NSURL URLWithString:urls];
     [SLVNetworkManager getModelWithSession:self.session fromURL:url withCompletionHandler:^(NSDictionary *json) {
         NSArray *newItems = [self parseData:json];
-        [SLVStorageService saveInContext:self.context];
+        [SLVStorageService saveInContext:self.privateContext];
         self.items = [self.items arrayByAddingObjectsFromArray:newItems];
         dispatch_async(dispatch_get_main_queue(), ^{
             completionHandler();
@@ -61,7 +61,7 @@
     if (json) {
         NSMutableArray *parsingResults = [NSMutableArray new];
         for (NSDictionary * dict in json[@"photos"][@"photo"]) {
-            SLVItem *item = [SLVItem itemWithDictionary:dict inManagedObjectContext:self.context];
+            SLVItem *item = [SLVItem itemWithDictionary:dict inManagedObjectContext:self.privateContext];
             [parsingResults addObject:item];
         }
         return [parsingResults copy];
@@ -73,25 +73,37 @@
 - (UIImage *)imageForIndexPath:(NSIndexPath *)indexPath {
     SLVItem *currentItem = self.items[indexPath.row];
     NSString *key = currentItem.thumbnailURL;
-    UIImage *image = [SLVStorageService imageForKey:key inManagedObjectContext:self.context];
+    UIImage *image = [SLVStorageService imageForKey:key inManagedObjectContext:self.mainContext];
     return image;
 }
 
 - (UIImage *)imageForKey:(NSString *)key {
-    UIImage *image = [SLVStorageService imageForKey:key inManagedObjectContext:self.context];
+    UIImage *image = [SLVStorageService imageForKey:key inManagedObjectContext:self.mainContext];
+    return image;
+}
+
+- (UIImage *)thumbnailForIndexPath:(NSIndexPath *)indexPath {
+    SLVItem *currentItem = self.items[indexPath.row];
+    NSString *key = currentItem.thumbnailURL;
+    UIImage *image = [SLVStorageService thumbnailForKey:key inManagedObjectContext:self.mainContext];
+    return image;
+}
+
+- (UIImage *)thumbnailForKey:(NSString *)key {
+    UIImage *image = [SLVStorageService thumbnailForKey:key inManagedObjectContext:self.mainContext];
     return image;
 }
 
 - (void)loadImageForIndexPath:(NSIndexPath *)indexPath withCompletionHandler:(void(^)(void))completionHandler {
     SLVItem *currentItem = self.items[indexPath.row];
-    if (![SLVStorageService imageForKey:currentItem.thumbnailURL inManagedObjectContext:self.context]) {
+    if (![SLVStorageService imageForKey:currentItem.thumbnailURL inManagedObjectContext:self.mainContext]) {
         if (!self.imageOperations[indexPath]) {
             ImageDownloadOperation *imageDownloadOperation = [ImageDownloadOperation new];
             imageDownloadOperation.indexPath = indexPath;
             imageDownloadOperation.key = currentItem.thumbnailURL;
             imageDownloadOperation.url = currentItem.thumbnailURL;
             imageDownloadOperation.session = self.session;
-            imageDownloadOperation.context = self.context;
+            imageDownloadOperation.context = self.privateContext;
             imageDownloadOperation.name = [NSString stringWithFormat:@"imageDownloadOperation for index %lu",indexPath.row];
             imageDownloadOperation.completionBlock = ^{
                 completionHandler();
@@ -109,20 +121,21 @@
 }
 
 - (void)loadImageForItem:(SLVItem *)currentItem withCompletionHandler:(void (^)(UIImage *image))completionHandler {
-    if (![SLVStorageService imageForKey:currentItem.largePhotoURL inManagedObjectContext:self.context]) {
+    if (![SLVStorageService imageForKey:currentItem.thumbnailURL inManagedObjectContext:self.mainContext]) {
         ImageDownloadOperation *imageDownloadOperation = [ImageDownloadOperation new];
         imageDownloadOperation.key = currentItem.thumbnailURL;
         imageDownloadOperation.url = currentItem.largePhotoURL;
         imageDownloadOperation.session = self.session;
-        imageDownloadOperation.context = self.context;
+        imageDownloadOperation.context = self.privateContext;
+        imageDownloadOperation.large = YES;
         imageDownloadOperation.name = [NSString stringWithFormat:@"imageDownloadOperation for url %@",currentItem.largePhotoURL];
         imageDownloadOperation.completionBlock = ^{
-            UIImage *image = [SLVStorageService imageForKey:currentItem.thumbnailURL inManagedObjectContext:self.context];
+            UIImage *image = [SLVStorageService imageForKey:currentItem.thumbnailURL inManagedObjectContext:self.mainContext];
             completionHandler(image);
         };
         [self.imagesQueue addOperation:imageDownloadOperation];
     } else {
-        UIImage *image = [SLVStorageService imageForKey:currentItem.thumbnailURL inManagedObjectContext:self.context];
+        UIImage *image = [SLVStorageService imageForKey:currentItem.thumbnailURL inManagedObjectContext:self.mainContext];
         completionHandler(image);
     }
 }
@@ -147,19 +160,19 @@
 
 - (void)clearModel {
     self.items = [NSArray new];
-    [SLVStorageService clearCoreData:self.context];
+    [SLVStorageService clearCoreData:self.privateContext];
     self.page = 0;
     [self.imageOperations removeAllObjects];
 }
 
 - (void)makeFavorite:(BOOL)favorite {
     self.selectedItem.isFavorite = favorite;
-    [SLVStorageService saveInContext:self.context];
+    [SLVStorageService saveInContext:self.privateContext];
 }
 
-- (void)getFavoriteItemsWithCompletionHandler:(Block)completionHandler {
-    [SLVStorageService fetchEntities:@"SLVItem" withPredicate:@"isFavorite == YES" inManagedObjectContext:self.context withCompletionBlock:^(NSArray *result) {
-        completionHandler();
+- (void)getFavoriteItemsWithCompletionHandler:(void (^)(NSArray *))completionHandler {
+    [SLVStorageService fetchEntities:@"SLVItem" withPredicate:@"isFavorite == YES" inManagedObjectContext:self.mainContext withCompletionBlock:^(NSArray *result) {
+        completionHandler(result);
     }];
 }
 

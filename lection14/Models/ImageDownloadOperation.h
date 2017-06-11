@@ -31,6 +31,7 @@ typedef NS_ENUM(NSInteger, SLVImageStatus) {
 @property (weak, nonatomic) NSURLSession *session;
 @property (weak, nonatomic) NSManagedObjectContext *context;
 @property (weak, nonatomic) NSString *url;
+@property (assign, nonatomic) BOOL large;
 
 - (void)pause;
 - (void)resume;

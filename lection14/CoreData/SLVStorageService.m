@@ -17,9 +17,8 @@
 static NSString *const item = @"SLVItem";
 
 + (id)fetchEntity:(NSString *)entity forKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *)moc {
-    
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entity];
-    request.predicate = [NSPredicate predicateWithFormat:@"identifier == %@", key];
+    request.predicate = [NSPredicate predicateWithFormat:@"identifier ==%@", key];
     NSError *error = nil;
     NSArray *results = [moc executeFetchRequest:request error:&error];
     if (!results) {
@@ -78,7 +77,6 @@ static NSString *const item = @"SLVItem";
     if (moc.hasChanges) {
         NSError *error = nil;
         [moc save:&error];
-        
         if (error) {
             NSLog(@"%@", error.localizedDescription);
         }
@@ -86,12 +84,17 @@ static NSString *const item = @"SLVItem";
 }
 
 + (void)clearCoreData:(NSManagedObjectContext *)moc {
-    NSError *err;
+    NSError *error;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:item];
     request.predicate = [NSPredicate predicateWithFormat:@"isFavorite == NO"];
     
-    [moc executeFetchRequest:request error:&err];
-    NSLog(@"%@", err.localizedDescription);
+    NSArray<SLVItem *> *results = [moc executeFetchRequest:request error:&error];
+    for (__strong SLVItem *item in results) {
+        item = nil;
+    }
+    if (error) {
+        NSLog(@"error, %@",error);
+    }
 }
 
 

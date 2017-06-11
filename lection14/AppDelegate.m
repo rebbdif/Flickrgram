@@ -21,7 +21,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     SLVSearchResultsModel *model = [SLVSearchResultsModel new];
     CoreDataStack *stack = [CoreDataStack stack];
-    model.context = stack.coreDataContext;
+    model.mainContext = stack.mainContext;
+    model.privateContext = stack.privateContext;
     SLVCollectionViewController *collectionViewController=[[SLVCollectionViewController alloc] initWithModel:model];
     SLVFavouritesViewController *favouritesViewController=[[SLVFavouritesViewController alloc] initWithModel:model];
     

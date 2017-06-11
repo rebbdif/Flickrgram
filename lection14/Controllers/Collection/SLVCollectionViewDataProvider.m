@@ -46,7 +46,8 @@ static NSString * const reuseIdentifier = @"Cell";
            dispatch_async(dispatch_get_main_queue(), ^{
                SLVCollectionViewCell *cvc = ((SLVCollectionViewCell *)([collectionView cellForItemAtIndexPath:indexPath]));
                [cell.activityIndicator stopAnimating];
-               cvc.imageView.image = [self.model imageForIndexPath:indexPath];
+               UIImage *image =[self.model thumbnailForIndexPath:indexPath];
+               cvc.imageView.image = image;
            });
         }];
     }

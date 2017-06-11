@@ -20,7 +20,8 @@ typedef void (^Block)(void);
 
 @property (copy, nonatomic) NSArray<SLVItem *> *items;
 @property (strong, nonatomic) NSString *searchRequest;
-@property (strong, nonatomic) NSManagedObjectContext *context;
+@property (strong, nonatomic) NSManagedObjectContext *mainContext;
+@property (strong, nonatomic) NSManagedObjectContext *privateContext;
 @property (strong, nonatomic) SLVItem *selectedItem;
 
 - (void)getItemsForRequest:(NSString *)request withCompletionHandler:(Block)completionHandler;
@@ -32,6 +33,8 @@ typedef void (^Block)(void);
 - (void)resumeOperations;
 - (void)clearModel;
 - (void)makeFavorite:(BOOL)favorite;
-- (void)getFavoriteItemsWithCompletionHandler:(Block)completionHandler;
+- (void)getFavoriteItemsWithCompletionHandler:(void (^)(NSArray *result))completionHandler;
+- (UIImage *)thumbnailForIndexPath:(NSIndexPath *)indexPath;
+- (UIImage *)thumbnailForKey:(NSString *)key;
 
 @end

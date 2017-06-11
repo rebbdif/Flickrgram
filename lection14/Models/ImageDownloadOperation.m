@@ -33,12 +33,12 @@
         _innerQueue = [NSOperationQueue new];
         _innerQueue.name = [NSString stringWithFormat:@"innerQueue for index %lu",self.indexPath.row];
         _imageViewSize = CGSizeMake(312, 312);
+        _large = NO;
     }
     return self;
 }
 
 - (void)main {
- //   NSLog(@"operation %ld began", (long)self.indexPath.row);
     dispatch_semaphore_t imageDownloadedSemaphore = dispatch_semaphore_create(0);
     
     self.downloadOperation = [NSBlockOperation blockOperationWithBlock:^{
@@ -51,25 +51,23 @@
     }];
     
     self.status = SLVImageStatusDownloading;
-  //  NSLog(@"operation %ld downloading", (long)self.indexPath.row);
     [self.innerQueue addOperation:self.downloadOperation];
     
-    
     dispatch_semaphore_wait(imageDownloadedSemaphore, DISPATCH_TIME_FOREVER);
-  //  NSLog(@"operation %ld downloaded", (long)self.indexPath.row);
     
-        if (self.downloadedImage) {
+    if (self.downloadedImage) {
         [self saveImage:self.downloadedImage];
     } else {
         self.status = SLVImageStatusNone;
         NSLog(@"operation %ld failed", (long)self.indexPath.row);
     }
-    NSLog(@"operation %ld finished", (long)self.indexPath.row);
 }
 
 - (void)saveImage:(UIImage *)image {
-    if (self.context) {
+    if (self.large == YES) {
         [SLVStorageService saveImage:image forKey:self.key inManagedObjectContext:self.context];
+    } else {
+        [SLVStorageService saveThumbnail:image forKey:self.key inManagedObjectContext:self.context];
     }
 }
 

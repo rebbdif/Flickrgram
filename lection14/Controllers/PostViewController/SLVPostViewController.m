@@ -34,7 +34,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tabBarController.tabBar.hidden = YES;
     
     UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithCustomView:[self configureNavigationBar]];
     [self.navigationItem setLeftBarButtonItem:bbi];
@@ -117,12 +116,10 @@
         case 0: {
             return 1;
             break;
-        }
-        case 1: {
+        } case 1: {
             return 3;
             break;
-        }
-        default:
+        } default:
             return 1;
             break;
     }
@@ -139,7 +136,7 @@
             SLVImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell"];
             cell.spinner.hidden = NO;
             [cell.spinner startAnimating];
-            cell.photoView.image = self.model.selectedItem.thumbnail;
+            //cell.photoView.image = self.model.selectedItem.thumbnail;
             __weak typeof(self) weakself = self;
             [self.model loadImageForItem:self.model.selectedItem withCompletionHandler:^(UIImage *image) {
                 __strong typeof(self) strongself = weakself;
@@ -154,15 +151,13 @@
             cell.descriptionText.text = @"description";
             return cell;
             break;
-        }
-        case 1: {
+        } case 1: {
             SLVCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commentsCell"];
             cell.nameLabel.text = @"rebbdif";
             cell.eventLabel.text = @"liked photo";
             return cell;
             break;
-        }
-        default:
+        } default:
             break;
     }
     return nil;
@@ -192,7 +187,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if (section == 0){
+    if (section == 0) {
         return 60;
     } else {
         return 0;

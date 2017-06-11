@@ -11,7 +11,8 @@
 
 @interface CoreDataStack : NSObject
 
-@property (nonatomic, strong, readonly) NSManagedObjectContext *coreDataContext;
+@property (nonatomic, strong, readonly) NSManagedObjectContext *mainContext;
+@property (nonatomic, strong, readonly) NSManagedObjectContext *privateContext;
 
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;

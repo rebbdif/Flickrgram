@@ -9,11 +9,14 @@
 #import "SLVFavouritesViewController.h"
 #import "SLVSearchResultsModel.h"
 #import "SLVFavoritesCell.h"
+#import "UIColor+SLVColor.h"
+#import "SLVItem.h"
 
 @interface SLVFavouritesViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong, readonly) SLVSearchResultsModel *model;
+@property (nonatomic, strong) NSArray *favorites;
 
 @end
 
@@ -33,12 +36,20 @@ static NSString * const reuseID = @"favoritesCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"Избранное";
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame];
+    self.tableView.backgroundColor = [UIColor myGray];
+    [self.view addSubview:self.tableView];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.rowHeight = 312;
     [self.tableView registerClass:[SLVFavoritesCell class] forCellReuseIdentifier:reuseID];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.model getFavoriteItemsWithCompletionHandler:^{
+    [self.model getFavoriteItemsWithCompletionHandler:^(NSArray *result) {
+        self.favorites = result;
         [self.tableView reloadData];
     }];
 }
@@ -47,7 +58,9 @@ static NSString * const reuseID = @"favoritesCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SLVFavoritesCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseID];
-    
+    SLVItem *currentItem = self.favorites[indexPath.row];
+    cell.photoView.image = currentItem.largePhoto;
+    cell.descriptionText.text = currentItem.text;
     return cell;
 }
 
@@ -56,7 +69,7 @@ static NSString * const reuseID = @"favoritesCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 8;
+    return self.favorites.count;
 }
 
 @end

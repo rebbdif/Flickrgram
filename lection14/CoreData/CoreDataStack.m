@@ -11,7 +11,8 @@
 
 @interface CoreDataStack ()
 
-@property (nonatomic, strong, readwrite) NSManagedObjectContext *coreDataContext;
+@property (nonatomic, strong, readwrite) NSManagedObjectContext *mainContext;
+@property (nonatomic, strong, readwrite) NSManagedObjectContext *privateContext;
 
 @end
 
@@ -45,8 +46,11 @@
     NSURL *url = [applicationSupportFolder URLByAppendingPathComponent:@"db.sqlite"];
     [coreDataPSC addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:nil error:&err];
     
-    self.coreDataContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    _coreDataContext.persistentStoreCoordinator = coreDataPSC;
+    self.mainContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    _mainContext.persistentStoreCoordinator = coreDataPSC;
+    
+    self.privateContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    _privateContext.persistentStoreCoordinator = coreDataPSC;
 }
 
 

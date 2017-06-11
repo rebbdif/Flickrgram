@@ -33,8 +33,8 @@
     NSString *farm = dict[@"farm"];
     NSString *idd = dict[@"id"];
     
-    NSString *url = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_n.jpg", farm, server, idd, secret];
-    NSString *hdUrl = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_z.jpg", farm, server, idd, secret];
+    NSString *url = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_s.jpg", farm, server, idd, secret]; //n
+    NSString *hdUrl = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_n.jpg", farm, server, idd, secret]; //z
     item.thumbnailURL = url;
     item.largePhotoURL = hdUrl;
     
