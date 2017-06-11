@@ -43,7 +43,7 @@
     NSString *normalizedRequest = [request stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSString *escapedString = [normalizedRequest stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
     NSString *apiKey = @"&api_key=6a719063cc95dcbcbfb5ee19f627e05e";
-    NSString *urls = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&per_page=1&tags=%@%@&page=%lu",escapedString,apiKey,self.page];
+    NSString *urls = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&per_page=30&tags=%@%@&page=%lu", escapedString,apiKey, self.page];
     
     NSURL *url = [NSURL URLWithString:urls];
     [SLVNetworkManager getModelWithSession:self.session fromURL:url withCompletionHandler:^(NSDictionary *json) {
@@ -94,9 +94,9 @@
     return image;
 }
 
-- (void)loadImageForIndexPath:(NSIndexPath *)indexPath withCompletionHandler:(void(^)(void))completionHandler {
+- (void)loadThumbnailForIndexPath:(NSIndexPath *)indexPath withCompletionHandler:(void(^)(void))completionHandler {
     SLVItem *currentItem = self.items[indexPath.row];
-    if (![SLVStorageService imageForKey:currentItem.thumbnailURL inManagedObjectContext:self.mainContext]) {
+    if (![SLVStorageService thumbnailForKey:currentItem.thumbnailURL inManagedObjectContext:self.mainContext]) {
         if (!self.imageOperations[indexPath]) {
             ImageDownloadOperation *imageDownloadOperation = [ImageDownloadOperation new];
             imageDownloadOperation.indexPath = indexPath;
@@ -158,11 +158,12 @@
     }];
 }
 
-- (void)clearModel {
+- (void)clearModel:(BOOL)entirely {
     self.items = [NSArray new];
-    [SLVStorageService clearCoreData:self.privateContext];
+    [SLVStorageService clearCoreData:entirely inManagedObjectContext: self.privateContext];
     self.page = 0;
     [self.imageOperations removeAllObjects];
+    [SLVStorageService saveInContext:self.privateContext];
 }
 
 - (void)makeFavorite:(BOOL)favorite {

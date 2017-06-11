@@ -8,15 +8,24 @@
 
 #import "SLVSettingsViewController.h"
 #import "UIColor+SLVColor.h"
-#import "SLVStorageService.h"
+#import "SLVSearchResultsModel.h"
 
 @interface SLVSettingsViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) SLVSearchResultsModel *model;
 
 @end
 
 @implementation SLVSettingsViewController
+
+- (instancetype)initWithModel:(SLVSearchResultsModel *)model {
+    self = [super init];
+    if (self) {
+        _model = model;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -76,7 +85,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 1) {
-        
+        [self.model clearModel:YES];
     }
 }
 

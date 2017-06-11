@@ -27,6 +27,6 @@
 
 + (void)saveInContext:(NSManagedObjectContext *)moc;
 
-+ (void)clearCoreData:(NSManagedObjectContext *)moc;
++ (void)clearCoreData:(BOOL)entirely inManagedObjectContext:(NSManagedObjectContext *)moc;
 
 @end

@@ -83,19 +83,19 @@ static NSString *const item = @"SLVItem";
     }
 }
 
-+ (void)clearCoreData:(NSManagedObjectContext *)moc {
++ (void)clearCoreData:(BOOL)entirely inManagedObjectContext:(NSManagedObjectContext *)moc {
     NSError *error;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:item];
+    if (!entirely) {
     request.predicate = [NSPredicate predicateWithFormat:@"isFavorite == NO"];
-    
-    NSArray<SLVItem *> *results = [moc executeFetchRequest:request error:&error];
-    for (__strong SLVItem *item in results) {
-        item = nil;
     }
-    if (error) {
-        NSLog(@"error, %@",error);
+    NSArray<SLVItem *> *results = [moc executeFetchRequest:request error:&error];
+    for (SLVItem *item in results) {
+        [moc deleteObject:item];
     }
 }
+
+
 
 
 @end

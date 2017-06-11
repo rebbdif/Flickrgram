@@ -28,12 +28,6 @@ static NSString * const reuseIdentifier = @"Cell";
     return self;
 }
 
-- (void)showImage:(UIImage *)image forIndexPath:(NSIndexPath *)indexPath {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-    });
-}
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     SLVCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     UIImage *image = [self.model imageForIndexPath:indexPath];
@@ -42,7 +36,7 @@ static NSString * const reuseIdentifier = @"Cell";
     } else {
         cell.activityIndicator.hidden = NO;
         [cell.activityIndicator startAnimating];
-        [self.model loadImageForIndexPath:indexPath withCompletionHandler:^{
+        [self.model loadThumbnailForIndexPath:indexPath withCompletionHandler:^{
            dispatch_async(dispatch_get_main_queue(), ^{
                SLVCollectionViewCell *cvc = ((SLVCollectionViewCell *)([collectionView cellForItemAtIndexPath:indexPath]));
                [cell.activityIndicator stopAnimating];
