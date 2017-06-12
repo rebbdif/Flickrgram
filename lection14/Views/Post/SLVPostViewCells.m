@@ -57,9 +57,11 @@
     [self.contentView addGestureRecognizer:_tap];
 }
 
-- (IBAction)pinch:(id)sender {
-    [self.delegate showImageForCell:self];
-    [self removeGestures];
+- (IBAction)pinch:(UIGestureRecognizer *)sender {
+    if(sender.state == UIGestureRecognizerStateEnded) {
+        [self.delegate showImageForCell:self];
+        [self removeGestures];
+    }
 }
 
 - (void)updateConstraints {
