@@ -36,8 +36,30 @@
         _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         _spinner.hidesWhenStopped = YES;
         [self.contentView addSubview:_spinner];
+        
+        [self addGestures];
     }
     return self;
+}
+
+- (void)removeGestures {
+    [self.contentView removeGestureRecognizer:self.pinch];
+    [self.contentView removeGestureRecognizer:self.tap];
+}
+
+- (void)addGestures {
+    self.contentView.userInteractionEnabled = YES;
+    _pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinch:)];
+    [self.contentView addGestureRecognizer:_pinch];
+    
+    _tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pinch:)];
+    _tap.numberOfTapsRequired = 2;
+    [self.contentView addGestureRecognizer:_tap];
+}
+
+- (IBAction)pinch:(id)sender {
+    [self.delegate showImageForCell:self];
+    [self removeGestures];
 }
 
 - (void)updateConstraints {

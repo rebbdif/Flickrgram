@@ -14,11 +14,15 @@
 #import "UIFont+SLVFonts.h"
 @import Masonry;
 
-@interface SLVPostViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface SLVPostViewController () <UITableViewDelegate, UITableViewDataSource, SLVCellsDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) SLVItem *item;
 @property (nonatomic, strong, readonly) SLVSearchResultsModel *model;
+@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) UIScrollView *zoomedImageView;
+@property (nonatomic, weak) SLVImageCell *imageCell;
+@property (nonatomic, strong) UIImageView *imageView;
 
 @end
 
@@ -47,9 +51,11 @@
     [self.view addSubview:self.tableView];
     [self.tableView registerClass:[SLVImageCell class] forCellReuseIdentifier:@"imageCell"];
     [self.tableView registerClass:[SLVCommentsCell class] forCellReuseIdentifier:@"commentsCell"];
+    self.tableView.allowsSelection = NO;
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
 }
 
 - (UIView *)configureNavigationBar {
@@ -134,9 +140,10 @@
     switch (indexPath.section) {
         case 0: {
             SLVImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell"];
+            cell.delegate = self;
             cell.spinner.hidden = NO;
             [cell.spinner startAnimating];
-            //cell.photoView.image = self.model.selectedItem.thumbnail;
+            cell.photoView.image = self.model.selectedItem.thumbnail;
             __weak typeof(self) weakself = self;
             [self.model loadImageForItem:self.model.selectedItem withCompletionHandler:^(UIImage *image) {
                 __strong typeof(self) strongself = weakself;
@@ -144,6 +151,7 @@
                     dispatch_async(dispatch_get_main_queue(), ^{
                         SLVImageCell *cell = [strongself.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
                         cell.photoView.image = image;
+                        self.image = image;
                         [cell.spinner stopAnimating];
                     });
                 }
@@ -193,5 +201,38 @@
         return 0;
     }
 }
+
+#pragma mark - SLVCellsDelegate
+
+- (void)showImageForCell:(SLVImageCell *)cell {
+    self.imageCell = cell;
+    self.imageView = [[UIImageView alloc] initWithImage:self.image];
+    self.zoomedImageView = [[UIScrollView alloc] initWithFrame:self.tableView.frame];
+    self.zoomedImageView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
+    [self.zoomedImageView addSubview:self.imageView];
+    self.imageView.center = self.zoomedImageView.center;
+    [self.view addSubview:self.zoomedImageView];
+    self.zoomedImageView.scrollEnabled = YES;
+    self.zoomedImageView.userInteractionEnabled = YES;
+    self.zoomedImageView.delegate = self;
+    self.zoomedImageView.maximumZoomScale = 4;
+    self.zoomedImageView.minimumZoomScale = 0.5;
+    [self.zoomedImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideImage:)]];
+}
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return self.imageView;
+}
+
+- (IBAction)zoomIn:(id)sender {
+    self.zoomedImageView.zoomScale = 2;
+}
+
+- (IBAction)hideImage:(id)sender {
+    self.zoomedImageView.layer.opacity = 0;
+    self.zoomedImageView.hidden = YES;
+    [self.imageCell addGestures];
+}
+
 
 @end

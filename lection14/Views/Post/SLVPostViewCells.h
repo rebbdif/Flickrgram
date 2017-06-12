@@ -8,11 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol SLVCellsDelegate <NSObject>
+
+- (void)showImageForCell:(UITableViewCell *)cell;
+
+@end
+
 @interface SLVImageCell : UITableViewCell
 
 @property (nonatomic, strong) UIImageView *photoView;
 @property (nonatomic, strong) UILabel *descriptionText;
 @property (nonatomic, strong) UIActivityIndicatorView *spinner;
+@property (nonatomic, weak) id<SLVCellsDelegate> delegate;
+@property (nonatomic, strong) UIPinchGestureRecognizer *pinch;
+@property (nonatomic, strong) UITapGestureRecognizer *tap;
+
+- (void)addGestures;
+- (void)removeGestures;
 
 @end
 
