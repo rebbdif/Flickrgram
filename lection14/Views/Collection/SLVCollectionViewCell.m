@@ -17,10 +17,9 @@
         _imageView = [[UIImageView alloc] initWithFrame:frame];
 
         [self.contentView addSubview:_imageView];
-        self.backgroundColor = [UIColor redColor];
+        self.backgroundColor = [UIColor lightGrayColor];
         [_imageView setAutoresizingMask:YES];
 
-        
         _activityIndicator = [UIActivityIndicatorView new];
         [self.contentView addSubview:_activityIndicator];
         _activityIndicator.hidesWhenStopped = YES;

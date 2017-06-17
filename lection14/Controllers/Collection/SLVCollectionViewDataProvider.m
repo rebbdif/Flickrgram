@@ -35,7 +35,7 @@ static NSString * const reuseIdentifier = @"Cell";
         cell.imageView.image = image;
     } else {
         cell.activityIndicator.hidden = NO;
-        cell.imageView.image = [UIImage imageNamed:@"noItem"];
+        cell.imageView.image = [UIImage imageNamed:@"noImage"];
         [cell.activityIndicator startAnimating];
         [self.model loadThumbnailForIndexPath:indexPath withCompletionHandler:^{
            dispatch_async(dispatch_get_main_queue(), ^{

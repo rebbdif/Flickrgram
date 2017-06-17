@@ -26,7 +26,7 @@ static NSString *const entityName = @"SLVItem";
 @dynamic thumbnail;
 @dynamic identifier;
 
-+ (SLVItem *)itemWithDictionary:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)moc {
++ (instancetype)itemWithDictionary:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)moc {
     NSString *secret = dict[@"secret"];
     NSString *server = dict[@"server"];
     NSString *farm = dict[@"farm"];

@@ -24,6 +24,6 @@
 @property (nonatomic, strong) UIImage *thumbnail;
 @property (nonatomic, strong) NSString *identifier;
 
-+ (SLVItem *)itemWithDictionary:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)moc;
++ (instancetype)itemWithDictionary:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)moc;
 
 @end

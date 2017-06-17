@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		042903421EF536900066039B /* SLVConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 042903411EF536900066039B /* SLVConstants.m */; };
 		04E2FF9C1EBB90A50074C5D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2FF9B1EBB90A50074C5D9 /* main.m */; };
 		04E2FF9F1EBB90A50074C5D9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2FF9E1EBB90A50074C5D9 /* AppDelegate.m */; };
 		04E2FFAA1EBB90A50074C5D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04E2FFA91EBB90A50074C5D9 /* Assets.xcassets */; };
@@ -48,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		042903411EF536900066039B /* SLVConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVConstants.m; path = Constants/SLVConstants.m; sourceTree = "<group>"; };
+		042903431EF536A80066039B /* SLVConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVConstants.h; path = Constants/SLVConstants.h; sourceTree = "<group>"; };
 		04E2FF971EBB90A50074C5D9 /* lection14.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lection14.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04E2FF9B1EBB90A50074C5D9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		04E2FF9D1EBB90A50074C5D9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -122,6 +125,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		042903401EF536600066039B /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				042903411EF536900066039B /* SLVConstants.m */,
+				042903431EF536A80066039B /* SLVConstants.h */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
 		04E2FF8E1EBB90A50074C5D9 = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +156,7 @@
 		04E2FF991EBB90A50074C5D9 /* lection14 */ = {
 			isa = PBXGroup;
 			children = (
+				042903401EF536600066039B /* Constants */,
 				6392D1F41EE84A580050728D /* CoreData */,
 				6392D1E21EE04D4E0050728D /* Extentions */,
 				63ACEF371EBC951A007C0D41 /* Application */,
@@ -475,6 +488,7 @@
 			files = (
 				6350EF8C1ED5843000D7C8CE /* SLVSearchResultsModel.m in Sources */,
 				6392D1EF1EE741BE0050728D /* SLVCollectionViewCell.m in Sources */,
+				042903421EF536900066039B /* SLVConstants.m in Sources */,
 				6392D1E81EE04D4E0050728D /* UIFont+SLVFonts.m in Sources */,
 				04E2FF9F1EBB90A50074C5D9 /* AppDelegate.m in Sources */,
 				6350EF8F1ED5923100D7C8CE /* ImageDownloadOperation.m in Sources */,

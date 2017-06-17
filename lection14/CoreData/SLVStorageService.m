@@ -43,23 +43,23 @@ static NSString *const item = @"SLVItem";
     }
 }
 
-+ (UIImage *)imageForKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *) moc {
++ (UIImage *)imageForKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *)moc {
     SLVItem *fetchedItem  = [SLVStorageService fetchEntity:item forKey:key inManagedObjectContext:moc];
     return fetchedItem.largePhoto;
 }
 
-+ (UIImage *)thumbnailForKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *) moc {
++ (UIImage *)thumbnailForKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *)moc {
     SLVItem *fetchedItem = [SLVStorageService fetchEntity:item forKey:key inManagedObjectContext:moc];
     return fetchedItem.thumbnail;
 }
 
-+ (void)saveImage:(UIImage *)image forKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *) moc {
++ (void)saveImage:(UIImage *)image forKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *)moc {
     SLVItem *fetchedItem = [SLVStorageService fetchEntity:item forKey:key inManagedObjectContext:moc];
     fetchedItem.largePhoto = image;
     [SLVStorageService saveInContext:moc];
 }
 
-+ (void)saveThumbnail:(UIImage *)image forKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *) moc {
++ (void)saveThumbnail:(UIImage *)image forKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *)moc {
     SLVItem *fetchedItem = [SLVStorageService fetchEntity:item forKey:key inManagedObjectContext:moc];
     fetchedItem.thumbnail = image;
     [SLVStorageService saveInContext:moc];
