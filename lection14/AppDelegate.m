@@ -11,7 +11,8 @@
 #import "SLVFavouritesViewController.h"
 #import "SLVSearchResultsModel.h"
 #import "CoreDataStack.h"
-#import "SLVModelProtocol.h"
+#import "SLVCollectionModelProtocol.h"
+#import "SLVCollectionModel.h"
 
 @interface AppDelegate ()
 
@@ -20,12 +21,12 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    SLVSearchResultsModel *model = [SLVSearchResultsModel new];
+    SLVCollectionModel *model = [SLVCollectionModel new];
     CoreDataStack *stack = [CoreDataStack stack];
     model.mainContext = stack.mainContext;
     model.privateContext = stack.privateContext;
-    SLVCollectionViewController *collectionViewController=[[SLVCollectionViewController alloc] initWithModel:model];
-    SLVFavouritesViewController *favouritesViewController=[[SLVFavouritesViewController alloc] initWithModel:model];
+    SLVCollectionViewController *collectionViewController = [[SLVCollectionViewController alloc] initWithModel:model];
+    SLVFavouritesViewController *favouritesViewController = [[SLVFavouritesViewController alloc] initWithModel:model];
     
     UINavigationController *ncCollection = [[UINavigationController alloc] initWithRootViewController:collectionViewController];
     UINavigationController *ncFavourites = [[UINavigationController alloc] initWithRootViewController:favouritesViewController];
