@@ -15,12 +15,14 @@
 #import "SLVSearchResultsModel.h"
 #import "SLVCollectionViewCell.h"
 #import "SLVPostViewController.h"
+#import "SLVCollectionViewLayout.h"
 
-@interface SLVCollectionViewController () <UISearchBarDelegate, UICollectionViewDelegate>
+@interface SLVCollectionViewController () <UISearchBarDelegate, UICollectionViewDelegate, SLVCollectionLayoutDelegate>
 
 @property (nonatomic, strong) SLVCollectionView *collectionView;
 @property (nonatomic, strong) SLVCollectionViewDataProvider *dataProvider;
 @property (nonatomic, strong) SLVSearchResultsModel *model;
+@property (nonatomic, strong) SLVCollectionViewLayout *layout;
 
 @end
 
@@ -51,9 +53,9 @@ static NSString * const reuseIdentifier = @"Cell";
     self.tabBarItem = tab;
     
     CGRect frame = self.view.frame;
-    UICollectionViewLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    
-    _collectionView = [[SLVCollectionView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), CGRectGetHeight(frame)) collectionViewLayout:layout];
+    self.layout = [[SLVCollectionViewLayout alloc] initWithDelegate:self];
+    self.layout.delegate = self;
+    _collectionView = [[SLVCollectionView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), CGRectGetHeight(frame)) collectionViewLayout:self.layout];
     [_collectionView registerClass:[SLVCollectionViewCell class] forCellWithReuseIdentifier: reuseIdentifier];
     [self.view addSubview:_collectionView];
     
@@ -117,6 +119,12 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)resumeDownloads {
     [self.model resumeOperations];
+}
+
+#pragma mark - CollectionLayoutDelegate
+
+- (NSUInteger)numberOfItems {
+    return self.model.items.count;
 }
 
 @end

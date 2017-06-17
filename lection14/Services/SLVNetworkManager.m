@@ -7,6 +7,7 @@
 //
 
 #import "SLVNetworkManager.h"
+#import <UIKit/UIKit.h>
 
 @implementation SLVNetworkManager
 
@@ -30,8 +31,14 @@
         } else if (error) {
             NSLog(@"error while downloading data %@",error.userInfo);
         }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        });
     }];
     task.priority=NSURLSessionTaskPriorityHigh;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    });
     [task resume];
 }
 

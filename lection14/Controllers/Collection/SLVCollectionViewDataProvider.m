@@ -10,6 +10,8 @@
 #import "SLVSearchResultsModel.h"
 #import "SLVCollectionViewCell.h"
 
+static NSString * const reuseIdentifier = @"Cell";
+
 @interface SLVCollectionViewDataProvider()
 
 @property (nonatomic, weak, readonly) SLVSearchResultsModel *model;
@@ -17,8 +19,6 @@
 @end
 
 @implementation SLVCollectionViewDataProvider
-
-static NSString * const reuseIdentifier = @"Cell";
 
 - (instancetype)initWithModel:(SLVSearchResultsModel *)model {
     self = [super init];

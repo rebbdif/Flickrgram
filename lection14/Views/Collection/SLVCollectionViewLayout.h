@@ -10,13 +10,17 @@
 
 @protocol SLVCollectionLayoutDelegate <NSObject>
 
-- (CGSize)sizeForRowAtIndexPath:(NSIndexPath *)indexPath forCollectionView:(UICollectionView *)collectionView;
+- (NSUInteger)numberOfItems;
 
 @end
+
 
 @interface SLVCollectionViewLayout : UICollectionViewLayout
 
 @property (nonatomic, weak) id<SLVCollectionLayoutDelegate> delegate;
-@property (nonatomic, assign) NSUInteger numberOfColumns;
+
++ (instancetype)new NS_UNAVAILABLE;
+- (instancetype)init NS_UNAVAILABLE;
+- (instancetype)initWithDelegate:(id<SLVCollectionLayoutDelegate>)delegate;
 
 @end
