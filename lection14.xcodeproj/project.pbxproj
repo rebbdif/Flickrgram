@@ -189,6 +189,8 @@
 		04E2FFD31EBBAC0F0074C5D9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				6392D21C1EE88F410050728D /* SLVStorageService.h */,
+				6392D21D1EE88F410050728D /* SLVStorageService.m */,
 				6350EF841ED5841F00D7C8CE /* SLVNetworkManager.h */,
 				6350EF851ED5841F00D7C8CE /* SLVNetworkManager.m */,
 				63ABAB811ED60E8900941726 /* SLVImageProcessing.h */,
@@ -289,8 +291,6 @@
 				6392D1F51EE84A920050728D /* Model.xcdatamodeld */,
 				6392D20A1EE874BF0050728D /* CoreDataStack.h */,
 				6392D20B1EE874BF0050728D /* CoreDataStack.m */,
-				6392D21C1EE88F410050728D /* SLVStorageService.h */,
-				6392D21D1EE88F410050728D /* SLVStorageService.m */,
 				6392D20D1EE875790050728D /* Comment.h */,
 				6392D20E1EE875790050728D /* Comment.m */,
 				6392D2101EE875980050728D /* Human.h */,

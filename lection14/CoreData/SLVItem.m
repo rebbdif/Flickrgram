@@ -7,6 +7,9 @@
 //
 
 #import "SLVItem.h"
+#import "SLVStorageService.h"
+
+static NSString *const entityName = @"SLVItem";
 
 @implementation SLVItem
 
@@ -23,24 +26,24 @@
 @dynamic thumbnail;
 @dynamic identifier;
 
-
 + (SLVItem *)itemWithDictionary:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)moc {
-    SLVItem *item = nil;
-    item = [NSEntityDescription insertNewObjectForEntityForName:@"SLVItem" inManagedObjectContext:moc];
-    item.title = dict[@"title"];
     NSString *secret = dict[@"secret"];
     NSString *server = dict[@"server"];
     NSString *farm = dict[@"farm"];
     NSString *idd = dict[@"id"];
-    
     NSString *url = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_s.jpg", farm, server, idd, secret]; //n
     NSString *hdUrl = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_n.jpg", farm, server, idd, secret]; //z
-    item.thumbnailURL = url;
-    item.largePhotoURL = hdUrl;
+    NSString *identifier = url;
     
-    item.text = dict[@"title"];
-    
-    item.identifier = item.thumbnailURL;
+    SLVItem *item = (SLVItem *)[SLVStorageService fetchEntity:entityName forKey:identifier inManagedObjectContext:moc];
+    if (!item) {
+        item = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:moc];
+        item.title = dict[@"title"];
+        item.thumbnailURL = url;
+        item.largePhotoURL = hdUrl;
+        item.text = dict[@"title"];
+        item.identifier = item.thumbnailURL;
+    }
     return item;
 }
 

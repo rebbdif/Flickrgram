@@ -48,8 +48,10 @@
     
     self.mainContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     _mainContext.persistentStoreCoordinator = coreDataPSC;
+    self.mainContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy;
     
     self.privateContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    self.privateContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy;
     _privateContext.persistentStoreCoordinator = coreDataPSC;
 }
 

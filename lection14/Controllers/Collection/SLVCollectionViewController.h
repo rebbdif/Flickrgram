@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString * const slvCollectionReuseIdentifier;
+
 @interface SLVCollectionViewController : UIViewController
 
 - (instancetype)initWithModel:(id)model;

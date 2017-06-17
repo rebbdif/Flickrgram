@@ -28,7 +28,7 @@
 
 @implementation SLVCollectionViewController
 
-static NSString * const reuseIdentifier = @"Cell";
+NSString * const slvCollectionReuseIdentifier = @"Cell";
 
 - (instancetype)initWithModel:(id)model {
     self = [super init];
@@ -56,7 +56,7 @@ static NSString * const reuseIdentifier = @"Cell";
     self.layout = [[SLVCollectionViewLayout alloc] initWithDelegate:self];
     self.layout.delegate = self;
     _collectionView = [[SLVCollectionView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), CGRectGetHeight(frame)) collectionViewLayout:self.layout];
-    [_collectionView registerClass:[SLVCollectionViewCell class] forCellWithReuseIdentifier: reuseIdentifier];
+    [_collectionView registerClass:[SLVCollectionViewCell class] forCellWithReuseIdentifier: slvCollectionReuseIdentifier];
     [self.view addSubview:_collectionView];
     
     self.navigationController.navigationBar.backgroundColor = [UIColor myGray];

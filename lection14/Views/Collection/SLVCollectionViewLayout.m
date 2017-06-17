@@ -59,9 +59,9 @@
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UIEdgeInsets insets = UIEdgeInsetsZero;
+    UIEdgeInsets insets = UIEdgeInsetsMake(1, 1, 1, 1);
     CGRect frame = [self frameForIndexPath:indexPath];
-    NSLog(@"item:%ld frame%f %f %f %f", (long)indexPath.item, frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
+   // NSLog(@"item:%ld frame%f %f %f %f", (long)indexPath.item, frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
     UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
     attributes.frame = UIEdgeInsetsInsetRect(frame, insets);
     return attributes;
