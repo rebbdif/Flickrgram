@@ -22,14 +22,14 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
 
 @property (nonatomic, strong) SLVCollectionView *collectionView;
 @property (nonatomic, strong) SLVCollectionViewDataProvider *dataProvider;
-@property (nonatomic, strong) id<SLVModelProtocol> model;
+@property (nonatomic, strong) id<SLVCollectionModelProtocol> model;
 @property (nonatomic, strong) SLVCollectionViewLayout *layout;
 
 @end
 
 @implementation SLVCollectionViewController
 
-- (instancetype)initWithModel:(id<SLVModelProtocol>)model {
+- (instancetype)initWithModel:(id<SLVCollectionModelProtocol>)model {
     self = [super init];
     if (self) {
         _model = model;

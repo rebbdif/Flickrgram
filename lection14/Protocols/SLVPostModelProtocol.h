@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SLVModelProtocol.h"
 @class UIImage;
 @class SLVItem;
 

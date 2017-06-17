@@ -1,5 +1,5 @@
 //
-//  searchResultsModel.m
+//  SLVCollectionModel.m
 //  lection14
 //
 //  Created by iOS-School-1 on 04.05.17.
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation SLVSearchResultsModel
+@implementation SLVCollectionModel
 
 - (instancetype)init {
     self = [super init];

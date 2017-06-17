@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 @import UIKit;
-#import "SLVModelProtocol.h"
+#import "SLVCollectionModelProtocol.h"
 
 @class SLVSearchResultsModel;
 
 @interface SLVCollectionViewDataProvider : NSObject <UICollectionViewDataSource>
 
-- (instancetype)initWithModel:(id<SLVModelProtocol>)model;
+- (instancetype)initWithModel:(id<SLVCollectionModelProtocol>)model;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  searchResultsModel.h
+//  SLVCollectionModel.h
 //  lection14
 //
 //  Created by iOS-School-1 on 04.05.17.

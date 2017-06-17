@@ -10,7 +10,7 @@
 #import "SLVPostDataProvider.h"
 #import "SLVPostViewCells.h"
 #import "SLVItem.h"
-#import "SLVSearchResultsModel.h"
+#import "SLVCollectionModel.h"
 #import "SLVPostView.h"
 #import "UIColor+SLVColor.h"
 @import Masonry;

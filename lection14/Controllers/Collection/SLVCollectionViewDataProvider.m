@@ -13,13 +13,13 @@ static NSString * const reuseIdentifier = @"Cell";
 
 @interface SLVCollectionViewDataProvider()
 
-@property (nonatomic, weak, readonly) id<SLVModelProtocol> model;
+@property (nonatomic, weak, readonly) id<SLVCollectionModelProtocol> model;
 
 @end
 
 @implementation SLVCollectionViewDataProvider
 
-- (instancetype)initWithModel:(id<SLVModelProtocol>)model {
+- (instancetype)initWithModel:(id<SLVCollectionModelProtocol>)model {
     self = [super init];
     if (self) {
         _model = model;

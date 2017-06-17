@@ -7,7 +7,7 @@
 //
 
 #import "ImageDownloadOperation.h"
-#import "SLVSearchResultsModel.h"
+#import "SLVCollectionModel.h"
 #import "SLVNetworkManager.h"
 #import "SLVImageProcessing.h"
 #import "SLVStorageService.h"

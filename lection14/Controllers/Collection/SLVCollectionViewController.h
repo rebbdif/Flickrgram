@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SLVModelProtocol.h"
+#import "SLVCollectionModelProtocol.h"
 
 extern NSString * const slvCollectionReuseIdentifier;
 
 @interface SLVCollectionViewController : UIViewController
 
-- (instancetype)initWithModel:(id<SLVModelProtocol>)model;
+- (instancetype)initWithModel:(id<SLVCollectionModelProtocol>)model;
 
 @end
