@@ -11,6 +11,7 @@
 #import "SLVFavouritesViewController.h"
 #import "SLVSearchResultsModel.h"
 #import "CoreDataStack.h"
+#import "SLVModelProtocol.h"
 
 @interface AppDelegate ()
 

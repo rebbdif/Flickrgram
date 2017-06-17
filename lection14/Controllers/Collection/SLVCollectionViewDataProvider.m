@@ -7,20 +7,19 @@
 //
 
 #import "SLVCollectionViewDataProvider.h"
-#import "SLVSearchResultsModel.h"
 #import "SLVCollectionViewCell.h"
 
 static NSString * const reuseIdentifier = @"Cell";
 
 @interface SLVCollectionViewDataProvider()
 
-@property (nonatomic, weak, readonly) SLVSearchResultsModel *model;
+@property (nonatomic, weak, readonly) id<SLVModelProtocol> model;
 
 @end
 
 @implementation SLVCollectionViewDataProvider
 
-- (instancetype)initWithModel:(SLVSearchResultsModel *)model {
+- (instancetype)initWithModel:(id<SLVModelProtocol>)model {
     self = [super init];
     if (self) {
         _model = model;
@@ -30,7 +29,8 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     SLVCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    UIImage *image = [self.model imageForIndexPath:indexPath];
+    cell.indexLabel.text = [NSString stringWithFormat:@"%lu", indexPath.item];
+    UIImage *image = [self.model thumbnailForIndexPath:indexPath];
     if (image) {
         cell.imageView.image = image;
     } else {
@@ -54,7 +54,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.model.items.count;
+    return [self.model numberOfItems];
 }
 
 

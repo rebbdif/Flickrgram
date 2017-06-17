@@ -12,25 +12,24 @@
 #import "SLVCollectionView.h"
 #import "UIColor+SLVColor.h"
 #import "SLVSettingsViewController.h"
-#import "SLVSearchResultsModel.h"
 #import "SLVCollectionViewCell.h"
-#import "SLVPostViewController.h"
+#import "SLVPostController.h"
 #import "SLVCollectionViewLayout.h"
+
+NSString * const slvCollectionReuseIdentifier = @"Cell";
 
 @interface SLVCollectionViewController () <UISearchBarDelegate, UICollectionViewDelegate, SLVCollectionLayoutDelegate>
 
 @property (nonatomic, strong) SLVCollectionView *collectionView;
 @property (nonatomic, strong) SLVCollectionViewDataProvider *dataProvider;
-@property (nonatomic, strong) SLVSearchResultsModel *model;
+@property (nonatomic, strong) id<SLVModelProtocol> model;
 @property (nonatomic, strong) SLVCollectionViewLayout *layout;
 
 @end
 
 @implementation SLVCollectionViewController
 
-NSString * const slvCollectionReuseIdentifier = @"Cell";
-
-- (instancetype)initWithModel:(id)model {
+- (instancetype)initWithModel:(id<SLVModelProtocol>)model {
     self = [super init];
     if (self) {
         _model = model;
@@ -73,20 +72,19 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
     [self.collectionView.searchBar endEditing:YES];
     NSString *searchRequest = [[NSUserDefaults standardUserDefaults] objectForKey:@"searchRequest"];
     self.collectionView.searchBar.text = searchRequest;
-    self.model.searchRequest = searchRequest;
-    [self.model getItemsForRequest:self.model.searchRequest withCompletionHandler:^{
+    [self.model getItemsForRequest:searchRequest withCompletionHandler:^{
         [weakself.collectionView reloadData];
     }];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    self.model.searchRequest = searchBar.text;
-    [[NSUserDefaults standardUserDefaults] setObject:searchBar.text forKey:@"searchRequest"];
+    NSString *searchRequest = searchBar.text;
+    [[NSUserDefaults standardUserDefaults] setObject:searchRequest forKey:@"searchRequest"];
     [searchBar endEditing:YES];
-    if (self.model.searchRequest) {
+    if (searchRequest) {
         [self.model clearModel:NO];
         __weak typeof(self) weakself = self;
-        [self.model getItemsForRequest:self.model.searchRequest withCompletionHandler:^{
+        [self.model getItemsForRequest:searchRequest withCompletionHandler:^{
             [weakself.collectionView reloadData];
         }];
     }
@@ -104,7 +102,7 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     self.model.selectedItem = self.model.items[indexPath.item];
-    SLVPostViewController *postViewController = [[SLVPostViewController alloc] initWithModel:self.model];
+    SLVPostController *postViewController = [[SLVPostViewController alloc] initWithModel:self.model];
     [self pauseDownloads];
     
     UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
@@ -124,7 +122,7 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
 #pragma mark - CollectionLayoutDelegate
 
 - (NSUInteger)numberOfItems {
-    return self.model.items.count;
+    return [self.model numberOfItems];
 }
 
 @end

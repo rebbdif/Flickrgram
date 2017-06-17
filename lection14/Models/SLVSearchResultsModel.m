@@ -20,6 +20,7 @@
 @property (strong, nonatomic) NSOperationQueue *imagesQueue;
 @property (strong, nonatomic) SLVNetworkManager *networkManager;
 @property (strong, nonatomic) NSURLSession *session;
+@property (copy, nonatomic) NSArray<SLVItem *> *items;
 
 @end
 
@@ -37,6 +38,10 @@
         _items = [NSArray new];
     }
     return self;
+}
+
+- (NSUInteger)numberOfItems {
+    return self.items.count;
 }
 
 - (void)getItemsForRequest:(NSString*) request withCompletionHandler:(void (^)(void))completionHandler {

@@ -14,33 +14,30 @@ static NSString *const entityName = @"SLVItem";
 @implementation SLVItem
 
 @dynamic isFavorite;
-@dynamic likes;
-@dynamic comments;
+@dynamic numberOfLikes;
+@dynamic numberOfComments;
 @dynamic latitude;
 @dynamic longitude;
 @dynamic largePhotoURL;
 @dynamic thumbnailURL;
 @dynamic text;
-@dynamic title;
 @dynamic largePhoto;
 @dynamic thumbnail;
 @dynamic identifier;
+@dynamic searchRequest;
 
 + (instancetype)itemWithDictionary:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)moc {
-    NSString *secret = dict[@"secret"];
-    NSString *server = dict[@"server"];
-    NSString *farm = dict[@"farm"];
-    NSString *idd = dict[@"id"];
-    NSString *url = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_s.jpg", farm, server, idd, secret]; //n
-    NSString *hdUrl = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@_n.jpg", farm, server, idd, secret]; //z
-    NSString *identifier = url;
+    NSString *base = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@.jpg",
+                      dict[@"farm"], dict[@"server"], dict[@"id"], dict[@"secret"]];
+    NSString *thumbnailUrl = [base stringByAppendingString:@"_s"]; //n
+    NSString *imageUrl = [base stringByAppendingString:@"_n"]; //z
+    NSString *identifier = thumbnailUrl;
     
     SLVItem *item = (SLVItem *)[SLVStorageService fetchEntity:entityName forKey:identifier inManagedObjectContext:moc];
     if (!item) {
         item = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:moc];
-        item.title = dict[@"title"];
-        item.thumbnailURL = url;
-        item.largePhotoURL = hdUrl;
+        item.thumbnailURL = thumbnailUrl;
+        item.largePhotoURL = imageUrl;
         item.text = dict[@"title"];
         item.identifier = item.thumbnailURL;
     }

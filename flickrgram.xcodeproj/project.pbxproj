@@ -15,10 +15,13 @@
 		6350EF861ED5841F00D7C8CE /* SLVNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6350EF851ED5841F00D7C8CE /* SLVNetworkManager.m */; };
 		6350EF8C1ED5843000D7C8CE /* SLVSearchResultsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6350EF8A1ED5843000D7C8CE /* SLVSearchResultsModel.m */; };
 		6350EF8F1ED5923100D7C8CE /* ImageDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6350EF8E1ED5923100D7C8CE /* ImageDownloadOperation.m */; };
+		635722F41EF5B091000BB6CD /* SLVPostView.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722F31EF5B091000BB6CD /* SLVPostView.m */; };
+		635722F71EF5B1FC000BB6CD /* SLVPostDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722F61EF5B1FC000BB6CD /* SLVPostDataProvider.m */; };
+		635722FA1EF5B4A7000BB6CD /* SLVPostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722F91EF5B4A7000BB6CD /* SLVPostModel.m */; };
 		6392D1D61EE04CFD0050728D /* SLVCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1CA1EE04CFD0050728D /* SLVCollectionViewController.m */; };
 		6392D1D71EE04CFD0050728D /* SLVCollectionViewDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1CC1EE04CFD0050728D /* SLVCollectionViewDataProvider.m */; };
 		6392D1D81EE04CFD0050728D /* SLVFavouritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1CF1EE04CFD0050728D /* SLVFavouritesViewController.m */; };
-		6392D1D91EE04CFD0050728D /* SLVPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1D21EE04CFD0050728D /* SLVPostViewController.m */; };
+		6392D1D91EE04CFD0050728D /* SLVPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1D21EE04CFD0050728D /* SLVPostController.m */; };
 		6392D1DA1EE04CFD0050728D /* SLVSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1D51EE04CFD0050728D /* SLVSettingsViewController.m */; };
 		6392D1E01EE04D3A0050728D /* SLVCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1DD1EE04D3A0050728D /* SLVCollectionView.m */; };
 		6392D1E11EE04D3A0050728D /* SLVCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1DF1EE04D3A0050728D /* SLVCollectionViewLayout.m */; };
@@ -65,14 +68,22 @@
 		6350EF8A1ED5843000D7C8CE /* SLVSearchResultsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVSearchResultsModel.m; path = Models/SLVSearchResultsModel.m; sourceTree = "<group>"; };
 		6350EF8D1ED5923100D7C8CE /* ImageDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageDownloadOperation.h; path = Models/ImageDownloadOperation.h; sourceTree = "<group>"; };
 		6350EF8E1ED5923100D7C8CE /* ImageDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageDownloadOperation.m; path = Models/ImageDownloadOperation.m; sourceTree = "<group>"; };
+		635722F11EF59FCF000BB6CD /* SLVModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVModelProtocol.h; path = Protocols/SLVModelProtocol.h; sourceTree = "<group>"; };
+		635722F21EF5B091000BB6CD /* SLVPostView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPostView.h; path = Views/Post/SLVPostView.h; sourceTree = "<group>"; };
+		635722F31EF5B091000BB6CD /* SLVPostView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVPostView.m; path = Views/Post/SLVPostView.m; sourceTree = "<group>"; };
+		635722F51EF5B1FC000BB6CD /* SLVPostDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVPostDataProvider.h; sourceTree = "<group>"; };
+		635722F61EF5B1FC000BB6CD /* SLVPostDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVPostDataProvider.m; sourceTree = "<group>"; };
+		635722F81EF5B4A7000BB6CD /* SLVPostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPostModel.h; path = Models/SLVPostModel.h; sourceTree = "<group>"; };
+		635722F91EF5B4A7000BB6CD /* SLVPostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVPostModel.m; path = Models/SLVPostModel.m; sourceTree = "<group>"; };
+		635722FB1EF5B4DC000BB6CD /* SLVPostModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPostModelProtocol.h; path = Protocols/SLVPostModelProtocol.h; sourceTree = "<group>"; };
 		6392D1C91EE04CFD0050728D /* SLVCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVCollectionViewController.h; sourceTree = "<group>"; };
 		6392D1CA1EE04CFD0050728D /* SLVCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVCollectionViewController.m; sourceTree = "<group>"; };
 		6392D1CB1EE04CFD0050728D /* SLVCollectionViewDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVCollectionViewDataProvider.h; sourceTree = "<group>"; };
 		6392D1CC1EE04CFD0050728D /* SLVCollectionViewDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVCollectionViewDataProvider.m; sourceTree = "<group>"; };
 		6392D1CE1EE04CFD0050728D /* SLVFavouritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVFavouritesViewController.h; sourceTree = "<group>"; };
 		6392D1CF1EE04CFD0050728D /* SLVFavouritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVFavouritesViewController.m; sourceTree = "<group>"; };
-		6392D1D11EE04CFD0050728D /* SLVPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVPostViewController.h; sourceTree = "<group>"; };
-		6392D1D21EE04CFD0050728D /* SLVPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVPostViewController.m; sourceTree = "<group>"; };
+		6392D1D11EE04CFD0050728D /* SLVPostController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVPostController.h; sourceTree = "<group>"; };
+		6392D1D21EE04CFD0050728D /* SLVPostController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVPostController.m; sourceTree = "<group>"; };
 		6392D1D41EE04CFD0050728D /* SLVSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVSettingsViewController.h; sourceTree = "<group>"; };
 		6392D1D51EE04CFD0050728D /* SLVSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVSettingsViewController.m; sourceTree = "<group>"; };
 		6392D1DC1EE04D3A0050728D /* SLVCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVCollectionView.h; sourceTree = "<group>"; };
@@ -156,6 +167,7 @@
 		04E2FF991EBB90A50074C5D9 /* lection14 */ = {
 			isa = PBXGroup;
 			children = (
+				635722F01EF59F61000BB6CD /* Protocols */,
 				042903401EF536600066039B /* Constants */,
 				6392D1F41EE84A580050728D /* CoreData */,
 				6392D1E21EE04D4E0050728D /* Extentions */,
@@ -195,6 +207,8 @@
 				6350EF8E1ED5923100D7C8CE /* ImageDownloadOperation.m */,
 				6350EF891ED5843000D7C8CE /* SLVSearchResultsModel.h */,
 				6350EF8A1ED5843000D7C8CE /* SLVSearchResultsModel.m */,
+				635722F81EF5B4A7000BB6CD /* SLVPostModel.h */,
+				635722F91EF5B4A7000BB6CD /* SLVPostModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -222,6 +236,15 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		635722F01EF59F61000BB6CD /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				635722F11EF59FCF000BB6CD /* SLVModelProtocol.h */,
+				635722FB1EF5B4DC000BB6CD /* SLVPostModelProtocol.h */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		6392D1C81EE04CFD0050728D /* Collection */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,8 +270,10 @@
 		6392D1D01EE04CFD0050728D /* PostViewController */ = {
 			isa = PBXGroup;
 			children = (
-				6392D1D11EE04CFD0050728D /* SLVPostViewController.h */,
-				6392D1D21EE04CFD0050728D /* SLVPostViewController.m */,
+				6392D1D11EE04CFD0050728D /* SLVPostController.h */,
+				6392D1D21EE04CFD0050728D /* SLVPostController.m */,
+				635722F51EF5B1FC000BB6CD /* SLVPostDataProvider.h */,
+				635722F61EF5B1FC000BB6CD /* SLVPostDataProvider.m */,
 			);
 			name = PostViewController;
 			path = Controllers/PostViewController;
@@ -294,6 +319,8 @@
 			children = (
 				6392D1F01EE7F92E0050728D /* SLVPostViewCells.h */,
 				6392D1F11EE7F92E0050728D /* SLVPostViewCells.m */,
+				635722F21EF5B091000BB6CD /* SLVPostView.h */,
+				635722F31EF5B091000BB6CD /* SLVPostView.m */,
 			);
 			name = Post;
 			sourceTree = "<group>";
@@ -397,8 +424,9 @@
 		04E2FF8F1EBB90A50074C5D9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = SLV;
 				LastUpgradeCheck = 0820;
-				ORGANIZATIONNAME = "iOS-School-1";
+				ORGANIZATIONNAME = serebryanyy;
 				TargetAttributes = {
 					04E2FF961EBB90A50074C5D9 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -413,7 +441,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 04E2FF921EBB90A50074C5D9 /* Build configuration list for PBXProject "lection14" */;
+			buildConfigurationList = 04E2FF921EBB90A50074C5D9 /* Build configuration list for PBXProject "flickrgram" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -486,6 +514,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				635722F41EF5B091000BB6CD /* SLVPostView.m in Sources */,
 				6350EF8C1ED5843000D7C8CE /* SLVSearchResultsModel.m in Sources */,
 				6392D1EF1EE741BE0050728D /* SLVCollectionViewCell.m in Sources */,
 				042903421EF536900066039B /* SLVConstants.m in Sources */,
@@ -498,15 +527,17 @@
 				6392D1D61EE04CFD0050728D /* SLVCollectionViewController.m in Sources */,
 				6392D1F21EE7F92E0050728D /* SLVPostViewCells.m in Sources */,
 				6392D1DA1EE04CFD0050728D /* SLVSettingsViewController.m in Sources */,
+				635722FA1EF5B4A7000BB6CD /* SLVPostModel.m in Sources */,
 				6392D1E71EE04D4E0050728D /* UIColor+SLVColor.m in Sources */,
 				6350EF861ED5841F00D7C8CE /* SLVNetworkManager.m in Sources */,
 				63ABAB831ED60E8900941726 /* SLVImageProcessing.m in Sources */,
-				6392D1D91EE04CFD0050728D /* SLVPostViewController.m in Sources */,
+				6392D1D91EE04CFD0050728D /* SLVPostController.m in Sources */,
 				6392D20C1EE874BF0050728D /* CoreDataStack.m in Sources */,
 				6392D21E1EE88F410050728D /* SLVStorageService.m in Sources */,
 				6392D2121EE875980050728D /* Human.m in Sources */,
 				6392D1D71EE04CFD0050728D /* SLVCollectionViewDataProvider.m in Sources */,
 				6392D1E11EE04D3A0050728D /* SLVCollectionViewLayout.m in Sources */,
+				635722F71EF5B1FC000BB6CD /* SLVPostDataProvider.m in Sources */,
 				6392D1F71EE84A920050728D /* Model.xcdatamodeld in Sources */,
 				6392D2221EEAC1090050728D /* SLVFavoritesCell.m in Sources */,
 				6392D1D81EE04CFD0050728D /* SLVFavouritesViewController.m in Sources */,
@@ -695,7 +726,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		04E2FF921EBB90A50074C5D9 /* Build configuration list for PBXProject "lection14" */ = {
+		04E2FF921EBB90A50074C5D9 /* Build configuration list for PBXProject "flickrgram" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				04E2FFBA1EBB90A50074C5D9 /* Debug */,
