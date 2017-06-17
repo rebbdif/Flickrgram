@@ -12,7 +12,7 @@
 
 typedef void (^Block)(void);
 
-@protocol SLVCollectionModelProtocol <NSObject>
+@protocol SLVModelProtocol <NSObject>
 
 - (NSUInteger)numberOfItems;
 - (void)cancelOperations;
