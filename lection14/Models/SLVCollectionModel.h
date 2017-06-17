@@ -12,7 +12,7 @@
 @class SLVItem;
 @class NSManagedObjectContext;
 
-@interface SLVSearchResultsModel : NSObject <SLVModelProtocol>
+@interface SLVCollectionModel : NSObject <SLVCollectionModelProtocol>
 
 @property (strong, nonatomic) NSString *searchRequest;
 @property (strong, nonatomic) NSManagedObjectContext *mainContext;

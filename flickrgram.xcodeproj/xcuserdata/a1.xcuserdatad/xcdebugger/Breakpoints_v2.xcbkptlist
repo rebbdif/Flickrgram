@@ -1906,7 +1906,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "100"
             endingLineNumber = "100"
-            landmarkName = "-loadThumbnailForIndexPath:withCompletionHandler:"
+            landmarkName = "-thumbnailForKey:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2066,7 +2066,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "125"
             endingLineNumber = "125"
-            landmarkName = "-loadImageForItem:withCompletionHandler:"
+            landmarkName = "-loadThumbnailForIndexPath:withCompletionHandler:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2082,7 +2082,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "124"
             endingLineNumber = "124"
-            landmarkName = "-loadImageForItem:withCompletionHandler:"
+            landmarkName = "-loadThumbnailForIndexPath:withCompletionHandler:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2130,7 +2130,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
             endingLineNumber = "62"
-            landmarkName = "-parseData:"
+            landmarkName = "-getItemsForRequest:withCompletionHandler:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2146,7 +2146,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "176"
             endingLineNumber = "176"
-            landmarkName = "-getFavoriteItemsWithCompletionHandler:"
+            landmarkName = "-makeFavorite:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2194,7 +2194,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "177"
             endingLineNumber = "177"
-            landmarkName = "-getFavoriteItemsWithCompletionHandler:"
+            landmarkName = "-makeFavorite:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2210,7 +2210,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "175"
             endingLineNumber = "175"
-            landmarkName = "-getFavoriteItemsWithCompletionHandler:"
+            landmarkName = "-makeFavorite:"
             landmarkType = "7">
             <Locations>
                <Location
@@ -2258,7 +2258,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "171"
             endingLineNumber = "171"
-            landmarkName = "-makeFavorite:"
+            landmarkName = "-clearModel:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

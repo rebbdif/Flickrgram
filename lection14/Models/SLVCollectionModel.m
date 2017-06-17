@@ -6,14 +6,14 @@
 //  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
-#import "SLVSearchResultsModel.h"
+#import "SLVCollectionModel.h"
 #import "ImageDownloadOperation.h"
 #import "SLVImageProcessing.h"
 #import "SLVNetworkManager.h"
 #import "SLVItem.h"
 #import "SLVStorageService.h"
 
-@interface SLVSearchResultsModel()
+@interface SLVCollectionModel()
 
 @property (assign, nonatomic) NSUInteger page;
 @property (strong, nonatomic) NSMutableDictionary<NSIndexPath *, ImageDownloadOperation *> *imageOperations;

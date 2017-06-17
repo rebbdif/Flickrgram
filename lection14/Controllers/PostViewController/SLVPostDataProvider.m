@@ -65,9 +65,8 @@
                 __strong typeof(self) strongself = weakself;
                 if (strongself) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        SLVImageCell *cell = [strongself.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+                        SLVImageCell *cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
                         cell.photoView.image = image;
-                        self.image = image;
                         [cell.spinner stopAnimating];
                     });
                 }

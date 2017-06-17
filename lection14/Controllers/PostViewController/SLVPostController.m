@@ -66,7 +66,7 @@
 
 - (void)showImageForCell:(SLVImageCell *)cell {
     self.imageCell = cell;
-    self.imageView = [[UIImageView alloc] initWithImage:self.image];
+    self.imageView = [[UIImageView alloc] initWithImage:cell.photoView.image];
     self.zoomedImageView = [[UIScrollView alloc] initWithFrame:self.tableView.frame];
     self.zoomedImageView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
     [self.zoomedImageView addSubview:self.imageView];

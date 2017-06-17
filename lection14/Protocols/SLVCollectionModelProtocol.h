@@ -1,5 +1,5 @@
 //
-//  SLVModelProtocol.h
+//  SLVCollectionModelProtocol
 //  lection14
 //
 //  Created by 1 on 17.06.17.
@@ -12,7 +12,7 @@
 
 typedef void (^Block)(void);
 
-@protocol SLVModelProtocol <NSObject>
+@protocol SLVCollectionModelProtocol <NSObject>
 
 - (NSUInteger)numberOfItems;
 - (void)cancelOperations;
