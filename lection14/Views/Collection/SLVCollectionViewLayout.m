@@ -61,6 +61,7 @@
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
     UIEdgeInsets insets = UIEdgeInsetsZero;
     CGRect frame = [self frameForIndexPath:indexPath];
+    NSLog(@"item:%ld frame%f %f %f %f", (long)indexPath.item, frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
     UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
     attributes.frame = UIEdgeInsetsInsetRect(frame, insets);
     return attributes;
@@ -86,7 +87,7 @@
             if (self.places[i][j] == true) {
                 if (side == 1) {
                     self.places[i][j] = false;
-                    result = CGRectMake(i * cellSide, j * cellSide, cellSide * side, cellSide * side);
+                    result = CGRectMake(j * cellSide, i * cellSide, cellSide * side, cellSide * side);
                     return result;
                 } else {
                     if (j < self.numberOfColumns - 1 && i < self.numberOfRows - 1) {
@@ -94,7 +95,7 @@
                         self.places[i][j+1] = false;
                         self.places[i+1][j] = false;
                         self.places[i+1][j+1] = false;
-                        result = CGRectMake(i * cellSide, j * cellSide, cellSide * side, cellSide * side);
+                        result = CGRectMake(j * cellSide, i * cellSide, cellSide * side, cellSide * side);
                         return result;
                     }
                 }
