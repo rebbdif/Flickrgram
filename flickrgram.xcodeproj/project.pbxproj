@@ -68,7 +68,7 @@
 		6350EF8A1ED5843000D7C8CE /* SLVCollectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVCollectionModel.m; path = Models/SLVCollectionModel.m; sourceTree = "<group>"; };
 		6350EF8D1ED5923100D7C8CE /* ImageDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageDownloadOperation.h; path = Models/ImageDownloadOperation.h; sourceTree = "<group>"; };
 		6350EF8E1ED5923100D7C8CE /* ImageDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageDownloadOperation.m; path = Models/ImageDownloadOperation.m; sourceTree = "<group>"; };
-		635722F11EF59FCF000BB6CD /* SLVModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVModelProtocol.h; path = Protocols/SLVModelProtocol.h; sourceTree = "<group>"; };
+		635722F11EF59FCF000BB6CD /* SLVCollectionModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVCollectionModelProtocol.h; path = Protocols/SLVCollectionModelProtocol.h; sourceTree = "<group>"; };
 		635722F21EF5B091000BB6CD /* SLVPostView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPostView.h; path = Views/Post/SLVPostView.h; sourceTree = "<group>"; };
 		635722F31EF5B091000BB6CD /* SLVPostView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVPostView.m; path = Views/Post/SLVPostView.m; sourceTree = "<group>"; };
 		635722F51EF5B1FC000BB6CD /* SLVPostDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVPostDataProvider.h; sourceTree = "<group>"; };
@@ -239,7 +239,7 @@
 		635722F01EF59F61000BB6CD /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				635722F11EF59FCF000BB6CD /* SLVModelProtocol.h */,
+				635722F11EF59FCF000BB6CD /* SLVCollectionModelProtocol.h */,
 				635722FB1EF5B4DC000BB6CD /* SLVPostModelProtocol.h */,
 			);
 			name = Protocols;
