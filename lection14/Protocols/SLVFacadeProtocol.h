@@ -30,7 +30,7 @@
 
 - (void)save;
 
-- (void)deleteEntitiesFromCoreData:(NSString *)entity withPredicate:(NSString *)predicate;
+- (void)deleteAllEntities:(NSString *)entity withPredicate:(NSString *)predicate;
 
 - (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key;
 

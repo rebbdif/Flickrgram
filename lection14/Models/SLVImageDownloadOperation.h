@@ -32,7 +32,16 @@ typedef NS_ENUM(NSInteger, SLVImageStatus) {
 
 - (instancetype)init NS_UNAVAILABLE;
 
-- (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade url:(NSString *)url attribute:(NSString *)attribute;
+/**
+ Инициализатор операции
+
+ @param facade фасад
+ @param entityName тип объекта, для которого происходит загрузка
+ @param key ключ объекта, для которого происходит загрузка
+ @param url url, c которого происходит загрузка
+ @param attribute атрибут объекта, в который сохраняем
+ */
+- (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade entity:(NSString *)entityName key:(NSString *)key url:(NSString *)url attribute:(NSString *)attribute;
 
 - (void)pause;
 

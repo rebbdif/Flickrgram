@@ -10,6 +10,8 @@
 #import "SLVItem.h"
 #import "SLVImageDownloadOperation.h"
 
+static NSString *const item = @"SLVItem";
+
 @interface SLVModel()
 
 @property (nonatomic, strong) NSMutableDictionary<NSString *, SLVImageDownloadOperation *> *imageOperations;
@@ -31,11 +33,9 @@
     return self;
 }
 
-- (void)loadImageForItem:(SLVItem *)currentItem forAttribute:(NSString *)attribute withCompletionHandler:(void (^)(void))completionHandler {
+- (void)loadImageForItem:(SLVItem *)currentItem forURL:(NSString *)url forAttribute:(NSString *)attribute withCompletionHandler:(void (^)(void))completionHandler {
     if (!self.imageOperations[currentItem.identifier] || self.imageOperations[currentItem.identifier].status == SLVImageStatusNone) {
-        SLVImageDownloadOperation *imageDownloadOperation = [[SLVImageDownloadOperation alloc] init];
-        imageDownloadOperation.attr = currentItem.identifier;
-        imageDownloadOperation.url = currentItem.thumbnailURL;
+        SLVImageDownloadOperation *imageDownloadOperation = [[SLVImageDownloadOperation alloc] initWithFacade:self.facade entity:item key:currentItem.identifier url:url attribute:attribute];
         imageDownloadOperation.completionBlock = ^{
             completionHandler();
         };
@@ -46,21 +46,33 @@
     }
 }
 
-
-- (UIImage *)imageForItem:(SLVItem *)item {
-    return nil;
+- (SLVItem *)fetchItemForKey:(NSString *)key {
+    return [self.facade fetchEntity:item forKey:key];
 }
 
 - (void)clearModel:(BOOL)entirely {
-    
+    NSString *predicate = nil;
+    if (!entirely) predicate = @"isFavorite == NO";
+    [self.facade deleteAllEntities:item withPredicate:predicate];
+    [self.imageOperations removeAllObjects];
+}
+
+- (void)cancelOperations {
+    [self.imageOperations enumerateKeysAndObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id key, id object, BOOL *stop) {
+        SLVImageDownloadOperation *operation = (SLVImageDownloadOperation *)object;
+        if (operation.isExecuting) {
+            [operation pause];
+        }
+    }];
 }
 
 - (void)resumeOperations {
-    
-}
-
--(void)cancelOperations {
-    
+    [self.imageOperations enumerateKeysAndObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id key, id object, BOOL *stop) {
+        SLVImageDownloadOperation *operation = (SLVImageDownloadOperation *)object;
+        if (operation.isCancelled) {
+            [operation resume];
+        }
+    }];
 }
 
 @end

@@ -10,13 +10,15 @@
 
 @implementation SLVPostModel
 
-- (void)clearModel:(BOOL)entirely {
-    self.items = [NSArray new];
-    [SLVStorageService clearCoreData:entirely inManagedObjectContext: self.privateContext];
-    self.page = 0;
-    [self.imageOperations removeAllObjects];
-    [SLVStorageService saveInContext:self.privateContext];
+- (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade {
+    self = [super initWithFacade:facade];
+    if (self) {
+        
+    }
+    return self;
 }
+
+
 
 - (void)makeFavorite:(BOOL)favorite {
     self.selectedItem.isFavorite = favorite;
@@ -50,22 +52,6 @@
     }
 }
 
-- (void)cancelOperations {
-    [self.imageOperations enumerateKeysAndObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id key, id object, BOOL *stop) {
-        ImageDownloadOperation *operation = (ImageDownloadOperation *)object;
-        if (operation.isExecuting) {
-            [operation pause];
-        }
-    }];
-}
 
-- (void)resumeOperations {
-    [self.imageOperations enumerateKeysAndObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id key, id object, BOOL *stop) {
-        ImageDownloadOperation *operation = (ImageDownloadOperation *)object;
-        if (operation.isCancelled) {
-            [operation resume];
-        }
-    }];
-}
 
 @end

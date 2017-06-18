@@ -12,8 +12,8 @@
 
 @interface SLVModel : NSObject <SLVModelProtocol>
 
-- (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade;
-- (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
+- (instancetype)init NS_UNAVAILABLE;
+- (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade;
 
 @end

@@ -13,10 +13,14 @@
 
 @protocol SLVModelProtocol <NSObject>
 
-- (void)loadImageForItem:(SLVItem *)currentItem forAttribute:(NSString *)attribute withCompletionHandler:(void (^)(void))completionHandler;
-- (UIImage *)imageForItem:(SLVItem *)item;
+- (SLVItem *)fetchItemForKey:(NSString *)key;
+
+- (void)loadImageForItem:(SLVItem *)currentItem forURL:(NSString *)url forAttribute:(NSString *)attribute withCompletionHandler:(void (^)(void))completionHandler;
+
 - (void)cancelOperations;
+
 - (void)resumeOperations;
+
 - (void)clearModel:(BOOL)entirely;
 
 @end

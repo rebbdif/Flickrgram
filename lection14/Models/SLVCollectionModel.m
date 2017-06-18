@@ -7,7 +7,7 @@
 //
 
 #import "SLVCollectionModel.h"
-#import "ImageDownloadOperation.h"
+#import "SLVImageDownloadOperation.h"
 #import "SLVImageProcessing.h"
 #import "SLVNetworkManager.h"
 #import "SLVItem.h"
@@ -23,8 +23,8 @@
 
 @implementation SLVCollectionModel
 
-- (instancetype)init {
-    self = [super init];
+- (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade {
+    self = [super initWithFacade:facade];
     if (self) {
         _page = 1;
         _items = [NSArray new];

@@ -8,15 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "SLVCollectionModelProtocol.h"
+#import "SLVFacadeProtocol.h"
+#import "SLVModel.h"
 
 @class SLVItem;
 @class NSManagedObjectContext;
 
-@interface SLVCollectionModel : NSObject <SLVCollectionModelProtocol>
+@interface SLVCollectionModel : SLVModel <SLVCollectionModelProtocol>
 
-@property (strong, nonatomic) NSString *searchRequest;
-@property (strong, nonatomic) NSManagedObjectContext *mainContext;
-@property (strong, nonatomic) NSManagedObjectContext *privateContext;
-@property (strong, nonatomic) SLVItem *selectedItem;
+- (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade;
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
 
 @end

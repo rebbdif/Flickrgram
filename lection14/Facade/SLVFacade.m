@@ -63,7 +63,7 @@
     [self.storageService save];
 }
 
-- (void)deleteEntitiesFromCoreData:(NSString *)entity withPredicate:(NSString *)predicate {
+- (void)deleteAllEntities:(NSString *)entity withPredicate:(NSString *)predicate {
     [self.storageService deleteEntitiesFromCoreData:entity withPredicate:predicate];
 }
 

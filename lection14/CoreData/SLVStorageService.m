@@ -75,16 +75,6 @@
 
 }
 
-//- (void)clearCoreData:(BOOL)entirely {
-//    NSError *error;
-//    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:item];
-//    if (!entirely) request.predicate = [NSPredicate predicateWithFormat:@"isFavorite == NO"];
-//    NSArray *results = [self.stack.privateContext executeFetchRequest:request error:&error];
-//    for (id item in results) {
-//        [self.stack.privateContext deleteObject:item];
-//    }
-//}
-
 - (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key {
     id fetchedEntity = [self fetchEntity:entity forKey:key];
     @try {

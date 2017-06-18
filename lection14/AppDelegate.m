@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "CoreDataStack.h"
-#import "SLVModel.h"
 #import "SLVCollectionViewController.h"
 #import "SLVCollectionModel.h"
 #import "SLVFavouritesViewController.h"
@@ -25,13 +24,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     SLVFacade *facade = [SLVFacade new];
-    
-    SLVCollectionModel *model = [[SLVModel alloc] initWithFacade:facade];
-    CoreDataStack *stack = [CoreDataStack stack];
-    model.mainContext = stack.mainContext;
-    model.privateContext = stack.privateContext;
-    SLVCollectionViewController *collectionViewController = [[SLVCollectionViewController alloc] initWithModel:model];
-    SLVFavouritesViewController *favouritesViewController = [[SLVFavouritesViewController alloc] initWithModel:model];
+    SLVCollectionModel *collectionModel = [[SLVCollectionModel alloc] initWithFacade:facade];
+    SLVCollectionViewController *collectionViewController = [[SLVCollectionViewController alloc] initWithModel:collectionModel];
+    SLVPostModel *postModel = [[SLVPostModel alloc] initWithFacade:facade];
+    SLVFavouritesViewController *favouritesViewController = [[SLVFavouritesViewController alloc] initWithModel:postModel];
     
     UINavigationController *ncCollection = [[UINavigationController alloc] initWithRootViewController:collectionViewController];
     UINavigationController *ncFavourites = [[UINavigationController alloc] initWithRootViewController:favouritesViewController];

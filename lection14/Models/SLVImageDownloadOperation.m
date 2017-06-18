@@ -20,22 +20,24 @@
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic, strong) NSString *key;
 @property (nonatomic, strong) NSString *attribute;
+@property (nonatomic, strong) NSString *entityName;
 @property (nonatomic, strong) id<SLVFacadeProtocol> facade;
 
 @end
 
 @implementation SLVImageDownloadOperation
 
-- (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade url:(NSString *)url attribute:(NSString *)attribute {
+- (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade entity:(NSString *)entityName key:(NSString *)key url:(NSString *)url attribute:(NSString *)attribute {
     self = [super init];
     if (self) {
         _status = SLVImageStatusNone;
         _innerQueue = [NSOperationQueue new];
         _imageViewSize = CGSizeMake(312, 312);
-        _url = url;
-        _key = url;
-        _attribute = attribute;
         _facade = facade;
+        _entityName = entityName;
+        _key = key;
+        _url = url;
+        _attribute = attribute;
     }
     return self;
 }
@@ -62,7 +64,7 @@
         self.status = SLVImageStatusNone;
     } else {
         self.saveOperation = [NSBlockOperation blockOperationWithBlock:^{
-            [self.facade saveObject:self.downloadedImage forEntity:@"SLVItem" forAttribute:self.attribute forKey:self.key];
+            [self.facade saveObject:self.downloadedImage forEntity:self.entityName forAttribute:self.attribute forKey:self.key];
         }];
         [self.saveOperation addDependency:self.downloadOperation];
         [self.innerQueue addOperation:self.saveOperation];
