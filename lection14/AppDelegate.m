@@ -12,8 +12,6 @@
 #import "SLVCollectionModel.h"
 #import "SLVFavouritesViewController.h"
 #import "SLVPostModel.h"
-#import "SLVCollectionModelProtocol.h"
-#import "SLVPostModelProtocol.h"
 #import "SLVFacade.h"
 
 @interface AppDelegate ()

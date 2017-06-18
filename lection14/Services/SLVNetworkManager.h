@@ -7,10 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SLVNetworkProtocol.h"
 
-@interface SLVNetworkManager : NSObject 
-
-- (void)getModelFromURL:(NSURL *)url withCompletionHandler:(void (^)(NSDictionary *json))completionHandler;
-- (NSURLSessionTask *)downloadImageFromURL:(NSURL *)url withCompletionHandler:(void (^)(NSData *data))completionHandler;
+@interface SLVNetworkManager : NSObject <SLVNetworkProtocol>
 
 @end

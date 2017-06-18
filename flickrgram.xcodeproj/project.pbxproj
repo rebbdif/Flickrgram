@@ -84,6 +84,8 @@
 		635723021EF5FB8F000BB6CD /* SLVFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVFacade.h; path = Facade/SLVFacade.h; sourceTree = "<group>"; };
 		635723031EF5FB8F000BB6CD /* SLVFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVFacade.m; path = Facade/SLVFacade.m; sourceTree = "<group>"; };
 		635723051EF69EDA000BB6CD /* SLVFacadeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVFacadeProtocol.h; path = Protocols/SLVFacadeProtocol.h; sourceTree = "<group>"; };
+		635723061EF6D06D000BB6CD /* SLVStorageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVStorageProtocol.h; path = Services/SLVStorageProtocol.h; sourceTree = "<group>"; };
+		635723071EF6D0BA000BB6CD /* SLVNetworkProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVNetworkProtocol.h; path = Services/SLVNetworkProtocol.h; sourceTree = "<group>"; };
 		6392D1C91EE04CFD0050728D /* SLVCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVCollectionViewController.h; sourceTree = "<group>"; };
 		6392D1CA1EE04CFD0050728D /* SLVCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVCollectionViewController.m; sourceTree = "<group>"; };
 		6392D1CB1EE04CFD0050728D /* SLVCollectionViewDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVCollectionViewDataProvider.h; sourceTree = "<group>"; };
@@ -227,8 +229,10 @@
 		04E2FFD31EBBAC0F0074C5D9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				635723061EF6D06D000BB6CD /* SLVStorageProtocol.h */,
 				6392D21C1EE88F410050728D /* SLVStorageService.h */,
 				6392D21D1EE88F410050728D /* SLVStorageService.m */,
+				635723071EF6D0BA000BB6CD /* SLVNetworkProtocol.h */,
 				6350EF841ED5841F00D7C8CE /* SLVNetworkManager.h */,
 				6350EF851ED5841F00D7C8CE /* SLVNetworkManager.m */,
 				63ABAB811ED60E8900941726 /* SLVImageProcessing.h */,
