@@ -178,7 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				635723011EF5FB5B000BB6CD /* Facade */,
-				635722F01EF59F61000BB6CD /* Protocols */,
+				635722F01EF59F61000BB6CD /* ModelProtocols */,
 				042903401EF536600066039B /* Constants */,
 				6392D1F41EE84A580050728D /* CoreData */,
 				6392D1E21EE04D4E0050728D /* Extentions */,
@@ -251,20 +251,20 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		635722F01EF59F61000BB6CD /* Protocols */ = {
+		635722F01EF59F61000BB6CD /* ModelProtocols */ = {
 			isa = PBXGroup;
 			children = (
 				635722FD1EF5C2A0000BB6CD /* SLVModelProtocol.h */,
 				635722F11EF59FCF000BB6CD /* SLVCollectionModelProtocol.h */,
 				635722FB1EF5B4DC000BB6CD /* SLVPostModelProtocol.h */,
-				635723051EF69EDA000BB6CD /* SLVFacadeProtocol.h */,
 			);
-			name = Protocols;
+			name = ModelProtocols;
 			sourceTree = "<group>";
 		};
 		635723011EF5FB5B000BB6CD /* Facade */ = {
 			isa = PBXGroup;
 			children = (
+				635723051EF69EDA000BB6CD /* SLVFacadeProtocol.h */,
 				635723021EF5FB8F000BB6CD /* SLVFacade.h */,
 				635723031EF5FB8F000BB6CD /* SLVFacade.m */,
 			);

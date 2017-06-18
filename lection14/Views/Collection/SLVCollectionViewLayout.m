@@ -56,8 +56,6 @@
         [indexpaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
     }
    // NSArray *indexpaths = self.collectionView.indexPathsForVisibleItems;
-    
-    UICollectionViewCell *cell;
     return [indexpaths copy];
 }
 

@@ -20,5 +20,6 @@
 - (instancetype)initStack NS_DESIGNATED_INITIALIZER;
 + (instancetype)stack;
 
+- (void)deletePersistentStoreCoordinator;
 
 @end

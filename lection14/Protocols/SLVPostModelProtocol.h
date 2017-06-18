@@ -15,9 +15,15 @@
 @protocol SLVPostModelProtocol <SLVModelProtocol>
 
 - (void)makeFavorite:(BOOL)favorite;
+
 - (void)setSelectedItem:(SLVItem *)selectedItem;
+
 - (SLVItem *)getSelectedItem;
-- (UIImage *)imageForIndexPath:(NSIndexPath *)indexPath;
+
+- (UIImage *)imageForIndex:(NSUInteger)index;
+
 - (void)getFavoriteItemsWithCompletionHandler:(void (^)(NSArray *result))completionHandler;
+
+- (void)loadImageForItem:(SLVItem *)item withCompletionHandler:(void (^)(void))completionHandler;
 
 @end

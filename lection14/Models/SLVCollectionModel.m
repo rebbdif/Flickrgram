@@ -9,6 +9,8 @@
 #import "SLVCollectionModel.h"
 #import "SLVItem.h"
 
+static NSString *const kItemEntity = @"SLVItem";
+
 @interface SLVCollectionModel()
 
 @property (nonatomic, assign) NSUInteger page;
@@ -33,8 +35,17 @@
     return self.items.count;
 }
 
-- (UIImage *)imageForIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+- (UIImage *)imageForIndex:(NSUInteger)index {
+    NSString *key = self.items[@(index)];
+    SLVItem *item = [self fetchEntity:kItemEntity forKey:key];
+    UIImage *result = item.thumbnail;
+    return result;
+}
+
+- (void)loadImageForIndex:(NSUInteger)index withCompletionHandler:(void (^)(void))completionHandler {
+    NSString *key = self.items[@(index)];
+    SLVItem *item = [self fetchEntity:kItemEntity forKey:key];
+    [self loadImageForEntity:kItemEntity withIdentifier:item.identifier forURL:item.thumbnailURL forAttribute:@"thumbnail" withCompletionHandler:completionHandler];
 }
 
 - (void)getItemsForRequest:(NSString*)request withCompletionHandler:(void (^)(void))completionHandler {
@@ -65,6 +76,9 @@
         NSUInteger index = self.items.count;
         for (NSDictionary * dict in json[@"photos"][@"photo"]) {
             SLVItem *item = [SLVItem itemWithDictionary:dict facade:self.facade];
+            if (!item) {
+                NSLog(@"!!!!!! item == nil");
+            }
             [parsingResults setObject:item.identifier forKey:@(index)];
             ++index;
         }
@@ -72,6 +86,10 @@
     } else {
         return nil;
     }
+}
+
+- (void)clearModel {
+    [self deleteEntities:kItemEntity entirely:NO];
 }
 
 @end

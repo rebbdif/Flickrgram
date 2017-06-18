@@ -94,4 +94,8 @@
     return entity;
 }
 
+- (void)clearModel {
+    [self.stack deletePersistentStoreCoordinator];
+}
+
 @end

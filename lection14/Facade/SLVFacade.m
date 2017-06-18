@@ -65,4 +65,8 @@
     return [self.storageService insertNewObjectForEntityForName:name];
 }
 
+- (void)clearModel {
+    [self.storageService clearModel];
+}
+
 @end

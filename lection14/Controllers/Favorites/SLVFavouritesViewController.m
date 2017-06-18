@@ -7,7 +7,6 @@
 //
 
 #import "SLVFavouritesViewController.h"
-#import "SLVSearchResultsModel.h"
 #import "SLVFavoritesCell.h"
 #import "UIColor+SLVColor.h"
 #import "SLVItem.h"
@@ -15,7 +14,7 @@
 @interface SLVFavouritesViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong, readonly) SLVSearchResultsModel *model;
+@property (nonatomic, strong, readonly) id<SLVPostModelProtocol> model;
 @property (nonatomic, strong) NSArray *favorites;
 
 @end
@@ -24,7 +23,7 @@
 
 static NSString * const reuseID = @"favoritesCell";
 
-- (instancetype)initWithModel:(id)model {
+- (instancetype)initWithModel:(id<SLVPostModelProtocol>)model {
     self = [super init];
     if (self) {
         self.tabBarItem.image = [UIImage imageNamed:@"icLikes"];

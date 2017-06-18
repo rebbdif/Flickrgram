@@ -7,10 +7,7 @@
 //
 
 #import "SLVModel.h"
-#import "SLVItem.h"
 #import "SLVImageDownloadOperation.h"
-
-static NSString *const item = @"SLVItem";
 
 @interface SLVModel()
 
@@ -33,27 +30,27 @@ static NSString *const item = @"SLVItem";
     return self;
 }
 
-- (void)loadImageForItem:(SLVItem *)currentItem forURL:(NSString *)url forAttribute:(NSString *)attribute withCompletionHandler:(void (^)(void))completionHandler {
-    if (!self.imageOperations[currentItem.identifier] || self.imageOperations[currentItem.identifier].status == SLVImageStatusNone) {
-        SLVImageDownloadOperation *imageDownloadOperation = [[SLVImageDownloadOperation alloc] initWithFacade:self.facade entity:item key:currentItem.identifier url:url attribute:attribute];
+- (void)loadImageForEntity:(NSString *)entityName withIdentifier:(NSString *)identifier forURL:(NSString *)url forAttribute:(NSString *)attribute withCompletionHandler:(void (^)(void))completionHandler {
+    if (!self.imageOperations[identifier] || self.imageOperations[identifier].status == SLVImageStatusNone) {
+        SLVImageDownloadOperation *imageDownloadOperation = [[SLVImageDownloadOperation alloc] initWithFacade:self.facade entity:entityName key:identifier url:url attribute:attribute];
         imageDownloadOperation.completionBlock = ^{
             completionHandler();
         };
-        [self.imageOperations setObject:imageDownloadOperation forKey:currentItem.identifier];
+        [self.imageOperations setObject:imageDownloadOperation forKey:identifier];
         [self.imagesQueue addOperation:imageDownloadOperation];
-    } else if (self.imageOperations[currentItem.identifier].status == SLVImageStatusCancelled) {
-        [self.imageOperations[currentItem.identifier] resume];
+    } else if (self.imageOperations[identifier].status == SLVImageStatusCancelled) {
+        [self.imageOperations[identifier] resume];
     }
 }
 
-- (SLVItem *)fetchItemForKey:(NSString *)key {
-    return [self.facade fetchEntity:item forKey:key];
+- (id)fetchEntity:(NSString *)entityName forKey:(NSString *)key {
+    return [self.facade fetchEntity:entityName forKey:key];
 }
 
-- (void)clearModel:(BOOL)entirely {
+- (void)deleteEntities:(NSString *)entityName entirely:(BOOL)entirely {
     NSString *predicate = nil;
     if (!entirely) predicate = @"isFavorite == NO";
-    [self.facade deleteAllEntities:item withPredicate:predicate];
+    [self.facade deleteAllEntities:entityName withPredicate:predicate];
     [self.imageOperations removeAllObjects];
 }
 
@@ -77,6 +74,10 @@ static NSString *const item = @"SLVItem";
 
 - (id<SLVFacadeProtocol>)returnFacade {
     return self.facade;
+}
+
+- (void)clearModel {
+    [self.facade clearModel];
 }
 
 @end

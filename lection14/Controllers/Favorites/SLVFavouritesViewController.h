@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SLVPostModelProtocol.h"
+
 
 @interface SLVFavouritesViewController : UIViewController
 
-- (instancetype)initWithModel:(id)model;
+- (instancetype)initWithModel:(id<SLVPostModelProtocol>)model;
 
 @end

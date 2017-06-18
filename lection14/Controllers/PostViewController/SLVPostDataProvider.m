@@ -9,6 +9,7 @@
 #import "SLVPostDataProvider.h"
 #import "SLVPostViewCells.h"
 #import "UIColor+SLVColor.h"
+#import "SLVItem.h"
 
 @interface SLVPostDataProvider()
 
@@ -49,30 +50,14 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [self configureCellForTableView:tableView AtIndexPath:indexPath];
+    UITableViewCell *cell = [self configureCellForTableView:tableView atIndexPath:indexPath];
     return cell;
 }
 
-- (UITableViewCell *)configureCellForTableView:(UITableView *)tableView AtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)configureCellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case 0: {
-            SLVImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell"];
-            cell.delegate = self.controller;
-            cell.spinner.hidden = NO;
-            [cell.spinner startAnimating];
-            __weak typeof(self) weakself = self;
-            [self.model loadImageForItem:[self.model getSelectedItem] withCompletionHandler:^(UIImage *image) {
-                __strong typeof(self) strongself = weakself;
-                if (strongself) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        SLVImageCell *cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-                        cell.photoView.image = image;
-                        [cell.spinner stopAnimating];
-                    });
-                }
-            }];
-            cell.descriptionText.text = @"description";
-            return cell;
+            return [self imageCellForTableView:tableView atIndexPath:indexPath];
             break;
         } case 1: {
             SLVCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commentsCell"];
@@ -84,6 +69,32 @@
             break;
     }
     return nil;
+}
+
+- (SLVImageCell *)imageCellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath {
+    SLVImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell"];
+    cell.delegate = self.controller;
+    SLVItem *selectedItem = [self.model getSelectedItem];
+    UIImage *image = selectedItem.largePhoto;
+    if (!image) {
+        cell.spinner.hidden = NO;
+        [cell.spinner startAnimating];
+        __weak typeof(self) weakself = self;
+        [self.model loadImageForItem:selectedItem withCompletionHandler:^{
+            __strong typeof(self) strongself = weakself;
+            if (strongself) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    SLVImageCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+                    cell.photoView.image = image;
+                    [cell.spinner stopAnimating];
+                });
+            }
+        }];
+    } else {
+        cell.photoView.image = image;
+    }
+    cell.descriptionText.text = selectedItem.text;
+    return cell;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
@@ -116,6 +127,5 @@
         return 0;
     }
 }
-
 
 @end

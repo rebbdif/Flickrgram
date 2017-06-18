@@ -18,7 +18,7 @@
 @interface SLVPostController () <UITableViewDelegate, SLVCellsDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) id<SLVPostModelProtocol> model;
+@property (nonatomic, strong, readonly) id<SLVPostModelProtocol> model;
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, strong) UIScrollView *zoomedImageView;
 @property (nonatomic, weak) SLVImageCell *imageCell;

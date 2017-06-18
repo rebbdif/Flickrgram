@@ -9,6 +9,8 @@
 #import "SLVPostModel.h"
 #import "SLVItem.h"
 
+static NSString *const kItemEntity = @"SLVItem";
+
 @interface SLVPostModel()
 
 @property (nonatomic, strong) id<SLVFacadeProtocol> facade;
@@ -34,7 +36,8 @@
     return self.selectedItem;
 }
 
-- (UIImage *)imageForIndexPath:(NSIndexPath *)indexPath {
+- (UIImage *)imageForIndex:(NSUInteger)index {
+    
     return self.selectedItem.largePhoto;
 }
 
@@ -44,9 +47,13 @@
 }
 
 - (void)getFavoriteItemsWithCompletionHandler:(void (^)(NSArray *))completionHandler {
-    [self.facade fetchEntities:@"SLVItem" withPredicate:@"isFavorite == YES" withCompletionBlock:^(NSArray *result) {
+    [self.facade fetchEntities:kItemEntity withPredicate:@"isFavorite == YES" withCompletionBlock:^(NSArray *result) {
         completionHandler(result);
     }];
+}
+
+- (void)loadImageForItem:(SLVItem *)item withCompletionHandler:(void (^)(void))completionHandler {
+    [self loadImageForEntity:kItemEntity withIdentifier:item.identifier forURL:item.largePhotoURL forAttribute:@"largePhoto" withCompletionHandler:completionHandler];
 }
 
 @end

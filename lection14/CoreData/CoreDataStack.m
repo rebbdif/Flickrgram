@@ -8,11 +8,11 @@
 
 #import "CoreDataStack.h"
 
-
 @interface CoreDataStack ()
 
 @property (nonatomic, strong, readwrite) NSManagedObjectContext *mainContext;
 @property (nonatomic, strong, readwrite) NSManagedObjectContext *privateContext;
+@property (nonatomic, strong) NSPersistentStoreCoordinator *coreDataPSC;
 
 @end
 
@@ -34,7 +34,7 @@
     NSURL *path = [[NSBundle mainBundle] URLForResource:@"Model" withExtension:@"momd"];
     NSManagedObjectModel *coreDataModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:path];
     
-    NSPersistentStoreCoordinator *coreDataPSC = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:coreDataModel];
+    self.coreDataPSC = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:coreDataModel];
     NSError *err = nil;
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -44,17 +44,20 @@
         [fileManager createDirectoryAtPath:applicationSupportFolder.path withIntermediateDirectories:NO attributes:nil error:nil];
     }
     NSURL *url = [applicationSupportFolder URLByAppendingPathComponent:@"db.sqlite"];
-    [coreDataPSC addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:nil error:&err];
+    [self.coreDataPSC addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:nil error:&err];
     
     self.mainContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    _mainContext.persistentStoreCoordinator = coreDataPSC;
+    _mainContext.persistentStoreCoordinator = self.coreDataPSC;
     self.mainContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy;
     
     self.privateContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     self.privateContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy;
-    _privateContext.persistentStoreCoordinator = coreDataPSC;
+    _privateContext.persistentStoreCoordinator = self.coreDataPSC;
 }
 
-
+- (void)deletePersistentStoreCoordinator {
+    self.coreDataPSC = nil;
+    [self setupCoreData];
+}
 
 @end

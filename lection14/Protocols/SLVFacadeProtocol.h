@@ -30,4 +30,6 @@
 
 - (id)insertNewObjectForEntityForName:(NSString *)name;
 
+- (void)clearModel;
+
 @end

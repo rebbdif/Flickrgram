@@ -9,10 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "SLVStorageProtocol.h"
 
-@class NSManagedObjectContext;
-
 @interface SLVStorageService : NSObject <SLVStorageProtocol>
-
-
 
 @end

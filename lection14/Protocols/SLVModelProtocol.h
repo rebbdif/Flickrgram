@@ -9,21 +9,22 @@
 #import <Foundation/Foundation.h>
 #import "SLVFacadeProtocol.h"
 
-@class SLVItem;
 @class UIImage;
 
 @protocol SLVModelProtocol <NSObject>
 
-- (SLVItem *)fetchItemForKey:(NSString *)key;
+- (id)fetchEntity:(NSString *)entityName forKey:(NSString *)key;
 
-- (void)loadImageForItem:(SLVItem *)currentItem forURL:(NSString *)url forAttribute:(NSString *)attribute withCompletionHandler:(void (^)(void))completionHandler;
+- (void)loadImageForEntity:(NSString *)entityName withIdentifier:(NSString *)identifier forURL:(NSString *)url forAttribute:(NSString *)attribute withCompletionHandler:(void (^)(void))completionHandler;
 
 - (void)cancelOperations;
 
 - (void)resumeOperations;
 
-- (void)clearModel:(BOOL)entirely;
+- (void)deleteEntities:(NSString *)entityName entirely:(BOOL)entirely;
 
 - (id<SLVFacadeProtocol>)returnFacade;
+
+- (void)clearModel;
 
 @end

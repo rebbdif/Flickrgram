@@ -30,21 +30,23 @@ static NSString * const reuseIdentifier = @"Cell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     SLVCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.indexLabel.text = [NSString stringWithFormat:@"%lu", indexPath.item];
-    UIImage *image = [self.model thumbnailForIndexPath:indexPath];
-    if (image) {
-        cell.imageView.image = image;
-    } else {
+    UIImage *image = [self.model imageForIndex:indexPath.item];
+    if (!image) {
         cell.activityIndicator.hidden = NO;
         cell.imageView.image = [UIImage imageNamed:@"noImage"];
         [cell.activityIndicator startAnimating];
-        [self.model loadThumbnailForIndexPath:indexPath withCompletionHandler:^{
-           dispatch_async(dispatch_get_main_queue(), ^{
-               SLVCollectionViewCell *cvc = ((SLVCollectionViewCell *)([collectionView cellForItemAtIndexPath:indexPath]));
-               [cell.activityIndicator stopAnimating];
-               UIImage *image = [self.model thumbnailForIndexPath:indexPath];
-               cvc.imageView.image = image;
-           });
+        __weak typeof(self) weakSelf = self;
+        [self.model loadImageForIndex:indexPath.item withCompletionHandler:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                SLVCollectionViewCell *cell = ((SLVCollectionViewCell *)([collectionView cellForItemAtIndexPath:indexPath]));
+                [cell.activityIndicator stopAnimating];
+                UIImage *image = [weakSelf.model imageForIndex:indexPath.item];
+                cell.imageView.image = image;
+                cell.indexLabel.text = [NSString stringWithFormat:@"%lu", indexPath.item];
+            });
         }];
+    } else {
+        cell.imageView.image = image;
     }
     return cell;
 }

@@ -23,7 +23,7 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
 
 @property (nonatomic, strong) SLVCollectionView *collectionView;
 @property (nonatomic, strong) SLVCollectionViewDataProvider *dataProvider;
-@property (nonatomic, strong) id<SLVCollectionModelProtocol> model;
+@property (nonatomic, strong, readonly) id<SLVCollectionModelProtocol> model;
 @property (nonatomic, strong) SLVCollectionViewLayout *layout;
 
 @end
@@ -83,7 +83,7 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
     [[NSUserDefaults standardUserDefaults] setObject:searchRequest forKey:@"searchRequest"];
     [searchBar endEditing:YES];
     if (searchRequest) {
-        [self.model clearModel:NO];
+        [self.model clearModel];
         __weak typeof(self) weakself = self;
         [self.model getItemsForRequest:searchRequest withCompletionHandler:^{
             [weakself.collectionView reloadData];

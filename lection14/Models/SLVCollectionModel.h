@@ -20,6 +20,4 @@
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade;
 
-- (instancetype)modelWithType:(SLVModelType)type;
-
 @end

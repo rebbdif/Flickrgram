@@ -11,10 +11,17 @@
 @protocol SLVStorageProtocol <NSObject>
 
 - (id)fetchEntity:(NSString *)entity forKey:(NSString *)key;
+
 - (void)fetchEntities:(NSString *)entity withPredicate:(NSString *)predicate withCompletionBlock:(void (^)(NSArray *result))completion;
+
 - (void)save;
+
 - (void)deleteEntitiesFromCoreData:(NSString *)entity withPredicate:(NSString *)predicate;
+
 - (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key;
+
 - (id)insertNewObjectForEntityForName:(NSString *)name;
+
+- (void)clearModel;
 
 @end
