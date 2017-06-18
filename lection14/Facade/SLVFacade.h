@@ -8,8 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "SLVFacadeProtocol.h"
+#import "SLVNetworkProtocol.h"
+#import "SLVStorageProtocol.h"
 
 @interface SLVFacade : NSObject <SLVFacadeProtocol>
 
++ (instancetype)new NS_UNAVAILABLE;
+- (instancetype)init NS_UNAVAILABLE;
+- (instancetype)initWithNetworkManager:(id<SLVNetworkProtocol>)networkManager storageService:(id<SLVStorageProtocol>) storageService;
 
 @end

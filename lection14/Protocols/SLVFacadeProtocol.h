@@ -10,12 +10,6 @@
 
 @protocol SLVFacadeProtocol <NSObject>
 
-#pragma mark - initialization
-
-- (void)createNetworkManager;
-
-- (void)createStorageService;
-
 #pragma mark - Network
 
 - (void)getModelFromURL:(NSURL *)url withCompletionHandler:(void (^)(NSDictionary *json))completionHandler;
@@ -33,5 +27,7 @@
 - (void)deleteAllEntities:(NSString *)entity withPredicate:(NSString *)predicate;
 
 - (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key;
+
+- (id)insertNewObjectForEntityForName:(NSString *)name;
 
 @end

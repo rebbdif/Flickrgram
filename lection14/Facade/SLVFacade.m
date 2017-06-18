@@ -7,13 +7,11 @@
 //
 
 #import "SLVFacade.h"
-#import "SLVStorageService.h"
-#import "SLVNetworkManager.h"
 
 @interface SLVFacade ()
 
-@property (nonatomic, strong) SLVNetworkManager *networkManager;
-@property (nonatomic, strong) SLVStorageService *storageService;
+@property (nonatomic, strong) id<SLVNetworkProtocol> networkManager;
+@property (nonatomic, strong) id<SLVStorageProtocol> storageService;
 
 @end
 
@@ -21,21 +19,13 @@
 
 #pragma mark - initialization
 
-- (instancetype)init {
+- (instancetype)initWithNetworkManager:(id<SLVNetworkProtocol>)networkManager storageService:(id<SLVStorageProtocol>) storageService {
     self = [super init];
     if (self) {
-        [self createNetworkManager];
-        [self createStorageService];
+        _networkManager = networkManager;
+        _storageService = storageService;
     }
     return self;
-}
-
-- (void)createNetworkManager {
-    _networkManager = [SLVNetworkManager new];
-}
-
-- (void)createStorageService {
-    _storageService = [SLVStorageService new];
 }
 
 #pragma mark - Network
@@ -69,6 +59,10 @@
 
 - (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key {
     [self.storageService saveObject:object forEntity:entity forAttribute:attribute forKey:key];
+}
+
+- (id)insertNewObjectForEntityForName:(NSString *)name {
+    return [self.storageService insertNewObjectForEntityForName:name];
 }
 
 @end

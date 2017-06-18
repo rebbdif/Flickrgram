@@ -75,4 +75,8 @@ static NSString *const item = @"SLVItem";
     }];
 }
 
+- (id<SLVFacadeProtocol>)returnFacade {
+    return self.facade;
+}
+
 @end

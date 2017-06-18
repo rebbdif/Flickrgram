@@ -86,4 +86,12 @@
     [self save];
 }
 
+- (id)insertNewObjectForEntityForName:(NSString *)name {
+    id entity = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:self.stack.privateContext];
+    if (!entity) {
+        NSLog(@"error when saving new entity for key");
+    }
+    return entity;
+}
+
 @end

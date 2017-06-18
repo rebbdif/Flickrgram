@@ -7,17 +7,13 @@
 //
 
 #import "SLVCollectionModel.h"
-#import "SLVImageDownloadOperation.h"
-#import "SLVImageProcessing.h"
-#import "SLVNetworkManager.h"
 #import "SLVItem.h"
-#import "SLVStorageService.h"
 
 @interface SLVCollectionModel()
 
-@property (assign, nonatomic) NSUInteger page;
-@property (strong, nonatomic) SLVNetworkManager *networkManager;
-@property (copy, nonatomic) NSArray<SLVItem *> *items;
+@property (nonatomic, assign) NSUInteger page;
+@property (nonatomic, copy) NSDictionary<NSNumber *, NSString *> *items;
+@property (nonatomic, strong) id<SLVFacadeProtocol> facade;
 
 @end
 
@@ -27,7 +23,8 @@
     self = [super initWithFacade:facade];
     if (self) {
         _page = 1;
-        _items = [NSArray new];
+        _items = [NSDictionary new];
+        _facade = facade;
     }
     return self;
 }
@@ -36,17 +33,17 @@
     return self.items.count;
 }
 
-- (void)getItemsForRequest:(NSString*) request withCompletionHandler:(void (^)(void))completionHandler {
-    NSString *normalizedRequest = [request stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    NSString *escapedString = [normalizedRequest stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
-    NSString *apiKey = @"&api_key=6a719063cc95dcbcbfb5ee19f627e05e";
-    NSString *urls = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&per_page=30&tags=%@%@&page=%lu", escapedString,apiKey, self.page];
-    
-    NSURL *url = [NSURL URLWithString:urls];
-    [SLVNetworkManager getModelWithSession:self.session fromURL:url withCompletionHandler:^(NSDictionary *json) {
-        NSArray *newItems = [self parseData:json];
-        [SLVStorageService saveInContext:self.privateContext];
-        self.items = [self.items arrayByAddingObjectsFromArray:newItems];
+- (UIImage *)imageForIndexPath:(NSIndexPath *)indexPath {
+    return nil;
+}
+
+- (void)getItemsForRequest:(NSString*)request withCompletionHandler:(void (^)(void))completionHandler {
+    NSURL *url = [self constructURLForRequest:request];
+    [self.facade getModelFromURL:url withCompletionHandler:^(NSDictionary *json) {
+        NSDictionary<NSNumber *, NSString *> *newItems = [self parseData:json];
+        NSMutableDictionary<NSNumber *, NSString *> *oldItems = [self.items mutableCopy];
+        [oldItems addEntriesFromDictionary:newItems];
+        self.items = [oldItems copy];
         dispatch_async(dispatch_get_main_queue(), ^{
             completionHandler();
         });
@@ -54,21 +51,27 @@
     self.page++;
 }
 
-- (NSArray *)parseData:(NSDictionary *)json {
+- (NSURL *)constructURLForRequest:(NSString *)request {
+    NSString *normalizedRequest = [request stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    NSString *escapedString = [normalizedRequest stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
+    NSString *apiKey = @"&api_key=6a719063cc95dcbcbfb5ee19f627e05e";
+    NSString *urls = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&per_page=30&tags=%@%@&page=%lu", escapedString,apiKey, self.page];
+    return [NSURL URLWithString:urls];
+}
+
+- (NSDictionary *)parseData:(NSDictionary *)json {
     if (json) {
-        NSMutableArray *parsingResults = [NSMutableArray new];
+        NSMutableDictionary<NSNumber *, NSString *> *parsingResults = [NSMutableDictionary new];
+        NSUInteger index = self.items.count;
         for (NSDictionary * dict in json[@"photos"][@"photo"]) {
-            SLVItem *item = [SLVItem itemWithDictionary:dict inManagedObjectContext:self.privateContext];
-            [parsingResults addObject:item];
+            SLVItem *item = [SLVItem itemWithDictionary:dict facade:self.facade];
+            [parsingResults setObject:item.identifier forKey:@(index)];
+            ++index;
         }
         return [parsingResults copy];
     } else {
         return nil;
     }
 }
-
-
-
-
 
 @end

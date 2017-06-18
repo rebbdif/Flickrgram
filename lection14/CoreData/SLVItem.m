@@ -7,7 +7,7 @@
 //
 
 #import "SLVItem.h"
-#import "SLVStorageService.h"
+#import "SLVFacade.h"
 
 static NSString *const entityName = @"SLVItem";
 
@@ -26,16 +26,16 @@ static NSString *const entityName = @"SLVItem";
 @dynamic identifier;
 @dynamic searchRequest;
 
-+ (instancetype)itemWithDictionary:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)moc {
++ (instancetype)itemWithDictionary:(NSDictionary *)dict facade:(id<SLVFacadeProtocol>)facade {
     NSString *base = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@.jpg",
                       dict[@"farm"], dict[@"server"], dict[@"id"], dict[@"secret"]];
     NSString *thumbnailUrl = [base stringByAppendingString:@"_s"]; //n
     NSString *imageUrl = [base stringByAppendingString:@"_n"]; //z
     NSString *identifier = thumbnailUrl;
     
-    SLVItem *item = (SLVItem *)[SLVStorageService fetchEntity:entityName forKey:identifier inManagedObjectContext:moc];
+    SLVItem *item = (SLVItem *)[facade fetchEntity:entityName forKey:identifier];
     if (!item) {
-        item = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:moc];
+        item = [facade insertNewObjectForEntityForName:entityName];
         item.thumbnailURL = thumbnailUrl;
         item.largePhotoURL = imageUrl;
         item.text = dict[@"title"];

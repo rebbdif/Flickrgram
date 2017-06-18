@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SLVFacadeProtocol.h"
 
 @class SLVItem;
 @class UIImage;
@@ -22,5 +23,7 @@
 - (void)resumeOperations;
 
 - (void)clearModel:(BOOL)entirely;
+
+- (id<SLVFacadeProtocol>)returnFacade;
 
 @end

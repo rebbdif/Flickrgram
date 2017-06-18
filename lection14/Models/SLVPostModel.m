@@ -7,51 +7,46 @@
 //
 
 #import "SLVPostModel.h"
+#import "SLVItem.h"
+
+@interface SLVPostModel()
+
+@property (nonatomic, strong) id<SLVFacadeProtocol> facade;
+@property (nonatomic, strong) SLVItem *selectedItem;
+
+@end
 
 @implementation SLVPostModel
 
 - (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade {
     self = [super initWithFacade:facade];
     if (self) {
-        
+        _facade = facade;
     }
     return self;
 }
 
+- (void)setSelectedItem:(SLVItem *)selectedItem {
+    _selectedItem = selectedItem;
+}
 
+- (SLVItem *)getSelectedItem {
+    return self.selectedItem;
+}
+
+- (UIImage *)imageForIndexPath:(NSIndexPath *)indexPath {
+    return self.selectedItem.largePhoto;
+}
 
 - (void)makeFavorite:(BOOL)favorite {
     self.selectedItem.isFavorite = favorite;
-    [SLVStorageService saveInContext:self.privateContext];
+    [self.facade save];
 }
 
 - (void)getFavoriteItemsWithCompletionHandler:(void (^)(NSArray *))completionHandler {
-    [SLVStorageService fetchEntities:@"SLVItem" withPredicate:@"isFavorite == YES" inManagedObjectContext:self.mainContext withCompletionBlock:^(NSArray *result) {
+    [self.facade fetchEntities:@"SLVItem" withPredicate:@"isFavorite == YES" withCompletionBlock:^(NSArray *result) {
         completionHandler(result);
     }];
 }
-
-
-- (void)loadImageForItem:(SLVItem *)currentItem withCompletionHandler:(void (^)(UIImage *image))completionHandler {
-    if (![SLVStorageService imageForKey:currentItem.thumbnailURL inManagedObjectContext:self.mainContext]) {
-        ImageDownloadOperation *imageDownloadOperation = [ImageDownloadOperation new];
-        imageDownloadOperation.key = currentItem.thumbnailURL;
-        imageDownloadOperation.url = currentItem.largePhotoURL;
-        imageDownloadOperation.session = self.session;
-        imageDownloadOperation.context = self.privateContext;
-        imageDownloadOperation.large = YES;
-        imageDownloadOperation.name = [NSString stringWithFormat:@"imageDownloadOperation for url %@",currentItem.largePhotoURL];
-        imageDownloadOperation.completionBlock = ^{
-            UIImage *image = [SLVStorageService imageForKey:currentItem.thumbnailURL inManagedObjectContext:self.mainContext];
-            completionHandler(image);
-        };
-        [self.imagesQueue addOperation:imageDownloadOperation];
-    } else {
-        UIImage *image = [SLVStorageService imageForKey:currentItem.thumbnailURL inManagedObjectContext:self.mainContext];
-        completionHandler(image);
-    }
-}
-
-
 
 @end

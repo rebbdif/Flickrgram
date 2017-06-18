@@ -8,18 +8,17 @@
 
 #import "SLVSettingsViewController.h"
 #import "UIColor+SLVColor.h"
-#import "SLVSearchResultsModel.h"
 
 @interface SLVSettingsViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) SLVSearchResultsModel *model;
+@property (nonatomic, strong) id<SLVModelProtocol> model;
 
 @end
 
 @implementation SLVSettingsViewController
 
-- (instancetype)initWithModel:(SLVSearchResultsModel *)model {
+- (instancetype)initWithModel:(id<SLVModelProtocol>)model {
     self = [super init];
     if (self) {
         _model = model;

@@ -13,6 +13,8 @@
 #import "SLVFavouritesViewController.h"
 #import "SLVPostModel.h"
 #import "SLVFacade.h"
+#import "SLVStorageService.h"
+#import "SLVNetworkManager.h"
 
 @interface AppDelegate ()
 
@@ -21,7 +23,7 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    SLVFacade *facade = [SLVFacade new];
+    SLVFacade *facade = [[SLVFacade alloc] initWithNetworkManager:[SLVNetworkManager new] storageService:[SLVStorageService new]];
     SLVCollectionModel *collectionModel = [[SLVCollectionModel alloc] initWithFacade:facade];
     SLVCollectionViewController *collectionViewController = [[SLVCollectionViewController alloc] initWithModel:collectionModel];
     SLVPostModel *postModel = [[SLVPostModel alloc] initWithFacade:facade];
@@ -31,10 +33,10 @@
     UINavigationController *ncFavourites = [[UINavigationController alloc] initWithRootViewController:favouritesViewController];
     
     UITabBarController *tabbarController = [UITabBarController new];
-    [tabbarController setViewControllers: @[ncCollection, ncFavourites]];
+    tabbarController.viewControllers = @[ncCollection, ncFavourites];
     
-    self.window=[[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
-    self.window.rootViewController= tabbarController;
+    self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+    self.window.rootViewController = tabbarController;
     [self.window makeKeyAndVisible];
     return YES;
 }

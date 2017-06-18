@@ -7,6 +7,7 @@
 //
 
 #import <CoreData/CoreData.h>
+#import "SLVFacadeProtocol.h"
 @class UIImage;
 
 @interface SLVItem : NSManagedObject
@@ -24,6 +25,6 @@
 @property (nonatomic, strong) NSString *identifier;
 @property (nonatomic, strong) NSString *searchRequest;
 
-+ (instancetype)itemWithDictionary:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)moc;
++ (instancetype)itemWithDictionary:(NSDictionary *)dict facade:(id<SLVFacadeProtocol>)facade;
 
 @end

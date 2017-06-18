@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@class SLVSearchResultsModel;
+#import "SLVModelProtocol.h"
 
 @interface SLVSettingsViewController : UIViewController
 
-- (instancetype)initWithModel:(SLVSearchResultsModel *)model;
+- (instancetype)initWithModel:(id<SLVModelProtocol>)model;
 
 @end

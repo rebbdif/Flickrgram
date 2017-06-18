@@ -1080,7 +1080,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "46"
             endingLineNumber = "46"
-            landmarkName = "-downloadImageFromURL:withCompletionHandler:"
+            landmarkName = "-getModelFromURL:withCompletionHandler:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1096,7 +1096,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "22"
             endingLineNumber = "22"
-            landmarkName = "-getModelFromURL:withCompletionHandler:"
+            landmarkName = "-init"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2961,7 +2961,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "38"
             endingLineNumber = "38"
-            landmarkName = "+itemWithDictionary:inManagedObjectContext:"
+            landmarkName = "+itemWithDictionary:facade:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2977,7 +2977,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "39"
             endingLineNumber = "39"
-            landmarkName = "+itemWithDictionary:inManagedObjectContext:"
+            landmarkName = "+itemWithDictionary:facade:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

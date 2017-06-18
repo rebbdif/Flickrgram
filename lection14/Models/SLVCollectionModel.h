@@ -16,8 +16,10 @@
 
 @interface SLVCollectionModel : SLVModel <SLVCollectionModelProtocol>
 
-- (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade;
-- (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
+- (instancetype)init NS_UNAVAILABLE;
+- (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade;
+
+- (instancetype)modelWithType:(SLVModelType)type;
 
 @end

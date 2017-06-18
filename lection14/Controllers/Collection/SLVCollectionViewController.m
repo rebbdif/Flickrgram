@@ -7,14 +7,15 @@
 //
 
 #import "SLVCollectionViewController.h"
-@import Masonry;
 #import "SLVCollectionViewDataProvider.h"
 #import "SLVCollectionView.h"
+#import "SLVCollectionViewCell.h"
+#import "SLVCollectionViewLayout.h"
+
 #import "UIColor+SLVColor.h"
 #import "SLVSettingsViewController.h"
-#import "SLVCollectionViewCell.h"
 #import "SLVPostController.h"
-#import "SLVCollectionViewLayout.h"
+#import "SLVPostModel.h"
 
 NSString * const slvCollectionReuseIdentifier = @"Cell";
 
@@ -101,8 +102,8 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
 #pragma mark - CollectionView delegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    self.model.selectedItem = self.model.items[indexPath.item];
-    SLVPostController *postViewController = [[SLVPostViewController alloc] initWithModel:self.model];
+    SLVPostModel *postModel = [[SLVPostModel alloc] initWithFacade:[self.model returnFacade]];
+    SLVPostController *postViewController = [[SLVPostController alloc] initWithModel:postModel];
     [self pauseDownloads];
     
     UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
