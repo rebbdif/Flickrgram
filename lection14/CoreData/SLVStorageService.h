@@ -12,12 +12,10 @@
 
 @interface SLVStorageService : NSObject
 
-+ (id)fetchEntity:(NSString *)entity forKey:(NSString *)key inManagedObjectContext:(NSManagedObjectContext *)moc;
-
-+ (void)fetchEntities:(NSString *)entity withPredicate:(NSString *)predicate inManagedObjectContext:(NSManagedObjectContext *)moc withCompletionBlock:(void (^)(NSArray *result))completion;
-
-+ (void)saveInContext:(NSManagedObjectContext *)moc;
-
-+ (void)clearCoreData:(BOOL)entirely inManagedObjectContext:(NSManagedObjectContext *)moc;
+- (id)fetchEntity:(NSString *)entity forKey:(NSString *)key;
+- (void)fetchEntities:(NSString *)entity withPredicate:(NSString *)predicate withCompletionBlock:(void (^)(NSArray *result))completion;
+- (void)save;
+- (void)deleteEntitiesFromCoreData:(NSString *)entity withPredicate:(NSString *)predicate;
+- (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key;
 
 @end

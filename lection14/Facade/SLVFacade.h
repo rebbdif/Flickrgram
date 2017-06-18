@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SLVFacadeProtocol.h"
 
-@interface SLVFacade : NSObject
+@interface SLVFacade : NSObject <SLVFacadeProtocol>
+
 
 @end

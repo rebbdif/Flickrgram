@@ -8,7 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "SLVModelProtocol.h"
+#import "SLVFacadeProtocol.h"
 
 @interface SLVModel : NSObject <SLVModelProtocol>
+
+- (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade;
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
 
 @end

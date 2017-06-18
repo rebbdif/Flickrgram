@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SLVFacadeProtocol.h"
 @import UIKit;
 
 @class SLVItem;
@@ -23,13 +24,19 @@ typedef NS_ENUM(NSInteger, SLVImageStatus) {
 
 @interface SLVImageDownloadOperation : NSOperation
 
-@property (weak, nonatomic) NSString *key;
-@property (assign, nonatomic) SLVImageStatus status;
-@property (assign, nonatomic) CGSize imageViewSize;
-@property (weak, nonatomic) NSString *url;
-@property (assign, nonatomic) BOOL large;
+@property (nonatomic, assign) SLVImageStatus status;
+
+@property (nonatomic, assign) CGSize imageViewSize;
+
++ (instancetype)new NS_UNAVAILABLE;
+
+- (instancetype)init NS_UNAVAILABLE;
+
+- (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade url:(NSString *)url attribute:(NSString *)attribute;
 
 - (void)pause;
+
 - (void)resume;
+
 
 @end

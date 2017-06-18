@@ -8,12 +8,14 @@
 
 #import "AppDelegate.h"
 #import "CoreDataStack.h"
+#import "SLVModel.h"
 #import "SLVCollectionViewController.h"
 #import "SLVCollectionModel.h"
 #import "SLVFavouritesViewController.h"
 #import "SLVPostModel.h"
 #import "SLVCollectionModelProtocol.h"
 #import "SLVPostModelProtocol.h"
+#import "SLVFacade.h"
 
 @interface AppDelegate ()
 
@@ -22,7 +24,9 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    SLVCollectionModel *model = [SLVCollectionModel new];
+    SLVFacade *facade = [SLVFacade new];
+    
+    SLVCollectionModel *model = [[SLVModel alloc] initWithFacade:facade];
     CoreDataStack *stack = [CoreDataStack stack];
     model.mainContext = stack.mainContext;
     model.privateContext = stack.privateContext;

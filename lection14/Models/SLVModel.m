@@ -9,43 +9,39 @@
 #import "SLVModel.h"
 #import "SLVItem.h"
 #import "SLVImageDownloadOperation.h"
-#import "SLVNetworkManager.h"
-#import "SLVStorageService.h"
 
 @interface SLVModel()
 
-@property (strong, nonatomic) NSMutableDictionary<NSString *, SLVImageDownloadOperation *> *imageOperations;
-@property (strong, nonatomic) NSOperationQueue *imagesQueue;
-@property (strong, nonatomic) SLVNetworkManager *networkManager;
-@property (strong, nonatomic) SLVStorageService *storageService;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, SLVImageDownloadOperation *> *imageOperations;
+@property (nonatomic, strong) NSOperationQueue *imagesQueue;
+@property (nonatomic, strong) id<SLVFacadeProtocol> facade;
 
 @end
 
 @implementation SLVModel
 
-- (instancetype)init {
+- (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade {
     self = [super init];
     if (self) {
         _imageOperations = [NSMutableDictionary new];
         _imagesQueue = [NSOperationQueue new];
         _imagesQueue.qualityOfService = QOS_CLASS_DEFAULT;
-        _networkManager = [[SLVNetworkManager alloc] init];
-        _storageService = [[SLVStorageService alloc] init];
+        _facade = facade;
     }
     return self;
 }
 
 - (void)loadImageForItem:(SLVItem *)currentItem forAttribute:(NSString *)attribute withCompletionHandler:(void (^)(void))completionHandler {
-    if (!self.imageOperations[currentItem.identifier]) {
-        SLVImageDownloadOperation *imageDownloadOperation = [SLVImageDownloadOperation new];
-        imageDownloadOperation.key = currentItem.identifier;
+    if (!self.imageOperations[currentItem.identifier] || self.imageOperations[currentItem.identifier].status == SLVImageStatusNone) {
+        SLVImageDownloadOperation *imageDownloadOperation = [[SLVImageDownloadOperation alloc] init];
+        imageDownloadOperation.attr = currentItem.identifier;
         imageDownloadOperation.url = currentItem.thumbnailURL;
         imageDownloadOperation.completionBlock = ^{
             completionHandler();
         };
         [self.imageOperations setObject:imageDownloadOperation forKey:currentItem.identifier];
         [self.imagesQueue addOperation:imageDownloadOperation];
-    } else if (self.imageOperations[currentItem.identifier].status == SLVImageStatusCancelled || self.imageOperations[currentItem.identifier].status == SLVImageStatusNone) {
+    } else if (self.imageOperations[currentItem.identifier].status == SLVImageStatusCancelled) {
         [self.imageOperations[currentItem.identifier] resume];
     }
 }
