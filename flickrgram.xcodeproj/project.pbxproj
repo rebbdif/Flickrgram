@@ -14,10 +14,12 @@
 		04E2FFAD1EBB90A50074C5D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E2FFAB1EBB90A50074C5D9 /* LaunchScreen.storyboard */; };
 		6350EF861ED5841F00D7C8CE /* SLVNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6350EF851ED5841F00D7C8CE /* SLVNetworkManager.m */; };
 		6350EF8C1ED5843000D7C8CE /* SLVCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6350EF8A1ED5843000D7C8CE /* SLVCollectionModel.m */; };
-		6350EF8F1ED5923100D7C8CE /* ImageDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6350EF8E1ED5923100D7C8CE /* ImageDownloadOperation.m */; };
+		6350EF8F1ED5923100D7C8CE /* SLVImageDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6350EF8E1ED5923100D7C8CE /* SLVImageDownloadOperation.m */; };
 		635722F41EF5B091000BB6CD /* SLVPostView.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722F31EF5B091000BB6CD /* SLVPostView.m */; };
 		635722F71EF5B1FC000BB6CD /* SLVPostDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722F61EF5B1FC000BB6CD /* SLVPostDataProvider.m */; };
 		635722FA1EF5B4A7000BB6CD /* SLVPostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722F91EF5B4A7000BB6CD /* SLVPostModel.m */; };
+		635723001EF5F74C000BB6CD /* SLVModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722FF1EF5F74C000BB6CD /* SLVModel.m */; };
+		635723041EF5FB8F000BB6CD /* SLVFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 635723031EF5FB8F000BB6CD /* SLVFacade.m */; };
 		6392D1D61EE04CFD0050728D /* SLVCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1CA1EE04CFD0050728D /* SLVCollectionViewController.m */; };
 		6392D1D71EE04CFD0050728D /* SLVCollectionViewDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1CC1EE04CFD0050728D /* SLVCollectionViewDataProvider.m */; };
 		6392D1D81EE04CFD0050728D /* SLVFavouritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1CF1EE04CFD0050728D /* SLVFavouritesViewController.m */; };
@@ -66,8 +68,8 @@
 		6350EF851ED5841F00D7C8CE /* SLVNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVNetworkManager.m; path = Services/SLVNetworkManager.m; sourceTree = "<group>"; };
 		6350EF891ED5843000D7C8CE /* SLVCollectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVCollectionModel.h; path = Models/SLVCollectionModel.h; sourceTree = "<group>"; };
 		6350EF8A1ED5843000D7C8CE /* SLVCollectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVCollectionModel.m; path = Models/SLVCollectionModel.m; sourceTree = "<group>"; };
-		6350EF8D1ED5923100D7C8CE /* ImageDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageDownloadOperation.h; path = Models/ImageDownloadOperation.h; sourceTree = "<group>"; };
-		6350EF8E1ED5923100D7C8CE /* ImageDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageDownloadOperation.m; path = Models/ImageDownloadOperation.m; sourceTree = "<group>"; };
+		6350EF8D1ED5923100D7C8CE /* SLVImageDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVImageDownloadOperation.h; path = Models/SLVImageDownloadOperation.h; sourceTree = "<group>"; };
+		6350EF8E1ED5923100D7C8CE /* SLVImageDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVImageDownloadOperation.m; path = Models/SLVImageDownloadOperation.m; sourceTree = "<group>"; };
 		635722F11EF59FCF000BB6CD /* SLVCollectionModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVCollectionModelProtocol.h; path = Protocols/SLVCollectionModelProtocol.h; sourceTree = "<group>"; };
 		635722F21EF5B091000BB6CD /* SLVPostView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPostView.h; path = Views/Post/SLVPostView.h; sourceTree = "<group>"; };
 		635722F31EF5B091000BB6CD /* SLVPostView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVPostView.m; path = Views/Post/SLVPostView.m; sourceTree = "<group>"; };
@@ -76,6 +78,11 @@
 		635722F81EF5B4A7000BB6CD /* SLVPostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPostModel.h; path = Models/SLVPostModel.h; sourceTree = "<group>"; };
 		635722F91EF5B4A7000BB6CD /* SLVPostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVPostModel.m; path = Models/SLVPostModel.m; sourceTree = "<group>"; };
 		635722FB1EF5B4DC000BB6CD /* SLVPostModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPostModelProtocol.h; path = Protocols/SLVPostModelProtocol.h; sourceTree = "<group>"; };
+		635722FD1EF5C2A0000BB6CD /* SLVModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVModelProtocol.h; path = Protocols/SLVModelProtocol.h; sourceTree = "<group>"; };
+		635722FE1EF5F74C000BB6CD /* SLVModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVModel.h; path = Models/SLVModel.h; sourceTree = "<group>"; };
+		635722FF1EF5F74C000BB6CD /* SLVModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVModel.m; path = Models/SLVModel.m; sourceTree = "<group>"; };
+		635723021EF5FB8F000BB6CD /* SLVFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVFacade.h; path = Facade/SLVFacade.h; sourceTree = "<group>"; };
+		635723031EF5FB8F000BB6CD /* SLVFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVFacade.m; path = Facade/SLVFacade.m; sourceTree = "<group>"; };
 		6392D1C91EE04CFD0050728D /* SLVCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVCollectionViewController.h; sourceTree = "<group>"; };
 		6392D1CA1EE04CFD0050728D /* SLVCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVCollectionViewController.m; sourceTree = "<group>"; };
 		6392D1CB1EE04CFD0050728D /* SLVCollectionViewDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVCollectionViewDataProvider.h; sourceTree = "<group>"; };
@@ -167,6 +174,7 @@
 		04E2FF991EBB90A50074C5D9 /* lection14 */ = {
 			isa = PBXGroup;
 			children = (
+				635723011EF5FB5B000BB6CD /* Facade */,
 				635722F01EF59F61000BB6CD /* Protocols */,
 				042903401EF536600066039B /* Constants */,
 				6392D1F41EE84A580050728D /* CoreData */,
@@ -203,8 +211,10 @@
 		04E2FFD21EBBAC040074C5D9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				6350EF8D1ED5923100D7C8CE /* ImageDownloadOperation.h */,
-				6350EF8E1ED5923100D7C8CE /* ImageDownloadOperation.m */,
+				6350EF8D1ED5923100D7C8CE /* SLVImageDownloadOperation.h */,
+				6350EF8E1ED5923100D7C8CE /* SLVImageDownloadOperation.m */,
+				635722FE1EF5F74C000BB6CD /* SLVModel.h */,
+				635722FF1EF5F74C000BB6CD /* SLVModel.m */,
 				6350EF891ED5843000D7C8CE /* SLVCollectionModel.h */,
 				6350EF8A1ED5843000D7C8CE /* SLVCollectionModel.m */,
 				635722F81EF5B4A7000BB6CD /* SLVPostModel.h */,
@@ -239,10 +249,20 @@
 		635722F01EF59F61000BB6CD /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				635722FD1EF5C2A0000BB6CD /* SLVModelProtocol.h */,
 				635722F11EF59FCF000BB6CD /* SLVCollectionModelProtocol.h */,
 				635722FB1EF5B4DC000BB6CD /* SLVPostModelProtocol.h */,
 			);
 			name = Protocols;
+			sourceTree = "<group>";
+		};
+		635723011EF5FB5B000BB6CD /* Facade */ = {
+			isa = PBXGroup;
+			children = (
+				635723021EF5FB8F000BB6CD /* SLVFacade.h */,
+				635723031EF5FB8F000BB6CD /* SLVFacade.m */,
+			);
+			name = Facade;
 			sourceTree = "<group>";
 		};
 		6392D1C81EE04CFD0050728D /* Collection */ = {
@@ -515,18 +535,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				635722F41EF5B091000BB6CD /* SLVPostView.m in Sources */,
+				635723041EF5FB8F000BB6CD /* SLVFacade.m in Sources */,
 				6350EF8C1ED5843000D7C8CE /* SLVCollectionModel.m in Sources */,
 				6392D1EF1EE741BE0050728D /* SLVCollectionViewCell.m in Sources */,
 				042903421EF536900066039B /* SLVConstants.m in Sources */,
 				6392D1E81EE04D4E0050728D /* UIFont+SLVFonts.m in Sources */,
 				04E2FF9F1EBB90A50074C5D9 /* AppDelegate.m in Sources */,
-				6350EF8F1ED5923100D7C8CE /* ImageDownloadOperation.m in Sources */,
+				6350EF8F1ED5923100D7C8CE /* SLVImageDownloadOperation.m in Sources */,
 				04E2FF9C1EBB90A50074C5D9 /* main.m in Sources */,
 				6392D20F1EE875790050728D /* Comment.m in Sources */,
 				6392D1E01EE04D3A0050728D /* SLVCollectionView.m in Sources */,
 				6392D1D61EE04CFD0050728D /* SLVCollectionViewController.m in Sources */,
 				6392D1F21EE7F92E0050728D /* SLVPostViewCells.m in Sources */,
 				6392D1DA1EE04CFD0050728D /* SLVSettingsViewController.m in Sources */,
+				635723001EF5F74C000BB6CD /* SLVModel.m in Sources */,
 				635722FA1EF5B4A7000BB6CD /* SLVPostModel.m in Sources */,
 				6392D1E71EE04D4E0050728D /* UIColor+SLVColor.m in Sources */,
 				6350EF861ED5841F00D7C8CE /* SLVNetworkManager.m in Sources */,

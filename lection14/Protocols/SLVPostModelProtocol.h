@@ -8,18 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "SLVModelProtocol.h"
+
 @class UIImage;
 @class SLVItem;
 
-@protocol SLVPostModelProtocol <NSObject>
+@protocol SLVPostModelProtocol <SLVModelProtocol>
 
-#pragma mark - SLVPost&FavoritesMethods
-- (void)loadImageForItem:(SLVItem *)currentItem withCompletionHandler:(void (^)(UIImage *image))completionHandler;
-- (UIImage *)imageForIndexPath:(NSIndexPath *)indexPath;
-- (UIImage *)imageForKey:(NSString *)key;
 - (void)makeFavorite:(BOOL)favorite;
 - (void)setSelectedItem:(SLVItem *)selectedItem;
 - (SLVItem *)getSelectedItem;
+- (UIImage *)imageForIndexPath:(NSIndexPath *)indexPath;
 - (void)getFavoriteItemsWithCompletionHandler:(void (^)(NSArray *result))completionHandler;
 
 @end

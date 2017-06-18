@@ -7,21 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SLVModelProtocol.h"
+
 @class UIImage;
 @class SLVItem;
 
 typedef void (^Block)(void);
 
-@protocol SLVCollectionModelProtocol <NSObject>
+@protocol SLVCollectionModelProtocol <SLVModelProtocol>
 
 - (NSUInteger)numberOfItems;
-- (void)cancelOperations;
-- (void)resumeOperations;
-- (void)clearModel:(BOOL)entirely;
-
-- (void)getItemsForRequest:(NSString*) request withCompletionHandler:(void (^)(void))completionHandler;
-- (void)loadImageForItem:(SLVItem *)currentItem withCompletionHandler:(void (^)(UIImage *image))completionHandler;
 - (UIImage *)imageForIndexPath:(NSIndexPath *)indexPath;
-- (UIImage *)imageForKey:(NSString *)key;
+- (void)getItemsForRequest:(NSString*) request withCompletionHandler:(void (^)(void))completionHandler;
 
 @end

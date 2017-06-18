@@ -9,17 +9,24 @@
 #import "SLVNetworkManager.h"
 #import <UIKit/UIKit.h>
 
+@interface SLVNetworkManager()
+
+@property (nonatomic, strong) NSURLSession *session;
+
+@end
+
 @implementation SLVNetworkManager
 
 - (instancetype)init {
     self = [super init];
     if (self) {
+        _session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     }
     return self;
 }
 
-+ (void)getModelWithSession:(NSURLSession *)session fromURL:(NSURL *)url withCompletionHandler:(void (^)(NSDictionary *json))completionHandler {
-    NSURLSessionDataTask *task = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+- (void)getModelFromURL:(NSURL *)url withCompletionHandler:(void (^)(NSDictionary *json))completionHandler {
+    NSURLSessionDataTask *task = [self.session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (data) {
             NSError *jsonError=nil;
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
@@ -42,8 +49,8 @@
     [task resume];
 }
 
-+ (NSURLSessionTask *)downloadImageWithSession:(NSURLSession *)session fromURL:(NSURL *)url withCompletionHandler:(void (^)(NSData *data))completionHandler {
-    NSURLSessionDownloadTask *task = [session downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+- (NSURLSessionTask *)downloadImageFromURL:(NSURL *)url withCompletionHandler:(void (^)(NSData *data))completionHandler {
+    NSURLSessionDownloadTask *task = [self.session downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSData *data = [NSData dataWithContentsOfURL:location];
         NSError *fileError = nil;
         [[NSFileManager defaultManager] removeItemAtURL:location error:&fileError];

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SLVModelProtocol.h"
+#import "SLVCollectionModelProtocol.h"
 
 @class SLVItem;
 @class NSManagedObjectContext;

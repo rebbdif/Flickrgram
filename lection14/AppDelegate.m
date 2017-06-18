@@ -7,12 +7,13 @@
 //
 
 #import "AppDelegate.h"
-#import "SLVCollectionViewController.h"
-#import "SLVFavouritesViewController.h"
-#import "SLVSearchResultsModel.h"
 #import "CoreDataStack.h"
-#import "SLVCollectionModelProtocol.h"
+#import "SLVCollectionViewController.h"
 #import "SLVCollectionModel.h"
+#import "SLVFavouritesViewController.h"
+#import "SLVPostModel.h"
+#import "SLVCollectionModelProtocol.h"
+#import "SLVPostModelProtocol.h"
 
 @interface AppDelegate ()
 

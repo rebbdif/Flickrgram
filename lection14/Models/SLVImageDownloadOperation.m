@@ -6,14 +6,14 @@
 //  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
-#import "ImageDownloadOperation.h"
+#import "SLVImageDownloadOperation.h"
 #import "SLVCollectionModel.h"
 #import "SLVNetworkManager.h"
 #import "SLVImageProcessing.h"
 #import "SLVStorageService.h"
 
 
-@interface ImageDownloadOperation()
+@interface SLVImageDownloadOperation()
 
 @property (strong, nonatomic) NSOperationQueue *innerQueue;
 @property (strong, nonatomic) NSURLSessionTask *task;
@@ -24,14 +24,13 @@
 
 @end
 
-@implementation ImageDownloadOperation
+@implementation SLVImageDownloadOperation
 
-- (instancetype)init {
+- (instancetype)initWithUrl:(NSString *)url andAttribute:(NSString *)attribute {
     self = [super init];
     if (self) {
         _status = SLVImageStatusNone;
         _innerQueue = [NSOperationQueue new];
-        _innerQueue.name = [NSString stringWithFormat:@"innerQueue for index %lu",self.indexPath.row];
         _imageViewSize = CGSizeMake(312, 312);
         _large = NO;
     }
@@ -59,7 +58,7 @@
         [self saveImage:self.downloadedImage];
     } else {
         self.status = SLVImageStatusNone;
-        NSLog(@"operation %ld failed", (long)self.indexPath.row);
+        NSLog(@"operation %@ failed", self.url);
     }
 }
 
@@ -74,7 +73,7 @@
 - (void)resume {
     self.innerQueue.suspended = NO;
     [self.task resume];
-    NSLog(@"operation %ld resumed", (long)self.indexPath.row);
+    NSLog(@"operation %@ resumed", self.url);
 }
 
 - (void)pause {
@@ -82,7 +81,7 @@
     self.status = SLVImageStatusCancelled;
     [self.task suspend];
     [self cancel];
-    NSLog(@"operation %ld paused", (long)self.indexPath.row);
+    NSLog(@"operation %@ paused", (self.url);
 }
 
 @end
