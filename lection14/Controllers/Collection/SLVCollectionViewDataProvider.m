@@ -35,10 +35,11 @@ static NSString * const reuseIdentifier = @"Cell";
         [cell.activityIndicator startAnimating];
         __weak typeof(self) weakSelf = self;
         [self.model loadImageForIndex:indexPath.item withCompletionHandler:^{
+            __strong typeof(weakSelf) strongSelf = weakSelf;
             dispatch_async(dispatch_get_main_queue(), ^{
                 SLVCollectionViewCell *cell = ((SLVCollectionViewCell *)([collectionView cellForItemAtIndexPath:indexPath]));
                 [cell.activityIndicator stopAnimating];
-                UIImage *image = [weakSelf.model imageForIndex:indexPath.item];
+                UIImage *image = [strongSelf.model imageForIndex:indexPath.item];
                 if (!image) {
                     NSLog(@"cellForItem couldn't download or save image");
                 }

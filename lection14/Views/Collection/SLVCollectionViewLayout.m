@@ -34,10 +34,10 @@
     NSUInteger numberOfItems = [self.delegate numberOfItems];
     self.numberOfColumns = 3;
     self.numberOfRows = numberOfItems / 2;
-    if (!_places || oldNumberOfItems != numberOfItems ) {
+  //  if (!_places || oldNumberOfItems != numberOfItems ) {
         self.numberOfItems = numberOfItems;
         self.places = [self createPlacesRows:self.numberOfRows columns:self.numberOfColumns];
-    }
+//    }
     NSMutableDictionary<NSIndexPath *, UICollectionViewLayoutAttributes *> *attributes = [NSMutableDictionary new];
     for (NSUInteger i = 0; i < self.numberOfItems; ++i) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
