@@ -12,8 +12,10 @@
 
 @class SLVSearchResultsModel;
 
-@interface SLVCollectionViewDataProvider : NSObject <UICollectionViewDataSource>
+@interface SLVCollectionViewDataProvider : NSObject <UICollectionViewDataSource, UIScrollViewDelegate>
 
-- (instancetype)initWithModel:(id<SLVCollectionModelProtocol>)model;
+- (instancetype)initWithCollectionView:(UICollectionView *)collectionView model:(id<SLVCollectionModelProtocol>)model;
+
+- (void)loadImageForIndexPath:(NSIndexPath *)indexPath;
 
 @end

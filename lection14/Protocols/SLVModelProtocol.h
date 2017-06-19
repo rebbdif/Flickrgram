@@ -25,6 +25,6 @@
 
 - (id<SLVFacadeProtocol>)returnFacade;
 
-- (void)clearModel;
+- (void)destroyEverything;
 
 @end

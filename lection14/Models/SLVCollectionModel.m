@@ -16,6 +16,7 @@ static NSString *const kItemEntity = @"SLVItem";
 @property (nonatomic, assign) NSUInteger page;
 @property (nonatomic, copy) NSDictionary<NSNumber *, NSString *> *items;
 @property (nonatomic, strong) id<SLVFacadeProtocol> facade;
+@property (nonatomic, strong) NSString *request;
 
 @end
 
@@ -58,6 +59,11 @@ static NSString *const kItemEntity = @"SLVItem";
 }
 
 - (void)getItemsForRequest:(NSString*)request withCompletionHandler:(void (^)(void))completionHandler {
+    if (!request) {
+        request = self.request;
+    } else {
+        self.request = request;
+    }
     NSURL *url = [self constructURLForRequest:request];
     [self.facade getModelFromURL:url withCompletionHandler:^(NSDictionary *json) {
         NSDictionary<NSNumber *, NSString *> *newItems = [self parseData:json];
