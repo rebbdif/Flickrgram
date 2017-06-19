@@ -78,6 +78,7 @@
 
 - (void)clearModel {
     [self.facade clearModel];
+    [self.imageOperations removeAllObjects];
 }
 
 @end

@@ -26,22 +26,24 @@ static NSString *const entityName = @"SLVItem";
 @dynamic identifier;
 @dynamic searchRequest;
 
-+ (instancetype)itemWithDictionary:(NSDictionary *)dict facade:(id<SLVFacadeProtocol>)facade {
++ (NSString *)identifierForItemWithDictionary:(NSDictionary *)dict facade:(id<SLVFacadeProtocol>)facade {
     NSString *base = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@.jpg",
                       dict[@"farm"], dict[@"server"], dict[@"id"], dict[@"secret"]];
-    NSString *thumbnailUrl = [base stringByAppendingString:@"_s"]; //n
+    NSString *thumbnailUrl = [base stringByAppendingString:@"_s"]; //_s//_n
     NSString *imageUrl = [base stringByAppendingString:@"_n"]; //z
     NSString *identifier = thumbnailUrl;
     
     SLVItem *item = (SLVItem *)[facade fetchEntity:entityName forKey:identifier];
+    
     if (!item) {
-        item = [facade insertNewObjectForEntityForName:entityName];
-        item.thumbnailURL = thumbnailUrl;
-        item.largePhotoURL = imageUrl;
-        item.text = dict[@"title"];
-        item.identifier = item.thumbnailURL;
+        [facade insertNewObjectForEntityForName:entityName withDictionary:@{
+                                                                            @"thumbnailURL":thumbnailUrl,
+                                                                            @"largePhotoURL":imageUrl,
+                                                                            @"text":dict[@"title"],
+                                                                            @"identifier":thumbnailUrl
+                                                                            }];
     }
-    return item;
+    return identifier;
 }
 
 

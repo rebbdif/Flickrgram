@@ -26,9 +26,9 @@
 
 - (void)deleteAllEntities:(NSString *)entity withPredicate:(NSString *)predicate;
 
-- (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key;
+- (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key withCompletionHandler:(void (^)(void))completionHandler;
 
-- (id)insertNewObjectForEntityForName:(NSString *)name;
+- (void)insertNewObjectForEntityForName:(NSString *)name withDictionary:(NSDictionary<NSString *, id> *)attributes;
 
 - (void)clearModel;
 

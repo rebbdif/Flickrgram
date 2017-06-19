@@ -20,6 +20,8 @@
 
 - (SLVItem *)getSelectedItem;
 
+- (SLVItem *)itemForIndex:(NSUInteger)index;
+
 - (UIImage *)imageForIndex:(NSUInteger)index;
 
 - (void)getFavoriteItemsWithCompletionHandler:(void (^)(NSArray *result))completionHandler;

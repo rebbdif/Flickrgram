@@ -35,6 +35,12 @@ static NSString *const kItemEntity = @"SLVItem";
     return self.items.count;
 }
 
+- (SLVItem *)itemForIndex:(NSUInteger)index {
+    NSString *key = self.items[@(index)];
+    SLVItem *result = [self fetchEntity:kItemEntity forKey:key];
+    return result;
+}
+
 - (UIImage *)imageForIndex:(NSUInteger)index {
     NSString *key = self.items[@(index)];
     SLVItem *item = [self fetchEntity:kItemEntity forKey:key];
@@ -45,6 +51,9 @@ static NSString *const kItemEntity = @"SLVItem";
 - (void)loadImageForIndex:(NSUInteger)index withCompletionHandler:(void (^)(void))completionHandler {
     NSString *key = self.items[@(index)];
     SLVItem *item = [self fetchEntity:kItemEntity forKey:key];
+    if (!item) {
+        NSLog(@"No item to load image for. index %ld",index);
+    }
     [self loadImageForEntity:kItemEntity withIdentifier:item.identifier forURL:item.thumbnailURL forAttribute:@"thumbnail" withCompletionHandler:completionHandler];
 }
 
@@ -66,7 +75,7 @@ static NSString *const kItemEntity = @"SLVItem";
     NSString *normalizedRequest = [request stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSString *escapedString = [normalizedRequest stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
     NSString *apiKey = @"&api_key=6a719063cc95dcbcbfb5ee19f627e05e";
-    NSString *urls = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&per_page=30&tags=%@%@&page=%lu", escapedString,apiKey, self.page];
+    NSString *urls = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&per_page=30&tags=%@%@&page=%lu", escapedString, apiKey, self.page];
     return [NSURL URLWithString:urls];
 }
 
@@ -75,11 +84,8 @@ static NSString *const kItemEntity = @"SLVItem";
         NSMutableDictionary<NSNumber *, NSString *> *parsingResults = [NSMutableDictionary new];
         NSUInteger index = self.items.count;
         for (NSDictionary * dict in json[@"photos"][@"photo"]) {
-            SLVItem *item = [SLVItem itemWithDictionary:dict facade:self.facade];
-            if (!item) {
-                NSLog(@"!!!!!! item == nil");
-            }
-            [parsingResults setObject:item.identifier forKey:@(index)];
+            NSString *itemIdentifier = [SLVItem identifierForItemWithDictionary:dict facade:self.facade];
+            [parsingResults setObject:itemIdentifier forKey:@(index)];
             ++index;
         }
         return [parsingResults copy];
@@ -89,6 +95,8 @@ static NSString *const kItemEntity = @"SLVItem";
 }
 
 - (void)clearModel {
+    self.items = [NSDictionary new];
+    self.page = 1;
     [self deleteEntities:kItemEntity entirely:NO];
 }
 

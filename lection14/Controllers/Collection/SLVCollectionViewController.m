@@ -103,6 +103,8 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     SLVPostModel *postModel = [[SLVPostModel alloc] initWithFacade:[self.model returnFacade]];
+    SLVItem *selectedItem = [self.model itemForIndex:indexPath.row];
+    [postModel setSelectedItem:selectedItem];
     SLVPostController *postViewController = [[SLVPostController alloc] initWithModel:postModel];
     [self pauseDownloads];
     

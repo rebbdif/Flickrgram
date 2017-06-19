@@ -55,13 +55,15 @@
 }
 
 - (void)save {
-    if (self.stack.privateContext.hasChanges) {
-        NSError *error = nil;
-        [self.stack.privateContext save:&error];
-        if (error) {
-            NSLog(@"%@", error.localizedDescription);
+    [self.stack.privateContext performBlock:^{
+        if (self.stack.privateContext.hasChanges) {
+            NSError *error = nil;
+            [self.stack.privateContext save:&error];
+            if (error) {
+                NSLog(@"%@", error.localizedDescription);
+            }
         }
-    }
+    }];
 }
 
 - (void)deleteEntitiesFromCoreData:(NSString *)entity withPredicate:(NSString *)predicate {
@@ -72,26 +74,26 @@
     for (id item in results) {
         [self.stack.privateContext deleteObject:item];
     }
-
-}
-
-- (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key {
-    id fetchedEntity = [self fetchEntity:entity forKey:key];
-    @try {
-        [fetchedEntity setValue:object forKey:key];
-    } @catch (NSException *exception) {
-        NSLog(@"KVC error when saving object for key %@", key);
-        return;
-    }
     [self save];
 }
 
-- (id)insertNewObjectForEntityForName:(NSString *)name {
-    id entity = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:self.stack.privateContext];
-    if (!entity) {
-        NSLog(@"error when saving new entity for key");
-    }
-    return entity;
+- (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key withCompletionHandler:(void (^)(void))completionHandler {
+    id fetchedEntity = [self fetchEntity:entity forKey:key];
+    [self.stack.privateContext performBlock:^{
+        [fetchedEntity setValue:object forKey:attribute];
+        [self save];
+        completionHandler();
+    }];
+}
+
+- (void)insertNewObjectForEntityForName:(NSString *)name withDictionary:(NSDictionary<NSString *, id> *)attributes {
+    [self.stack.privateContext performBlock:^{
+        id entity = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:self.stack.privateContext];
+        for (NSString *attribute in attributes) {
+            [entity setValue:attributes[attribute] forKey:attribute];
+        }
+        [self save];
+    }];
 }
 
 - (void)clearModel {

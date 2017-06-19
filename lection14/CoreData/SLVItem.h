@@ -25,6 +25,6 @@
 @property (nonatomic, strong) NSString *identifier;
 @property (nonatomic, strong) NSString *searchRequest;
 
-+ (instancetype)itemWithDictionary:(NSDictionary *)dict facade:(id<SLVFacadeProtocol>)facade;
++ (NSString *)identifierForItemWithDictionary:(NSDictionary *)dict facade:(id<SLVFacadeProtocol>)facade;
 
 @end

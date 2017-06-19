@@ -17,9 +17,15 @@ typedef void (^Block)(void);
 @protocol SLVCollectionModelProtocol <SLVModelProtocol>
 
 - (NSUInteger)numberOfItems;
+
+- (SLVItem *)itemForIndex:(NSUInteger)index;
+
 - (UIImage *)imageForIndex:(NSUInteger)index;
+
 - (void)loadImageForIndex:(NSUInteger)index withCompletionHandler:(void (^)(void))completionHandler;
+
 - (void)getItemsForRequest:(NSString*) request withCompletionHandler:(void (^)(void))completionHandler;
+
 - (void)clearModel;
 
 @end

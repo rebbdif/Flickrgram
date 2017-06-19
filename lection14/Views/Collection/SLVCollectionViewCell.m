@@ -19,15 +19,14 @@
         [self.contentView addSubview:_imageView];
         self.backgroundColor = [UIColor lightGrayColor];
         [_imageView setAutoresizingMask:YES];
+        
+        _indexLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(frame) / 2, CGRectGetHeight(frame) / 2, 20, 20)];
+        [self.contentView addSubview:_indexLabel];
 
         _activityIndicator = [UIActivityIndicatorView new];
         [self.contentView addSubview:_activityIndicator];
         _activityIndicator.hidesWhenStopped = YES;
         _activityIndicator.center = CGPointMake(CGRectGetWidth(frame) / 2, CGRectGetHeight(frame) / 2);
-        
-        _indexLabel = [UILabel new];
-        [self.contentView addSubview:_indexLabel];
-        _indexLabel.center = CGPointMake(CGRectGetWidth(frame) / 2, CGRectGetHeight(frame) / 2);
     }
     return self;
 }
@@ -37,6 +36,5 @@
     self.activityIndicator.hidden = YES;
     self.indexLabel.text = nil;
 }
-
 
 @end

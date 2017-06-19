@@ -51,6 +51,10 @@
 
 - (NSURLSessionTask *)downloadImageFromURL:(NSURL *)url withCompletionHandler:(void (^)(NSData *data))completionHandler {
     NSURLSessionDownloadTask *task = [self.session downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+        if (httpResponse.statusCode != 200) {
+            NSLog(@"nsurlTask statusCode == %ld", httpResponse.statusCode);
+        }
         NSData *data = [NSData dataWithContentsOfURL:location];
         NSError *fileError = nil;
         [[NSFileManager defaultManager] removeItemAtURL:location error:&fileError];

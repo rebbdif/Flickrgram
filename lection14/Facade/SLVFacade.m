@@ -57,12 +57,12 @@
     [self.storageService deleteEntitiesFromCoreData:entity withPredicate:predicate];
 }
 
-- (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key {
-    [self.storageService saveObject:object forEntity:entity forAttribute:attribute forKey:key];
+- (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key withCompletionHandler:(void (^)(void))completionHandler {
+    [self.storageService saveObject:object forEntity:entity forAttribute:attribute forKey:key withCompletionHandler:completionHandler];
 }
 
-- (id)insertNewObjectForEntityForName:(NSString *)name {
-    return [self.storageService insertNewObjectForEntityForName:name];
+- (void)insertNewObjectForEntityForName:(NSString *)name withDictionary:(NSDictionary<NSString *, id> *)attributes {
+    [self.storageService insertNewObjectForEntityForName:name withDictionary:attributes];
 }
 
 - (void)clearModel {

@@ -29,11 +29,9 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     SLVCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    cell.indexLabel.text = [NSString stringWithFormat:@"%lu", indexPath.item];
     UIImage *image = [self.model imageForIndex:indexPath.item];
     if (!image) {
         cell.activityIndicator.hidden = NO;
-        cell.imageView.image = [UIImage imageNamed:@"noImage"];
         [cell.activityIndicator startAnimating];
         __weak typeof(self) weakSelf = self;
         [self.model loadImageForIndex:indexPath.item withCompletionHandler:^{
@@ -41,8 +39,10 @@ static NSString * const reuseIdentifier = @"Cell";
                 SLVCollectionViewCell *cell = ((SLVCollectionViewCell *)([collectionView cellForItemAtIndexPath:indexPath]));
                 [cell.activityIndicator stopAnimating];
                 UIImage *image = [weakSelf.model imageForIndex:indexPath.item];
+                if (!image) {
+                    NSLog(@"cellForItem couldn't download or save image");
+                }
                 cell.imageView.image = image;
-                cell.indexLabel.text = [NSString stringWithFormat:@"%lu", indexPath.item];
             });
         }];
     } else {

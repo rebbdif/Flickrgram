@@ -22,6 +22,8 @@
 @property (nonatomic, strong) NSString *attribute;
 @property (nonatomic, strong) NSString *entityName;
 @property (nonatomic, strong) id<SLVFacadeProtocol> facade;
+@property (nonatomic, strong) dispatch_semaphore_t imageDownloadSemaphore;
+@property (nonatomic, strong) dispatch_semaphore_t imageSaveSemaphore;
 
 @end
 
@@ -43,32 +45,45 @@
 }
 
 - (void)main {
-    dispatch_semaphore_t imageDownloadSemaphore = dispatch_semaphore_create(0);
+    [self.saveOperation addDependency:self.downloadOperation];
+    self.imageDownloadSemaphore = dispatch_semaphore_create(0);
+    self.imageSaveSemaphore = dispatch_semaphore_create(0);
     self.status = SLVImageStatusDownloading;
     
+    [self dowloadImage];
+    dispatch_semaphore_wait(self.imageDownloadSemaphore, DISPATCH_TIME_FOREVER);
+    
+    if (!_downloadedImage) {
+        NSLog(@"NSOperation: there is no downloaded image");
+        self.status = SLVImageStatusNone;
+    } else {
+        [self saveImage];
+        dispatch_semaphore_wait(self.imageSaveSemaphore, DISPATCH_TIME_FOREVER);
+    }
+}
+
+- (void)dowloadImage {
     __weak typeof(self) weakSelf = self;
     self.downloadOperation = [NSBlockOperation blockOperationWithBlock:^{
         __strong typeof(self) strongSelf = weakSelf;
-        strongSelf.task = [strongSelf.facade downloadImageFromURL:[NSURL URLWithString:self.url] withCompletionHandler:^(NSData *data) {
+        strongSelf.task = [strongSelf.facade downloadImageFromURL:[NSURL URLWithString:strongSelf.url] withCompletionHandler:^(NSData *data) {
             strongSelf.downloadedImage = [UIImage imageWithData:data];
             strongSelf.status = SLVImageStatusDownloaded;
-            dispatch_semaphore_signal(imageDownloadSemaphore);
+            dispatch_semaphore_signal(strongSelf.imageDownloadSemaphore);
         }];
     }];
-    
     [self.innerQueue addOperation:self.downloadOperation];
-    dispatch_semaphore_wait(imageDownloadSemaphore, DISPATCH_TIME_FOREVER);
-    
-    if (!_downloadedImage) {
-        NSLog(@"error when downloading image");
-        self.status = SLVImageStatusNone;
-    } else {
-        self.saveOperation = [NSBlockOperation blockOperationWithBlock:^{
-            [self.facade saveObject:self.downloadedImage forEntity:self.entityName forAttribute:self.attribute forKey:self.key];
+}
+
+- (void)saveImage {
+    __weak typeof(self) weakSelf = self;
+    self.saveOperation = [NSBlockOperation blockOperationWithBlock:^{
+        __strong typeof(weakSelf)strongSelf = weakSelf;
+        [strongSelf.facade saveObject:strongSelf.downloadedImage forEntity:strongSelf.entityName forAttribute:strongSelf.attribute forKey:strongSelf.key withCompletionHandler:^{
+            dispatch_semaphore_signal(strongSelf.imageSaveSemaphore);
         }];
-        [self.saveOperation addDependency:self.downloadOperation];
-        [self.innerQueue addOperation:self.saveOperation];
-    }
+    }];
+    [self.innerQueue addOperation:self.saveOperation];
 }
 
 - (void)resume {
