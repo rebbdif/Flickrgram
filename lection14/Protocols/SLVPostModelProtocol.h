@@ -16,7 +16,7 @@
 
 - (void)makeFavorite:(BOOL)favorite;
 
-- (void)setSelectedItem:(SLVItem *)selectedItem;
+- (void)passSelectedItem:(SLVItem *)selectedItem;
 
 - (SLVItem *)getSelectedItem;
 

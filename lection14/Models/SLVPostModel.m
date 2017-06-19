@@ -35,7 +35,7 @@ static NSString *const kItemEntity = @"SLVItem";
     return result;
 }
 
-- (void)setSelectedItem:(SLVItem *)selectedItem {
+- (void)passSelectedItem:(SLVItem *)selectedItem {
     self.selectedItem = selectedItem;
     self.items = @{@0: selectedItem.identifier};
 }

@@ -79,13 +79,14 @@
     if (!image) {
         cell.spinner.hidden = NO;
         [cell.spinner startAnimating];
-        __weak typeof(self) weakself = self;
+        __weak typeof(self) weakSelf = self;
         [self.model loadImageForItem:selectedItem withCompletionHandler:^{
-            __strong typeof(self) strongself = weakself;
-            if (strongself) {
+            __strong typeof(self) strongSelf = weakSelf;
+            if (strongSelf) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     SLVImageCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-                    cell.photoView.image = image;
+                    SLVItem *selectedItem = [strongSelf.model getSelectedItem];
+                    cell.photoView.image = selectedItem.largePhoto;
                     [cell.spinner stopAnimating];
                 });
             }
