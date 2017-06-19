@@ -29,8 +29,8 @@ static NSString *const entityName = @"SLVItem";
 + (NSString *)identifierForItemWithDictionary:(NSDictionary *)dict facade:(id<SLVFacadeProtocol>)facade {
     NSString *base = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@.jpg",
                       dict[@"farm"], dict[@"server"], dict[@"id"], dict[@"secret"]];
-    NSString *thumbnailUrl = [base stringByAppendingString:@"_s"]; //_s//_n
-    NSString *imageUrl = [base stringByAppendingString:@"_n"]; //z
+    NSString *thumbnailUrl = [base stringByAppendingString:@""]; //_s//_n
+    NSString *imageUrl = [base stringByAppendingString:@""]; //z
     NSString *identifier = thumbnailUrl;
     
     SLVItem *item = (SLVItem *)[facade fetchEntity:entityName forKey:identifier];

@@ -59,7 +59,6 @@ static NSString *const kItemEntity = @"SLVItem";
     [self.facade fetchEntities:kItemEntity withPredicate:@"isFavorite == YES" withCompletionBlock:^(NSArray *result) {
         completionHandler(result);
     }];
-#warning rewrite
 }
 
 - (void)loadImageForItem:(SLVItem *)item withCompletionHandler:(void (^)(void))completionHandler {

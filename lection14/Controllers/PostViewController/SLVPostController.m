@@ -57,6 +57,36 @@
     self.tableView.dataSource = self.provider;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    if (section == 0) {
+        SLVLikesFooter *footer = [SLVLikesFooter new];
+        NSUInteger likes = 16; NSUInteger comments = 5;
+        footer.likesLabel.text = [NSString stringWithFormat:@"%lu лайков", likes];
+        footer.commentsLabel.text = [NSString stringWithFormat:@"%lu комментариев", comments];
+        return footer;
+    }
+    return [UITableViewHeaderFooterView new];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section {
+    view.backgroundColor = [UIColor myGray];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        return 312;
+    } else {
+        return 60;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if (section == 0) {
+        return 60;
+    } else {
+        return 0;
+    }
+}
 
 - (IBAction)addToFavorites:(id)sender {
     [self.model makeFavorite:YES];

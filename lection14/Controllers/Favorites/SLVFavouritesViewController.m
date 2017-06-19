@@ -47,6 +47,7 @@ static NSString * const reuseID = @"favoritesCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.favorites = [NSArray new];
     [self.model getFavoriteItemsWithCompletionHandler:^(NSArray *result) {
         self.favorites = result;
         [self.tableView reloadData];
