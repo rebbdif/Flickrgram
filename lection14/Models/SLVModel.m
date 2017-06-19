@@ -76,7 +76,7 @@
     return self.facade;
 }
 
-- (void)clearModel {
+- (void)destroyEverything {
     [self.facade clearModel];
     [self.imageOperations removeAllObjects];
 }

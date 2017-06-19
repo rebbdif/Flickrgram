@@ -15,12 +15,14 @@
     if (self) {
         CGRect frame = self.contentView.frame;
         _imageView = [[UIImageView alloc] initWithFrame:frame];
-
-        [self.contentView addSubview:_imageView];
         self.backgroundColor = [UIColor lightGrayColor];
-        [_imageView setAutoresizingMask:YES];
+        _imageView.contentMode = UIViewContentModeScaleAspectFill;
+        _imageView.clipsToBounds = YES;
+        [self.contentView addSubview:_imageView];
         
-        _indexLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(frame) / 2, CGRectGetHeight(frame) / 2, 20, 20)];
+        _indexLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(frame) / 2, CGRectGetHeight(frame) / 2, 80, 40)];
+        _indexLabel.textColor = [UIColor redColor];
+        _indexLabel.font = [UIFont fontWithName:@"Helvetica" size:36];
         [self.contentView addSubview:_indexLabel];
 
         _activityIndicator = [UIActivityIndicatorView new];

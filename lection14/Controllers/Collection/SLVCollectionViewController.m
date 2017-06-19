@@ -34,7 +34,6 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
     self = [super init];
     if (self) {
         _model = model;
-        _dataProvider = [[SLVCollectionViewDataProvider alloc] initWithModel:model];
     }
     return self;
 }
@@ -58,45 +57,40 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
     _collectionView = [[SLVCollectionView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), CGRectGetHeight(frame)) collectionViewLayout:self.layout];
     [_collectionView registerClass:[SLVCollectionViewCell class] forCellWithReuseIdentifier: slvCollectionReuseIdentifier];
     [self.view addSubview:_collectionView];
+    self.dataProvider = [[SLVCollectionViewDataProvider alloc] initWithCollectionView:self.collectionView model:self.model];
     
     self.navigationController.navigationBar.backgroundColor = [UIColor myGray];
-    
     self.navigationItem.titleView = [self.collectionView createNavigationBarForSearchBar];
     [_collectionView.settingsButton addTarget:self action:@selector(gotoSettings:) forControlEvents:UIControlEventTouchUpInside];
     
     self.collectionView.delegate = self;
-    self.collectionView.dataSource = _dataProvider;
+    self.collectionView.dataSource = self.dataProvider;
     
     self.collectionView.searchBar.delegate = self;
-    
-    __weak typeof(self) weakself = self;
-    [self.collectionView.searchBar endEditing:YES];
     NSString *searchRequest = [[NSUserDefaults standardUserDefaults] objectForKey:@"searchRequest"];
     self.collectionView.searchBar.text = searchRequest;
-    [self.model getItemsForRequest:searchRequest withCompletionHandler:^{
-        [weakself.collectionView reloadData];
-    }];
+    [self performSearch:self.collectionView.searchBar];
 }
 
+#pragma mark - Search
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"searchRequest"];
+    [self.model clearModel];
+    [self.collectionView reloadData];
+    [self performSearch:searchBar];
+}
+
+- (void)performSearch:(UISearchBar *)searchBar {
     NSString *searchRequest = searchBar.text;
     [[NSUserDefaults standardUserDefaults] setObject:searchRequest forKey:@"searchRequest"];
     [searchBar endEditing:YES];
     if (searchRequest) {
-        [self.model clearModel];
         __weak typeof(self) weakself = self;
         [self.model getItemsForRequest:searchRequest withCompletionHandler:^{
             [weakself.collectionView reloadData];
         }];
     }
-}
-
-- (IBAction)gotoSettings:(id)sender {
-    [self pauseDownloads];
-    UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
-    [self.navigationItem setBackBarButtonItem:newBackButton];
-    SLVSettingsViewController *settingsViewController = [[SLVSettingsViewController alloc] initWithModel:self.model];
-    [self.navigationController pushViewController:settingsViewController animated:YES];
 }
 
 #pragma mark - CollectionView delegate
@@ -114,6 +108,46 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
     [self.navigationController pushViewController:postViewController animated:YES];
 }
 
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.item + 5 == [self.model numberOfItems]) {
+        __weak typeof(self) weakself = self;
+        [self.model getItemsForRequest:nil withCompletionHandler:^{
+            [weakself.collectionView reloadData];
+        }];
+    }
+}
+
+#pragma mark - CollectionLayoutDelegate
+
+- (NSUInteger)numberOfItems {
+    return [self.model numberOfItems];
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self loadImageForVisibleCells];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if (!decelerate) {
+        [self loadImageForVisibleCells];
+    }
+}
+
+- (void)loadImageForVisibleCells {
+    NSArray *visibleCellsIndexPath = self.collectionView.indexPathsForVisibleItems;
+    for (NSIndexPath *indexPath in visibleCellsIndexPath) {
+        [self.dataProvider loadImageForIndexPath:indexPath];
+    }
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [self pauseDownloads];
+}
+
+#pragma mark - other
+
 - (void)pauseDownloads {
     [self.model cancelOperations];
 }
@@ -122,10 +156,12 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
     [self.model resumeOperations];
 }
 
-#pragma mark - CollectionLayoutDelegate
-
-- (NSUInteger)numberOfItems {
-    return [self.model numberOfItems];
+- (IBAction)gotoSettings:(id)sender {
+    [self pauseDownloads];
+    UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:newBackButton];
+    SLVSettingsViewController *settingsViewController = [[SLVSettingsViewController alloc] initWithModel:self.model];
+    [self.navigationController pushViewController:settingsViewController animated:YES];
 }
 
 @end

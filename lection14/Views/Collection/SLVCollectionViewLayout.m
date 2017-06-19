@@ -13,6 +13,7 @@
 @property (nonatomic, assign) NSUInteger numberOfItems;
 @property (nonatomic, assign) NSUInteger numberOfColumns;
 @property (nonatomic, assign) NSUInteger numberOfRows;
+@property (nonatomic, assign) CGFloat defaultCellWidth;
 @property (nonatomic, assign) bool **places;
 @property (nonatomic, copy) NSDictionary<NSIndexPath *, UICollectionViewLayoutAttributes *> *cellAtributes;
 
@@ -30,14 +31,12 @@
 }
 
 - (void)prepareLayout {
-    NSUInteger oldNumberOfItems = self.numberOfItems;
-    NSUInteger numberOfItems = [self.delegate numberOfItems];
+    [super prepareLayout];
+    self.numberOfItems = [self.delegate numberOfItems];
     self.numberOfColumns = 3;
-    self.numberOfRows = numberOfItems / 2;
-  //  if (!_places || oldNumberOfItems != numberOfItems ) {
-        self.numberOfItems = numberOfItems;
-        self.places = [self createPlacesRows:self.numberOfRows columns:self.numberOfColumns];
-//    }
+    self.numberOfRows = self.numberOfItems / 2;
+    self.defaultCellWidth = CGRectGetWidth(self.collectionView.frame) / 3;
+    self.places = [self createPlacesRows:self.numberOfRows columns:self.numberOfColumns];
     NSMutableDictionary<NSIndexPath *, UICollectionViewLayoutAttributes *> *attributes = [NSMutableDictionary new];
     for (NSUInteger i = 0; i < self.numberOfItems; ++i) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
@@ -78,8 +77,7 @@
 - (CGRect)frameForIndexPath:(NSIndexPath *)indexPath {
     CGRect frame;
     NSUInteger item = indexPath.item;
-    NSLog(@"%ld", item);
-    if (item % 12 == 0 || item - 7 % 12 == 0) {
+    if ((item % 12 == 0) || (item % 12 == 7)) {
         NSUInteger size = 2;
         frame = [self calculateFrame:size];
     } else {
@@ -90,8 +88,8 @@
 }
 
 - (CGRect)calculateFrame:(NSUInteger)side {
-    CGFloat cellSide = CGRectGetWidth(self.collectionView.frame) / 3;
-    CGRect result = CGRectMake(0, 0, cellSide, cellSide);
+    CGFloat cellSide = self.defaultCellWidth;
+    CGRect result = CGRectNull;
     for (NSUInteger i = 0; i < self.numberOfRows; ++i) {
         for (NSUInteger j = 0; j < self.numberOfColumns; ++j) {
             if (self.places[i][j] == true) {
