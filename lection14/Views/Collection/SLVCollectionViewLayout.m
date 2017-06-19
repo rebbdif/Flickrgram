@@ -14,6 +14,7 @@
 @property (nonatomic, assign) NSUInteger numberOfColumns;
 @property (nonatomic, assign) NSUInteger numberOfRows;
 @property (nonatomic, assign) bool **places;
+@property (nonatomic, copy) NSDictionary<NSIndexPath *, UICollectionViewLayoutAttributes *> *cellAtributes;
 
 @end
 
@@ -22,16 +23,31 @@
 - (instancetype)initWithDelegate:(id<SLVCollectionLayoutDelegate>)delegate {
     self = [super init];
     if (self) {
-        self.delegate = delegate;
+        _delegate = delegate;
+        _cellAtributes = [NSDictionary new];
     }
     return self;
 }
 
-- (CGSize)collectionViewContentSize {
-    self.numberOfItems = [self.delegate numberOfItems];
+- (void)prepareLayout {
+    NSUInteger oldNumberOfItems = self.numberOfItems;
+    NSUInteger numberOfItems = [self.delegate numberOfItems];
     self.numberOfColumns = 3;
-    self.numberOfRows = self.numberOfItems / 2;
-    _places = [self createPlacesRows:self.numberOfRows columns:self.numberOfColumns];
+    self.numberOfRows = numberOfItems / 2;
+    if (!_places || oldNumberOfItems != numberOfItems ) {
+        self.numberOfItems = numberOfItems;
+        self.places = [self createPlacesRows:self.numberOfRows columns:self.numberOfColumns];
+    }
+    NSMutableDictionary<NSIndexPath *, UICollectionViewLayoutAttributes *> *attributes = [NSMutableDictionary new];
+    for (NSUInteger i = 0; i < self.numberOfItems; ++i) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+        UICollectionViewLayoutAttributes *attribute = [self layoutAttributesForItemAtIndexPath:indexPath];
+        [attributes setObject:attribute forKey:indexPath];
+    }
+    self.cellAtributes = [attributes copy];
+}
+
+- (CGSize)collectionViewContentSize {
     CGRect frame = self.collectionView.frame;
     CGFloat width = CGRectGetWidth(frame);
     CGFloat height = width / 3 * self.numberOfRows;
@@ -40,29 +56,20 @@
 }
 
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
-    NSMutableArray *layoutAttributes = [NSMutableArray new];
-    NSArray *visibleIndexPaths = [self indexPathsOfItemsInRect:rect];
-    for (NSIndexPath *indexPath in visibleIndexPaths) {
-        UICollectionViewLayoutAttributes *attributes =
-        [self layoutAttributesForItemAtIndexPath:indexPath];
-        [layoutAttributes addObject:attributes];
+    NSMutableArray *myAttributes = [NSMutableArray arrayWithCapacity:self.cellAtributes.count];
+    for(NSIndexPath *key in self.cellAtributes) {
+        UICollectionViewLayoutAttributes *attributes = [self.cellAtributes objectForKey:key];
+        if (CGRectIntersectsRect(rect, attributes.frame)) {
+            [myAttributes addObject:attributes];
+        }
     }
-    return layoutAttributes;
-}
-
-- (NSArray *)indexPathsOfItemsInRect:(CGRect)rect {
-    NSMutableArray *indexpaths = [NSMutableArray new];
-    for (NSUInteger i = 0; i < self.numberOfItems; ++i) {
-        [indexpaths addObject:[NSIndexPath indexPathForItem:i inSection:0]];
-    }
-   // NSArray *indexpaths = self.collectionView.indexPathsForVisibleItems;
-    return [indexpaths copy];
+    return myAttributes;
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
     UIEdgeInsets insets = UIEdgeInsetsMake(1, 1, 1, 1);
     CGRect frame = [self frameForIndexPath:indexPath];
-   // NSLog(@"item:%ld frame%f %f %f %f", (long)indexPath.item, frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
+    // NSLog(@"item:%ld frame%f %f %f %f", (long)indexPath.item, frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
     UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
     attributes.frame = UIEdgeInsetsInsetRect(frame, insets);
     return attributes;
@@ -70,7 +77,9 @@
 
 - (CGRect)frameForIndexPath:(NSIndexPath *)indexPath {
     CGRect frame;
-    if (indexPath.item % 12 == 0 || indexPath.item - 7 % 12 == 0) {
+    NSUInteger item = indexPath.item;
+    NSLog(@"%ld", item);
+    if (item % 12 == 0 || item - 7 % 12 == 0) {
         NSUInteger size = 2;
         frame = [self calculateFrame:size];
     } else {
@@ -123,7 +132,7 @@
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
     CGRect oldBounds = self.collectionView.bounds;
     if (CGRectGetWidth(newBounds) != CGRectGetWidth(oldBounds)) {
-        return YES;
+        return NO;
     }
     return NO;
 }
