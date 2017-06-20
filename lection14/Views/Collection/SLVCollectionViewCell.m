@@ -17,6 +17,7 @@
         _imageView = [[UIImageView alloc] initWithFrame:frame];
         self.backgroundColor = [UIColor lightGrayColor];
         _imageView.contentMode = UIViewContentModeScaleAspectFill;
+        [_imageView setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
         _imageView.clipsToBounds = YES;
         [self.contentView addSubview:_imageView];
         
