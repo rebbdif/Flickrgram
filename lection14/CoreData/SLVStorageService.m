@@ -77,9 +77,11 @@
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entity];
     request.predicate = [NSPredicate predicateWithFormat:predicate];
     NSArray *results = [self.stack.privateContext executeFetchRequest:request error:&error];
-    for (id item in results) {
-        [self.stack.privateContext deleteObject:item];
-    }
+    [self.stack.privateContext performBlockAndWait:^{
+        for (id item in results) {
+            [self.stack.privateContext deleteObject:item];
+        }
+    }];
     [self save];
 }
 
@@ -105,7 +107,4 @@
     }];
 }
 
-- (void)privateContextSave {
-    
-}
 @end
