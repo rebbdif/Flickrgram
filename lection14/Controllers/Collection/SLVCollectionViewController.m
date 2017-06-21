@@ -45,53 +45,70 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
     UIImage *image = [UIImage imageNamed:@"icFeed"];
     UITabBarItem *tab = [[UITabBarItem alloc] initWithTitle:@"Лента" image:image tag:0];
     self.tabBarItem = tab;
-    
-    CGRect frame = self.view.frame;
-    self.layout = [[SLVCollectionViewLayout alloc] initWithDelegate:self];
-    self.layout.delegate = self;
-    _collectionView = [[SLVCollectionView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), CGRectGetHeight(frame)) collectionViewLayout:self.layout];
-    [_collectionView registerClass:[SLVCollectionViewCell class] forCellWithReuseIdentifier: slvCollectionReuseIdentifier];
-    [self.view addSubview:_collectionView];
+    [self createCollectionView];
     self.dataProvider = [[SLVCollectionViewDataProvider alloc] initWithCollectionView:self.collectionView model:self.model];
-    
+    self.collectionView.dataSource = self.dataProvider;
     self.navigationController.navigationBar.backgroundColor = [UIColor myGray];
     self.navigationItem.titleView = [self.collectionView createNavigationBarForSearchBar];
-    [_collectionView.settingsButton addTarget:self action:@selector(gotoSettings:) forControlEvents:UIControlEventTouchUpInside];
-
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self.dataProvider;
     self.collectionView.searchBar.delegate = self;
+    [self.collectionView.settingsButton addTarget:self action:@selector(gotoSettings:) forControlEvents:UIControlEventTouchUpInside];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     self.tabBarController.tabBar.hidden = NO;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:YES];
     [self firstStart];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.model pauseDownloads];
+}
+
+- (void)createCollectionView {
+    self.layout = [[SLVCollectionViewLayout alloc] initWithDelegate:self];
+    self.layout.delegate = self;
+    CGRect frame = self.view.frame;
+    self.collectionView = [[SLVCollectionView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), CGRectGetHeight(frame)) collectionViewLayout:self.layout];
+    [self.collectionView registerClass:[SLVCollectionViewCell class] forCellWithReuseIdentifier: slvCollectionReuseIdentifier];
+    [self.view addSubview:_collectionView];
+    self.collectionView.delegate = self;
 }
 
 - (void)firstStart {
     NSString *searchRequest = [[NSUserDefaults standardUserDefaults] objectForKey:@"searchRequest"];
-    self.collectionView.searchBar.text = searchRequest;
-    self.model 
+    if (searchRequest) {
+        self.collectionView.searchBar.text = searchRequest;
+        [self.model firstStart:searchRequest];
+        [self.collectionView reloadData];
+    } else {
+        [self.collectionView.searchBar becomeFirstResponder];
+    }
 }
 
 #pragma mark - Search
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"searchRequest"];
     [self.model clearModel];
-    [self.collectionView reloadData];
     [self performSearch:searchBar];
 }
 
 - (void)performSearch:(UISearchBar *)searchBar {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"searchRequest"];
     NSString *searchRequest = searchBar.text;
     [[NSUserDefaults standardUserDefaults] setObject:searchRequest forKey:@"searchRequest"];
     [searchBar endEditing:YES];
     if (searchRequest) {
         __weak typeof(self) weakself = self;
         [self.model getItemsForRequest:searchRequest withCompletionHandler:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
             [weakself.collectionView reloadData];
+            });
         }];
     }
 }
@@ -99,15 +116,12 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
 #pragma mark - CollectionView delegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    SLVPostModel *postModel = [[SLVPostModel alloc] initWithFacade:[self.model returnFacade]];
+    SLVPostModel *postModel = [[SLVPostModel alloc] initWithFacade:[self.model getFacade]];
     SLVItem *selectedItem = [self.model itemForIndex:indexPath.row];
     [postModel passSelectedItem:selectedItem];
     SLVPostController *postViewController = [[SLVPostController alloc] initWithModel:postModel];
-    [self pauseDownloads];
-    
     UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:newBackButton];
-    
     [self.navigationController pushViewController:postViewController animated:YES];
 }
 
@@ -146,24 +160,15 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    [self pauseDownloads];
+    [self.model pauseDownloads];
 }
 
 #pragma mark - other
 
-- (void)pauseDownloads {
-    [self.model cancelOperations];
-}
-
-- (void)resumeDownloads {
-    [self.model resumeOperations];
-}
-
 - (IBAction)gotoSettings:(id)sender {
-    [self pauseDownloads];
     UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:newBackButton];
-    SLVSettingsViewController *settingsViewController = [[SLVSettingsViewController alloc] initWithModel:self.model];
+    SLVSettingsViewController *settingsViewController = [[SLVSettingsViewController alloc] initWithModel:[self.model getFacade]];
     [self.navigationController pushViewController:settingsViewController animated:YES];
 }
 

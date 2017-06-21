@@ -41,21 +41,21 @@
 }
 
 - (NSArray *)fetchEntities:(NSString *)entity withPredicate:(NSString *)predicate {
-    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:entity];
-    request.predicate = [NSPredicate predicateWithFormat:predicate];
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entity];
+    //    request.predicate = [NSPredicate predicateWithFormat:predicate];
+#warning wtf with request.predicate
     NSError *error = nil;
     NSArray *fetchedArray = [self.stack.mainContext executeFetchRequest:request error:&error];
     if (error) {
-        NSLog(@"error while fetching %@",error);
+        NSLog(@"error while fetching %@", error);
     }
     return fetchedArray;
 }
 
 - (void)save {
-    [self.stack.privateContext performBlock:^{
+    [self.stack.privateContext performBlockAndWait:^{
         if (self.stack.privateContext.hasChanges) {
             NSError *error = nil;
-            [self.stack.privateContext save:&error];
             if (error) {
                 NSLog(@"%@", error.localizedDescription);
             }
@@ -72,7 +72,7 @@
     }];
 }
 
-- (void)deleteEntitiesFromCoreData:(NSString *)entity withPredicate:(NSString *)predicate {
+- (void)deleteEntities:(NSString *)entity withPredicate:(NSString *)predicate {
     NSError *error;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entity];
     request.predicate = [NSPredicate predicateWithFormat:predicate];
@@ -85,6 +85,9 @@
 
 - (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key withCompletionHandler:(void (^)(void))completionHandler {
     id fetchedEntity = [self fetchEntity:entity forKey:key];
+    if (!fetchedEntity) {
+        NSLog(@"storageService - saveObject couldn't fetch entity for key %@", key);
+    }
     [self.stack.privateContext performBlock:^{
         [fetchedEntity setValue:object forKey:attribute];
         [self save];
@@ -102,4 +105,7 @@
     }];
 }
 
+- (void)privateContextSave {
+    
+}
 @end

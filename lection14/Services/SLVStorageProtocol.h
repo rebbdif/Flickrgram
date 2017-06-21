@@ -16,7 +16,7 @@
 
 - (void)save;
 
-- (void)deleteEntitiesFromCoreData:(NSString *)entity withPredicate:(NSString *)predicate;
+- (void)deleteEntities:(NSString *)entity withPredicate:(NSString *)predicate;
 
 - (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key withCompletionHandler:(void (^)(void))completionHandler;
 

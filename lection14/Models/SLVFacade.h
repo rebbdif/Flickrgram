@@ -11,10 +11,13 @@
 #import "SLVNetworkProtocol.h"
 #import "SLVStorageProtocol.h"
 
-@interface SLVModel : NSObject <SLVFacadeProtocol>
+@interface SLVFacade : NSObject <SLVFacadeProtocol>
+
+@property (nonatomic, strong) id<SLVNetworkProtocol> networkManager;
+@property (nonatomic, strong) id<SLVStorageProtocol> storageService;
 
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithFacade:(id<SLVMediatorProtocol>)facade;
+- (instancetype)initWithNetworkManager:(id<SLVNetworkProtocol>)networkManager storageService:(id<SLVStorageProtocol>) storageService;
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SLVModelProtocol.h"
+#import "SLVFacadeProtocol.h"
 
 @class UIImage;
 @class SLVItem;
@@ -24,6 +24,16 @@ typedef void (^Block)(void);
 
 - (void)loadImageForIndex:(NSUInteger)index withCompletionHandler:(Block)completionHandler;
 
-- (void)getItemsForRequest:(NSString*) request withCompletionHandler:(Block)completionHandler;
+- (void)getItemsForRequest:(NSString *)request withCompletionHandler:(Block)completionHandler;
+
+- (void)clearModel;
+
+- (id<SLVFacadeProtocol>)getFacade;
+
+- (void)pauseDownloads;
+
+- (void)resumeDownloads;
+
+- (void)firstStart:(NSString *)searchRequest;
 
 @end

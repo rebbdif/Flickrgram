@@ -45,6 +45,9 @@
 }
 
 - (void)main {
+    NSAssert(_url, @"no url");
+    NSAssert(_key, @"no key");
+    
     [self.saveOperation addDependency:self.downloadOperation];
     self.imageDownloadSemaphore = dispatch_semaphore_create(0);
     self.imageSaveSemaphore = dispatch_semaphore_create(0);
@@ -66,7 +69,7 @@
     __weak typeof(self) weakSelf = self;
     self.downloadOperation = [NSBlockOperation blockOperationWithBlock:^{
         __strong typeof(self) strongSelf = weakSelf;
-        strongSelf.task = [strongSelf.facade downloadImageFromURL:[NSURL URLWithString:strongSelf.url] withCompletionHandler:^(NSData *data) {
+        strongSelf.task = [strongSelf.facade.networkManager downloadImageFromURL:[NSURL URLWithString:strongSelf.url] withCompletionHandler:^(NSData *data) {
             strongSelf.downloadedImage = [UIImage imageWithData:data];
             strongSelf.status = SLVImageStatusDownloaded;
             dispatch_semaphore_signal(strongSelf.imageDownloadSemaphore);
@@ -79,7 +82,7 @@
     __weak typeof(self) weakSelf = self;
     self.saveOperation = [NSBlockOperation blockOperationWithBlock:^{
         __strong typeof(weakSelf)strongSelf = weakSelf;
-        [strongSelf.facade saveObject:strongSelf.downloadedImage forEntity:strongSelf.entityName forAttribute:strongSelf.attribute forKey:strongSelf.key withCompletionHandler:^{
+        [strongSelf.facade.storageService saveObject:strongSelf.downloadedImage forEntity:strongSelf.entityName forAttribute:strongSelf.attribute forKey:strongSelf.key withCompletionHandler:^{
             dispatch_semaphore_signal(strongSelf.imageSaveSemaphore);
         }];
     }];
@@ -89,7 +92,6 @@
 - (void)resume {
     self.innerQueue.suspended = NO;
     [self.task resume];
-    NSLog(@"operation %@ resumed", self.url);
 }
 
 - (void)pause {
@@ -97,7 +99,6 @@
     self.status = SLVImageStatusCancelled;
     [self.task suspend];
     [self cancel];
-    NSLog(@"operation %@ paused", self.url);
 }
 
 @end

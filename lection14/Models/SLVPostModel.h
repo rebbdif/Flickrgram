@@ -9,12 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "SLVPostModelProtocol.h"
 #import "SLVFacadeProtocol.h"
-#import "SLVModel.h"
 
 @interface SLVPostModel : NSObject <SLVPostModelProtocol>
 
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithFacade:(id<SLVMediatorProtocol>)facade;
+- (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade;
 
 @end

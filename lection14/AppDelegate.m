@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "CoreDataStack.h"
 #import "SLVCollectionViewController.h"
 #import "SLVCollectionModel.h"
 #import "SLVFavouritesViewController.h"

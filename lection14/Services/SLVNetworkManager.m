@@ -55,6 +55,9 @@
         if (httpResponse.statusCode != 200) {
             NSLog(@"nsurlTask statusCode == %ld", httpResponse.statusCode);
         }
+        if (error) {
+            NSLog(@"error when downloading image %@", error.localizedDescription);
+        }
         NSData *data = [NSData dataWithContentsOfURL:location];
         NSError *fileError = nil;
         [[NSFileManager defaultManager] removeItemAtURL:location error:&fileError];

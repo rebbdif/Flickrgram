@@ -12,13 +12,13 @@
 @interface SLVSettingsViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) id<SLVModelProtocol> model;
+@property (nonatomic, strong) id<SLVFacadeProtocol> model;
 
 @end
 
 @implementation SLVSettingsViewController
 
-- (instancetype)initWithModel:(id<SLVModelProtocol>)model {
+- (instancetype)initWithModel:(id<SLVFacadeProtocol>)model {
     self = [super init];
     if (self) {
         _model = model;

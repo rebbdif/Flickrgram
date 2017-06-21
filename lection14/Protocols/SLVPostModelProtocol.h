@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SLVModelProtocol.h"
+#import "SLVFacadeProtocol.h"
 
 @class UIImage;
 @class SLVItem;
@@ -25,5 +25,7 @@
 - (UIImage *)imageForIndex:(NSUInteger)index;
 
 - (void)loadImageForItem:(SLVItem *)item withCompletionHandler:(void (^)(void))completionHandler;
+
+- (void)getFavoriteItemsWithCompletionHandler:(void (^)(NSArray *))completionHandler;
 
 @end

@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "SLVCollectionModelProtocol.h"
 #import "SLVFacadeProtocol.h"
-#import "SLVModel.h"
 
 @class SLVItem;
 @class NSManagedObjectContext;
@@ -18,6 +17,6 @@
 
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithFacade:(id<SLVMediatorProtocol>)facade;
+- (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade;
 
 @end
