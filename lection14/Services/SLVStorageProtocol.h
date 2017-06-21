@@ -12,7 +12,7 @@
 
 - (id)fetchEntity:(NSString *)entity forKey:(NSString *)key;
 
-- (void)fetchEntities:(NSString *)entity withPredicate:(NSString *)predicate withCompletionBlock:(void (^)(NSArray *result))completion;
+- (NSArray *)fetchEntities:(NSString *)entity withPredicate:(NSString *)predicate;
 
 - (void)save;
 
@@ -21,7 +21,5 @@
 - (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key withCompletionHandler:(void (^)(void))completionHandler;
 
 - (void)insertNewObjectForEntityForName:(NSString *)name withDictionary:(NSDictionary<NSString *, id> *)attributes;
-
-- (void)clearModel;
 
 @end

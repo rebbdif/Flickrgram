@@ -16,7 +16,7 @@ static NSString *const kItemEntity = @"SLVItem";
 @property (nonatomic, assign) NSUInteger page;
 @property (nonatomic, copy) NSDictionary<NSNumber *, NSString *> *items;
 @property (nonatomic, strong) id<SLVFacadeProtocol> facade;
-@property (nonatomic, strong) NSString *request;
+@property (nonatomic, copy) NSString *request;
 
 @end
 
@@ -90,7 +90,7 @@ static NSString *const kItemEntity = @"SLVItem";
         NSMutableDictionary<NSNumber *, NSString *> *parsingResults = [NSMutableDictionary new];
         NSUInteger index = self.items.count;
         for (NSDictionary * dict in json[@"photos"][@"photo"]) {
-            NSString *itemIdentifier = [SLVItem identifierForItemWithDictionary:dict facade:self.facade];
+            NSString *itemIdentifier = [SLVItem identifierForItemWithDictionary:dict facade:self.facade forRequest:self.request];
             [parsingResults setObject:itemIdentifier forKey:@(index)];
             ++index;
         }
@@ -101,6 +101,7 @@ static NSString *const kItemEntity = @"SLVItem";
 }
 
 - (void)clearModel {
+    [super clearModel];
     self.items = [NSDictionary new];
     self.page = 1;
     [self deleteEntities:kItemEntity entirely:NO];

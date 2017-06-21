@@ -40,18 +40,15 @@
     return results[0];
 }
 
-- (void)fetchEntities:(NSString *)entity withPredicate:(NSString *)predicate withCompletionBlock:(void (^)(NSArray *))completion {
+- (NSArray *)fetchEntities:(NSString *)entity withPredicate:(NSString *)predicate {
     NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:entity];
     request.predicate = [NSPredicate predicateWithFormat:predicate];
-    NSAsynchronousFetchRequest *asyncRequest = [[NSAsynchronousFetchRequest alloc] initWithFetchRequest:request completionBlock:^(NSAsynchronousFetchResult * _Nonnull result) {
-        NSArray *fetchedArray = result.finalResult;
-        completion(fetchedArray);
-    }];
     NSError *error = nil;
-    [self.stack.mainContext executeRequest:asyncRequest error:&error];
+    NSArray *fetchedArray = [self.stack.mainContext executeFetchRequest:request error:&error];
     if (error) {
         NSLog(@"error while fetching %@",error);
     }
+    return fetchedArray;
 }
 
 - (void)save {
@@ -59,6 +56,15 @@
         if (self.stack.privateContext.hasChanges) {
             NSError *error = nil;
             [self.stack.privateContext save:&error];
+            if (error) {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }
+    }];
+    [self.stack.mainContext performBlock:^{
+        if (self.stack.mainContext.hasChanges) {
+            NSError *error = nil;
+            [self.stack.mainContext save:&error];
             if (error) {
                 NSLog(@"%@", error.localizedDescription);
             }
@@ -94,10 +100,6 @@
         }
         [self save];
     }];
-}
-
-- (void)clearModel {
-    [self.stack deletePersistentStoreCoordinator];
 }
 
 @end

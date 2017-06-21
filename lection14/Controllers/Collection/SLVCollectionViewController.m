@@ -30,19 +30,14 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
 
 @implementation SLVCollectionViewController
 
+#pragma mark - Lifecycle
+
 - (instancetype)initWithModel:(id<SLVCollectionModelProtocol>)model {
     self = [super init];
     if (self) {
         _model = model;
     }
     return self;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:YES];
-    self.tabBarController.tabBar.hidden = NO;
-    [self.collectionView reloadData];
-    [self resumeDownloads];
 }
 
 - (void)viewDidLoad {
@@ -62,14 +57,22 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
     self.navigationController.navigationBar.backgroundColor = [UIColor myGray];
     self.navigationItem.titleView = [self.collectionView createNavigationBarForSearchBar];
     [_collectionView.settingsButton addTarget:self action:@selector(gotoSettings:) forControlEvents:UIControlEventTouchUpInside];
-    
+
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self.dataProvider;
-    
     self.collectionView.searchBar.delegate = self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    self.tabBarController.tabBar.hidden = NO;
+    [self firstStart];
+}
+
+- (void)firstStart {
     NSString *searchRequest = [[NSUserDefaults standardUserDefaults] objectForKey:@"searchRequest"];
     self.collectionView.searchBar.text = searchRequest;
-    [self performSearch:self.collectionView.searchBar];
+    self.model 
 }
 
 #pragma mark - Search

@@ -7,13 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SLVFacadeProtocol.h"
 
 @class UIImage;
 
-@protocol SLVModelProtocol <NSObject>
+@protocol SLVFacadeProtocol <NSObject>
 
 - (id)fetchEntity:(NSString *)entityName forKey:(NSString *)key;
+
+- (NSArray *)fetchEntities:(NSString *)entityName withPredicate:(NSString *)predicate withCompletionBlock:(void (^)(NSArray *))completion;
 
 - (void)loadImageForEntity:(NSString *)entityName withIdentifier:(NSString *)identifier forURL:(NSString *)url forAttribute:(NSString *)attribute withCompletionHandler:(void (^)(void))completionHandler;
 
@@ -23,8 +24,8 @@
 
 - (void)deleteEntities:(NSString *)entityName entirely:(BOOL)entirely;
 
-- (id<SLVFacadeProtocol>)returnFacade;
-
 - (void)destroyEverything;
+
+- (void)clearModel;
 
 @end

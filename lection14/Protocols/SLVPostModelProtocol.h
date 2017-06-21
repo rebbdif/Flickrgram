@@ -12,7 +12,7 @@
 @class UIImage;
 @class SLVItem;
 
-@protocol SLVPostModelProtocol <SLVModelProtocol>
+@protocol SLVPostModelProtocol <NSObject>
 
 - (void)makeFavorite:(BOOL)favorite;
 
@@ -23,8 +23,6 @@
 - (SLVItem *)itemForIndex:(NSUInteger)index;
 
 - (UIImage *)imageForIndex:(NSUInteger)index;
-
-- (void)getFavoriteItemsWithCompletionHandler:(void (^)(NSArray *result))completionHandler;
 
 - (void)loadImageForItem:(SLVItem *)item withCompletionHandler:(void (^)(void))completionHandler;
 

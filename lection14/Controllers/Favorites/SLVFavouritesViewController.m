@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong, readonly) id<SLVPostModelProtocol> model;
-@property (nonatomic, strong) NSArray *favorites;
+@property (nonatomic, copy) NSArray *favorites;
 
 @end
 

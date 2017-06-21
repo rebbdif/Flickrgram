@@ -13,7 +13,6 @@
 
 @property (nonatomic, strong) NSMutableDictionary<NSString *, SLVImageDownloadOperation *> *imageOperations;
 @property (nonatomic, strong) NSOperationQueue *imagesQueue;
-@property (nonatomic, strong) id<SLVFacadeProtocol> facade;
 
 @end
 
@@ -47,6 +46,10 @@
     return [self.facade fetchEntity:entityName forKey:key];
 }
 
+- (NSArray *)fetchEntities:(NSString *)entity withPredicate:(NSString *)predicate withCompletionBlock:(void (^)(NSArray *result))completion {
+   return [self.facade fetchEntities:entity withPredicate:predicate withCompletionBlock:completion];
+}
+
 - (void)deleteEntities:(NSString *)entityName entirely:(BOOL)entirely {
     NSString *predicate = nil;
     if (!entirely) predicate = @"isFavorite == NO";
@@ -72,12 +75,14 @@
     }];
 }
 
-- (id<SLVFacadeProtocol>)returnFacade {
-    return self.facade;
+- (void)destroyEverything {
+    [self.facade deleteAllEntities:@"SLVItem" withPredicate:nil];
+    [self.facade deleteAllEntities:@"Human" withPredicate:nil];
+    [self.facade deleteAllEntities:@"Comment" withPredicate:nil];
+    [self.imageOperations removeAllObjects];
 }
 
-- (void)destroyEverything {
-    [self.facade clearModel];
+- (void)clearModel {
     [self.imageOperations removeAllObjects];
 }
 
