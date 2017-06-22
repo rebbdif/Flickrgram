@@ -75,6 +75,14 @@
     NSError *error = nil;
     [fileManager removeItemAtURL:destinationUrl error:NULL];
     [fileManager copyItemAtURL:location toURL:destinationUrl error:&error];
+    if (error) {
+        NSLog(@"%@", error.localizedDescription);
+    }
+    error = nil;
+    [destinationUrl setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:&error];
+    if (error) {
+        NSLog(@"%@", error.localizedDescription);
+    }
     return [destinationUrl path];
 }
 

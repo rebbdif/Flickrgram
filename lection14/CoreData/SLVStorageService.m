@@ -43,7 +43,7 @@
 - (NSArray *)fetchEntities:(NSString *)entity withPredicate:(NSString *)predicate {
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entity];
     request.fetchBatchSize = 30;
-    //    request.predicate = [NSPredicate predicateWithFormat:predicate];
+    //request.predicate = [NSPredicate predicateWithFormat:predicate];
 #warning wtf with request.predicate
     NSError *error = nil;
     NSArray *fetchedArray = [self.stack.mainContext executeFetchRequest:request error:&error];

@@ -50,15 +50,15 @@
 #pragma mark - Network
 
 - (void)loadImageForEntity:(NSString *)entityName withIdentifier:(NSString *)identifier forURL:(NSString *)url forAttribute:(NSString *)attribute withCompletionHandler:(void (^)(void))completionHandler {
-    if (!self.imageOperations[identifier] || self.imageOperations[identifier].status == SLVImageStatusNone) {
+    if (self.imageOperations[identifier].status == SLVImageStatusCancelled) {
+        [self.imageOperations[identifier] resume];
+    } else  {
         SLVImageDownloadOperation *imageDownloadOperation = [[SLVImageDownloadOperation alloc] initWithFacade:self entity:entityName key:identifier url:url attribute:attribute];
         imageDownloadOperation.completionBlock = ^{
             completionHandler();
         };
         [self.imageOperations setObject:imageDownloadOperation forKey:identifier];
         [self.imagesQueue addOperation:imageDownloadOperation];
-    } else if (self.imageOperations[identifier].status == SLVImageStatusCancelled) {
-        [self.imageOperations[identifier] resume];
     }
 }
 

@@ -49,6 +49,8 @@
     }
 }
 
+# pragma mark - cellForRowAtIndexPath
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self configureCellForTableView:tableView atIndexPath:indexPath];
     return cell;

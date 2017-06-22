@@ -23,7 +23,6 @@
 
 - (UIView *)createNavigationBarForSearchBar {
     CGRect frame = self.frame;
-    
     UIView *myNavigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), 44)];
     
     self.searchBar = [UISearchBar new];
