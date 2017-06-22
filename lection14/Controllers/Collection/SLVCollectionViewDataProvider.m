@@ -63,10 +63,7 @@ static NSString * const reuseIdentifier = @"Cell";
             SLVCollectionViewCell *cell = ((SLVCollectionViewCell *)([self.collectionView cellForItemAtIndexPath:indexPath]));
             [cell.activityIndicator stopAnimating];
             UIImage *image = [strongSelf.model imageForIndex:indexPath.item];
-            if (!image) {
-                NSLog(@"cellForItem couldn't download or save image");
-            }
-                  cell.imageView.image = image;
+            cell.imageView.image = image;
         });
     }];
 }

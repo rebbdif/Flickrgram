@@ -32,13 +32,14 @@
 
 - (void)prepareLayout {
     [super prepareLayout];
-    self.numberOfItems = [self.delegate numberOfItems];
+    NSUInteger numberOfItems = [self.delegate numberOfItems];
+    self.numberOfItems = numberOfItems ? numberOfItems : 0;
     self.numberOfColumns = 3;
-    self.numberOfRows = self.numberOfItems / 2;
+    self.numberOfRows = numberOfItems / 2;
     self.defaultCellWidth = CGRectGetWidth(self.collectionView.frame) / 3;
     self.places = [self createPlacesRows:self.numberOfRows columns:self.numberOfColumns];
     NSMutableDictionary<NSIndexPath *, UICollectionViewLayoutAttributes *> *attributes = [NSMutableDictionary new];
-    for (NSUInteger i = 0; i < self.numberOfItems; ++i) {
+    for (NSUInteger i = 0; i < numberOfItems; ++i) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
         UICollectionViewLayoutAttributes *attribute = [self layoutAttributesForItemAtIndexPath:indexPath];
         [attributes setObject:attribute forKey:indexPath];

@@ -10,6 +10,7 @@
 #import "SLVItem.h"
 #import "SLVStorageProtocol.h"
 #import "SLVNetworkManager.h"
+@import UIKit;
 
 static NSString *const kItemEntity = @"SLVItem";
 
@@ -17,10 +18,10 @@ static NSString *const kItemEntity = @"SLVItem";
 
 @property (nonatomic, strong, readonly) id<SLVStorageProtocol> storageService;
 @property (nonatomic, strong, readonly) id<SLVNetworkProtocol> networkManager;
+@property (nonatomic, strong) id<SLVFacadeProtocol> facade;
 @property (nonatomic, assign) NSUInteger page;
 @property (nonatomic, copy) NSDictionary<NSNumber *, NSString *> *items;
 @property (nonatomic, copy) NSDictionary<NSNumber *, NSString *> *itemURLs;
-@property (nonatomic, strong) id<SLVFacadeProtocol> facade;
 @property (nonatomic, copy) NSString *request;
 
 @end
@@ -40,28 +41,24 @@ static NSString *const kItemEntity = @"SLVItem";
     return self;
 }
 
-- (NSUInteger)numberOfItems {
-    return self.items.count;
+#pragma mark - first start
+
+- (void)firstStart:(NSString *)searchRequest {
+    NSString *predicate = [NSString stringWithFormat:@"searchRequest == %@", searchRequest];
+    self.request = searchRequest;
+    NSArray<SLVItem *> *fetchedItems = [self.storageService fetchEntities:kItemEntity withPredicate:predicate];
+    NSUInteger index = 0;
+    NSMutableDictionary<NSNumber *, NSString *> *newItems = [NSMutableDictionary new];
+    for (SLVItem *item in fetchedItems) {
+        [newItems setObject:item.identifier forKey:@(index)];
+        ++index;
+    }
+    self.items = newItems;
+    self.itemURLs = newItems;
+    ++self.page;
 }
 
-- (SLVItem *)itemForIndex:(NSUInteger)index {
-    NSString *key = self.items[@(index)];
-    SLVItem *result = [self.storageService fetchEntity:kItemEntity forKey:key];
-    return result;
-}
-
-- (UIImage *)imageForIndex:(NSUInteger)index {
-    NSString *key = self.items[@(index)];
-    SLVItem *item = [self.storageService fetchEntity:kItemEntity forKey:key];
-    UIImage *result = item.thumbnail;
-    return result;
-}
-
-- (void)loadImageForIndex:(NSUInteger)index withCompletionHandler:(void (^)(void))completionHandler {
-    NSString *identifier = self.items[@(index)];
-    NSString *url = self.itemURLs[@(index)];
-    [self.facade loadImageForEntity:kItemEntity withIdentifier:identifier forURL:url forAttribute:@"thumbnail" withCompletionHandler:completionHandler];
-}
+#pragma mark - downloading items for search request
 
 - (void)getItemsForRequest:(NSString *)request withCompletionHandler:(void (^)(void))completionHandler {
     if (!request) {
@@ -104,6 +101,34 @@ static NSString *const kItemEntity = @"SLVItem";
     return [NSURL URLWithString:urls];
 }
 
+#pragma mark - returning data to viewController
+
+- (UIImage *)imageForIndex:(NSUInteger)index {
+    NSString *key = self.items[@(index)];
+    SLVItem *item = [self.storageService fetchEntity:kItemEntity forKey:key];
+    UIImage *result = [UIImage imageWithContentsOfFile:item.thumbnail];
+    return result;
+}
+
+- (void)loadImageForIndex:(NSUInteger)index withCompletionHandler:(void (^)(void))completionHandler {
+    NSString *identifier = self.items[@(index)];
+    NSString *url = self.itemURLs[@(index)];
+    [self.facade loadImageForEntity:kItemEntity withIdentifier:identifier forURL:url forAttribute:@"thumbnail" withCompletionHandler:completionHandler];
+}
+
+- (NSUInteger)numberOfItems {
+    if (!self.items.count) return 0;
+    return self.items.count;
+}
+
+- (SLVItem *)itemForIndex:(NSUInteger)index {
+    NSString *key = self.items[@(index)];
+    SLVItem *result = [self.storageService fetchEntity:kItemEntity forKey:key];
+    return result;
+}
+
+#pragma mark - utilities
+
 - (void)clearModel {
     NSLog(@"i clear model");
     self.items = [NSDictionary new];
@@ -116,25 +141,8 @@ static NSString *const kItemEntity = @"SLVItem";
     return self.facade;
 }
 
-- (void)resumeDownloads {
-    [self.facade resumeOperations];
-}
-
 - (void)pauseDownloads {
     [self.facade pauseOperations];
-}
-
-- (void)firstStart:(NSString *)searchRequest {
-    NSString *predicate = [NSString stringWithFormat:@"searchRequest == %@", searchRequest];
-    NSArray<SLVItem *> *fetchedItems = [self.storageService fetchEntities:kItemEntity withPredicate:predicate];
-    NSUInteger index = 0;
-    NSMutableDictionary<NSNumber *, NSString *> *newItems = [NSMutableDictionary new];
-    for (SLVItem *item in fetchedItems) {
-        [newItems setObject:item.identifier forKey:@(index)];
-        ++index;
-    }
-    self.items = newItems;
-    self.itemURLs = newItems;
 }
 
 @end

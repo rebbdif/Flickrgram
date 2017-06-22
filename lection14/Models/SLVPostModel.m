@@ -10,6 +10,7 @@
 #import "SLVItem.h"
 #import "SLVStorageProtocol.h"
 #import "SLVNetworkProtocol.h"
+@import UIKit;
 
 static NSString *const kItemEntity = @"SLVItem";
 
@@ -53,7 +54,8 @@ static NSString *const kItemEntity = @"SLVItem";
 }
 
 - (UIImage *)imageForIndex:(NSUInteger)index {
-    return self.selectedItem.largePhoto;
+    UIImage *image = [UIImage imageWithContentsOfFile:self.selectedItem.largePhoto];
+    return image;
 }
 
 - (void)makeFavorite:(BOOL)favorite {

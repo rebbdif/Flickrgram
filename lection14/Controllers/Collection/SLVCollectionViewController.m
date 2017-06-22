@@ -52,7 +52,6 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
     self.navigationItem.titleView = [self.collectionView createNavigationBarForSearchBar];
     self.collectionView.searchBar.delegate = self;
     [self.collectionView.settingsButton addTarget:self action:@selector(gotoSettings:) forControlEvents:UIControlEventTouchUpInside];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -107,7 +106,7 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
         __weak typeof(self) weakself = self;
         [self.model getItemsForRequest:searchRequest withCompletionHandler:^{
             dispatch_async(dispatch_get_main_queue(), ^{
-            [weakself.collectionView reloadData];
+                [weakself.collectionView reloadData];
             });
         }];
     }
@@ -137,7 +136,11 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
 #pragma mark - CollectionLayoutDelegate
 
 - (NSUInteger)numberOfItems {
-    return [self.model numberOfItems];
+    if (![self.model numberOfItems]) {
+        return 0;
+    } else {
+        return [self.model numberOfItems];
+    }
 }
 
 #pragma mark - UIScrollViewDelegate

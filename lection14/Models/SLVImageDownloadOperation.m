@@ -16,7 +16,7 @@
 @property (nonatomic, strong) NSURLSessionTask *task;
 @property (nonatomic, strong) NSOperation *downloadOperation;
 @property (nonatomic, strong) NSOperation *saveOperation;
-@property (nonatomic, strong) __block UIImage *downloadedImage;
+@property (nonatomic, strong) __block NSString *downloadedImageURL;
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic, strong) NSString *key;
 @property (nonatomic, strong) NSString *attribute;
@@ -34,7 +34,6 @@
     if (self) {
         _status = SLVImageStatusNone;
         _innerQueue = [NSOperationQueue new];
-        _imageViewSize = CGSizeMake(312, 312);
         _facade = facade;
         _entityName = entityName;
         _key = key;
@@ -56,7 +55,7 @@
     [self dowloadImage];
     dispatch_semaphore_wait(self.imageDownloadSemaphore, DISPATCH_TIME_FOREVER);
     
-    if (!_downloadedImage) {
+    if (!_downloadedImageURL) {
         NSLog(@"NSOperation: there is no downloaded image");
         self.status = SLVImageStatusNone;
     } else {
@@ -69,8 +68,8 @@
     __weak typeof(self) weakSelf = self;
     self.downloadOperation = [NSBlockOperation blockOperationWithBlock:^{
         __strong typeof(self) strongSelf = weakSelf;
-        strongSelf.task = [strongSelf.facade.networkManager downloadImageFromURL:[NSURL URLWithString:strongSelf.url] withCompletionHandler:^(NSData *data) {
-            strongSelf.downloadedImage = [UIImage imageWithData:data];
+        strongSelf.task = [strongSelf.facade.networkManager downloadImageFromURL:[NSURL URLWithString:strongSelf.url] withCompletionHandler:^(NSString *downloadedImageURL) {
+            strongSelf.downloadedImageURL = downloadedImageURL;
             strongSelf.status = SLVImageStatusDownloaded;
             dispatch_semaphore_signal(strongSelf.imageDownloadSemaphore);
         }];
@@ -82,7 +81,7 @@
     __weak typeof(self) weakSelf = self;
     self.saveOperation = [NSBlockOperation blockOperationWithBlock:^{
         __strong typeof(weakSelf)strongSelf = weakSelf;
-        [strongSelf.facade.storageService saveObject:strongSelf.downloadedImage forEntity:strongSelf.entityName forAttribute:strongSelf.attribute forKey:strongSelf.key withCompletionHandler:^{
+        [strongSelf.facade.storageService saveObject:strongSelf.downloadedImageURL forEntity:strongSelf.entityName forAttribute:strongSelf.attribute forKey:strongSelf.key withCompletionHandler:^{
             dispatch_semaphore_signal(strongSelf.imageSaveSemaphore);
         }];
     }];
@@ -95,7 +94,6 @@
 }
 
 - (void)pause {
-    self.innerQueue.suspended = YES;
     self.status = SLVImageStatusCancelled;
     [self.task suspend];
     [self cancel];

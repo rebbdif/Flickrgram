@@ -35,19 +35,20 @@
     if (results.count == 0) {
         return nil;
     } else if (results.count > 1) {
-        NSLog(@"there is more than one result for request");
+        NSLog(@"storageService - there is more than one result for request");
     }
     return results[0];
 }
 
 - (NSArray *)fetchEntities:(NSString *)entity withPredicate:(NSString *)predicate {
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entity];
+    request.fetchBatchSize = 30;
     //    request.predicate = [NSPredicate predicateWithFormat:predicate];
 #warning wtf with request.predicate
     NSError *error = nil;
     NSArray *fetchedArray = [self.stack.mainContext executeFetchRequest:request error:&error];
     if (error) {
-        NSLog(@"error while fetching %@", error);
+        NSLog(@"storageService - error while fetching %@", error);
     }
     return fetchedArray;
 }
@@ -56,8 +57,9 @@
     [self.stack.privateContext performBlockAndWait:^{
         if (self.stack.privateContext.hasChanges) {
             NSError *error = nil;
+            [self.stack.privateContext save:&error];
             if (error) {
-                NSLog(@"%@", error.localizedDescription);
+                NSLog(@"storageService -%@", error.localizedDescription);
             }
         }
     }];
@@ -66,7 +68,7 @@
             NSError *error = nil;
             [self.stack.mainContext save:&error];
             if (error) {
-                NSLog(@"%@", error.localizedDescription);
+                NSLog(@"storageService - %@", error.localizedDescription);
             }
         }
     }];

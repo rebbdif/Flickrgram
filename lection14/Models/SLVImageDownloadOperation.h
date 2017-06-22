@@ -26,8 +26,6 @@ typedef NS_ENUM(NSInteger, SLVImageStatus) {
 
 @property (nonatomic, assign) SLVImageStatus status;
 
-@property (nonatomic, assign) CGSize imageViewSize;
-
 + (instancetype)new NS_UNAVAILABLE;
 
 - (instancetype)init NS_UNAVAILABLE;

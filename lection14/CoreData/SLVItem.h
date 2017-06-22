@@ -21,8 +21,8 @@
 @property (nonatomic, copy) NSString *largePhotoURL;
 @property (nonatomic, copy) NSString *thumbnailURL;
 @property (nonatomic, copy) NSString *text;
-@property (nonatomic, strong) UIImage *largePhoto;
-@property (nonatomic, strong) UIImage *thumbnail;
+@property (nonatomic, copy) NSString *largePhoto;
+@property (nonatomic, copy) NSString *thumbnail;
 @property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, copy) NSString *searchRequest;
 

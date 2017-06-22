@@ -32,8 +32,6 @@ typedef void (^Block)(void);
 
 - (void)pauseDownloads;
 
-- (void)resumeDownloads;
-
 - (void)firstStart:(NSString *)searchRequest;
 
 @end

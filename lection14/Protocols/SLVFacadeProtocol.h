@@ -21,8 +21,6 @@
 
 - (void)pauseOperations;
 
-- (void)resumeOperations;
-
 - (void)clearOperations;
 
 #pragma mark - Network

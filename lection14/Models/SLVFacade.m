@@ -43,15 +43,6 @@
     }];
 }
 
-- (void)resumeOperations {
-    [self.imageOperations enumerateKeysAndObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id key, id object, BOOL *stop) {
-        SLVImageDownloadOperation *operation = (SLVImageDownloadOperation *)object;
-        if (operation.isCancelled) {
-            [operation resume];
-        }
-    }];
-}
-
 - (void)clearOperations {
     [self.imageOperations removeAllObjects];
 }
