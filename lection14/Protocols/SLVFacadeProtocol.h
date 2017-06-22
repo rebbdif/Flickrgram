@@ -1,35 +1,34 @@
 //
-//  SLVFacadeProtocol.h
+//  SLVModelProtocol.h
 //  flickrgram
 //
-//  Created by 1 on 18.06.17.
+//  Created by 1 on 17.06.17.
 //  Copyright © 2017 serebryanyy. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import "SLVNetworkProtocol.h"
+#import "SLVStorageProtocol.h"
+
+@class UIImage;
 
 @protocol SLVFacadeProtocol <NSObject>
 
+@property (nonatomic, strong, readonly) id<SLVNetworkProtocol> networkManager;
+@property (nonatomic, strong, readonly) id<SLVStorageProtocol> storageService;
+
+#pragma mark - Operations
+
+- (void)pauseOperations;
+
+- (void)clearOperations;
+
 #pragma mark - Network
 
-- (void)getModelFromURL:(NSURL *)url withCompletionHandler:(void (^)(NSDictionary *json))completionHandler;
-
-- (NSURLSessionTask *)downloadImageFromURL:(NSURL *)url withCompletionHandler:(void (^)(NSData *data))completionHandler;
+- (void)loadImageForEntity:(NSString *)entityName withIdentifier:(NSString *)identifier forURL:(NSString *)url forAttribute:(NSString *)attribute withCompletionHandler:(void (^)(void))completionHandler;
 
 #pragma mark - Storage
 
-- (id)fetchEntity:(NSString *)entity forKey:(NSString *)key;
-
-- (void)fetchEntities:(NSString *)entity withPredicate:(NSString *)predicate withCompletionBlock:(void (^)(NSArray *result))completion;
-
-- (void)save;
-
-- (void)deleteAllEntities:(NSString *)entity withPredicate:(NSString *)predicate;
-
-- (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key withCompletionHandler:(void (^)(void))completionHandler;
-
-- (void)insertNewObjectForEntityForName:(NSString *)name withDictionary:(NSDictionary<NSString *, id> *)attributes;
-
-- (void)clearModel;
+- (void)destroyEverything;
 
 @end

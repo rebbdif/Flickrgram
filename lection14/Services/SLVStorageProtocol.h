@@ -12,16 +12,14 @@
 
 - (id)fetchEntity:(NSString *)entity forKey:(NSString *)key;
 
-- (void)fetchEntities:(NSString *)entity withPredicate:(NSString *)predicate withCompletionBlock:(void (^)(NSArray *result))completion;
+- (NSArray *)fetchEntities:(NSString *)entity withPredicate:(NSPredicate *)predicate;
 
 - (void)save;
 
-- (void)deleteEntitiesFromCoreData:(NSString *)entity withPredicate:(NSString *)predicate;
+- (void)deleteEntities:(NSString *)entity withPredicate:(NSPredicate *)predicate;
 
 - (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key withCompletionHandler:(void (^)(void))completionHandler;
 
 - (void)insertNewObjectForEntityForName:(NSString *)name withDictionary:(NSDictionary<NSString *, id> *)attributes;
-
-- (void)clearModel;
 
 @end

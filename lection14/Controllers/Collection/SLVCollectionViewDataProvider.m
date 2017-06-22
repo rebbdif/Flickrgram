@@ -34,7 +34,6 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     SLVCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    cell.indexLabel.text = [NSString stringWithFormat:@"%ld", indexPath.item];
     UIImage *image = [self.model imageForIndex:indexPath.item];
     if (!image) {
         cell.activityIndicator.hidden = NO;
@@ -63,12 +62,8 @@ static NSString * const reuseIdentifier = @"Cell";
         dispatch_async(dispatch_get_main_queue(), ^{
             SLVCollectionViewCell *cell = ((SLVCollectionViewCell *)([self.collectionView cellForItemAtIndexPath:indexPath]));
             [cell.activityIndicator stopAnimating];
-            cell.indexLabel.text = [NSString stringWithFormat:@"%ld", indexPath.item];
             UIImage *image = [strongSelf.model imageForIndex:indexPath.item];
-            if (!image) {
-                NSLog(@"cellForItem couldn't download or save image");
-            }
-                  cell.imageView.image = image;
+            cell.imageView.image = image;
         });
     }];
 }

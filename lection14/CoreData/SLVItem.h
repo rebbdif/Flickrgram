@@ -7,7 +7,8 @@
 //
 
 #import <CoreData/CoreData.h>
-#import "SLVFacadeProtocol.h"
+#import "SLVStorageProtocol.h"
+
 @class UIImage;
 
 @interface SLVItem : NSManagedObject
@@ -17,14 +18,14 @@
 @property (nonatomic, assign) uint16_t numberOfComments;
 @property (nonatomic, assign) float latitude;
 @property (nonatomic, assign) float longitude;
-@property (nonatomic, strong) NSString *largePhotoURL;
-@property (nonatomic, strong) NSString *thumbnailURL;
-@property (nonatomic, strong) NSString *text;
-@property (nonatomic, strong) UIImage *largePhoto;
-@property (nonatomic, strong) UIImage *thumbnail;
-@property (nonatomic, strong) NSString *identifier;
-@property (nonatomic, strong) NSString *searchRequest;
+@property (nonatomic, copy) NSString *largePhotoURL;
+@property (nonatomic, copy) NSString *thumbnailURL;
+@property (nonatomic, copy) NSString *text;
+@property (nonatomic, copy) NSString *largePhoto;
+@property (nonatomic, copy) NSString *thumbnail;
+@property (nonatomic, copy) NSString *identifier;
+@property (nonatomic, copy) NSString *searchRequest;
 
-+ (NSString *)identifierForItemWithDictionary:(NSDictionary *)dict facade:(id<SLVFacadeProtocol>)facade;
++ (NSString *)identifierForItemWithDictionary:(NSDictionary *)dict storage:(id<SLVStorageProtocol>)storage forRequest:(NSString *)request;
 
 @end

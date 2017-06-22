@@ -35,50 +35,62 @@
     if (results.count == 0) {
         return nil;
     } else if (results.count > 1) {
-        NSLog(@"there is more than one result for request");
+        NSLog(@"storageService - there is more than one result for request");
     }
     return results[0];
 }
 
-- (void)fetchEntities:(NSString *)entity withPredicate:(NSString *)predicate withCompletionBlock:(void (^)(NSArray *))completion {
-    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:entity];
-    request.predicate = [NSPredicate predicateWithFormat:predicate];
-    NSAsynchronousFetchRequest *asyncRequest = [[NSAsynchronousFetchRequest alloc] initWithFetchRequest:request completionBlock:^(NSAsynchronousFetchResult * _Nonnull result) {
-        NSArray *fetchedArray = result.finalResult;
-        completion(fetchedArray);
-    }];
+- (NSArray *)fetchEntities:(NSString *)entity withPredicate:(NSPredicate *)predicate {
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entity];
+    request.fetchBatchSize = 30;
+    request.predicate = predicate;
     NSError *error = nil;
-    [self.stack.mainContext executeRequest:asyncRequest error:&error];
+    NSArray *fetchedArray = [self.stack.mainContext executeFetchRequest:request error:&error];
     if (error) {
-        NSLog(@"error while fetching %@",error);
+        NSLog(@"storageService - error while fetching %@", error);
     }
+    return fetchedArray;
 }
 
 - (void)save {
-    [self.stack.privateContext performBlock:^{
+    [self.stack.privateContext performBlockAndWait:^{
         if (self.stack.privateContext.hasChanges) {
             NSError *error = nil;
             [self.stack.privateContext save:&error];
             if (error) {
-                NSLog(@"%@", error.localizedDescription);
+                NSLog(@"storageService -%@", error.localizedDescription);
+            }
+        }
+    }];
+    [self.stack.mainContext performBlock:^{
+        if (self.stack.mainContext.hasChanges) {
+            NSError *error = nil;
+            [self.stack.mainContext save:&error];
+            if (error) {
+                NSLog(@"storageService - %@", error.localizedDescription);
             }
         }
     }];
 }
 
-- (void)deleteEntitiesFromCoreData:(NSString *)entity withPredicate:(NSString *)predicate {
+- (void)deleteEntities:(NSString *)entity withPredicate:(NSPredicate *)predicate {
     NSError *error;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entity];
-    request.predicate = [NSPredicate predicateWithFormat:predicate];
+    request.predicate = predicate;
     NSArray *results = [self.stack.privateContext executeFetchRequest:request error:&error];
-    for (id item in results) {
-        [self.stack.privateContext deleteObject:item];
-    }
+    [self.stack.privateContext performBlockAndWait:^{
+        for (id item in results) {
+            [self.stack.privateContext deleteObject:item];
+        }
+    }];
     [self save];
 }
 
 - (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key withCompletionHandler:(void (^)(void))completionHandler {
     id fetchedEntity = [self fetchEntity:entity forKey:key];
+    if (!fetchedEntity) {
+        NSLog(@"storageService - saveObject couldn't fetch entity for key %@", key);
+    }
     [self.stack.privateContext performBlock:^{
         [fetchedEntity setValue:object forKey:attribute];
         [self save];
@@ -94,10 +106,6 @@
         }
         [self save];
     }];
-}
-
-- (void)clearModel {
-    [self.stack deletePersistentStoreCoordinator];
 }
 
 @end

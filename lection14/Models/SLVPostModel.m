@@ -8,30 +8,37 @@
 
 #import "SLVPostModel.h"
 #import "SLVItem.h"
+#import "SLVStorageProtocol.h"
+#import "SLVNetworkProtocol.h"
+@import UIKit;
 
 static NSString *const kItemEntity = @"SLVItem";
 
 @interface SLVPostModel()
 
-@property (nonatomic, strong) id<SLVFacadeProtocol> facade;
+@property (nonatomic, strong, readonly) id<SLVFacadeProtocol> facade;
 @property (nonatomic, strong) NSDictionary<NSNumber *, NSString *> *items;
 @property (nonatomic, strong) SLVItem *selectedItem;
+@property (nonatomic, strong, readonly) id<SLVStorageProtocol> storageService;
+@property (nonatomic, strong, readonly) id<SLVNetworkProtocol> networkManager;
 
 @end
 
 @implementation SLVPostModel
 
 - (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade {
-    self = [super initWithFacade:facade];
+    self = [super init];
     if (self) {
         _facade = facade;
+        _storageService = facade.storageService;
+        _networkManager = facade.networkManager;
     }
     return self;
 }
 
 - (SLVItem *)itemForIndex:(NSUInteger)index {
     NSString *key = self.items[@(index)];
-    SLVItem *result = [self fetchEntity:kItemEntity forKey:key];
+    SLVItem *result = [self.facade.storageService fetchEntity:kItemEntity forKey:key];
     return result;
 }
 
@@ -42,27 +49,28 @@ static NSString *const kItemEntity = @"SLVItem";
 
 - (SLVItem *)getSelectedItem {
     NSString *key = self.items[@0];
-    self.selectedItem = [self fetchEntity:kItemEntity forKey:key];
+    self.selectedItem = [self.storageService fetchEntity:kItemEntity forKey:key];
     return self.selectedItem;
 }
 
 - (UIImage *)imageForIndex:(NSUInteger)index {
-    return self.selectedItem.largePhoto;
+    UIImage *image = [UIImage imageWithContentsOfFile:self.selectedItem.largePhoto];
+    return image;
 }
 
 - (void)makeFavorite:(BOOL)favorite {
     self.selectedItem.isFavorite = favorite;
-    [self.facade save];
+    [self.storageService save];
 }
 
 - (void)getFavoriteItemsWithCompletionHandler:(void (^)(NSArray *))completionHandler {
-    [self.facade fetchEntities:kItemEntity withPredicate:@"isFavorite == YES" withCompletionBlock:^(NSArray *result) {
-        completionHandler(result);
-    }];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isFavorite ==YES"];
+    NSArray *result = [self.storageService fetchEntities:kItemEntity withPredicate:predicate];
+    completionHandler(result);
 }
 
 - (void)loadImageForItem:(SLVItem *)item withCompletionHandler:(void (^)(void))completionHandler {
-    [self loadImageForEntity:kItemEntity withIdentifier:item.identifier forURL:item.largePhotoURL forAttribute:@"largePhoto" withCompletionHandler:completionHandler];
+    [self.facade loadImageForEntity:kItemEntity withIdentifier:item.identifier forURL:item.largePhotoURL forAttribute:@"largePhoto" withCompletionHandler:completionHandler];
 }
 
 @end

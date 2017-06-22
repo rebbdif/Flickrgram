@@ -55,9 +55,4 @@
     _privateContext.persistentStoreCoordinator = self.coreDataPSC;
 }
 
-- (void)deletePersistentStoreCoordinator {
-    self.coreDataPSC = nil;
-    [self setupCoreData];
-}
-
 @end

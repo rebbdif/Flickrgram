@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong, readonly) id<SLVPostModelProtocol> model;
-@property (nonatomic, strong) NSArray *favorites;
+@property (nonatomic, copy) NSArray *favorites;
 
 @end
 
@@ -59,7 +59,7 @@ static NSString * const reuseID = @"favoritesCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SLVFavoritesCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseID];
     SLVItem *currentItem = self.favorites[indexPath.row];
-    cell.photoView.image = currentItem.largePhoto;
+    cell.photoView.image = [UIImage imageWithContentsOfFile:currentItem.largePhoto];
     cell.descriptionText.text = currentItem.text;
     return cell;
 }

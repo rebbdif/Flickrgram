@@ -8,73 +8,89 @@
 
 #import "SLVCollectionModel.h"
 #import "SLVItem.h"
+#import "SLVStorageProtocol.h"
+#import "SLVNetworkManager.h"
+@import UIKit;
 
 static NSString *const kItemEntity = @"SLVItem";
 
 @interface SLVCollectionModel()
 
+@property (nonatomic, strong, readonly) id<SLVStorageProtocol> storageService;
+@property (nonatomic, strong, readonly) id<SLVNetworkProtocol> networkManager;
+@property (nonatomic, strong) id<SLVFacadeProtocol> facade;
 @property (nonatomic, assign) NSUInteger page;
 @property (nonatomic, copy) NSDictionary<NSNumber *, NSString *> *items;
-@property (nonatomic, strong) id<SLVFacadeProtocol> facade;
-@property (nonatomic, strong) NSString *request;
+@property (nonatomic, copy) NSDictionary<NSNumber *, NSString *> *itemURLs;
+@property (nonatomic, copy) NSString *request;
 
 @end
 
 @implementation SLVCollectionModel
 
 - (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade {
-    self = [super initWithFacade:facade];
+    self = [super init];
     if (self) {
         _page = 1;
         _items = [NSDictionary new];
+        _itemURLs = [NSDictionary new];
         _facade = facade;
+        _storageService = facade.storageService;
+        _networkManager = facade.networkManager;
     }
     return self;
 }
 
-- (NSUInteger)numberOfItems {
-    return self.items.count;
-}
+#pragma mark - first start
 
-- (SLVItem *)itemForIndex:(NSUInteger)index {
-    NSString *key = self.items[@(index)];
-    SLVItem *result = [self fetchEntity:kItemEntity forKey:key];
-    return result;
-}
-
-- (UIImage *)imageForIndex:(NSUInteger)index {
-    NSString *key = self.items[@(index)];
-    SLVItem *item = [self fetchEntity:kItemEntity forKey:key];
-    UIImage *result = item.thumbnail;
-    return result;
-}
-
-- (void)loadImageForIndex:(NSUInteger)index withCompletionHandler:(void (^)(void))completionHandler {
-    NSString *key = self.items[@(index)];
-    SLVItem *item = [self fetchEntity:kItemEntity forKey:key];
-    if (!item) {
-        NSLog(@"No item to load image for. index %ld",index);
+- (void)firstStart:(NSString *)searchRequest {
+    self.request = searchRequest;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"searchRequest ==%@", searchRequest];
+    NSArray<SLVItem *> *fetchedItems = [self.storageService fetchEntities:kItemEntity withPredicate:predicate];
+    NSUInteger index = 0;
+    NSMutableDictionary<NSNumber *, NSString *> *newItems = [NSMutableDictionary new];
+    for (SLVItem *item in fetchedItems) {
+        [newItems setObject:item.identifier forKey:@(index)];
+        ++index;
     }
-    [self loadImageForEntity:kItemEntity withIdentifier:item.identifier forURL:item.thumbnailURL forAttribute:@"thumbnail" withCompletionHandler:completionHandler];
+    self.items = newItems;
+    self.itemURLs = newItems;
+    ++self.page;
 }
 
-- (void)getItemsForRequest:(NSString*)request withCompletionHandler:(void (^)(void))completionHandler {
+#pragma mark - downloading items for search request
+
+- (void)getItemsForRequest:(NSString *)request withCompletionHandler:(void (^)(void))completionHandler {
     if (!request) {
         request = self.request;
     } else {
         self.request = request;
     }
     NSURL *url = [self constructURLForRequest:request];
-    [self.facade getModelFromURL:url withCompletionHandler:^(NSDictionary *json) {
+    [self.networkManager getModelFromURL:url withCompletionHandler:^(NSDictionary *json) {
         NSDictionary<NSNumber *, NSString *> *newItems = [self parseData:json];
         NSMutableDictionary<NSNumber *, NSString *> *oldItems = [self.items mutableCopy];
         [oldItems addEntriesFromDictionary:newItems];
         self.items = [oldItems copy];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            completionHandler();
-        });
+        self.itemURLs = [NSDictionary dictionaryWithDictionary:self.items];
+        completionHandler();
     }];
     self.page++;
+}
+
+- (NSDictionary *)parseData:(NSDictionary *)json {
+    if (json) {
+        NSMutableDictionary<NSNumber *, NSString *> *parsingResults = [NSMutableDictionary new];
+        NSUInteger index = self.items.count;
+        for (NSDictionary * dict in json[@"photos"][@"photo"]) {
+            NSString *itemIdentifier = [SLVItem identifierForItemWithDictionary:dict storage:self.storageService forRequest:self.request];
+            [parsingResults setObject:itemIdentifier forKey:@(index)];
+            ++index;
+        }
+        return [parsingResults copy];
+    } else {
+        return nil;
+    }
 }
 
 - (NSURL *)constructURLForRequest:(NSString *)request {
@@ -85,25 +101,49 @@ static NSString *const kItemEntity = @"SLVItem";
     return [NSURL URLWithString:urls];
 }
 
-- (NSDictionary *)parseData:(NSDictionary *)json {
-    if (json) {
-        NSMutableDictionary<NSNumber *, NSString *> *parsingResults = [NSMutableDictionary new];
-        NSUInteger index = self.items.count;
-        for (NSDictionary * dict in json[@"photos"][@"photo"]) {
-            NSString *itemIdentifier = [SLVItem identifierForItemWithDictionary:dict facade:self.facade];
-            [parsingResults setObject:itemIdentifier forKey:@(index)];
-            ++index;
-        }
-        return [parsingResults copy];
-    } else {
-        return nil;
-    }
+#pragma mark - returning data to viewController
+
+- (UIImage *)imageForIndex:(NSUInteger)index {
+    NSString *key = self.items[@(index)];
+    SLVItem *item = [self.storageService fetchEntity:kItemEntity forKey:key];
+    UIImage *result = [UIImage imageWithContentsOfFile:item.thumbnail];
+    return result;
 }
 
+- (void)loadImageForIndex:(NSUInteger)index withCompletionHandler:(void (^)(void))completionHandler {
+    NSString *identifier = self.items[@(index)];
+    NSString *url = self.itemURLs[@(index)];
+    [self.facade loadImageForEntity:kItemEntity withIdentifier:identifier forURL:url forAttribute:@"thumbnail" withCompletionHandler:completionHandler];
+}
+
+- (NSUInteger)numberOfItems {
+    if (!self.items.count) return 0;
+    return self.items.count;
+}
+
+- (SLVItem *)itemForIndex:(NSUInteger)index {
+    NSString *key = self.items[@(index)];
+    SLVItem *result = [self.storageService fetchEntity:kItemEntity forKey:key];
+    return result;
+}
+
+#pragma mark - utilities
+
 - (void)clearModel {
+    NSLog(@"i clear model");
     self.items = [NSDictionary new];
     self.page = 1;
-    [self deleteEntities:kItemEntity entirely:NO];
+    [self.facade clearOperations];
+    NSPredicate *predicate  = [NSPredicate predicateWithFormat:@"isFavorite ==NO"];
+    [self.storageService deleteEntities:kItemEntity withPredicate:predicate];
+}
+
+- (id<SLVFacadeProtocol>)getFacade {
+    return self.facade;
+}
+
+- (void)pauseDownloads {
+    [self.facade pauseOperations];
 }
 
 @end

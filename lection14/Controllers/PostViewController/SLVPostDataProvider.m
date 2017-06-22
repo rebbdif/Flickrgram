@@ -49,6 +49,8 @@
     }
 }
 
+# pragma mark - cellForRowAtIndexPath
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self configureCellForTableView:tableView atIndexPath:indexPath];
     return cell;
@@ -75,7 +77,7 @@
     SLVImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell"];
     cell.delegate = self.controller;
     SLVItem *selectedItem = [self.model getSelectedItem];
-    UIImage *image = selectedItem.largePhoto;
+    UIImage *image = [UIImage imageWithContentsOfFile:selectedItem.largePhoto];
     if (!image) {
         cell.spinner.hidden = NO;
         [cell.spinner startAnimating];
@@ -86,7 +88,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     SLVImageCell *cell = [tableView cellForRowAtIndexPath:indexPath];
                     SLVItem *selectedItem = [strongSelf.model getSelectedItem];
-                    cell.photoView.image = selectedItem.largePhoto;
+                    cell.photoView.image = [UIImage imageWithContentsOfFile:selectedItem.largePhoto];
                     [cell.spinner stopAnimating];
                 });
             }

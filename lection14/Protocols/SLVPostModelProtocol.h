@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SLVModelProtocol.h"
+#import "SLVFacadeProtocol.h"
 
 @class UIImage;
 @class SLVItem;
 
-@protocol SLVPostModelProtocol <SLVModelProtocol>
+@protocol SLVPostModelProtocol <NSObject>
 
 - (void)makeFavorite:(BOOL)favorite;
 
@@ -24,8 +24,8 @@
 
 - (UIImage *)imageForIndex:(NSUInteger)index;
 
-- (void)getFavoriteItemsWithCompletionHandler:(void (^)(NSArray *result))completionHandler;
-
 - (void)loadImageForItem:(SLVItem *)item withCompletionHandler:(void (^)(void))completionHandler;
+
+- (void)getFavoriteItemsWithCompletionHandler:(void (^)(NSArray *))completionHandler;
 
 @end
