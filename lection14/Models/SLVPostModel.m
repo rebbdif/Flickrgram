@@ -64,7 +64,8 @@ static NSString *const kItemEntity = @"SLVItem";
 }
 
 - (void)getFavoriteItemsWithCompletionHandler:(void (^)(NSArray *))completionHandler {
-    NSArray *result = [self.storageService fetchEntities:kItemEntity withPredicate:@"isFavorite == YES"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isFavorite ==YES"];
+    NSArray *result = [self.storageService fetchEntities:kItemEntity withPredicate:predicate];
     completionHandler(result);
 }
 

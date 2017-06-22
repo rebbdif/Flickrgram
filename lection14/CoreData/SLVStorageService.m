@@ -40,11 +40,10 @@
     return results[0];
 }
 
-- (NSArray *)fetchEntities:(NSString *)entity withPredicate:(NSString *)predicate {
+- (NSArray *)fetchEntities:(NSString *)entity withPredicate:(NSPredicate *)predicate {
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entity];
     request.fetchBatchSize = 30;
-    //request.predicate = [NSPredicate predicateWithFormat:predicate];
-#warning wtf with request.predicate
+    request.predicate = predicate;
     NSError *error = nil;
     NSArray *fetchedArray = [self.stack.mainContext executeFetchRequest:request error:&error];
     if (error) {
@@ -74,10 +73,10 @@
     }];
 }
 
-- (void)deleteEntities:(NSString *)entity withPredicate:(NSString *)predicate {
+- (void)deleteEntities:(NSString *)entity withPredicate:(NSPredicate *)predicate {
     NSError *error;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entity];
-    request.predicate = [NSPredicate predicateWithFormat:predicate];
+    request.predicate = predicate;
     NSArray *results = [self.stack.privateContext executeFetchRequest:request error:&error];
     [self.stack.privateContext performBlockAndWait:^{
         for (id item in results) {

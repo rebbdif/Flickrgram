@@ -44,8 +44,8 @@ static NSString *const kItemEntity = @"SLVItem";
 #pragma mark - first start
 
 - (void)firstStart:(NSString *)searchRequest {
-    NSString *predicate = [NSString stringWithFormat:@"searchRequest == %@", searchRequest];
     self.request = searchRequest;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"searchRequest ==%@", searchRequest];
     NSArray<SLVItem *> *fetchedItems = [self.storageService fetchEntities:kItemEntity withPredicate:predicate];
     NSUInteger index = 0;
     NSMutableDictionary<NSNumber *, NSString *> *newItems = [NSMutableDictionary new];
@@ -134,7 +134,8 @@ static NSString *const kItemEntity = @"SLVItem";
     self.items = [NSDictionary new];
     self.page = 1;
     [self.facade clearOperations];
-    [self.storageService deleteEntities:kItemEntity withPredicate:@"isFavorite == NO"];
+    NSPredicate *predicate  = [NSPredicate predicateWithFormat:@"isFavorite ==NO"];
+    [self.storageService deleteEntities:kItemEntity withPredicate:predicate];
 }
 
 - (id<SLVFacadeProtocol>)getFacade {

@@ -12,11 +12,11 @@
 
 - (id)fetchEntity:(NSString *)entity forKey:(NSString *)key;
 
-- (NSArray *)fetchEntities:(NSString *)entity withPredicate:(NSString *)predicate;
+- (NSArray *)fetchEntities:(NSString *)entity withPredicate:(NSPredicate *)predicate;
 
 - (void)save;
 
-- (void)deleteEntities:(NSString *)entity withPredicate:(NSString *)predicate;
+- (void)deleteEntities:(NSString *)entity withPredicate:(NSPredicate *)predicate;
 
 - (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key withCompletionHandler:(void (^)(void))completionHandler;
 
