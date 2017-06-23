@@ -50,9 +50,9 @@
 }
 
 - (void)tearDown {
-    [super tearDown];
     self.layout = nil;
     self.collectionLayoutDelegateMock = nil;
+    [super tearDown];
 }
 
 - (void)test30Items {

@@ -9,11 +9,11 @@
 #import "SLVStorageService.h"
 @import CoreData;
 @import UIKit;
-#import "CoreDataStack.h"
+#import "SLVCoreDataStack.h"
 
 @interface SLVStorageService()
 
-@property (nonatomic, strong) CoreDataStack *stack;
+@property (nonatomic, strong) SLVCoreDataStack *stack;
 
 @end
 
@@ -22,7 +22,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _stack = [CoreDataStack stack];
+        _stack = [SLVCoreDataStack stack];
     }
     return self;
 }

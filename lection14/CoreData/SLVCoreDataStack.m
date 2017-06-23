@@ -6,9 +6,9 @@
 //  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
-#import "CoreDataStack.h"
+#import "SLVCoreDataStack.h"
 
-@interface CoreDataStack ()
+@interface SLVCoreDataStack ()
 
 @property (nonatomic, strong, readwrite) NSManagedObjectContext *mainContext;
 @property (nonatomic, strong, readwrite) NSManagedObjectContext *privateContext;
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation CoreDataStack
+@implementation SLVCoreDataStack
 
 - (instancetype)initStack {
     self = [super init];
@@ -27,7 +27,7 @@
 }
 
 + (instancetype)stack {
-    return [[CoreDataStack alloc] initStack];
+    return [[SLVCoreDataStack alloc] initStack];
 }
 
 - (void)setupCoreData {

@@ -39,9 +39,7 @@
     _tableView.opaque = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview: _tableView];
-    
-   // _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    
+        
     _tableView.delegate = self;
     _tableView.dataSource = self;
 
