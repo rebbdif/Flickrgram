@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		042903421EF536900066039B /* SLVConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 042903411EF536900066039B /* SLVConstants.m */; };
 		04E2FF9C1EBB90A50074C5D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2FF9B1EBB90A50074C5D9 /* main.m */; };
 		04E2FF9F1EBB90A50074C5D9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2FF9E1EBB90A50074C5D9 /* AppDelegate.m */; };
 		04E2FFAA1EBB90A50074C5D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04E2FFA91EBB90A50074C5D9 /* Assets.xcassets */; };
@@ -19,16 +18,15 @@
 		635722F71EF5B1FC000BB6CD /* SLVPostDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722F61EF5B1FC000BB6CD /* SLVPostDataProvider.m */; };
 		635722FA1EF5B4A7000BB6CD /* SLVPostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722F91EF5B4A7000BB6CD /* SLVPostModel.m */; };
 		635723001EF5F74C000BB6CD /* SLVFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722FF1EF5F74C000BB6CD /* SLVFacade.m */; };
-		6375B3A21EFD02B400AA41B2 /* SLVLayoutTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6375B3A11EFD02B400AA41B2 /* SLVLayoutTest.m */; };
-		6375B3A41EFD07CE00AA41B2 /* SLVImageDownloadOperationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6375B3A31EFD07CE00AA41B2 /* SLVImageDownloadOperationTest.m */; };
 		6375B3A71EFD0A8900AA41B2 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6375B3A51EFD089000AA41B2 /* OCMock.framework */; };
+		6375B3B01EFD20B000AA41B2 /* SLVLayoutTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6375B3AF1EFD20B000AA41B2 /* SLVLayoutTest.m */; };
+		6375B3B11EFD20E500AA41B2 /* SLVCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1DF1EE04D3A0050728D /* SLVCollectionViewLayout.m */; };
 		6392D1D61EE04CFD0050728D /* SLVCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1CA1EE04CFD0050728D /* SLVCollectionViewController.m */; };
 		6392D1D71EE04CFD0050728D /* SLVCollectionViewDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1CC1EE04CFD0050728D /* SLVCollectionViewDataProvider.m */; };
 		6392D1D81EE04CFD0050728D /* SLVFavouritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1CF1EE04CFD0050728D /* SLVFavouritesViewController.m */; };
 		6392D1D91EE04CFD0050728D /* SLVPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1D21EE04CFD0050728D /* SLVPostController.m */; };
 		6392D1DA1EE04CFD0050728D /* SLVSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1D51EE04CFD0050728D /* SLVSettingsViewController.m */; };
 		6392D1E01EE04D3A0050728D /* SLVCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1DD1EE04D3A0050728D /* SLVCollectionView.m */; };
-		6392D1E11EE04D3A0050728D /* SLVCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1DF1EE04D3A0050728D /* SLVCollectionViewLayout.m */; };
 		6392D1E71EE04D4E0050728D /* UIColor+SLVColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1E41EE04D4E0050728D /* UIColor+SLVColor.m */; };
 		6392D1E81EE04D4E0050728D /* UIFont+SLVFonts.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1E61EE04D4E0050728D /* UIFont+SLVFonts.m */; };
 		6392D1EF1EE741BE0050728D /* SLVCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1EE1EE741BE0050728D /* SLVCollectionViewCell.m */; };
@@ -55,8 +53,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		042903411EF536900066039B /* SLVConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVConstants.m; path = Constants/SLVConstants.m; sourceTree = "<group>"; };
-		042903431EF536A80066039B /* SLVConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVConstants.h; path = Constants/SLVConstants.h; sourceTree = "<group>"; };
 		04E2FF971EBB90A50074C5D9 /* lection14.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lection14.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04E2FF9B1EBB90A50074C5D9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		04E2FF9D1EBB90A50074C5D9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -84,9 +80,8 @@
 		635722FF1EF5F74C000BB6CD /* SLVFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVFacade.m; path = Models/SLVFacade.m; sourceTree = "<group>"; };
 		635723061EF6D06D000BB6CD /* SLVStorageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVStorageProtocol.h; path = Services/SLVStorageProtocol.h; sourceTree = "<group>"; };
 		635723071EF6D0BA000BB6CD /* SLVNetworkProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVNetworkProtocol.h; path = Services/SLVNetworkProtocol.h; sourceTree = "<group>"; };
-		6375B3A11EFD02B400AA41B2 /* SLVLayoutTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVLayoutTest.m; path = lection14Tests/SLVLayoutTest.m; sourceTree = "<group>"; };
-		6375B3A31EFD07CE00AA41B2 /* SLVImageDownloadOperationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVImageDownloadOperationTest.m; path = lection14Tests/SLVImageDownloadOperationTest.m; sourceTree = "<group>"; };
 		6375B3A51EFD089000AA41B2 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = Carthage/Build/iOS/OCMock.framework; sourceTree = "<group>"; };
+		6375B3AF1EFD20B000AA41B2 /* SLVLayoutTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVLayoutTest.m; path = lection14Tests/SLVLayoutTest.m; sourceTree = "<group>"; };
 		6392D1C91EE04CFD0050728D /* SLVCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVCollectionViewController.h; sourceTree = "<group>"; };
 		6392D1CA1EE04CFD0050728D /* SLVCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVCollectionViewController.m; sourceTree = "<group>"; };
 		6392D1CB1EE04CFD0050728D /* SLVCollectionViewDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVCollectionViewDataProvider.h; sourceTree = "<group>"; };
@@ -147,15 +142,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		042903401EF536600066039B /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				042903411EF536900066039B /* SLVConstants.m */,
-				042903431EF536A80066039B /* SLVConstants.h */,
-			);
-			name = Constants;
-			sourceTree = "<group>";
-		};
 		04E2FF8E1EBB90A50074C5D9 = {
 			isa = PBXGroup;
 			children = (
@@ -179,7 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				6375B3A01EFAB8D400AA41B2 /* Facade */,
-				042903401EF536600066039B /* Constants */,
 				6392D1F41EE84A580050728D /* CoreData */,
 				6392D1E21EE04D4E0050728D /* Extentions */,
 				63ACEF371EBC951A007C0D41 /* Application */,
@@ -369,8 +354,7 @@
 		63ABAB891ED873D500941726 /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				6375B3A11EFD02B400AA41B2 /* SLVLayoutTest.m */,
-				6375B3A31EFD07CE00AA41B2 /* SLVImageDownloadOperationTest.m */,
+				6375B3AF1EFD20B000AA41B2 /* SLVLayoutTest.m */,
 			);
 			name = UnitTests;
 			sourceTree = "<group>";
@@ -522,7 +506,6 @@
 				635722F41EF5B091000BB6CD /* SLVPostView.m in Sources */,
 				6350EF8C1ED5843000D7C8CE /* SLVCollectionModel.m in Sources */,
 				6392D1EF1EE741BE0050728D /* SLVCollectionViewCell.m in Sources */,
-				042903421EF536900066039B /* SLVConstants.m in Sources */,
 				6392D1E81EE04D4E0050728D /* UIFont+SLVFonts.m in Sources */,
 				04E2FF9F1EBB90A50074C5D9 /* AppDelegate.m in Sources */,
 				6350EF8F1ED5923100D7C8CE /* SLVImageDownloadOperation.m in Sources */,
@@ -542,11 +525,11 @@
 				6392D21E1EE88F410050728D /* SLVStorageService.m in Sources */,
 				6392D2121EE875980050728D /* Human.m in Sources */,
 				6392D1D71EE04CFD0050728D /* SLVCollectionViewDataProvider.m in Sources */,
-				6392D1E11EE04D3A0050728D /* SLVCollectionViewLayout.m in Sources */,
 				635722F71EF5B1FC000BB6CD /* SLVPostDataProvider.m in Sources */,
 				6392D1F71EE84A920050728D /* Model.xcdatamodeld in Sources */,
 				6392D2221EEAC1090050728D /* SLVFavoritesCell.m in Sources */,
 				6392D1D81EE04CFD0050728D /* SLVFavouritesViewController.m in Sources */,
+				6375B3B11EFD20E500AA41B2 /* SLVCollectionViewLayout.m in Sources */,
 				6392D2151EE875A50050728D /* SLVItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -555,8 +538,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6375B3A21EFD02B400AA41B2 /* SLVLayoutTest.m in Sources */,
-				6375B3A41EFD07CE00AA41B2 /* SLVImageDownloadOperationTest.m in Sources */,
+				6375B3B01EFD20B000AA41B2 /* SLVLayoutTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

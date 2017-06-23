@@ -8,7 +8,6 @@
 
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
-
 #import "SLVCollectionViewLayout.h"
 
 @interface SLVCollectionViewLayout (TestPrivate)
@@ -20,9 +19,11 @@
 @property (nonatomic, assign) bool **places;
 @property (nonatomic, copy) NSDictionary<NSIndexPath *, UICollectionViewLayoutAttributes *> *cellAtributes;
 
+#pragma mark - layout methods
 - (void)prepareLayout;
 - (CGSize)collectionViewContentSize;
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect;
+#pragma mark - helper methods
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath;
 - (CGRect)frameForIndexPath:(NSIndexPath *)indexPath;
 - (CGRect)calculateFrame:(NSUInteger)side;
@@ -32,31 +33,111 @@
 
 @interface SLVLayoutTest : XCTestCase
 
+@property (nonatomic, strong) SLVCollectionViewLayout *layout;
+@property (nonatomic, strong) id collectionLayoutDelegateMock;
+
 @end
 
 @implementation SLVLayoutTest
 
 - (void)setUp {
     [super setUp];
-  //  SLVCollectionViewLayout *layout = [[SLVCollectionViewLayout alloc] initWithDelegate:<#(id<SLVCollectionLayoutDelegate>)#>];
-  //  [self prepareLayout];
+    self.collectionLayoutDelegateMock = OCMProtocolMock(@protocol(SLVCollectionLayoutDelegate));
+    self.layout = [[SLVCollectionViewLayout alloc] initWithDelegate:self.collectionLayoutDelegateMock];
+    OCMStub([self.collectionLayoutDelegateMock numberOfItems]).andReturn(30);
+    self.layout.numberOfColumns = 3;
+    self.layout.defaultCellWidth = 125;
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
+    self.layout = nil;
+    self.collectionLayoutDelegateMock = nil;
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)test30Items {
+    NSUInteger numberOfItems = 30;
+    
+    self.layout.numberOfRows = (numberOfItems + 1) / 2;
+    self.layout.places = [self.layout createPlacesRows:self.layout.numberOfRows columns:self.layout.numberOfColumns];
+    
+    for (NSUInteger i = 0; i < numberOfItems; ++i) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+        CGRect frame = [self.layout frameForIndexPath:indexPath];
+        CGFloat width = CGRectGetWidth(frame);
+        XCTAssert(width != 0);
+    }
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)test60Items {
+    NSUInteger numberOfItems = 60;
+    
+    self.layout.numberOfRows = (numberOfItems + 1) / 2;
+    self.layout.places = [self.layout createPlacesRows:self.layout.numberOfRows columns:self.layout.numberOfColumns];
+    
+    for (NSUInteger i = 0; i < numberOfItems; ++i) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+        CGRect frame = [self.layout frameForIndexPath:indexPath];
+        CGFloat width = CGRectGetWidth(frame);
+        XCTAssert(width != 0);
+    }
 }
+
+- (void)testNItems {
+    for (NSUInteger numberOfItems = 0; numberOfItems < 100; ++numberOfItems) {
+        self.layout.numberOfRows = (numberOfItems + 1) / 2;
+        self.layout.places = [self.layout createPlacesRows:self.layout.numberOfRows columns:self.layout.numberOfColumns];
+        
+        for (NSUInteger i = 0; i < numberOfItems; ++i) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+            CGRect frame = [self.layout frameForIndexPath:indexPath];
+            CGFloat width = CGRectGetWidth(frame);
+            XCTAssertTrue(width != 0, @"Number of Items = %ld, i = %ld", numberOfItems, i);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end
