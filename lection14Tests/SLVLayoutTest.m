@@ -57,7 +57,8 @@
 
 - (void)test30Items {
     NSUInteger numberOfItems = 30;
-    
+    NSUInteger extraCells = 3 - (numberOfItems % 3);
+    numberOfItems += extraCells;
     self.layout.numberOfRows = (numberOfItems + 1) / 2;
     self.layout.places = [self.layout createPlacesRows:self.layout.numberOfRows columns:self.layout.numberOfColumns];
     
@@ -69,75 +70,22 @@
     }
 }
 
-- (void)test60Items {
-    NSUInteger numberOfItems = 60;
-    
-    self.layout.numberOfRows = (numberOfItems + 1) / 2;
-    self.layout.places = [self.layout createPlacesRows:self.layout.numberOfRows columns:self.layout.numberOfColumns];
-    
-    for (NSUInteger i = 0; i < numberOfItems; ++i) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
-        CGRect frame = [self.layout frameForIndexPath:indexPath];
-        CGFloat width = CGRectGetWidth(frame);
-        XCTAssert(width != 0);
-    }
-}
 
-- (void)testNItems {
+- (void)testItemsIterative {
     for (NSUInteger numberOfItems = 0; numberOfItems < 100; ++numberOfItems) {
-        self.layout.numberOfRows = (numberOfItems + 1) / 2;
+        NSUInteger newNumberOfItems = numberOfItems;
+        NSUInteger extraCells = 3 - (newNumberOfItems % 3);
+        newNumberOfItems += extraCells;
+        self.layout.numberOfRows = (newNumberOfItems + 1) / 2;
         self.layout.places = [self.layout createPlacesRows:self.layout.numberOfRows columns:self.layout.numberOfColumns];
         
-        for (NSUInteger i = 0; i < numberOfItems; ++i) {
+        for (NSUInteger i = 0; i < newNumberOfItems; ++i) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
             CGRect frame = [self.layout frameForIndexPath:indexPath];
             CGFloat width = CGRectGetWidth(frame);
-            XCTAssertTrue(width != 0, @"Number of Items = %ld, i = %ld", numberOfItems, i);
+            XCTAssertTrue(width != 0, @"%ld items, %ld rows, i = %ld", numberOfItems, self.layout.numberOfRows, i);
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end
