@@ -1,18 +1,18 @@
 //
-//  SLVImageDownloadOperationTests.m
-//  lection14
+//  SLVImageDownloadOperationTest.m
+//  flickrgram
 //
-//  Created by 1 on 26.05.17.
-//  Copyright © 2017 iOS-School-1. All rights reserved.
+//  Created by 1 on 23.06.17.
+//  Copyright © 2017 serebryanyy. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 
-@interface SLVImageDownloadOperationTests : XCTestCase
+@interface SLVImageDownloadOperationTest : XCTestCase
 
 @end
 
-@implementation SLVImageDownloadOperationTests
+@implementation SLVImageDownloadOperationTest
 
 - (void)setUp {
     [super setUp];

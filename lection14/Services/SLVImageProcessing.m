@@ -20,7 +20,6 @@
 }
 
 + (UIImage *)cropImage:(UIImage *)origin toSize:(CGSize)itemSize {
-    
     CGFloat side;
     CGFloat width = origin.size.width;
     CGFloat heigth = origin.size.height;
@@ -32,14 +31,15 @@
         CGRect croppedRect = CGRectMake(0, offset, side, side);
         CGImageRef img = CGImageCreateWithImageInRect(origin.CGImage, croppedRect);
         squareImage = [[UIImage alloc] initWithCGImage:img];
+        img = nil;
     } else {
         side = heigth;
         CGFloat offset = (width - heigth)/2;
         CGRect croppedRect = CGRectMake(offset, 0, side, side);
         CGImageRef img = CGImageCreateWithImageInRect(origin.CGImage, croppedRect);
         squareImage = [[UIImage alloc] initWithCGImage:img];
+        img = nil;
     }
-    
     
     UIGraphicsBeginImageContextWithOptions(itemSize, YES, 0.0);
     CGRect imageRect2 = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);

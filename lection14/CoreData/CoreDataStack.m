@@ -47,12 +47,11 @@
     [self.coreDataPSC addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:nil error:&err];
     
     self.mainContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    _mainContext.persistentStoreCoordinator = self.coreDataPSC;
+    self.mainContext.persistentStoreCoordinator = self.coreDataPSC;
     self.mainContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy;
     
     self.privateContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-    self.privateContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy;
-    _privateContext.persistentStoreCoordinator = self.coreDataPSC;
+    [self.privateContext setParentContext:self.mainContext];
 }
 
 @end

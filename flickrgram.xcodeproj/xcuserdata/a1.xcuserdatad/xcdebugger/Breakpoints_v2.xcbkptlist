@@ -1187,107 +1187,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Services/SLVImageProcessing.m"
-            timestampString = "517701345.006093"
+            timestampString = "519894246.032092"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "+cropImage:toSize:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lection14/Services/SLVImageProcessing.m"
-            timestampString = "517701345.006093"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "+cropImage:toSize:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lection14/Services/SLVImageProcessing.m"
-            timestampString = "517701345.006093"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "+cropImage:toSize:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lection14/Services/SLVImageProcessing.m"
-            timestampString = "517701345.006093"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "+cropImage:toSize:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lection14/Services/SLVImageProcessing.m"
-            timestampString = "517701329.377326"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "+cropImage:toSize:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lection14/Services/SLVImageProcessing.m"
-            timestampString = "517701330.603817"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "+cropImage:toSize:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lection14/Services/SLVImageProcessing.m"
-            timestampString = "517701395.104621"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
             landmarkName = "+cropImage:toSize:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1363,11 +1267,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Views/Collection/SLVCollectionViewCell.m"
-            timestampString = "519661782.003751"
+            timestampString = "519894917.022021"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "-initWithFrame:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2024,7 +1928,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "88"
             endingLineNumber = "88"
-            landmarkName = "-deleteEntities:withPredicate:"
+            landmarkName = "-saveObject:forEntity:forAttribute:forKey:withCompletionHandler:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2499,12 +2403,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Views/Collection/SLVCollectionViewLayout.m"
-            timestampString = "519831134.073987"
+            timestampString = "519897638.627343"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "-calculateFrame:"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "-createPlacesRows:columns:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2531,11 +2435,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Views/Collection/SLVCollectionViewLayout.m"
-            timestampString = "519831134.073987"
+            timestampString = "519897309.309967"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "-calculateFrame:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2595,11 +2499,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Views/Collection/SLVCollectionViewLayout.m"
-            timestampString = "519831134.073987"
+            timestampString = "519897638.627343"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "-shouldInvalidateLayoutForBoundsChange:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3519,7 +3423,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Controllers/Collection/SLVCollectionViewDataProvider.m"
@@ -3561,6 +3465,80 @@
             startingLineNumber = "111"
             endingLineNumber = "111"
             landmarkName = "-imageForIndex:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            condition = "result.width == 0"
+            continueAfterRunningActions = "No"
+            filePath = "lection14/Views/Collection/SLVCollectionViewLayout.m"
+            timestampString = "519897638.627343"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "-createPlacesRows:columns:"
+            landmarkType = "7">
+            <Actions>
+               <BreakpointActionProxy
+                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
+                  <ActionContent
+                     consoleCommand = "po result">
+                  </ActionContent>
+               </BreakpointActionProxy>
+            </Actions>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lection14/Views/Collection/SLVCollectionViewLayout.m"
+            timestampString = "519897638.627343"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "-createPlacesRows:columns:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            condition = "item == 96"
+            continueAfterRunningActions = "No"
+            filePath = "lection14/Views/Collection/SLVCollectionViewLayout.m"
+            timestampString = "519897058.321764"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "-frameForIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lection14/Views/Collection/SLVCollectionViewLayout.m"
+            timestampString = "519897362.205636"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "-calculateFrame:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

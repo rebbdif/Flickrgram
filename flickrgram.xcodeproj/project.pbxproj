@@ -19,6 +19,9 @@
 		635722F71EF5B1FC000BB6CD /* SLVPostDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722F61EF5B1FC000BB6CD /* SLVPostDataProvider.m */; };
 		635722FA1EF5B4A7000BB6CD /* SLVPostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722F91EF5B4A7000BB6CD /* SLVPostModel.m */; };
 		635723001EF5F74C000BB6CD /* SLVFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722FF1EF5F74C000BB6CD /* SLVFacade.m */; };
+		6375B3A21EFD02B400AA41B2 /* SLVLayoutTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6375B3A11EFD02B400AA41B2 /* SLVLayoutTest.m */; };
+		6375B3A41EFD07CE00AA41B2 /* SLVImageDownloadOperationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6375B3A31EFD07CE00AA41B2 /* SLVImageDownloadOperationTest.m */; };
+		6375B3A71EFD0A8900AA41B2 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6375B3A51EFD089000AA41B2 /* OCMock.framework */; };
 		6392D1D61EE04CFD0050728D /* SLVCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1CA1EE04CFD0050728D /* SLVCollectionViewController.m */; };
 		6392D1D71EE04CFD0050728D /* SLVCollectionViewDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1CC1EE04CFD0050728D /* SLVCollectionViewDataProvider.m */; };
 		6392D1D81EE04CFD0050728D /* SLVFavouritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1CF1EE04CFD0050728D /* SLVFavouritesViewController.m */; };
@@ -38,7 +41,6 @@
 		6392D21E1EE88F410050728D /* SLVStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D21D1EE88F410050728D /* SLVStorageService.m */; };
 		6392D2221EEAC1090050728D /* SLVFavoritesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D2211EEAC1090050728D /* SLVFavoritesCell.m */; };
 		63ABAB831ED60E8900941726 /* SLVImageProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 63ABAB821ED60E8900941726 /* SLVImageProcessing.m */; };
-		63ABAB881ED873CC00941726 /* SLVImageDownloadOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63ABAB871ED873CB00941726 /* SLVImageDownloadOperationTests.m */; };
 		63ACEF3E1EBD3F53007C0D41 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63ACEF3C1EBD3B37007C0D41 /* Masonry.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +84,9 @@
 		635722FF1EF5F74C000BB6CD /* SLVFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVFacade.m; path = Models/SLVFacade.m; sourceTree = "<group>"; };
 		635723061EF6D06D000BB6CD /* SLVStorageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVStorageProtocol.h; path = Services/SLVStorageProtocol.h; sourceTree = "<group>"; };
 		635723071EF6D0BA000BB6CD /* SLVNetworkProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVNetworkProtocol.h; path = Services/SLVNetworkProtocol.h; sourceTree = "<group>"; };
+		6375B3A11EFD02B400AA41B2 /* SLVLayoutTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVLayoutTest.m; path = lection14Tests/SLVLayoutTest.m; sourceTree = "<group>"; };
+		6375B3A31EFD07CE00AA41B2 /* SLVImageDownloadOperationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVImageDownloadOperationTest.m; path = lection14Tests/SLVImageDownloadOperationTest.m; sourceTree = "<group>"; };
+		6375B3A51EFD089000AA41B2 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = Carthage/Build/iOS/OCMock.framework; sourceTree = "<group>"; };
 		6392D1C91EE04CFD0050728D /* SLVCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVCollectionViewController.h; sourceTree = "<group>"; };
 		6392D1CA1EE04CFD0050728D /* SLVCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVCollectionViewController.m; sourceTree = "<group>"; };
 		6392D1CB1EE04CFD0050728D /* SLVCollectionViewDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVCollectionViewDataProvider.h; sourceTree = "<group>"; };
@@ -119,7 +124,6 @@
 		6392D2211EEAC1090050728D /* SLVFavoritesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVFavoritesCell.m; path = Views/Favorites/SLVFavoritesCell.m; sourceTree = "<group>"; };
 		63ABAB811ED60E8900941726 /* SLVImageProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVImageProcessing.h; path = Services/SLVImageProcessing.h; sourceTree = "<group>"; };
 		63ABAB821ED60E8900941726 /* SLVImageProcessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVImageProcessing.m; path = Services/SLVImageProcessing.m; sourceTree = "<group>"; };
-		63ABAB871ED873CB00941726 /* SLVImageDownloadOperationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVImageDownloadOperationTests.m; path = lection14Tests/SLVImageDownloadOperationTests.m; sourceTree = "<group>"; };
 		63ACEF3C1EBD3B37007C0D41 /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = Carthage/Build/iOS/Masonry.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -136,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6375B3A71EFD0A8900AA41B2 /* OCMock.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,7 +369,8 @@
 		63ABAB891ED873D500941726 /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				63ABAB871ED873CB00941726 /* SLVImageDownloadOperationTests.m */,
+				6375B3A11EFD02B400AA41B2 /* SLVLayoutTest.m */,
+				6375B3A31EFD07CE00AA41B2 /* SLVImageDownloadOperationTest.m */,
 			);
 			name = UnitTests;
 			sourceTree = "<group>";
@@ -384,6 +390,7 @@
 		63ACEF3B1EBD3B36007C0D41 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6375B3A51EFD089000AA41B2 /* OCMock.framework */,
 				63ACEF3C1EBD3B37007C0D41 /* Masonry.framework */,
 			);
 			name = Frameworks;
@@ -400,7 +407,6 @@
 				04E2FF941EBB90A50074C5D9 /* Frameworks */,
 				04E2FF951EBB90A50074C5D9 /* Resources */,
 				63ACEF411EBD42AC007C0D41 /* ShellScript */,
-				63ACEF421EBD42B2007C0D41 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -498,25 +504,13 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Masonry.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/OCMock.framework",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-		63ACEF421EBD42B2007C0D41 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -561,7 +555,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63ABAB881ED873CC00941726 /* SLVImageDownloadOperationTests.m in Sources */,
+				6375B3A21EFD02B400AA41B2 /* SLVLayoutTest.m in Sources */,
+				6375B3A41EFD07CE00AA41B2 /* SLVImageDownloadOperationTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,6 +711,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 4BVAFGEHDW;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = lection14Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sbt.lection14Tests;
@@ -729,6 +728,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 4BVAFGEHDW;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = lection14Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sbt.lection14Tests;

@@ -35,7 +35,7 @@
     NSUInteger numberOfItems = [self.delegate numberOfItems];
     self.numberOfItems = numberOfItems ? numberOfItems : 0;
     self.numberOfColumns = 3;
-    self.numberOfRows = numberOfItems / 2;
+    self.numberOfRows = (numberOfItems + 1) / 2;
     self.defaultCellWidth = CGRectGetWidth(self.collectionView.frame) / 3;
     self.places = [self createPlacesRows:self.numberOfRows columns:self.numberOfColumns];
     NSMutableDictionary<NSIndexPath *, UICollectionViewLayoutAttributes *> *attributes = [NSMutableDictionary new];
@@ -75,7 +75,7 @@
 }
 
 - (CGRect)frameForIndexPath:(NSIndexPath *)indexPath {
-    CGRect frame;
+    CGRect frame = CGRectZero;
     NSUInteger item = indexPath.item;
     if ((item % 12 == 0) || (item % 12 == 7)) {
         NSUInteger size = 2;
@@ -90,15 +90,15 @@
 - (CGRect)calculateFrame:(NSUInteger)side {
     CGFloat cellSide = self.defaultCellWidth;
     CGRect result = CGRectNull;
-    for (NSUInteger i = 0; i < self.numberOfRows; ++i) {
-        for (NSUInteger j = 0; j < self.numberOfColumns; ++j) {
+    for (NSUInteger i = 0; i < _numberOfRows; ++i) {
+        for (NSUInteger j = 0; j < _numberOfColumns; ++j) {
             if (self.places[i][j] == true) {
                 if (side == 1) {
                     self.places[i][j] = false;
                     result = CGRectMake(j * cellSide, i * cellSide, cellSide * side, cellSide * side);
                     return result;
-                } else {
-                    if (j < self.numberOfColumns - 1 && i < self.numberOfRows - 1) {
+                } else if (side == 2) {
+                    if (j < _numberOfColumns - 1 && i < _numberOfRows - 1) {
                         self.places[i][j] = false;
                         self.places[i][j+1] = false;
                         self.places[i+1][j] = false;
