@@ -32,21 +32,25 @@
 
 - (void)prepareLayout {
     [super prepareLayout];
-    NSUInteger numberOfItems = [self.delegate numberOfItems];
-    self.numberOfItems = numberOfItems ? numberOfItems : 0;
-    self.numberOfColumns = 3;
-    NSUInteger extraCells = numberOfItems % 3;
-    numberOfItems += extraCells;
-    self.numberOfRows = (numberOfItems + 1) / 2;
-    self.defaultCellWidth = CGRectGetWidth(self.collectionView.frame) / 3;
-    self.places = [self createPlacesRows:self.numberOfRows columns:self.numberOfColumns];
+    [self countDimensions];
     NSMutableDictionary<NSIndexPath *, UICollectionViewLayoutAttributes *> *attributes = [NSMutableDictionary new];
-    for (NSUInteger i = 0; i < numberOfItems; ++i) {
+    for (NSUInteger i = 0; i < self.numberOfItems; ++i) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
         UICollectionViewLayoutAttributes *attribute = [self layoutAttributesForItemAtIndexPath:indexPath];
         [attributes setObject:attribute forKey:indexPath];
     }
     self.cellAtributes = [attributes copy];
+}
+
+- (void)countDimensions {
+    NSUInteger numberOfItems = [self.delegate numberOfItems];
+    self.numberOfItems = numberOfItems ? numberOfItems : 0;
+    self.numberOfColumns = 3;
+    NSUInteger extraCells = self.numberOfItems % 3;
+    self.numberOfItems += extraCells;
+    self.numberOfRows = (self.numberOfItems + 1) / 2;
+    self.defaultCellWidth = CGRectGetWidth(self.collectionView.frame) / 3;
+    self.places = [self createPlacesRows:self.numberOfRows columns:self.numberOfColumns];
 }
 
 - (CGSize)collectionViewContentSize {

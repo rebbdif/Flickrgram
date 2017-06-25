@@ -43,7 +43,7 @@ static NSString *const kItemEntity = @"SLVItem";
 
 #pragma mark - first start
 
-- (void)firstStart:(NSString *)searchRequest {
+- (void)firstStart:(NSString *)searchRequest withCompletionHandler:(voidBlock)completionHandler {
     self.request = searchRequest;
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"searchRequest ==%@", searchRequest];
     NSArray<SLVItem *> *fetchedItems = [self.storageService fetchEntities:kItemEntity withPredicate:predicate];
@@ -56,6 +56,7 @@ static NSString *const kItemEntity = @"SLVItem";
     self.items = newItems;
     self.itemURLs = newItems;
     ++self.page;
+    completionHandler();
 }
 
 #pragma mark - downloading items for search request

@@ -83,8 +83,11 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
     NSString *searchRequest = [[NSUserDefaults standardUserDefaults] objectForKey:@"searchRequest"];
     if (searchRequest) {
         self.collectionView.searchBar.text = searchRequest;
-        [self.model firstStart:searchRequest];
-        [self.collectionView reloadData];
+        [self.model firstStart:searchRequest withCompletionHandler:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.collectionView reloadData];
+            });
+        }];
     } else {
         [self.collectionView.searchBar becomeFirstResponder];
     }

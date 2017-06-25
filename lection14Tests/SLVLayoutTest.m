@@ -24,6 +24,7 @@
 - (CGSize)collectionViewContentSize;
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect;
 #pragma mark - helper methods
+- (void)countDimensions;
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath;
 - (CGRect)frameForIndexPath:(NSIndexPath *)indexPath;
 - (CGRect)calculateFrame:(NSUInteger)side;
@@ -55,6 +56,8 @@
     [super tearDown];
 }
 
+#pragma mark - frameForIndexPathTests
+
 - (void)test30Items {
     NSUInteger numberOfItems = 30;
     NSUInteger extraCells = 3 - (numberOfItems % 3);
@@ -69,7 +72,6 @@
         XCTAssert(width != 0);
     }
 }
-
 
 - (void)testItemsIterative {
     for (NSUInteger numberOfItems = 0; numberOfItems < 100; ++numberOfItems) {
@@ -86,6 +88,14 @@
             XCTAssertTrue(width != 0, @"%ld items, %ld rows, i = %ld", numberOfItems, self.layout.numberOfRows, i);
         }
     }
+}
+
+#pragma mark - prepareLayoutTests
+
+- (void)testCountDimensionsNormal {
+    OCMStub([self.collectionLayoutDelegateMock numberOfItems]).andReturn(30);
+    [self.layout countDimensions];
+    
 }
 
 @end

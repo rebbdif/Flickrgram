@@ -68,10 +68,12 @@
 
 - (NSString *)moveToDocumentsFromLocation:(NSURL *)location lastPathComponent:(NSString *)lastPathComponent {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray *savedURLs=[fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
-    NSURL *documentsDirectory = [savedURLs objectAtIndex:0];
-    NSURL *destinationUrl = [documentsDirectory URLByAppendingPathComponent:lastPathComponent];
-    
+    NSURL *documentsURL = [fileManager URLForDirectory:NSDocumentDirectory
+                                                                 inDomain:NSUserDomainMask
+                                                        appropriateForURL:nil
+                                                                   create:NO
+                                                                    error:nil];
+    NSURL *destinationUrl = [documentsURL URLByAppendingPathComponent:lastPathComponent];
     NSError *error = nil;
     [fileManager removeItemAtURL:destinationUrl error:NULL];
     [fileManager copyItemAtURL:location toURL:destinationUrl error:&error];
