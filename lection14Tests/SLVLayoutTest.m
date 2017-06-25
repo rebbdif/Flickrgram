@@ -45,7 +45,6 @@
     [super setUp];
     self.collectionLayoutDelegateMock = OCMProtocolMock(@protocol(SLVCollectionLayoutDelegate));
     self.layout = [[SLVCollectionViewLayout alloc] initWithDelegate:self.collectionLayoutDelegateMock];
-    OCMStub([self.collectionLayoutDelegateMock numberOfItems]).andReturn(30);
     self.layout.numberOfColumns = 3;
     self.layout.defaultCellWidth = 125;
 }
@@ -56,16 +55,28 @@
     [super tearDown];
 }
 
+#pragma mark - prepareLayoutTests
+
+- (void)testCountDimensionsNormal {
+    OCMStub([self.collectionLayoutDelegateMock numberOfItems]).andReturn(22);
+    [self.layout countDimensions];
+    XCTAssert(self.layout.numberOfItems == 23);
+    XCTAssert(self.layout.numberOfRows == 12);
+}
+
+- (void)testCountDimensionsZero {
+    OCMStub([self.collectionLayoutDelegateMock numberOfItems]).andReturn(0);
+    [self.layout countDimensions];
+    XCTAssert(self.layout.numberOfItems == 0);
+    XCTAssert(self.layout.numberOfRows == 0);
+}
+
 #pragma mark - frameForIndexPathTests
 
 - (void)test30Items {
-    NSUInteger numberOfItems = 30;
-    NSUInteger extraCells = 3 - (numberOfItems % 3);
-    numberOfItems += extraCells;
-    self.layout.numberOfRows = (numberOfItems + 1) / 2;
+    [self.layout countDimensions];
     self.layout.places = [self.layout createPlacesRows:self.layout.numberOfRows columns:self.layout.numberOfColumns];
-    
-    for (NSUInteger i = 0; i < numberOfItems; ++i) {
+    for (NSUInteger i = 0; i < self.layout.numberOfItems; ++i) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
         CGRect frame = [self.layout frameForIndexPath:indexPath];
         CGFloat width = CGRectGetWidth(frame);
@@ -75,27 +86,15 @@
 
 - (void)testItemsIterative {
     for (NSUInteger numberOfItems = 0; numberOfItems < 100; ++numberOfItems) {
-        NSUInteger newNumberOfItems = numberOfItems;
-        NSUInteger extraCells = 3 - (newNumberOfItems % 3);
-        newNumberOfItems += extraCells;
-        self.layout.numberOfRows = (newNumberOfItems + 1) / 2;
+        [self.layout countDimensions];
         self.layout.places = [self.layout createPlacesRows:self.layout.numberOfRows columns:self.layout.numberOfColumns];
-        
-        for (NSUInteger i = 0; i < newNumberOfItems; ++i) {
+        for (NSUInteger i = 0; i < self.layout.numberOfItems; ++i) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
             CGRect frame = [self.layout frameForIndexPath:indexPath];
             CGFloat width = CGRectGetWidth(frame);
             XCTAssertTrue(width != 0, @"%ld items, %ld rows, i = %ld", numberOfItems, self.layout.numberOfRows, i);
         }
     }
-}
-
-#pragma mark - prepareLayoutTests
-
-- (void)testCountDimensionsNormal {
-    OCMStub([self.collectionLayoutDelegateMock numberOfItems]).andReturn(30);
-    [self.layout countDimensions];
-    
 }
 
 @end

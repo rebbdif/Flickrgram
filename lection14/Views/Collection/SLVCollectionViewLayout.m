@@ -33,6 +33,7 @@
 - (void)prepareLayout {
     [super prepareLayout];
     [self countDimensions];
+    self.places = [self createPlacesRows:self.numberOfRows columns:self.numberOfColumns];
     NSMutableDictionary<NSIndexPath *, UICollectionViewLayoutAttributes *> *attributes = [NSMutableDictionary new];
     for (NSUInteger i = 0; i < self.numberOfItems; ++i) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
@@ -50,7 +51,6 @@
     self.numberOfItems += extraCells;
     self.numberOfRows = (self.numberOfItems + 1) / 2;
     self.defaultCellWidth = CGRectGetWidth(self.collectionView.frame) / 3;
-    self.places = [self createPlacesRows:self.numberOfRows columns:self.numberOfColumns];
 }
 
 - (CGSize)collectionViewContentSize {
