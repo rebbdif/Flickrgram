@@ -9,8 +9,6 @@
 #import "SLVCollectionViewDataProvider.h"
 #import "SLVCollectionViewCell.h"
 
-static NSString * const reuseIdentifier = @"Cell";
-
 @interface SLVCollectionViewDataProvider()
 
 @property (nonatomic, weak, readonly) id<SLVCollectionModelProtocol> model;
@@ -20,8 +18,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 @implementation SLVCollectionViewDataProvider
 
-- (instancetype)initWithCollectionView:(UICollectionView *)collectionView
-                                 model:(id<SLVCollectionModelProtocol>)model {
+- (instancetype)initWithCollectionView:(UICollectionView *)collectionView model:(id<SLVCollectionModelProtocol>)model {
     self = [super init];
     if (self) {
         _collectionView = collectionView;
@@ -33,8 +30,7 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark - UICollectionViewDataSource
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    SLVCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    cell.indexLabel.text = [NSString stringWithFormat:@"%ld", indexPath.item];
+    SLVCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([SLVCollectionViewCell class]) forIndexPath:indexPath];
     UIImage *image = [self.model imageForIndex:indexPath.item];
     if (!image) {
         cell.activityIndicator.hidden = NO;
@@ -63,12 +59,8 @@ static NSString * const reuseIdentifier = @"Cell";
         dispatch_async(dispatch_get_main_queue(), ^{
             SLVCollectionViewCell *cell = ((SLVCollectionViewCell *)([self.collectionView cellForItemAtIndexPath:indexPath]));
             [cell.activityIndicator stopAnimating];
-            cell.indexLabel.text = [NSString stringWithFormat:@"%ld", indexPath.item];
             UIImage *image = [strongSelf.model imageForIndex:indexPath.item];
-            if (!image) {
-                NSLog(@"cellForItem couldn't download or save image");
-            }
-                  cell.imageView.image = image;
+            cell.imageView.image = image;
         });
     }];
 }

@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SLVModelProtocol.h"
+#import "SLVFacadeProtocol.h"
 
 @interface SLVSettingsViewController : UIViewController
 
-- (instancetype)initWithModel:(id<SLVModelProtocol>)model;
+- (instancetype)initWithModel:(id<SLVFacadeProtocol>)model;
 
 @end

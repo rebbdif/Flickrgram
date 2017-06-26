@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @import CoreData;
 
-@interface CoreDataStack : NSObject
+@interface SLVCoreDataStack : NSObject
 
 @property (nonatomic, strong, readonly) NSManagedObjectContext *mainContext;
 @property (nonatomic, strong, readonly) NSManagedObjectContext *privateContext;
@@ -19,7 +19,5 @@
 
 - (instancetype)initStack NS_DESIGNATED_INITIALIZER;
 + (instancetype)stack;
-
-- (void)deletePersistentStoreCoordinator;
 
 @end

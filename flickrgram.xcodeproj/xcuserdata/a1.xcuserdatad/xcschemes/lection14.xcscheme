@@ -38,6 +38,16 @@
                ReferencedContainer = "container:flickrgram.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6375B3B51EFD28BF00AA41B2"
+               BuildableName = "lection14UnitTests.xctest"
+               BlueprintName = "lection14UnitTests"
+               ReferencedContainer = "container:flickrgram.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

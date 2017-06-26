@@ -9,12 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "SLVCollectionModelProtocol.h"
 #import "SLVFacadeProtocol.h"
-#import "SLVModel.h"
 
 @class SLVItem;
 @class NSManagedObjectContext;
 
-@interface SLVCollectionModel : SLVModel <SLVCollectionModelProtocol>
+@interface SLVCollectionModel : NSObject <SLVCollectionModelProtocol>
 
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;

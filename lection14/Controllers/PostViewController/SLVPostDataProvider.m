@@ -49,6 +49,8 @@
     }
 }
 
+# pragma mark - cellForRowAtIndexPath
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self configureCellForTableView:tableView atIndexPath:indexPath];
     return cell;
@@ -75,7 +77,8 @@
     SLVImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell"];
     cell.delegate = self.controller;
     SLVItem *selectedItem = [self.model getSelectedItem];
-    UIImage *image = selectedItem.largePhoto;
+    NSString *destinationPath = [NSHomeDirectory() stringByAppendingPathComponent:selectedItem.largePhoto];
+    UIImage *image = [UIImage imageWithContentsOfFile:destinationPath];
     if (!image) {
         cell.spinner.hidden = NO;
         [cell.spinner startAnimating];
@@ -85,8 +88,8 @@
             if (strongSelf) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     SLVImageCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-                    SLVItem *selectedItem = [strongSelf.model getSelectedItem];
-                    cell.photoView.image = selectedItem.largePhoto;
+                    NSString *destinationPath = [NSHomeDirectory() stringByAppendingPathComponent:selectedItem.largePhoto];
+                    cell.photoView.image = [UIImage imageWithContentsOfFile:destinationPath];
                     [cell.spinner stopAnimating];
                 });
             }

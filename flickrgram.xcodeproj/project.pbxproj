@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		042903421EF536900066039B /* SLVConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 042903411EF536900066039B /* SLVConstants.m */; };
 		04E2FF9C1EBB90A50074C5D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2FF9B1EBB90A50074C5D9 /* main.m */; };
 		04E2FF9F1EBB90A50074C5D9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2FF9E1EBB90A50074C5D9 /* AppDelegate.m */; };
 		04E2FFAA1EBB90A50074C5D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04E2FFA91EBB90A50074C5D9 /* Assets.xcassets */; };
@@ -18,28 +17,30 @@
 		635722F41EF5B091000BB6CD /* SLVPostView.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722F31EF5B091000BB6CD /* SLVPostView.m */; };
 		635722F71EF5B1FC000BB6CD /* SLVPostDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722F61EF5B1FC000BB6CD /* SLVPostDataProvider.m */; };
 		635722FA1EF5B4A7000BB6CD /* SLVPostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722F91EF5B4A7000BB6CD /* SLVPostModel.m */; };
-		635723001EF5F74C000BB6CD /* SLVModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722FF1EF5F74C000BB6CD /* SLVModel.m */; };
-		635723041EF5FB8F000BB6CD /* SLVFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 635723031EF5FB8F000BB6CD /* SLVFacade.m */; };
+		635723001EF5F74C000BB6CD /* SLVFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722FF1EF5F74C000BB6CD /* SLVFacade.m */; };
+		6375B3A71EFD0A8900AA41B2 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6375B3A51EFD089000AA41B2 /* OCMock.framework */; };
+		6375B3B01EFD20B000AA41B2 /* SLVLayoutTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6375B3AF1EFD20B000AA41B2 /* SLVLayoutTest.m */; };
+		6375B3B11EFD20E500AA41B2 /* SLVCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1DF1EE04D3A0050728D /* SLVCollectionViewLayout.m */; };
+		6375B3D21F01202C00AA41B2 /* SLVFavoritesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6375B3D11F01202C00AA41B2 /* SLVFavoritesModel.m */; };
+		6375B3D71F01307600AA41B2 /* SLVTestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6375B3D61F01307600AA41B2 /* SLVTestAppDelegate.m */; };
 		6392D1D61EE04CFD0050728D /* SLVCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1CA1EE04CFD0050728D /* SLVCollectionViewController.m */; };
 		6392D1D71EE04CFD0050728D /* SLVCollectionViewDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1CC1EE04CFD0050728D /* SLVCollectionViewDataProvider.m */; };
-		6392D1D81EE04CFD0050728D /* SLVFavouritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1CF1EE04CFD0050728D /* SLVFavouritesViewController.m */; };
+		6392D1D81EE04CFD0050728D /* SLVFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1CF1EE04CFD0050728D /* SLVFavoritesViewController.m */; };
 		6392D1D91EE04CFD0050728D /* SLVPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1D21EE04CFD0050728D /* SLVPostController.m */; };
 		6392D1DA1EE04CFD0050728D /* SLVSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1D51EE04CFD0050728D /* SLVSettingsViewController.m */; };
-		6392D1E01EE04D3A0050728D /* SLVCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1DD1EE04D3A0050728D /* SLVCollectionView.m */; };
-		6392D1E11EE04D3A0050728D /* SLVCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1DF1EE04D3A0050728D /* SLVCollectionViewLayout.m */; };
+		6392D1E01EE04D3A0050728D /* SLVCollectionNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1DD1EE04D3A0050728D /* SLVCollectionNavigationBar.m */; };
 		6392D1E71EE04D4E0050728D /* UIColor+SLVColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1E41EE04D4E0050728D /* UIColor+SLVColor.m */; };
 		6392D1E81EE04D4E0050728D /* UIFont+SLVFonts.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1E61EE04D4E0050728D /* UIFont+SLVFonts.m */; };
 		6392D1EF1EE741BE0050728D /* SLVCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1EE1EE741BE0050728D /* SLVCollectionViewCell.m */; };
 		6392D1F21EE7F92E0050728D /* SLVPostViewCells.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1F11EE7F92E0050728D /* SLVPostViewCells.m */; };
 		6392D1F71EE84A920050728D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1F51EE84A920050728D /* Model.xcdatamodeld */; };
-		6392D20C1EE874BF0050728D /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D20B1EE874BF0050728D /* CoreDataStack.m */; };
+		6392D20C1EE874BF0050728D /* SLVCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D20B1EE874BF0050728D /* SLVCoreDataStack.m */; };
 		6392D20F1EE875790050728D /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D20E1EE875790050728D /* Comment.m */; };
 		6392D2121EE875980050728D /* Human.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D2111EE875980050728D /* Human.m */; };
 		6392D2151EE875A50050728D /* SLVItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D2141EE875A50050728D /* SLVItem.m */; };
 		6392D21E1EE88F410050728D /* SLVStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D21D1EE88F410050728D /* SLVStorageService.m */; };
 		6392D2221EEAC1090050728D /* SLVFavoritesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D2211EEAC1090050728D /* SLVFavoritesCell.m */; };
 		63ABAB831ED60E8900941726 /* SLVImageProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 63ABAB821ED60E8900941726 /* SLVImageProcessing.m */; };
-		63ABAB881ED873CC00941726 /* SLVImageDownloadOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63ABAB871ED873CB00941726 /* SLVImageDownloadOperationTests.m */; };
 		63ACEF3E1EBD3F53007C0D41 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63ACEF3C1EBD3B37007C0D41 /* Masonry.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,8 +55,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		042903411EF536900066039B /* SLVConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVConstants.m; path = Constants/SLVConstants.m; sourceTree = "<group>"; };
-		042903431EF536A80066039B /* SLVConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SLVConstants.h; path = Constants/SLVConstants.h; sourceTree = "<group>"; };
 		04E2FF971EBB90A50074C5D9 /* lection14.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lection14.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04E2FF9B1EBB90A50074C5D9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		04E2FF9D1EBB90A50074C5D9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -73,44 +72,47 @@
 		635722F11EF59FCF000BB6CD /* SLVCollectionModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVCollectionModelProtocol.h; path = Protocols/SLVCollectionModelProtocol.h; sourceTree = "<group>"; };
 		635722F21EF5B091000BB6CD /* SLVPostView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPostView.h; path = Views/Post/SLVPostView.h; sourceTree = "<group>"; };
 		635722F31EF5B091000BB6CD /* SLVPostView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVPostView.m; path = Views/Post/SLVPostView.m; sourceTree = "<group>"; };
-		635722F51EF5B1FC000BB6CD /* SLVPostDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVPostDataProvider.h; sourceTree = "<group>"; };
-		635722F61EF5B1FC000BB6CD /* SLVPostDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVPostDataProvider.m; sourceTree = "<group>"; };
+		635722F51EF5B1FC000BB6CD /* SLVPostDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPostDataProvider.h; path = Controllers/PostViewController/SLVPostDataProvider.h; sourceTree = "<group>"; };
+		635722F61EF5B1FC000BB6CD /* SLVPostDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVPostDataProvider.m; path = Controllers/PostViewController/SLVPostDataProvider.m; sourceTree = "<group>"; };
 		635722F81EF5B4A7000BB6CD /* SLVPostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPostModel.h; path = Models/SLVPostModel.h; sourceTree = "<group>"; };
 		635722F91EF5B4A7000BB6CD /* SLVPostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVPostModel.m; path = Models/SLVPostModel.m; sourceTree = "<group>"; };
 		635722FB1EF5B4DC000BB6CD /* SLVPostModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPostModelProtocol.h; path = Protocols/SLVPostModelProtocol.h; sourceTree = "<group>"; };
-		635722FD1EF5C2A0000BB6CD /* SLVModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVModelProtocol.h; path = Protocols/SLVModelProtocol.h; sourceTree = "<group>"; };
-		635722FE1EF5F74C000BB6CD /* SLVModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVModel.h; path = Models/SLVModel.h; sourceTree = "<group>"; };
-		635722FF1EF5F74C000BB6CD /* SLVModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVModel.m; path = Models/SLVModel.m; sourceTree = "<group>"; };
-		635723021EF5FB8F000BB6CD /* SLVFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVFacade.h; path = Facade/SLVFacade.h; sourceTree = "<group>"; };
-		635723031EF5FB8F000BB6CD /* SLVFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVFacade.m; path = Facade/SLVFacade.m; sourceTree = "<group>"; };
-		635723051EF69EDA000BB6CD /* SLVFacadeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVFacadeProtocol.h; path = Protocols/SLVFacadeProtocol.h; sourceTree = "<group>"; };
+		635722FD1EF5C2A0000BB6CD /* SLVFacadeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVFacadeProtocol.h; path = Protocols/SLVFacadeProtocol.h; sourceTree = "<group>"; };
+		635722FE1EF5F74C000BB6CD /* SLVFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVFacade.h; path = Models/SLVFacade.h; sourceTree = "<group>"; };
+		635722FF1EF5F74C000BB6CD /* SLVFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVFacade.m; path = Models/SLVFacade.m; sourceTree = "<group>"; };
 		635723061EF6D06D000BB6CD /* SLVStorageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVStorageProtocol.h; path = Services/SLVStorageProtocol.h; sourceTree = "<group>"; };
 		635723071EF6D0BA000BB6CD /* SLVNetworkProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVNetworkProtocol.h; path = Services/SLVNetworkProtocol.h; sourceTree = "<group>"; };
-		6392D1C91EE04CFD0050728D /* SLVCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVCollectionViewController.h; sourceTree = "<group>"; };
-		6392D1CA1EE04CFD0050728D /* SLVCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVCollectionViewController.m; sourceTree = "<group>"; };
-		6392D1CB1EE04CFD0050728D /* SLVCollectionViewDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVCollectionViewDataProvider.h; sourceTree = "<group>"; };
-		6392D1CC1EE04CFD0050728D /* SLVCollectionViewDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVCollectionViewDataProvider.m; sourceTree = "<group>"; };
-		6392D1CE1EE04CFD0050728D /* SLVFavouritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVFavouritesViewController.h; sourceTree = "<group>"; };
-		6392D1CF1EE04CFD0050728D /* SLVFavouritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVFavouritesViewController.m; sourceTree = "<group>"; };
-		6392D1D11EE04CFD0050728D /* SLVPostController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVPostController.h; sourceTree = "<group>"; };
-		6392D1D21EE04CFD0050728D /* SLVPostController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVPostController.m; sourceTree = "<group>"; };
-		6392D1D41EE04CFD0050728D /* SLVSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVSettingsViewController.h; sourceTree = "<group>"; };
-		6392D1D51EE04CFD0050728D /* SLVSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVSettingsViewController.m; sourceTree = "<group>"; };
-		6392D1DC1EE04D3A0050728D /* SLVCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVCollectionView.h; sourceTree = "<group>"; };
-		6392D1DD1EE04D3A0050728D /* SLVCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVCollectionView.m; sourceTree = "<group>"; };
-		6392D1DE1EE04D3A0050728D /* SLVCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVCollectionViewLayout.h; sourceTree = "<group>"; };
-		6392D1DF1EE04D3A0050728D /* SLVCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVCollectionViewLayout.m; sourceTree = "<group>"; };
+		6375B3A51EFD089000AA41B2 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = Carthage/Build/iOS/OCMock.framework; sourceTree = "<group>"; };
+		6375B3AF1EFD20B000AA41B2 /* SLVLayoutTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVLayoutTest.m; path = lection14Tests/SLVLayoutTest.m; sourceTree = "<group>"; };
+		6375B3D01F01202C00AA41B2 /* SLVFavoritesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVFavoritesModel.h; path = Models/SLVFavoritesModel.h; sourceTree = "<group>"; };
+		6375B3D11F01202C00AA41B2 /* SLVFavoritesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVFavoritesModel.m; path = Models/SLVFavoritesModel.m; sourceTree = "<group>"; };
+		6375B3D51F01307600AA41B2 /* SLVTestAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVTestAppDelegate.h; sourceTree = "<group>"; };
+		6375B3D61F01307600AA41B2 /* SLVTestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVTestAppDelegate.m; sourceTree = "<group>"; };
+		6392D1C91EE04CFD0050728D /* SLVCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVCollectionViewController.h; path = Controllers/Collection/SLVCollectionViewController.h; sourceTree = "<group>"; };
+		6392D1CA1EE04CFD0050728D /* SLVCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVCollectionViewController.m; path = Controllers/Collection/SLVCollectionViewController.m; sourceTree = "<group>"; };
+		6392D1CB1EE04CFD0050728D /* SLVCollectionViewDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVCollectionViewDataProvider.h; path = Controllers/Collection/SLVCollectionViewDataProvider.h; sourceTree = "<group>"; };
+		6392D1CC1EE04CFD0050728D /* SLVCollectionViewDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVCollectionViewDataProvider.m; path = Controllers/Collection/SLVCollectionViewDataProvider.m; sourceTree = "<group>"; };
+		6392D1CE1EE04CFD0050728D /* SLVFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVFavoritesViewController.h; path = Controllers/Favorites/SLVFavoritesViewController.h; sourceTree = "<group>"; };
+		6392D1CF1EE04CFD0050728D /* SLVFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVFavoritesViewController.m; path = Controllers/Favorites/SLVFavoritesViewController.m; sourceTree = "<group>"; };
+		6392D1D11EE04CFD0050728D /* SLVPostController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPostController.h; path = Controllers/PostViewController/SLVPostController.h; sourceTree = "<group>"; };
+		6392D1D21EE04CFD0050728D /* SLVPostController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVPostController.m; path = Controllers/PostViewController/SLVPostController.m; sourceTree = "<group>"; };
+		6392D1D41EE04CFD0050728D /* SLVSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVSettingsViewController.h; path = Controllers/SettingsViewController/SLVSettingsViewController.h; sourceTree = "<group>"; };
+		6392D1D51EE04CFD0050728D /* SLVSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVSettingsViewController.m; path = Controllers/SettingsViewController/SLVSettingsViewController.m; sourceTree = "<group>"; };
+		6392D1DC1EE04D3A0050728D /* SLVCollectionNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVCollectionNavigationBar.h; path = Views/Collection/SLVCollectionNavigationBar.h; sourceTree = "<group>"; };
+		6392D1DD1EE04D3A0050728D /* SLVCollectionNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVCollectionNavigationBar.m; path = Views/Collection/SLVCollectionNavigationBar.m; sourceTree = "<group>"; };
+		6392D1DE1EE04D3A0050728D /* SLVCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVCollectionViewLayout.h; path = Views/Collection/SLVCollectionViewLayout.h; sourceTree = "<group>"; };
+		6392D1DF1EE04D3A0050728D /* SLVCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVCollectionViewLayout.m; path = Views/Collection/SLVCollectionViewLayout.m; sourceTree = "<group>"; };
 		6392D1E31EE04D4E0050728D /* UIColor+SLVColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+SLVColor.h"; sourceTree = "<group>"; };
 		6392D1E41EE04D4E0050728D /* UIColor+SLVColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SLVColor.m"; sourceTree = "<group>"; };
 		6392D1E51EE04D4E0050728D /* UIFont+SLVFonts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+SLVFonts.h"; sourceTree = "<group>"; };
 		6392D1E61EE04D4E0050728D /* UIFont+SLVFonts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+SLVFonts.m"; sourceTree = "<group>"; };
-		6392D1ED1EE741BE0050728D /* SLVCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVCollectionViewCell.h; sourceTree = "<group>"; };
-		6392D1EE1EE741BE0050728D /* SLVCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLVCollectionViewCell.m; sourceTree = "<group>"; };
+		6392D1ED1EE741BE0050728D /* SLVCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVCollectionViewCell.h; path = Views/Collection/SLVCollectionViewCell.h; sourceTree = "<group>"; };
+		6392D1EE1EE741BE0050728D /* SLVCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVCollectionViewCell.m; path = Views/Collection/SLVCollectionViewCell.m; sourceTree = "<group>"; };
 		6392D1F01EE7F92E0050728D /* SLVPostViewCells.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPostViewCells.h; path = Views/Post/SLVPostViewCells.h; sourceTree = "<group>"; };
 		6392D1F11EE7F92E0050728D /* SLVPostViewCells.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVPostViewCells.m; path = Views/Post/SLVPostViewCells.m; sourceTree = "<group>"; };
 		6392D1F61EE84A920050728D /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		6392D20A1EE874BF0050728D /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataStack.h; path = CoreData/CoreDataStack.h; sourceTree = "<group>"; };
-		6392D20B1EE874BF0050728D /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataStack.m; path = CoreData/CoreDataStack.m; sourceTree = "<group>"; };
+		6392D20A1EE874BF0050728D /* SLVCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVCoreDataStack.h; path = CoreData/SLVCoreDataStack.h; sourceTree = "<group>"; };
+		6392D20B1EE874BF0050728D /* SLVCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVCoreDataStack.m; path = CoreData/SLVCoreDataStack.m; sourceTree = "<group>"; };
 		6392D20D1EE875790050728D /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Comment.h; path = CoreData/Comment.h; sourceTree = "<group>"; };
 		6392D20E1EE875790050728D /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Comment.m; path = CoreData/Comment.m; sourceTree = "<group>"; };
 		6392D2101EE875980050728D /* Human.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Human.h; path = CoreData/Human.h; sourceTree = "<group>"; };
@@ -123,7 +125,6 @@
 		6392D2211EEAC1090050728D /* SLVFavoritesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVFavoritesCell.m; path = Views/Favorites/SLVFavoritesCell.m; sourceTree = "<group>"; };
 		63ABAB811ED60E8900941726 /* SLVImageProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVImageProcessing.h; path = Services/SLVImageProcessing.h; sourceTree = "<group>"; };
 		63ABAB821ED60E8900941726 /* SLVImageProcessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVImageProcessing.m; path = Services/SLVImageProcessing.m; sourceTree = "<group>"; };
-		63ABAB871ED873CB00941726 /* SLVImageDownloadOperationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVImageDownloadOperationTests.m; path = lection14Tests/SLVImageDownloadOperationTests.m; sourceTree = "<group>"; };
 		63ACEF3C1EBD3B37007C0D41 /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = Carthage/Build/iOS/Masonry.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,21 +141,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6375B3A71EFD0A8900AA41B2 /* OCMock.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		042903401EF536600066039B /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				042903411EF536900066039B /* SLVConstants.m */,
-				042903431EF536A80066039B /* SLVConstants.h */,
-			);
-			name = Constants;
-			sourceTree = "<group>";
-		};
 		04E2FF8E1EBB90A50074C5D9 = {
 			isa = PBXGroup;
 			children = (
@@ -177,15 +170,9 @@
 		04E2FF991EBB90A50074C5D9 /* lection14 */ = {
 			isa = PBXGroup;
 			children = (
-				635723011EF5FB5B000BB6CD /* Facade */,
-				635722F01EF59F61000BB6CD /* ModelProtocols */,
-				042903401EF536600066039B /* Constants */,
-				6392D1F41EE84A580050728D /* CoreData */,
+				6375B3C01EFD5B5D00AA41B2 /* Classes */,
 				6392D1E21EE04D4E0050728D /* Extentions */,
 				63ACEF371EBC951A007C0D41 /* Application */,
-				04E2FFD71EBBAC620074C5D9 /* Views */,
-				04E2FFD11EBBABF70074C5D9 /* Controllers */,
-				04E2FFD21EBBAC040074C5D9 /* Models */,
 				04E2FFD31EBBAC0F0074C5D9 /* Services */,
 				04E2FF9A1EBB90A50074C5D9 /* Supporting Files */,
 			);
@@ -195,43 +182,31 @@
 		04E2FF9A1EBB90A50074C5D9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				04E2FF9B1EBB90A50074C5D9 /* main.m */,
+				04E2FFAB1EBB90A50074C5D9 /* LaunchScreen.storyboard */,
+				04E2FFA91EBB90A50074C5D9 /* Assets.xcassets */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		04E2FFD11EBBABF70074C5D9 /* Controllers */ = {
+		04E2FFD11EBBABF70074C5D9 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				6392D1C81EE04CFD0050728D /* Collection */,
-				6392D1CD1EE04CFD0050728D /* Favorites */,
-				6392D1D01EE04CFD0050728D /* PostViewController */,
-				6392D1D31EE04CFD0050728D /* SettingsViewController */,
-			);
-			name = Controllers;
-			sourceTree = "<group>";
-		};
-		04E2FFD21EBBAC040074C5D9 /* Models */ = {
-			isa = PBXGroup;
-			children = (
+				6375B3C11EFD5C6800AA41B2 /* Entities */,
 				6350EF8D1ED5923100D7C8CE /* SLVImageDownloadOperation.h */,
 				6350EF8E1ED5923100D7C8CE /* SLVImageDownloadOperation.m */,
-				635722FE1EF5F74C000BB6CD /* SLVModel.h */,
-				635722FF1EF5F74C000BB6CD /* SLVModel.m */,
-				6350EF891ED5843000D7C8CE /* SLVCollectionModel.h */,
-				6350EF8A1ED5843000D7C8CE /* SLVCollectionModel.m */,
-				635722F81EF5B4A7000BB6CD /* SLVPostModel.h */,
-				635722F91EF5B4A7000BB6CD /* SLVPostModel.m */,
+				635722FD1EF5C2A0000BB6CD /* SLVFacadeProtocol.h */,
+				635722FE1EF5F74C000BB6CD /* SLVFacade.h */,
+				635722FF1EF5F74C000BB6CD /* SLVFacade.m */,
+				6392D1D41EE04CFD0050728D /* SLVSettingsViewController.h */,
+				6392D1D51EE04CFD0050728D /* SLVSettingsViewController.m */,
 			);
-			name = Models;
+			name = Other;
 			sourceTree = "<group>";
 		};
 		04E2FFD31EBBAC0F0074C5D9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				635723061EF6D06D000BB6CD /* SLVStorageProtocol.h */,
-				6392D21C1EE88F410050728D /* SLVStorageService.h */,
-				6392D21D1EE88F410050728D /* SLVStorageService.m */,
+				6392D1F41EE84A580050728D /* Storage */,
 				635723071EF6D0BA000BB6CD /* SLVNetworkProtocol.h */,
 				6350EF841ED5841F00D7C8CE /* SLVNetworkManager.h */,
 				6350EF851ED5841F00D7C8CE /* SLVNetworkManager.m */,
@@ -241,37 +216,64 @@
 			name = Services;
 			sourceTree = "<group>";
 		};
-		04E2FFD71EBBAC620074C5D9 /* Views */ = {
+		6375B3C01EFD5B5D00AA41B2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				6392D21F1EEAC0BC0050728D /* Favorites */,
-				6392D1DB1EE04D3A0050728D /* Collection */,
-				6392D1F31EE7F9350050728D /* Post */,
+				6375B3CF1F011FB800AA41B2 /* Favorites */,
+				6375B3C61EFD5CEE00AA41B2 /* Post */,
+				6375B3C21EFD5C7E00AA41B2 /* Collection */,
+				04E2FFD11EBBABF70074C5D9 /* Other */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		6375B3C11EFD5C6800AA41B2 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				6392D20D1EE875790050728D /* Comment.h */,
+				6392D20E1EE875790050728D /* Comment.m */,
+				6392D2101EE875980050728D /* Human.h */,
+				6392D2111EE875980050728D /* Human.m */,
+				6392D2131EE875A50050728D /* SLVItem.h */,
+				6392D2141EE875A50050728D /* SLVItem.m */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		6375B3C21EFD5C7E00AA41B2 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				6375B3C51EFD5CA500AA41B2 /* Controllers */,
+				6375B3C41EFD5C9000AA41B2 /* Views */,
+				6375B3C31EFD5C8A00AA41B2 /* Models */,
+			);
+			name = Collection;
+			sourceTree = "<group>";
+		};
+		6375B3C31EFD5C8A00AA41B2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				635722F11EF59FCF000BB6CD /* SLVCollectionModelProtocol.h */,
+				6350EF891ED5843000D7C8CE /* SLVCollectionModel.h */,
+				6350EF8A1ED5843000D7C8CE /* SLVCollectionModel.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		6375B3C41EFD5C9000AA41B2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6392D1DC1EE04D3A0050728D /* SLVCollectionNavigationBar.h */,
+				6392D1DD1EE04D3A0050728D /* SLVCollectionNavigationBar.m */,
+				6392D1ED1EE741BE0050728D /* SLVCollectionViewCell.h */,
+				6392D1EE1EE741BE0050728D /* SLVCollectionViewCell.m */,
+				6392D1DE1EE04D3A0050728D /* SLVCollectionViewLayout.h */,
+				6392D1DF1EE04D3A0050728D /* SLVCollectionViewLayout.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
 		};
-		635722F01EF59F61000BB6CD /* ModelProtocols */ = {
-			isa = PBXGroup;
-			children = (
-				635722FD1EF5C2A0000BB6CD /* SLVModelProtocol.h */,
-				635722F11EF59FCF000BB6CD /* SLVCollectionModelProtocol.h */,
-				635722FB1EF5B4DC000BB6CD /* SLVPostModelProtocol.h */,
-			);
-			name = ModelProtocols;
-			sourceTree = "<group>";
-		};
-		635723011EF5FB5B000BB6CD /* Facade */ = {
-			isa = PBXGroup;
-			children = (
-				635723051EF69EDA000BB6CD /* SLVFacadeProtocol.h */,
-				635723021EF5FB8F000BB6CD /* SLVFacade.h */,
-				635723031EF5FB8F000BB6CD /* SLVFacade.m */,
-			);
-			name = Facade;
-			sourceTree = "<group>";
-		};
-		6392D1C81EE04CFD0050728D /* Collection */ = {
+		6375B3C51EFD5CA500AA41B2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				6392D1C91EE04CFD0050728D /* SLVCollectionViewController.h */,
@@ -279,21 +281,43 @@
 				6392D1CB1EE04CFD0050728D /* SLVCollectionViewDataProvider.h */,
 				6392D1CC1EE04CFD0050728D /* SLVCollectionViewDataProvider.m */,
 			);
-			name = Collection;
-			path = Controllers/Collection;
+			name = Controllers;
 			sourceTree = "<group>";
 		};
-		6392D1CD1EE04CFD0050728D /* Favorites */ = {
+		6375B3C61EFD5CEE00AA41B2 /* Post */ = {
 			isa = PBXGroup;
 			children = (
-				6392D1CE1EE04CFD0050728D /* SLVFavouritesViewController.h */,
-				6392D1CF1EE04CFD0050728D /* SLVFavouritesViewController.m */,
+				6375B3C91EFD5D0A00AA41B2 /* Controller */,
+				6375B3C81EFD5D0300AA41B2 /* View */,
+				6375B3C71EFD5CFB00AA41B2 /* Model */,
 			);
-			name = Favorites;
-			path = Controllers/Favorites;
+			name = Post;
 			sourceTree = "<group>";
 		};
-		6392D1D01EE04CFD0050728D /* PostViewController */ = {
+		6375B3C71EFD5CFB00AA41B2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				635722FB1EF5B4DC000BB6CD /* SLVPostModelProtocol.h */,
+				635722F81EF5B4A7000BB6CD /* SLVPostModel.h */,
+				635722F91EF5B4A7000BB6CD /* SLVPostModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6375B3C81EFD5D0300AA41B2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6392D2201EEAC1090050728D /* SLVFavoritesCell.h */,
+				6392D2211EEAC1090050728D /* SLVFavoritesCell.m */,
+				6392D1F01EE7F92E0050728D /* SLVPostViewCells.h */,
+				6392D1F11EE7F92E0050728D /* SLVPostViewCells.m */,
+				635722F21EF5B091000BB6CD /* SLVPostView.h */,
+				635722F31EF5B091000BB6CD /* SLVPostView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		6375B3C91EFD5D0A00AA41B2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				6392D1D11EE04CFD0050728D /* SLVPostController.h */,
@@ -301,32 +325,18 @@
 				635722F51EF5B1FC000BB6CD /* SLVPostDataProvider.h */,
 				635722F61EF5B1FC000BB6CD /* SLVPostDataProvider.m */,
 			);
-			name = PostViewController;
-			path = Controllers/PostViewController;
+			name = Controller;
 			sourceTree = "<group>";
 		};
-		6392D1D31EE04CFD0050728D /* SettingsViewController */ = {
+		6375B3CF1F011FB800AA41B2 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
-				6392D1D41EE04CFD0050728D /* SLVSettingsViewController.h */,
-				6392D1D51EE04CFD0050728D /* SLVSettingsViewController.m */,
+				6392D1CE1EE04CFD0050728D /* SLVFavoritesViewController.h */,
+				6392D1CF1EE04CFD0050728D /* SLVFavoritesViewController.m */,
+				6375B3D01F01202C00AA41B2 /* SLVFavoritesModel.h */,
+				6375B3D11F01202C00AA41B2 /* SLVFavoritesModel.m */,
 			);
-			name = SettingsViewController;
-			path = Controllers/SettingsViewController;
-			sourceTree = "<group>";
-		};
-		6392D1DB1EE04D3A0050728D /* Collection */ = {
-			isa = PBXGroup;
-			children = (
-				6392D1DC1EE04D3A0050728D /* SLVCollectionView.h */,
-				6392D1DD1EE04D3A0050728D /* SLVCollectionView.m */,
-				6392D1ED1EE741BE0050728D /* SLVCollectionViewCell.h */,
-				6392D1EE1EE741BE0050728D /* SLVCollectionViewCell.m */,
-				6392D1DE1EE04D3A0050728D /* SLVCollectionViewLayout.h */,
-				6392D1DF1EE04D3A0050728D /* SLVCollectionViewLayout.m */,
-			);
-			name = Collection;
-			path = Views/Collection;
+			name = Favorites;
 			sourceTree = "<group>";
 		};
 		6392D1E21EE04D4E0050728D /* Extentions */ = {
@@ -340,46 +350,23 @@
 			path = Extentions;
 			sourceTree = "<group>";
 		};
-		6392D1F31EE7F9350050728D /* Post */ = {
-			isa = PBXGroup;
-			children = (
-				6392D1F01EE7F92E0050728D /* SLVPostViewCells.h */,
-				6392D1F11EE7F92E0050728D /* SLVPostViewCells.m */,
-				635722F21EF5B091000BB6CD /* SLVPostView.h */,
-				635722F31EF5B091000BB6CD /* SLVPostView.m */,
-			);
-			name = Post;
-			sourceTree = "<group>";
-		};
-		6392D1F41EE84A580050728D /* CoreData */ = {
+		6392D1F41EE84A580050728D /* Storage */ = {
 			isa = PBXGroup;
 			children = (
 				6392D1F51EE84A920050728D /* Model.xcdatamodeld */,
-				6392D20A1EE874BF0050728D /* CoreDataStack.h */,
-				6392D20B1EE874BF0050728D /* CoreDataStack.m */,
-				6392D20D1EE875790050728D /* Comment.h */,
-				6392D20E1EE875790050728D /* Comment.m */,
-				6392D2101EE875980050728D /* Human.h */,
-				6392D2111EE875980050728D /* Human.m */,
-				6392D2131EE875A50050728D /* SLVItem.h */,
-				6392D2141EE875A50050728D /* SLVItem.m */,
+				6392D20A1EE874BF0050728D /* SLVCoreDataStack.h */,
+				6392D20B1EE874BF0050728D /* SLVCoreDataStack.m */,
+				635723061EF6D06D000BB6CD /* SLVStorageProtocol.h */,
+				6392D21C1EE88F410050728D /* SLVStorageService.h */,
+				6392D21D1EE88F410050728D /* SLVStorageService.m */,
 			);
-			name = CoreData;
-			sourceTree = "<group>";
-		};
-		6392D21F1EEAC0BC0050728D /* Favorites */ = {
-			isa = PBXGroup;
-			children = (
-				6392D2201EEAC1090050728D /* SLVFavoritesCell.h */,
-				6392D2211EEAC1090050728D /* SLVFavoritesCell.m */,
-			);
-			name = Favorites;
+			name = Storage;
 			sourceTree = "<group>";
 		};
 		63ABAB891ED873D500941726 /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				63ABAB871ED873CB00941726 /* SLVImageDownloadOperationTests.m */,
+				6375B3AF1EFD20B000AA41B2 /* SLVLayoutTest.m */,
 			);
 			name = UnitTests;
 			sourceTree = "<group>";
@@ -387,11 +374,12 @@
 		63ACEF371EBC951A007C0D41 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				04E2FFA91EBB90A50074C5D9 /* Assets.xcassets */,
-				04E2FFAB1EBB90A50074C5D9 /* LaunchScreen.storyboard */,
 				04E2FFAE1EBB90A50074C5D9 /* Info.plist */,
+				04E2FF9B1EBB90A50074C5D9 /* main.m */,
 				04E2FF9D1EBB90A50074C5D9 /* AppDelegate.h */,
 				04E2FF9E1EBB90A50074C5D9 /* AppDelegate.m */,
+				6375B3D51F01307600AA41B2 /* SLVTestAppDelegate.h */,
+				6375B3D61F01307600AA41B2 /* SLVTestAppDelegate.m */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -399,6 +387,7 @@
 		63ACEF3B1EBD3B36007C0D41 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6375B3A51EFD089000AA41B2 /* OCMock.framework */,
 				63ACEF3C1EBD3B37007C0D41 /* Masonry.framework */,
 			);
 			name = Frameworks;
@@ -415,7 +404,6 @@
 				04E2FF941EBB90A50074C5D9 /* Frameworks */,
 				04E2FF951EBB90A50074C5D9 /* Resources */,
 				63ACEF411EBD42AC007C0D41 /* ShellScript */,
-				63ACEF421EBD42B2007C0D41 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -513,25 +501,13 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Masonry.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/OCMock.framework",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-		63ACEF421EBD42B2007C0D41 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -541,34 +517,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				635722F41EF5B091000BB6CD /* SLVPostView.m in Sources */,
-				635723041EF5FB8F000BB6CD /* SLVFacade.m in Sources */,
 				6350EF8C1ED5843000D7C8CE /* SLVCollectionModel.m in Sources */,
 				6392D1EF1EE741BE0050728D /* SLVCollectionViewCell.m in Sources */,
-				042903421EF536900066039B /* SLVConstants.m in Sources */,
 				6392D1E81EE04D4E0050728D /* UIFont+SLVFonts.m in Sources */,
+				6375B3D71F01307600AA41B2 /* SLVTestAppDelegate.m in Sources */,
 				04E2FF9F1EBB90A50074C5D9 /* AppDelegate.m in Sources */,
 				6350EF8F1ED5923100D7C8CE /* SLVImageDownloadOperation.m in Sources */,
 				04E2FF9C1EBB90A50074C5D9 /* main.m in Sources */,
+				6375B3D21F01202C00AA41B2 /* SLVFavoritesModel.m in Sources */,
 				6392D20F1EE875790050728D /* Comment.m in Sources */,
-				6392D1E01EE04D3A0050728D /* SLVCollectionView.m in Sources */,
+				6392D1E01EE04D3A0050728D /* SLVCollectionNavigationBar.m in Sources */,
 				6392D1D61EE04CFD0050728D /* SLVCollectionViewController.m in Sources */,
 				6392D1F21EE7F92E0050728D /* SLVPostViewCells.m in Sources */,
 				6392D1DA1EE04CFD0050728D /* SLVSettingsViewController.m in Sources */,
-				635723001EF5F74C000BB6CD /* SLVModel.m in Sources */,
+				635723001EF5F74C000BB6CD /* SLVFacade.m in Sources */,
 				635722FA1EF5B4A7000BB6CD /* SLVPostModel.m in Sources */,
 				6392D1E71EE04D4E0050728D /* UIColor+SLVColor.m in Sources */,
 				6350EF861ED5841F00D7C8CE /* SLVNetworkManager.m in Sources */,
 				63ABAB831ED60E8900941726 /* SLVImageProcessing.m in Sources */,
 				6392D1D91EE04CFD0050728D /* SLVPostController.m in Sources */,
-				6392D20C1EE874BF0050728D /* CoreDataStack.m in Sources */,
+				6392D20C1EE874BF0050728D /* SLVCoreDataStack.m in Sources */,
 				6392D21E1EE88F410050728D /* SLVStorageService.m in Sources */,
 				6392D2121EE875980050728D /* Human.m in Sources */,
 				6392D1D71EE04CFD0050728D /* SLVCollectionViewDataProvider.m in Sources */,
-				6392D1E11EE04D3A0050728D /* SLVCollectionViewLayout.m in Sources */,
 				635722F71EF5B1FC000BB6CD /* SLVPostDataProvider.m in Sources */,
 				6392D1F71EE84A920050728D /* Model.xcdatamodeld in Sources */,
 				6392D2221EEAC1090050728D /* SLVFavoritesCell.m in Sources */,
-				6392D1D81EE04CFD0050728D /* SLVFavouritesViewController.m in Sources */,
+				6392D1D81EE04CFD0050728D /* SLVFavoritesViewController.m in Sources */,
+				6375B3B11EFD20E500AA41B2 /* SLVCollectionViewLayout.m in Sources */,
 				6392D2151EE875A50050728D /* SLVItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -577,7 +553,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63ABAB881ED873CC00941726 /* SLVImageDownloadOperationTests.m in Sources */,
+				6375B3B01EFD20B000AA41B2 /* SLVLayoutTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,6 +679,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = lection14/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sbt.lection14;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -719,6 +696,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = lection14/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sbt.lection14;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -730,6 +708,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 4BVAFGEHDW;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = lection14Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sbt.lection14Tests;
@@ -743,6 +725,10 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 4BVAFGEHDW;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = lection14Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sbt.lection14Tests;

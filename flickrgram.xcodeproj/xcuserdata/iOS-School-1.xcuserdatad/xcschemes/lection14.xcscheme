@@ -45,7 +45,7 @@
             BlueprintIdentifier = "04E2FF961EBB90A50074C5D9"
             BuildableName = "lection14.app"
             BlueprintName = "lection14"
-            ReferencedContainer = "container:lection14.xcodeproj">
+            ReferencedContainer = "container:flickrgram.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -68,9 +68,15 @@
             BlueprintIdentifier = "04E2FF961EBB90A50074C5D9"
             BuildableName = "lection14.app"
             BlueprintName = "lection14"
-            ReferencedContainer = "container:lection14.xcodeproj">
+            ReferencedContainer = "container:flickrgram.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "- sbt.lection14.CoreData.SQLDebug 3"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

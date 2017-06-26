@@ -12,13 +12,13 @@
 @interface SLVSettingsViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) id<SLVModelProtocol> model;
+@property (nonatomic, strong) id<SLVFacadeProtocol> model;
 
 @end
 
 @implementation SLVSettingsViewController
 
-- (instancetype)initWithModel:(id<SLVModelProtocol>)model {
+- (instancetype)initWithModel:(id<SLVFacadeProtocol>)model {
     self = [super init];
     if (self) {
         _model = model;
@@ -39,9 +39,7 @@
     _tableView.opaque = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview: _tableView];
-    
-   // _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    
+        
     _tableView.delegate = self;
     _tableView.dataSource = self;
 
@@ -86,6 +84,15 @@
     if (indexPath.row == 1) {
         [self.model destroyEverything];
     }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 10)];
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 10;
 }
 
 @end

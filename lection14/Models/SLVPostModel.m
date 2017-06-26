@@ -8,61 +8,48 @@
 
 #import "SLVPostModel.h"
 #import "SLVItem.h"
+#import "SLVStorageProtocol.h"
+#import "SLVNetworkProtocol.h"
+@import UIKit;
 
 static NSString *const kItemEntity = @"SLVItem";
 
 @interface SLVPostModel()
 
-@property (nonatomic, strong) id<SLVFacadeProtocol> facade;
-@property (nonatomic, strong) NSDictionary<NSNumber *, NSString *> *items;
+@property (nonatomic, strong, readonly) id<SLVFacadeProtocol> facade;
 @property (nonatomic, strong) SLVItem *selectedItem;
+@property (nonatomic, strong, readonly) id<SLVStorageProtocol> storageService;
+@property (nonatomic, strong, readonly) id<SLVNetworkProtocol> networkManager;
 
 @end
 
 @implementation SLVPostModel
 
 - (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade {
-    self = [super initWithFacade:facade];
+    self = [super init];
     if (self) {
         _facade = facade;
+        _storageService = facade.storageService;
+        _networkManager = facade.networkManager;
     }
     return self;
 }
 
-- (SLVItem *)itemForIndex:(NSUInteger)index {
-    NSString *key = self.items[@(index)];
-    SLVItem *result = [self fetchEntity:kItemEntity forKey:key];
-    return result;
-}
-
 - (void)passSelectedItem:(SLVItem *)selectedItem {
     self.selectedItem = selectedItem;
-    self.items = @{@0: selectedItem.identifier};
 }
 
 - (SLVItem *)getSelectedItem {
-    NSString *key = self.items[@0];
-    self.selectedItem = [self fetchEntity:kItemEntity forKey:key];
     return self.selectedItem;
-}
-
-- (UIImage *)imageForIndex:(NSUInteger)index {
-    return self.selectedItem.largePhoto;
 }
 
 - (void)makeFavorite:(BOOL)favorite {
     self.selectedItem.isFavorite = favorite;
-    [self.facade save];
-}
-
-- (void)getFavoriteItemsWithCompletionHandler:(void (^)(NSArray *))completionHandler {
-    [self.facade fetchEntities:kItemEntity withPredicate:@"isFavorite == YES" withCompletionBlock:^(NSArray *result) {
-        completionHandler(result);
-    }];
+    [self.storageService save];
 }
 
 - (void)loadImageForItem:(SLVItem *)item withCompletionHandler:(void (^)(void))completionHandler {
-    [self loadImageForEntity:kItemEntity withIdentifier:item.identifier forURL:item.largePhotoURL forAttribute:@"largePhoto" withCompletionHandler:completionHandler];
+    [self.facade loadImageForEntity:kItemEntity withIdentifier:item.identifier forURL:item.largePhotoURL forAttribute:@"largePhoto" withCompletionHandler:completionHandler];
 }
 
 @end
