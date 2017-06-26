@@ -12,7 +12,7 @@
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {
-        Class appDelegateClass = (NSClassFromString(@"XCTestCase") ? [SLVTestAppDelegate class] : [AppDelegate class]);
+        Class appDelegateClass = NSClassFromString(@"XCTestCase") ? [SLVTestAppDelegate class] : [AppDelegate class];
         return UIApplicationMain(argc, argv, nil, NSStringFromClass(appDelegateClass));
     }
 }

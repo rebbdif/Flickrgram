@@ -1202,54 +1202,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "lection14/Views/Collection/SLVCollectionView.m"
-            timestampString = "518516017.946034"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "-initWithFrame:collectionViewLayout:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lection14/Views/Collection/SLVCollectionView.m"
-            timestampString = "518516685.290362"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "-createNavigationBarForSearchBar"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lection14/Views/Collection/SLVCollectionView.m"
-            timestampString = "519834453.269323"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "-createNavigationBarForSearchBar"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "lection14/Controllers/Collection/SLVCollectionViewDataProvider.m"
             timestampString = "519738391.597755"
             startingColumnNumber = "9223372036854775807"
@@ -2371,11 +2323,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Views/Collection/SLVCollectionViewLayout.m"
-            timestampString = "520168647.551043"
+            timestampString = "520173107.437711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "-collectionViewContentSize"
             landmarkType = "7">
          </BreakpointContent>
@@ -2387,11 +2339,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Views/Collection/SLVCollectionViewLayout.m"
-            timestampString = "520168647.551043"
+            timestampString = "520173107.437711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "-layoutAttributesForItemAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2403,11 +2355,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Views/Collection/SLVCollectionViewLayout.m"
-            timestampString = "520171176.826598"
+            timestampString = "520173107.437711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "-calculateFrame:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2419,11 +2371,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Views/Collection/SLVCollectionViewLayout.m"
-            timestampString = "520168647.551043"
+            timestampString = "520173107.437711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "-frameForIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2435,11 +2387,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Views/Collection/SLVCollectionViewLayout.m"
-            timestampString = "520168647.551043"
+            timestampString = "520173107.437711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "-calculateFrame:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2451,11 +2403,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Views/Collection/SLVCollectionViewLayout.m"
-            timestampString = "520168647.551043"
+            timestampString = "520173107.437711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "-layoutAttributesForElementsInRect:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2467,11 +2419,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Views/Collection/SLVCollectionViewLayout.m"
-            timestampString = "520168647.551043"
+            timestampString = "520173107.437711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "-layoutAttributesForElementsInRect:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2499,11 +2451,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Views/Collection/SLVCollectionViewLayout.m"
-            timestampString = "520171176.826598"
+            timestampString = "520173107.437711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "-shouldInvalidateLayoutForBoundsChange:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2835,11 +2787,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Views/Collection/SLVCollectionViewLayout.m"
-            timestampString = "520168647.551043"
+            timestampString = "520173107.437711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "-frameForIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3412,11 +3364,11 @@
             condition = "result.width == 0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Views/Collection/SLVCollectionViewLayout.m"
-            timestampString = "520171176.826598"
+            timestampString = "520173107.437711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "-calculateFrame:"
             landmarkType = "7">
             <Actions>
@@ -3436,11 +3388,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Views/Collection/SLVCollectionViewLayout.m"
-            timestampString = "520171176.826598"
+            timestampString = "520173107.437711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "-createPlacesRows:columns:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3453,11 +3405,11 @@
             condition = "item == 96"
             continueAfterRunningActions = "No"
             filePath = "lection14/Views/Collection/SLVCollectionViewLayout.m"
-            timestampString = "520168647.551043"
+            timestampString = "520173107.437711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "-frameForIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3469,11 +3421,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Views/Collection/SLVCollectionViewLayout.m"
-            timestampString = "520168647.551043"
+            timestampString = "520173107.437711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "-calculateFrame:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3485,11 +3437,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Views/Collection/SLVCollectionViewLayout.m"
-            timestampString = "520168647.551043"
+            timestampString = "520173107.437711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "-layoutAttributesForItemAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3501,11 +3453,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14Tests/SLVLayoutTest.m"
-            timestampString = "520126000.456635"
+            timestampString = "520173287.825317"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "-test30Items"
             landmarkType = "7">
          </BreakpointContent>
@@ -3861,11 +3813,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Views/Collection/SLVCollectionViewLayout.m"
-            timestampString = "520171176.826598"
+            timestampString = "520173107.437711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
             landmarkName = "-calculateFrame:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3877,11 +3829,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Views/Collection/SLVCollectionViewLayout.m"
-            timestampString = "520170426.051894"
+            timestampString = "520173107.437711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "-calculateFrame:"
             landmarkType = "7">
          </BreakpointContent>

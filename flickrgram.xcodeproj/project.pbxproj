@@ -21,7 +21,6 @@
 		6375B3A71EFD0A8900AA41B2 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6375B3A51EFD089000AA41B2 /* OCMock.framework */; };
 		6375B3B01EFD20B000AA41B2 /* SLVLayoutTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6375B3AF1EFD20B000AA41B2 /* SLVLayoutTest.m */; };
 		6375B3B11EFD20E500AA41B2 /* SLVCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1DF1EE04D3A0050728D /* SLVCollectionViewLayout.m */; };
-		6375B3CC1EFD940E00AA41B2 /* SLVNetworkManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6375B3CB1EFD940E00AA41B2 /* SLVNetworkManagerTest.m */; };
 		6375B3D21F01202C00AA41B2 /* SLVFavoritesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6375B3D11F01202C00AA41B2 /* SLVFavoritesModel.m */; };
 		6375B3D71F01307600AA41B2 /* SLVTestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6375B3D61F01307600AA41B2 /* SLVTestAppDelegate.m */; };
 		6392D1D61EE04CFD0050728D /* SLVCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1CA1EE04CFD0050728D /* SLVCollectionViewController.m */; };
@@ -85,7 +84,6 @@
 		635723071EF6D0BA000BB6CD /* SLVNetworkProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVNetworkProtocol.h; path = Services/SLVNetworkProtocol.h; sourceTree = "<group>"; };
 		6375B3A51EFD089000AA41B2 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = Carthage/Build/iOS/OCMock.framework; sourceTree = "<group>"; };
 		6375B3AF1EFD20B000AA41B2 /* SLVLayoutTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVLayoutTest.m; path = lection14Tests/SLVLayoutTest.m; sourceTree = "<group>"; };
-		6375B3CB1EFD940E00AA41B2 /* SLVNetworkManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVNetworkManagerTest.m; path = lection14Tests/SLVNetworkManagerTest.m; sourceTree = "<group>"; };
 		6375B3D01F01202C00AA41B2 /* SLVFavoritesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVFavoritesModel.h; path = Models/SLVFavoritesModel.h; sourceTree = "<group>"; };
 		6375B3D11F01202C00AA41B2 /* SLVFavoritesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVFavoritesModel.m; path = Models/SLVFavoritesModel.m; sourceTree = "<group>"; };
 		6375B3D51F01307600AA41B2 /* SLVTestAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLVTestAppDelegate.h; sourceTree = "<group>"; };
@@ -369,7 +367,6 @@
 			isa = PBXGroup;
 			children = (
 				6375B3AF1EFD20B000AA41B2 /* SLVLayoutTest.m */,
-				6375B3CB1EFD940E00AA41B2 /* SLVNetworkManagerTest.m */,
 			);
 			name = UnitTests;
 			sourceTree = "<group>";
@@ -556,7 +553,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6375B3CC1EFD940E00AA41B2 /* SLVNetworkManagerTest.m in Sources */,
 				6375B3B01EFD20B000AA41B2 /* SLVLayoutTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

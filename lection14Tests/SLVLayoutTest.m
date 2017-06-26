@@ -64,6 +64,13 @@
     XCTAssert(self.layout.numberOfRows == 12);
 }
 
+- (void)testCountDimensionsOne {
+    OCMStub([self.collectionLayoutDelegateMock numberOfItems]).andReturn(1);
+    [self.layout countDimensions];
+    XCTAssert(self.layout.numberOfItems == 3);
+    XCTAssert(self.layout.numberOfRows == 2);
+}
+
 - (void)testCountDimensionsZero {
     OCMStub([self.collectionLayoutDelegateMock numberOfItems]).andReturn(0);
     [self.layout countDimensions];
@@ -71,8 +78,16 @@
     XCTAssert(self.layout.numberOfRows == 0);
 }
 
-- (void)testPrepareLayout {
-    
+- (void)testPrepareLayoutNormal30 {
+    OCMStub([self.collectionLayoutDelegateMock numberOfItems]).andReturn(30);
+    [self.layout prepareLayout];
+    XCTAssertNoThrow(@"anything");
+}
+
+- (void)testPrepareLayoutNormal1 {
+    OCMStub([self.collectionLayoutDelegateMock numberOfItems]).andReturn(1);
+    [self.layout prepareLayout];
+    XCTAssertNoThrow(@"anything");
 }
 
 #pragma mark - frameForIndexPathTests

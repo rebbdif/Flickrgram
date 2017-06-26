@@ -48,6 +48,9 @@
     self.numberOfColumns = 3;
     NSUInteger extraCells = self.numberOfItems % 3;
     self.numberOfItems += extraCells;
+    if (self.numberOfItems < 3 && self.numberOfItems > 0) {
+        self.numberOfItems = 3;
+    }
     self.numberOfRows = (self.numberOfItems + 1) / 2;
     self.defaultCellWidth = CGRectGetWidth(self.collectionView.frame) / 3;
 }
