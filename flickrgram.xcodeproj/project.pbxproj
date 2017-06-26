@@ -25,10 +25,10 @@
 		6375B3D71F01307600AA41B2 /* SLVTestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6375B3D61F01307600AA41B2 /* SLVTestAppDelegate.m */; };
 		6392D1D61EE04CFD0050728D /* SLVCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1CA1EE04CFD0050728D /* SLVCollectionViewController.m */; };
 		6392D1D71EE04CFD0050728D /* SLVCollectionViewDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1CC1EE04CFD0050728D /* SLVCollectionViewDataProvider.m */; };
-		6392D1D81EE04CFD0050728D /* SLVFavouritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1CF1EE04CFD0050728D /* SLVFavouritesViewController.m */; };
+		6392D1D81EE04CFD0050728D /* SLVFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1CF1EE04CFD0050728D /* SLVFavoritesViewController.m */; };
 		6392D1D91EE04CFD0050728D /* SLVPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1D21EE04CFD0050728D /* SLVPostController.m */; };
 		6392D1DA1EE04CFD0050728D /* SLVSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1D51EE04CFD0050728D /* SLVSettingsViewController.m */; };
-		6392D1E01EE04D3A0050728D /* SLVCollectionViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1DD1EE04D3A0050728D /* SLVCollectionViewHelper.m */; };
+		6392D1E01EE04D3A0050728D /* SLVCollectionNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1DD1EE04D3A0050728D /* SLVCollectionNavigationBar.m */; };
 		6392D1E71EE04D4E0050728D /* UIColor+SLVColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1E41EE04D4E0050728D /* UIColor+SLVColor.m */; };
 		6392D1E81EE04D4E0050728D /* UIFont+SLVFonts.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1E61EE04D4E0050728D /* UIFont+SLVFonts.m */; };
 		6392D1EF1EE741BE0050728D /* SLVCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1EE1EE741BE0050728D /* SLVCollectionViewCell.m */; };
@@ -92,14 +92,14 @@
 		6392D1CA1EE04CFD0050728D /* SLVCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVCollectionViewController.m; path = Controllers/Collection/SLVCollectionViewController.m; sourceTree = "<group>"; };
 		6392D1CB1EE04CFD0050728D /* SLVCollectionViewDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVCollectionViewDataProvider.h; path = Controllers/Collection/SLVCollectionViewDataProvider.h; sourceTree = "<group>"; };
 		6392D1CC1EE04CFD0050728D /* SLVCollectionViewDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVCollectionViewDataProvider.m; path = Controllers/Collection/SLVCollectionViewDataProvider.m; sourceTree = "<group>"; };
-		6392D1CE1EE04CFD0050728D /* SLVFavouritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVFavouritesViewController.h; path = Controllers/Favorites/SLVFavouritesViewController.h; sourceTree = "<group>"; };
-		6392D1CF1EE04CFD0050728D /* SLVFavouritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVFavouritesViewController.m; path = Controllers/Favorites/SLVFavouritesViewController.m; sourceTree = "<group>"; };
+		6392D1CE1EE04CFD0050728D /* SLVFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVFavoritesViewController.h; path = Controllers/Favorites/SLVFavoritesViewController.h; sourceTree = "<group>"; };
+		6392D1CF1EE04CFD0050728D /* SLVFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVFavoritesViewController.m; path = Controllers/Favorites/SLVFavoritesViewController.m; sourceTree = "<group>"; };
 		6392D1D11EE04CFD0050728D /* SLVPostController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPostController.h; path = Controllers/PostViewController/SLVPostController.h; sourceTree = "<group>"; };
 		6392D1D21EE04CFD0050728D /* SLVPostController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVPostController.m; path = Controllers/PostViewController/SLVPostController.m; sourceTree = "<group>"; };
 		6392D1D41EE04CFD0050728D /* SLVSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVSettingsViewController.h; path = Controllers/SettingsViewController/SLVSettingsViewController.h; sourceTree = "<group>"; };
 		6392D1D51EE04CFD0050728D /* SLVSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVSettingsViewController.m; path = Controllers/SettingsViewController/SLVSettingsViewController.m; sourceTree = "<group>"; };
-		6392D1DC1EE04D3A0050728D /* SLVCollectionViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVCollectionViewHelper.h; path = Views/Collection/SLVCollectionViewHelper.h; sourceTree = "<group>"; };
-		6392D1DD1EE04D3A0050728D /* SLVCollectionViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVCollectionViewHelper.m; path = Views/Collection/SLVCollectionViewHelper.m; sourceTree = "<group>"; };
+		6392D1DC1EE04D3A0050728D /* SLVCollectionNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVCollectionNavigationBar.h; path = Views/Collection/SLVCollectionNavigationBar.h; sourceTree = "<group>"; };
+		6392D1DD1EE04D3A0050728D /* SLVCollectionNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVCollectionNavigationBar.m; path = Views/Collection/SLVCollectionNavigationBar.m; sourceTree = "<group>"; };
 		6392D1DE1EE04D3A0050728D /* SLVCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVCollectionViewLayout.h; path = Views/Collection/SLVCollectionViewLayout.h; sourceTree = "<group>"; };
 		6392D1DF1EE04D3A0050728D /* SLVCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVCollectionViewLayout.m; path = Views/Collection/SLVCollectionViewLayout.m; sourceTree = "<group>"; };
 		6392D1E31EE04D4E0050728D /* UIColor+SLVColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+SLVColor.h"; sourceTree = "<group>"; };
@@ -263,8 +263,8 @@
 		6375B3C41EFD5C9000AA41B2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6392D1DC1EE04D3A0050728D /* SLVCollectionViewHelper.h */,
-				6392D1DD1EE04D3A0050728D /* SLVCollectionViewHelper.m */,
+				6392D1DC1EE04D3A0050728D /* SLVCollectionNavigationBar.h */,
+				6392D1DD1EE04D3A0050728D /* SLVCollectionNavigationBar.m */,
 				6392D1ED1EE741BE0050728D /* SLVCollectionViewCell.h */,
 				6392D1EE1EE741BE0050728D /* SLVCollectionViewCell.m */,
 				6392D1DE1EE04D3A0050728D /* SLVCollectionViewLayout.h */,
@@ -331,8 +331,8 @@
 		6375B3CF1F011FB800AA41B2 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
-				6392D1CE1EE04CFD0050728D /* SLVFavouritesViewController.h */,
-				6392D1CF1EE04CFD0050728D /* SLVFavouritesViewController.m */,
+				6392D1CE1EE04CFD0050728D /* SLVFavoritesViewController.h */,
+				6392D1CF1EE04CFD0050728D /* SLVFavoritesViewController.m */,
 				6375B3D01F01202C00AA41B2 /* SLVFavoritesModel.h */,
 				6375B3D11F01202C00AA41B2 /* SLVFavoritesModel.m */,
 			);
@@ -526,7 +526,7 @@
 				04E2FF9C1EBB90A50074C5D9 /* main.m in Sources */,
 				6375B3D21F01202C00AA41B2 /* SLVFavoritesModel.m in Sources */,
 				6392D20F1EE875790050728D /* Comment.m in Sources */,
-				6392D1E01EE04D3A0050728D /* SLVCollectionViewHelper.m in Sources */,
+				6392D1E01EE04D3A0050728D /* SLVCollectionNavigationBar.m in Sources */,
 				6392D1D61EE04CFD0050728D /* SLVCollectionViewController.m in Sources */,
 				6392D1F21EE7F92E0050728D /* SLVPostViewCells.m in Sources */,
 				6392D1DA1EE04CFD0050728D /* SLVSettingsViewController.m in Sources */,
@@ -543,7 +543,7 @@
 				635722F71EF5B1FC000BB6CD /* SLVPostDataProvider.m in Sources */,
 				6392D1F71EE84A920050728D /* Model.xcdatamodeld in Sources */,
 				6392D2221EEAC1090050728D /* SLVFavoritesCell.m in Sources */,
-				6392D1D81EE04CFD0050728D /* SLVFavouritesViewController.m in Sources */,
+				6392D1D81EE04CFD0050728D /* SLVFavoritesViewController.m in Sources */,
 				6375B3B11EFD20E500AA41B2 /* SLVCollectionViewLayout.m in Sources */,
 				6392D2151EE875A50050728D /* SLVItem.m in Sources */,
 			);

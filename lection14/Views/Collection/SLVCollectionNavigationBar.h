@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SLVCollectionViewHelper : UIView
+@interface SLVCollectionNavigationBar : UIView
 
-+ (UIView *)createNavigationBarForSearchBar;
+@property (nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, strong) UIButton *settingsButton;
 
 @end
 

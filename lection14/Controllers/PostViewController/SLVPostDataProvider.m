@@ -77,7 +77,8 @@
     SLVImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell"];
     cell.delegate = self.controller;
     SLVItem *selectedItem = [self.model getSelectedItem];
-    UIImage *image = [UIImage imageWithContentsOfFile:selectedItem.largePhoto];
+    NSString *destinationPath = [NSHomeDirectory() stringByAppendingPathComponent:selectedItem.largePhoto];
+    UIImage *image = [UIImage imageWithContentsOfFile:destinationPath];
     if (!image) {
         cell.spinner.hidden = NO;
         [cell.spinner startAnimating];
@@ -87,8 +88,8 @@
             if (strongSelf) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     SLVImageCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-                    SLVItem *selectedItem = [strongSelf.model getSelectedItem];
-                    cell.photoView.image = [UIImage imageWithContentsOfFile:selectedItem.largePhoto];
+                    NSString *destinationPath = [NSHomeDirectory() stringByAppendingPathComponent:selectedItem.largePhoto];
+                    cell.photoView.image = [UIImage imageWithContentsOfFile:destinationPath];
                     [cell.spinner stopAnimating];
                 });
             }

@@ -11,8 +11,7 @@
 
 @class SLVFavoritesModel;
 
-
-@interface SLVFavouritesViewController : UIViewController
+@interface SLVFavoritesViewController : UIViewController
 
 - (instancetype)initWithModel:(SLVFavoritesModel *)model;
 

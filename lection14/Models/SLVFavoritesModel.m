@@ -14,9 +14,8 @@ static NSString *const kItemEntity = @"SLVItem";
 
 @interface SLVFavoritesModel()
 
-@property (nonatomic, strong) NSDictionary<NSNumber *, NSString *> *items;
+@property (nonatomic, strong) NSDictionary<NSNumber *, SLVItem *> *items;
 @property (nonatomic, strong, readonly) id<SLVStorageProtocol> storageService;
-@property (nonatomic, strong, readonly) id<SLVNetworkProtocol> networkManager;
 @property (nonatomic, strong, readonly) id<SLVFacadeProtocol> facade;
 
 @end
@@ -28,29 +27,30 @@ static NSString *const kItemEntity = @"SLVItem";
     if (self) {
         _facade = facade;
         _storageService = facade.storageService;
-        _networkManager = facade.networkManager;
+        _items = [NSDictionary new];
     }
     return self;
 }
 
 - (SLVItem *)itemForIndex:(NSUInteger)index {
-    NSString *key = self.items[@(index)];
-    SLVItem *result = [self.facade.storageService fetchEntity:kItemEntity forKey:key];
-    return result;
+    return self.items[@(index)];
 }
 
-- (UIImage *)imageForIndex:(NSUInteger)index {
-    SLVItem *item = [self itemForIndex:index];
-    NSString *destinationPath = [NSHomeDirectory() stringByAppendingPathComponent:item.thumbnail];
-    UIImage *image = [UIImage imageWithContentsOfFile:destinationPath];
-    return image;
-}
-
-- (void)getFavoriteItemsWithCompletionHandler:(void (^)(NSArray *))completionHandler {
+- (void)getFavoriteItemsWithCompletionHandler:(void (^)(void))completionHandler {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isFavorite ==YES"];
     NSArray *result = [self.storageService fetchEntities:kItemEntity withPredicate:predicate];
-    completionHandler(result);
+    NSUInteger index = 0;
+    NSMutableDictionary *newItems = [NSMutableDictionary new];
+    for (SLVItem *item in result) {
+        newItems[@(index)] = item;
+        ++index;
+    }
+    self.items = [newItems copy];
+    completionHandler();
 }
 
+- (NSUInteger)numberOfItems {
+    return self.items.count;
+}
 
 @end

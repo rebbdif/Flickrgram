@@ -9,10 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "SLVFacadeProtocol.h"
 
+@class SLVItem;
+
 @interface SLVFavoritesModel : NSObject
 
 - (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade;
-- (void)getFavoriteItemsWithCompletionHandler:(void (^)(NSArray *))completionHandler;
 
+- (void)getFavoriteItemsWithCompletionHandler:(void (^)(void))completionHandler;
+
+- (SLVItem *)itemForIndex:(NSUInteger)index;
+
+- (NSUInteger)numberOfItems;
 
 @end

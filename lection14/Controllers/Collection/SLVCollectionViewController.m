@@ -8,7 +8,7 @@
 
 #import "SLVCollectionViewController.h"
 #import "SLVCollectionViewDataProvider.h"
-#import "SLVCollectionViewHelper.h"
+#import "SLVCollectionNavigationBar.h"
 #import "SLVCollectionViewCell.h"
 #import "SLVCollectionViewLayout.h"
 
@@ -23,8 +23,7 @@
 @property (nonatomic, strong) SLVCollectionViewDataProvider *dataProvider;
 @property (nonatomic, strong, readonly) id<SLVCollectionModelProtocol> model;
 @property (nonatomic, strong) SLVCollectionViewLayout *layout;
-@property (nonatomic, strong) UISearchBar *searchBar;
-@property (nonatomic, strong) UIButton *settingsButton;
+@property (nonatomic, strong) SLVCollectionNavigationBar *navBar;
 
 @end
 
@@ -51,17 +50,10 @@
     self.collectionView.dataSource = self.dataProvider;
     
     self.navigationController.navigationBar.backgroundColor = [UIColor myGray];
-    self.searchBar = [UISearchBar new];
-    self.searchBar.barStyle = UISearchBarStyleMinimal;
-    self.searchBar.placeholder = @"Поиск";
-    self.searchBar.backgroundImage = [UIImage imageNamed:@"rectangle121"];
-    [self.searchBar setSearchFieldBackgroundImage: [UIImage imageNamed:@"rectangle121"] forState:UIControlStateNormal];
-    self.navigationItem.titleView = self.searchBar;
-    self.searchBar.delegate = self;
-    
-    self.settingsButton = [UIButton new];
-    [self.settingsButton setBackgroundImage:[UIImage imageNamed:@"icSettings"] forState:UIControlStateNormal];
-    [self.settingsButton addTarget:self action:@selector(gotoSettings:) forControlEvents:UIControlEventTouchUpInside];
+    self.navBar = [[SLVCollectionNavigationBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 44)];
+    self.navigationItem.titleView = self.navBar;
+    self.navBar.searchBar.delegate = self;
+    [self.navBar.settingsButton addTarget:self action:@selector(gotoSettings:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -84,6 +76,7 @@
     self.layout.delegate = self;
     CGRect frame = self.view.frame;
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), CGRectGetHeight(frame)) collectionViewLayout:self.layout];
+    self.collectionView.backgroundColor = [UIColor myGray];
     [self.collectionView registerClass:[SLVCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([SLVCollectionViewCell class])];
     [self.view addSubview:_collectionView];
     self.collectionView.delegate = self;
@@ -92,14 +85,14 @@
 - (void)firstStart {
     NSString *searchRequest = [[NSUserDefaults standardUserDefaults] objectForKey:@"searchRequest"];
     if (searchRequest) {
-        self.searchBar.text = searchRequest;
+        self.navBar.searchBar.text = searchRequest;
         [self.model firstStart:searchRequest withCompletionHandler:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.collectionView reloadData];
             });
         }];
     } else {
-        [self.searchBar becomeFirstResponder];
+        [self.navBar.searchBar becomeFirstResponder];
     }
 }
 
