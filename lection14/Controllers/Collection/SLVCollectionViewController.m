@@ -8,7 +8,7 @@
 
 #import "SLVCollectionViewController.h"
 #import "SLVCollectionViewDataProvider.h"
-#import "SLVCollectionView.h"
+#import "SLVCollectionViewHelper.h"
 #import "SLVCollectionViewCell.h"
 #import "SLVCollectionViewLayout.h"
 
@@ -17,14 +17,14 @@
 #import "SLVPostController.h"
 #import "SLVPostModel.h"
 
-NSString * const slvCollectionReuseIdentifier = @"Cell";
-
 @interface SLVCollectionViewController () <UISearchBarDelegate, UICollectionViewDelegate, SLVCollectionLayoutDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) SLVCollectionViewDataProvider *dataProvider;
 @property (nonatomic, strong, readonly) id<SLVCollectionModelProtocol> model;
 @property (nonatomic, strong) SLVCollectionViewLayout *layout;
+@property (nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, strong) UIButton *settingsButton;
 
 @end
 
@@ -49,10 +49,19 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
     [self createCollectionView];
     self.dataProvider = [[SLVCollectionViewDataProvider alloc] initWithCollectionView:self.collectionView model:self.model];
     self.collectionView.dataSource = self.dataProvider;
+    
     self.navigationController.navigationBar.backgroundColor = [UIColor myGray];
-    self.navigationItem.titleView = [self.collectionView createNavigationBarForSearchBar];
-    self.collectionView.searchBar.delegate = self;
-    [self.collectionView.settingsButton addTarget:self action:@selector(gotoSettings:) forControlEvents:UIControlEventTouchUpInside];
+    self.searchBar = [UISearchBar new];
+    self.searchBar.barStyle = UISearchBarStyleMinimal;
+    self.searchBar.placeholder = @"Поиск";
+    self.searchBar.backgroundImage = [UIImage imageNamed:@"rectangle121"];
+    [self.searchBar setSearchFieldBackgroundImage: [UIImage imageNamed:@"rectangle121"] forState:UIControlStateNormal];
+    self.navigationItem.titleView = self.searchBar;
+    self.searchBar.delegate = self;
+    
+    self.settingsButton = [UIButton new];
+    [self.settingsButton setBackgroundImage:[UIImage imageNamed:@"icSettings"] forState:UIControlStateNormal];
+    [self.settingsButton addTarget:self action:@selector(gotoSettings:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -75,7 +84,7 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
     self.layout.delegate = self;
     CGRect frame = self.view.frame;
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), CGRectGetHeight(frame)) collectionViewLayout:self.layout];
-    [self.collectionView registerClass:[SLVCollectionViewCell class] forCellWithReuseIdentifier: slvCollectionReuseIdentifier];
+    [self.collectionView registerClass:[SLVCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([SLVCollectionViewCell class])];
     [self.view addSubview:_collectionView];
     self.collectionView.delegate = self;
 }
@@ -83,14 +92,14 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
 - (void)firstStart {
     NSString *searchRequest = [[NSUserDefaults standardUserDefaults] objectForKey:@"searchRequest"];
     if (searchRequest) {
-        self.collectionView.searchBar.text = searchRequest;
+        self.searchBar.text = searchRequest;
         [self.model firstStart:searchRequest withCompletionHandler:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.collectionView reloadData];
             });
         }];
     } else {
-        [self.collectionView.searchBar becomeFirstResponder];
+        [self.searchBar becomeFirstResponder];
     }
 }
 
