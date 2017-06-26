@@ -44,8 +44,7 @@
 }
 
 - (void)countDimensions {
-    NSUInteger numberOfItems = [self.delegate numberOfItems];
-    self.numberOfItems = numberOfItems ? numberOfItems : 0;
+    self.numberOfItems = [self.delegate numberOfItems];
     self.numberOfColumns = 3;
     NSUInteger extraCells = self.numberOfItems % 3;
     self.numberOfItems += extraCells;

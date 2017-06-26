@@ -107,7 +107,8 @@ static NSString *const kItemEntity = @"SLVItem";
 - (UIImage *)imageForIndex:(NSUInteger)index {
     NSString *key = self.items[@(index)];
     SLVItem *item = [self.storageService fetchEntity:kItemEntity forKey:key];
-    UIImage *result = [UIImage imageWithContentsOfFile:item.thumbnail];
+    NSString *destinationPath = [NSHomeDirectory() stringByAppendingPathComponent:item.thumbnail];
+    UIImage *result = [UIImage imageWithContentsOfFile:destinationPath];
     return result;
 }
 
@@ -131,7 +132,6 @@ static NSString *const kItemEntity = @"SLVItem";
 #pragma mark - utilities
 
 - (void)clearModel {
-    NSLog(@"i clear model");
     self.items = [NSDictionary new];
     self.page = 1;
     [self.facade clearOperations];

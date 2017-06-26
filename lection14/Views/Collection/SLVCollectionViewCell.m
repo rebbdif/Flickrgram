@@ -38,6 +38,7 @@
 - (void)prepareForReuse {
     self.imageView.image = nil;
     self.activityIndicator.hidden = YES;
+    self.activityIndicator.center = self.contentView.center;
     self.indexLabel.text = nil;
 }
 

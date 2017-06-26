@@ -10,7 +10,7 @@
 #import "SLVCollectionViewController.h"
 #import "SLVCollectionModel.h"
 #import "SLVFavouritesViewController.h"
-#import "SLVPostModel.h"
+#import "SLVFavoritesModel.h"
 #import "SLVFacade.h"
 #import "SLVStorageService.h"
 #import "SLVNetworkManager.h"
@@ -25,8 +25,8 @@
     SLVFacade *facade = [[SLVFacade alloc] initWithNetworkManager:[SLVNetworkManager new] storageService:[SLVStorageService new]];
     SLVCollectionModel *collectionModel = [[SLVCollectionModel alloc] initWithFacade:facade];
     SLVCollectionViewController *collectionViewController = [[SLVCollectionViewController alloc] initWithModel:collectionModel];
-    SLVPostModel *postModel = [[SLVPostModel alloc] initWithFacade:facade];
-    SLVFavouritesViewController *favouritesViewController = [[SLVFavouritesViewController alloc] initWithModel:postModel];
+    SLVFavoritesModel *favoritesModel = [[SLVFavoritesModel alloc] initWithFacade:facade];
+    SLVFavouritesViewController *favouritesViewController = [[SLVFavouritesViewController alloc] initWithModel:favoritesModel];
     
     UINavigationController *ncCollection = [[UINavigationController alloc] initWithRootViewController:collectionViewController];
     UINavigationController *ncFavourites = [[UINavigationController alloc] initWithRootViewController:favouritesViewController];

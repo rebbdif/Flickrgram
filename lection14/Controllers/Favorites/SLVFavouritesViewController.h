@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "SLVPostModelProtocol.h"
 
+@class SLVFavoritesModel;
+
 
 @interface SLVFavouritesViewController : UIViewController
 
-- (instancetype)initWithModel:(id<SLVPostModelProtocol>)model;
+- (instancetype)initWithModel:(SLVFavoritesModel *)model;
 
 @end

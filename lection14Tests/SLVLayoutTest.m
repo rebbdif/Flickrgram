@@ -71,6 +71,10 @@
     XCTAssert(self.layout.numberOfRows == 0);
 }
 
+- (void)testPrepareLayout {
+    
+}
+
 #pragma mark - frameForIndexPathTests
 
 - (void)test30Items {
