@@ -8,7 +8,7 @@
 
 #import "SLVCollectionViewController.h"
 #import "SLVCollectionViewDataProvider.h"
-#import "SLVCollectionView.h"
+#import "SLVCollectionNavigationBar.h"
 #import "SLVCollectionViewCell.h"
 #import "SLVCollectionViewLayout.h"
 
@@ -17,14 +17,13 @@
 #import "SLVPostController.h"
 #import "SLVPostModel.h"
 
-NSString * const slvCollectionReuseIdentifier = @"Cell";
-
 @interface SLVCollectionViewController () <UISearchBarDelegate, UICollectionViewDelegate, SLVCollectionLayoutDelegate>
 
-@property (nonatomic, strong) SLVCollectionView *collectionView;
+@property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) SLVCollectionViewDataProvider *dataProvider;
 @property (nonatomic, strong, readonly) id<SLVCollectionModelProtocol> model;
 @property (nonatomic, strong) SLVCollectionViewLayout *layout;
+@property (nonatomic, strong) SLVCollectionNavigationBar *navBar;
 
 @end
 
@@ -45,13 +44,16 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
     UIImage *image = [UIImage imageNamed:@"icFeed"];
     UITabBarItem *tab = [[UITabBarItem alloc] initWithTitle:@"Лента" image:image tag:0];
     self.tabBarItem = tab;
+    
     [self createCollectionView];
     self.dataProvider = [[SLVCollectionViewDataProvider alloc] initWithCollectionView:self.collectionView model:self.model];
     self.collectionView.dataSource = self.dataProvider;
+    
     self.navigationController.navigationBar.backgroundColor = [UIColor myGray];
-    self.navigationItem.titleView = [self.collectionView createNavigationBarForSearchBar];
-    self.collectionView.searchBar.delegate = self;
-    [self.collectionView.settingsButton addTarget:self action:@selector(gotoSettings:) forControlEvents:UIControlEventTouchUpInside];
+    self.navBar = [[SLVCollectionNavigationBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 44)];
+    self.navigationItem.titleView = self.navBar;
+    self.navBar.searchBar.delegate = self;
+    [self.navBar.settingsButton addTarget:self action:@selector(gotoSettings:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -73,8 +75,9 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
     self.layout = [[SLVCollectionViewLayout alloc] initWithDelegate:self];
     self.layout.delegate = self;
     CGRect frame = self.view.frame;
-    self.collectionView = [[SLVCollectionView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), CGRectGetHeight(frame)) collectionViewLayout:self.layout];
-    [self.collectionView registerClass:[SLVCollectionViewCell class] forCellWithReuseIdentifier: slvCollectionReuseIdentifier];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), CGRectGetHeight(frame)) collectionViewLayout:self.layout];
+    self.collectionView.backgroundColor = [UIColor myGray];
+    [self.collectionView registerClass:[SLVCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([SLVCollectionViewCell class])];
     [self.view addSubview:_collectionView];
     self.collectionView.delegate = self;
 }
@@ -82,11 +85,14 @@ NSString * const slvCollectionReuseIdentifier = @"Cell";
 - (void)firstStart {
     NSString *searchRequest = [[NSUserDefaults standardUserDefaults] objectForKey:@"searchRequest"];
     if (searchRequest) {
-        self.collectionView.searchBar.text = searchRequest;
-        [self.model firstStart:searchRequest];
-        [self.collectionView reloadData];
+        self.navBar.searchBar.text = searchRequest;
+        [self.model firstStart:searchRequest withCompletionHandler:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.collectionView reloadData];
+            });
+        }];
     } else {
-        [self.collectionView.searchBar becomeFirstResponder];
+        [self.navBar.searchBar becomeFirstResponder];
     }
 }
 

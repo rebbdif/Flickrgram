@@ -9,8 +9,6 @@
 #import "SLVCollectionViewDataProvider.h"
 #import "SLVCollectionViewCell.h"
 
-static NSString * const reuseIdentifier = @"Cell";
-
 @interface SLVCollectionViewDataProvider()
 
 @property (nonatomic, weak, readonly) id<SLVCollectionModelProtocol> model;
@@ -20,8 +18,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 @implementation SLVCollectionViewDataProvider
 
-- (instancetype)initWithCollectionView:(UICollectionView *)collectionView
-                                 model:(id<SLVCollectionModelProtocol>)model {
+- (instancetype)initWithCollectionView:(UICollectionView *)collectionView model:(id<SLVCollectionModelProtocol>)model {
     self = [super init];
     if (self) {
         _collectionView = collectionView;
@@ -33,7 +30,7 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark - UICollectionViewDataSource
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    SLVCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    SLVCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([SLVCollectionViewCell class]) forIndexPath:indexPath];
     UIImage *image = [self.model imageForIndex:indexPath.item];
     if (!image) {
         cell.activityIndicator.hidden = NO;

@@ -30,6 +30,7 @@
         [self.contentView addSubview:_activityIndicator];
         _activityIndicator.hidesWhenStopped = YES;
         _activityIndicator.center = CGPointMake(CGRectGetWidth(frame) / 2, CGRectGetHeight(frame) / 2);
+        [_activityIndicator setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
     }
     return self;
 }
@@ -37,6 +38,7 @@
 - (void)prepareForReuse {
     self.imageView.image = nil;
     self.activityIndicator.hidden = YES;
+    self.activityIndicator.center = self.contentView.center;
     self.indexLabel.text = nil;
 }
 

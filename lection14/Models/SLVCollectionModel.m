@@ -43,7 +43,7 @@ static NSString *const kItemEntity = @"SLVItem";
 
 #pragma mark - first start
 
-- (void)firstStart:(NSString *)searchRequest {
+- (void)firstStart:(NSString *)searchRequest withCompletionHandler:(voidBlock)completionHandler {
     self.request = searchRequest;
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"searchRequest ==%@", searchRequest];
     NSArray<SLVItem *> *fetchedItems = [self.storageService fetchEntities:kItemEntity withPredicate:predicate];
@@ -56,6 +56,7 @@ static NSString *const kItemEntity = @"SLVItem";
     self.items = newItems;
     self.itemURLs = newItems;
     ++self.page;
+    completionHandler();
 }
 
 #pragma mark - downloading items for search request
@@ -106,7 +107,8 @@ static NSString *const kItemEntity = @"SLVItem";
 - (UIImage *)imageForIndex:(NSUInteger)index {
     NSString *key = self.items[@(index)];
     SLVItem *item = [self.storageService fetchEntity:kItemEntity forKey:key];
-    UIImage *result = [UIImage imageWithContentsOfFile:item.thumbnail];
+    NSString *destinationPath = [NSHomeDirectory() stringByAppendingPathComponent:item.thumbnail];
+    UIImage *result = [UIImage imageWithContentsOfFile:destinationPath];
     return result;
 }
 
@@ -130,7 +132,6 @@ static NSString *const kItemEntity = @"SLVItem";
 #pragma mark - utilities
 
 - (void)clearModel {
-    NSLog(@"i clear model");
     self.items = [NSDictionary new];
     self.page = 1;
     [self.facade clearOperations];

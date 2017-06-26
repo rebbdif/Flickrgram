@@ -6,24 +6,24 @@
 //  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
-#import "SLVFavouritesViewController.h"
+#import "SLVFavoritesViewController.h"
 #import "SLVFavoritesCell.h"
 #import "UIColor+SLVColor.h"
 #import "SLVItem.h"
+#import "SLVFavoritesModel.h"
 
-@interface SLVFavouritesViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface SLVFavoritesViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong, readonly) id<SLVPostModelProtocol> model;
-@property (nonatomic, copy) NSArray *favorites;
+@property (nonatomic, strong, readonly) SLVFavoritesModel *model;
 
 @end
 
-@implementation SLVFavouritesViewController
+@implementation SLVFavoritesViewController
 
 static NSString * const reuseID = @"favoritesCell";
 
-- (instancetype)initWithModel:(id<SLVPostModelProtocol>)model {
+- (instancetype)initWithModel:(SLVFavoritesModel *)model {
     self = [super init];
     if (self) {
         self.tabBarItem.image = [UIImage imageNamed:@"icLikes"];
@@ -47,9 +47,7 @@ static NSString * const reuseID = @"favoritesCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.favorites = [NSArray new];
-    [self.model getFavoriteItemsWithCompletionHandler:^(NSArray *result) {
-        self.favorites = result;
+    [self.model getFavoriteItemsWithCompletionHandler:^(void) {
         [self.tableView reloadData];
     }];
 }
@@ -58,8 +56,10 @@ static NSString * const reuseID = @"favoritesCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SLVFavoritesCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseID];
-    SLVItem *currentItem = self.favorites[indexPath.row];
-    cell.photoView.image = [UIImage imageWithContentsOfFile:currentItem.largePhoto];
+    SLVItem *currentItem = [self.model itemForIndex:indexPath.item];
+    NSString *destinationPath = [NSHomeDirectory() stringByAppendingPathComponent:currentItem.largePhoto];
+    UIImage *image = [UIImage imageWithContentsOfFile:destinationPath];
+    cell.photoView.image = image;
     cell.descriptionText.text = currentItem.text;
     return cell;
 }
@@ -69,7 +69,7 @@ static NSString * const reuseID = @"favoritesCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.favorites.count;
+    return [self.model numberOfItems];
 }
 
 @end

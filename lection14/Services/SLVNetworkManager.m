@@ -67,23 +67,22 @@
 }
 
 - (NSString *)moveToDocumentsFromLocation:(NSURL *)location lastPathComponent:(NSString *)lastPathComponent {
+    NSString *relativePath = [NSString stringWithFormat:@"Documents/%@", lastPathComponent];
+    NSString *destinationPath = [@"file://" stringByAppendingString:[NSHomeDirectory() stringByAppendingPathComponent:relativePath]];
+    NSURL *destinationURL = [NSURL URLWithString:destinationPath];
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray *savedURLs=[fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
-    NSURL *documentsDirectory = [savedURLs objectAtIndex:0];
-    NSURL *destinationUrl = [documentsDirectory URLByAppendingPathComponent:lastPathComponent];
-    
     NSError *error = nil;
-    [fileManager removeItemAtURL:destinationUrl error:NULL];
-    [fileManager copyItemAtURL:location toURL:destinationUrl error:&error];
+    [fileManager removeItemAtURL:destinationURL error:NULL];
+    [fileManager copyItemAtURL:location toURL:destinationURL error:&error];
     if (error) {
         NSLog(@"%@", error.localizedDescription);
     }
     error = nil;
-    [destinationUrl setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:&error];
+    [destinationURL setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:&error];
     if (error) {
         NSLog(@"%@", error.localizedDescription);
     }
-    return [destinationUrl path];
+    return relativePath;
 }
 
 @end

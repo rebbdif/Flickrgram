@@ -12,7 +12,7 @@
 @class UIImage;
 @class SLVItem;
 
-typedef void (^Block)(void);
+typedef void (^voidBlock)(void);
 
 @protocol SLVCollectionModelProtocol <NSObject>
 
@@ -22,9 +22,9 @@ typedef void (^Block)(void);
 
 - (UIImage *)imageForIndex:(NSUInteger)index;
 
-- (void)loadImageForIndex:(NSUInteger)index withCompletionHandler:(Block)completionHandler;
+- (void)loadImageForIndex:(NSUInteger)index withCompletionHandler:(voidBlock)completionHandler;
 
-- (void)getItemsForRequest:(NSString *)request withCompletionHandler:(Block)completionHandler;
+- (void)getItemsForRequest:(NSString *)request withCompletionHandler:(voidBlock)completionHandler;
 
 - (void)clearModel;
 
@@ -32,6 +32,6 @@ typedef void (^Block)(void);
 
 - (void)pauseDownloads;
 
-- (void)firstStart:(NSString *)searchRequest;
+- (void)firstStart:(NSString *)searchRequest withCompletionHandler:(voidBlock)completionHandler;
 
 @end
