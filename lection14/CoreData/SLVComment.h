@@ -7,15 +7,16 @@
 //
 
 #import <CoreData/CoreData.h>
+#import "SLVStorageService.h"
 
-@class Human;
+@class SLVHuman;
 
-@interface Comment : NSManagedObject
+@interface SLVComment : NSManagedObject
 
 @property (nonatomic, strong) NSString *comment;
 @property (nonatomic, strong) NSURL *url;
-@property (nonatomic, strong) Human *author;
+@property (nonatomic, strong) SLVHuman *author;
 
-+ (Comment *)commentWithDictionary:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)moc;
++ (SLVComment *)commentWithDictionary:(NSDictionary *)dict storage:(id<SLVStorageProtocol>)storage;
 
 @end

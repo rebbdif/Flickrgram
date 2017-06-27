@@ -7,16 +7,17 @@
 //
 
 #import <CoreData/CoreData.h>
+#import "SLVStorageService.h"
 
 @class UIImage;
 
-@interface Human : NSManagedObject
+@interface SLVHuman : NSManagedObject
 
-@property (nonatomic, strong) NSURL *avatarURL;
+@property (nonatomic, strong) NSString *avatarURL;
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSURL *url;
+@property (nonatomic, strong) NSString *url;
 @property (nonatomic, strong) UIImage *avatar;
 
-+ (Human *)humanWithDictionary:(NSDictionary *)dict inManagedObjectContext:(NSManagedObjectContext *)moc;
++ (SLVHuman *)humanWithDictionary:(NSDictionary *)dict storage:(id<SLVStorageProtocol>)storage;
 
 @end

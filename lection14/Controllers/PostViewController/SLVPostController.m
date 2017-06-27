@@ -10,8 +10,10 @@
 #import "SLVPostDataProvider.h"
 #import "SLVPostViewCells.h"
 #import "SLVItem.h"
+#import "SLVHuman.h"
+#import "SLVComment.h"
 #import "SLVCollectionModel.h"
-#import "SLVPostView.h"
+#import "SLVPostNavigationBarView.h"
 #import "UIColor+SLVColor.h"
 @import Masonry;
 
@@ -24,6 +26,7 @@
 @property (nonatomic, weak) SLVImageCell *imageCell;
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) SLVPostDataProvider *provider;
+@property (nonatomic, strong) SLVPostNavigationBarView *postNavigationBarView;
 
 @end
 
@@ -40,11 +43,44 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithCustomView:[SLVPostView configureNavigationBar]];
-    [self.navigationItem setLeftBarButtonItem:bbi];
-    self.navigationItem.leftItemsSupplementBackButton = YES;
+    [self configureTableView];
+    [self configureLeftBarButtonItem];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addToFavorites:)];
-    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    __weak typeof(self)weakSelf = self;
+    [self.model getMetadataForSelectedItemWithCompletionHandler:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf configureLeftBarButtonItem];
+        });
+    }];
+}
+
+- (void)configureLeftBarButtonItem {
+    self.postNavigationBarView = [SLVPostNavigationBarView new];
+    SLVItem *selectedItem = [self.model getSelectedItem];
+    SLVHuman *author = selectedItem.author;
+    UIImage *avatar = author.avatar;
+    if (!avatar) {
+        __weak typeof(self)weakSelf = self;
+        [self.model getAvatarForHuman:author withCompletionHandler:^(UIImage *avatar) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf configureLeftBarButtonItem];
+            });
+        }];
+    } else {
+        self.postNavigationBarView.avatarView.image = avatar;
+    }
+    self.postNavigationBarView.nameLabel.text = selectedItem.author.name;
+    self.postNavigationBarView.locationLabel.text = selectedItem.location;
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.postNavigationBarView];
+    [self.navigationItem setLeftBarButtonItem:barButtonItem];
+    self.navigationItem.leftItemsSupplementBackButton = YES;
+}
+
+- (void)configureTableView {
     CGRect frame = self.view.frame;
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), CGRectGetHeight(frame))];
     self.tableView.backgroundColor = [UIColor myGray];

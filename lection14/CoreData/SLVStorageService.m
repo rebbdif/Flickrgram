@@ -78,9 +78,11 @@
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entity];
     request.predicate = predicate;
     NSArray *results = [self.stack.privateContext executeFetchRequest:request error:&error];
+    __weak typeof(self)weakSelf = self;
     [self.stack.privateContext performBlockAndWait:^{
+        __strong typeof(weakSelf)strongSelf = weakSelf;
         for (id item in results) {
-            [self.stack.privateContext deleteObject:item];
+            [strongSelf.stack.privateContext deleteObject:item];
         }
     }];
     [self save];
@@ -91,10 +93,12 @@
     if (!fetchedEntity) {
         NSLog(@"storageService - saveObject couldn't fetch entity for key %@", key);
     }
+    __weak typeof(self)weakSelf = self;
     [self.stack.privateContext performBlock:^{
+        __strong typeof(weakSelf)strongSelf = weakSelf;
         [fetchedEntity setValue:object forKey:attribute];
-        [self save];
-        completionHandler();
+        [strongSelf save];
+        if (completionHandler) completionHandler();
     }];
 }
 
@@ -106,6 +110,12 @@
         }
         [self save];
     }];
+}
+
+- (id)insertNewObjectForEntity:(NSString *)name {
+    id entity = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:self.stack.mainContext];
+    [self save];
+    return entity;
 }
 
 @end

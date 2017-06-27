@@ -31,6 +31,7 @@
         [self.contentView addSubview:_photoView];
         
         _descriptionText = [UILabel new];
+        _descriptionText.numberOfLines = 0;
         [self.contentView addSubview:_descriptionText];
         
         _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];

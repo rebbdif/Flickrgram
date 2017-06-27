@@ -11,6 +11,9 @@
 
 @class UIImage;
 @class SLVItem;
+@class SLVHuman;
+
+typedef void (^voidBlock)(void);
 
 @protocol SLVPostModelProtocol <NSObject>
 
@@ -20,6 +23,10 @@
 
 - (SLVItem *)getSelectedItem;
 
-- (void)loadImageForItem:(SLVItem *)item withCompletionHandler:(void (^)(void))completionHandler;
+- (void)loadImageForItem:(SLVItem *)item withCompletionHandler:(voidBlock)completionHandler;
+
+- (void)getMetadataForSelectedItemWithCompletionHandler:(voidBlock)completionHandler;
+
+- (void)getAvatarForHuman:(SLVHuman *)human withCompletionHandler:(void (^)(UIImage *avatar))completionHandler;
 
 @end

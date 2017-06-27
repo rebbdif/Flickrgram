@@ -14,7 +14,7 @@
 		6350EF861ED5841F00D7C8CE /* SLVNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6350EF851ED5841F00D7C8CE /* SLVNetworkManager.m */; };
 		6350EF8C1ED5843000D7C8CE /* SLVCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6350EF8A1ED5843000D7C8CE /* SLVCollectionModel.m */; };
 		6350EF8F1ED5923100D7C8CE /* SLVImageDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6350EF8E1ED5923100D7C8CE /* SLVImageDownloadOperation.m */; };
-		635722F41EF5B091000BB6CD /* SLVPostView.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722F31EF5B091000BB6CD /* SLVPostView.m */; };
+		635722F41EF5B091000BB6CD /* SLVPostNavigationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722F31EF5B091000BB6CD /* SLVPostNavigationBarView.m */; };
 		635722F71EF5B1FC000BB6CD /* SLVPostDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722F61EF5B1FC000BB6CD /* SLVPostDataProvider.m */; };
 		635722FA1EF5B4A7000BB6CD /* SLVPostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722F91EF5B4A7000BB6CD /* SLVPostModel.m */; };
 		635723001EF5F74C000BB6CD /* SLVFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722FF1EF5F74C000BB6CD /* SLVFacade.m */; };
@@ -35,8 +35,8 @@
 		6392D1F21EE7F92E0050728D /* SLVPostViewCells.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1F11EE7F92E0050728D /* SLVPostViewCells.m */; };
 		6392D1F71EE84A920050728D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1F51EE84A920050728D /* Model.xcdatamodeld */; };
 		6392D20C1EE874BF0050728D /* SLVCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D20B1EE874BF0050728D /* SLVCoreDataStack.m */; };
-		6392D20F1EE875790050728D /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D20E1EE875790050728D /* Comment.m */; };
-		6392D2121EE875980050728D /* Human.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D2111EE875980050728D /* Human.m */; };
+		6392D20F1EE875790050728D /* SLVComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D20E1EE875790050728D /* SLVComment.m */; };
+		6392D2121EE875980050728D /* SLVHuman.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D2111EE875980050728D /* SLVHuman.m */; };
 		6392D2151EE875A50050728D /* SLVItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D2141EE875A50050728D /* SLVItem.m */; };
 		6392D21E1EE88F410050728D /* SLVStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D21D1EE88F410050728D /* SLVStorageService.m */; };
 		6392D2221EEAC1090050728D /* SLVFavoritesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D2211EEAC1090050728D /* SLVFavoritesCell.m */; };
@@ -70,8 +70,8 @@
 		6350EF8D1ED5923100D7C8CE /* SLVImageDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVImageDownloadOperation.h; path = Models/SLVImageDownloadOperation.h; sourceTree = "<group>"; };
 		6350EF8E1ED5923100D7C8CE /* SLVImageDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVImageDownloadOperation.m; path = Models/SLVImageDownloadOperation.m; sourceTree = "<group>"; };
 		635722F11EF59FCF000BB6CD /* SLVCollectionModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVCollectionModelProtocol.h; path = Protocols/SLVCollectionModelProtocol.h; sourceTree = "<group>"; };
-		635722F21EF5B091000BB6CD /* SLVPostView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPostView.h; path = Views/Post/SLVPostView.h; sourceTree = "<group>"; };
-		635722F31EF5B091000BB6CD /* SLVPostView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVPostView.m; path = Views/Post/SLVPostView.m; sourceTree = "<group>"; };
+		635722F21EF5B091000BB6CD /* SLVPostNavigationBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPostNavigationBarView.h; path = Views/Post/SLVPostNavigationBarView.h; sourceTree = "<group>"; };
+		635722F31EF5B091000BB6CD /* SLVPostNavigationBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVPostNavigationBarView.m; path = Views/Post/SLVPostNavigationBarView.m; sourceTree = "<group>"; };
 		635722F51EF5B1FC000BB6CD /* SLVPostDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPostDataProvider.h; path = Controllers/PostViewController/SLVPostDataProvider.h; sourceTree = "<group>"; };
 		635722F61EF5B1FC000BB6CD /* SLVPostDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVPostDataProvider.m; path = Controllers/PostViewController/SLVPostDataProvider.m; sourceTree = "<group>"; };
 		635722F81EF5B4A7000BB6CD /* SLVPostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPostModel.h; path = Models/SLVPostModel.h; sourceTree = "<group>"; };
@@ -113,10 +113,10 @@
 		6392D1F61EE84A920050728D /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		6392D20A1EE874BF0050728D /* SLVCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVCoreDataStack.h; path = CoreData/SLVCoreDataStack.h; sourceTree = "<group>"; };
 		6392D20B1EE874BF0050728D /* SLVCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVCoreDataStack.m; path = CoreData/SLVCoreDataStack.m; sourceTree = "<group>"; };
-		6392D20D1EE875790050728D /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Comment.h; path = CoreData/Comment.h; sourceTree = "<group>"; };
-		6392D20E1EE875790050728D /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Comment.m; path = CoreData/Comment.m; sourceTree = "<group>"; };
-		6392D2101EE875980050728D /* Human.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Human.h; path = CoreData/Human.h; sourceTree = "<group>"; };
-		6392D2111EE875980050728D /* Human.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Human.m; path = CoreData/Human.m; sourceTree = "<group>"; };
+		6392D20D1EE875790050728D /* SLVComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVComment.h; path = CoreData/SLVComment.h; sourceTree = "<group>"; };
+		6392D20E1EE875790050728D /* SLVComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVComment.m; path = CoreData/SLVComment.m; sourceTree = "<group>"; };
+		6392D2101EE875980050728D /* SLVHuman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVHuman.h; path = CoreData/SLVHuman.h; sourceTree = "<group>"; };
+		6392D2111EE875980050728D /* SLVHuman.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVHuman.m; path = CoreData/SLVHuman.m; sourceTree = "<group>"; };
 		6392D2131EE875A50050728D /* SLVItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVItem.h; path = CoreData/SLVItem.h; sourceTree = "<group>"; };
 		6392D2141EE875A50050728D /* SLVItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVItem.m; path = CoreData/SLVItem.m; sourceTree = "<group>"; };
 		6392D21C1EE88F410050728D /* SLVStorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVStorageService.h; path = CoreData/SLVStorageService.h; sourceTree = "<group>"; };
@@ -188,19 +188,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		04E2FFD11EBBABF70074C5D9 /* Other */ = {
+		04E2FFD11EBBABF70074C5D9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				6375B3C11EFD5C6800AA41B2 /* Entities */,
 				6350EF8D1ED5923100D7C8CE /* SLVImageDownloadOperation.h */,
 				6350EF8E1ED5923100D7C8CE /* SLVImageDownloadOperation.m */,
 				635722FD1EF5C2A0000BB6CD /* SLVFacadeProtocol.h */,
 				635722FE1EF5F74C000BB6CD /* SLVFacade.h */,
 				635722FF1EF5F74C000BB6CD /* SLVFacade.m */,
-				6392D1D41EE04CFD0050728D /* SLVSettingsViewController.h */,
-				6392D1D51EE04CFD0050728D /* SLVSettingsViewController.m */,
 			);
-			name = Other;
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		04E2FFD31EBBAC0F0074C5D9 /* Services */ = {
@@ -219,10 +216,12 @@
 		6375B3C01EFD5B5D00AA41B2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				63A890001F015B74008AAAF4 /* Settings */,
 				6375B3CF1F011FB800AA41B2 /* Favorites */,
 				6375B3C61EFD5CEE00AA41B2 /* Post */,
 				6375B3C21EFD5C7E00AA41B2 /* Collection */,
-				04E2FFD11EBBABF70074C5D9 /* Other */,
+				6375B3C11EFD5C6800AA41B2 /* Entities */,
+				04E2FFD11EBBABF70074C5D9 /* Helpers */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -230,10 +229,11 @@
 		6375B3C11EFD5C6800AA41B2 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				6392D20D1EE875790050728D /* Comment.h */,
-				6392D20E1EE875790050728D /* Comment.m */,
-				6392D2101EE875980050728D /* Human.h */,
-				6392D2111EE875980050728D /* Human.m */,
+				6392D1F51EE84A920050728D /* Model.xcdatamodeld */,
+				6392D20D1EE875790050728D /* SLVComment.h */,
+				6392D20E1EE875790050728D /* SLVComment.m */,
+				6392D2101EE875980050728D /* SLVHuman.h */,
+				6392D2111EE875980050728D /* SLVHuman.m */,
 				6392D2131EE875A50050728D /* SLVItem.h */,
 				6392D2141EE875A50050728D /* SLVItem.m */,
 			);
@@ -307,12 +307,10 @@
 		6375B3C81EFD5D0300AA41B2 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6392D2201EEAC1090050728D /* SLVFavoritesCell.h */,
-				6392D2211EEAC1090050728D /* SLVFavoritesCell.m */,
 				6392D1F01EE7F92E0050728D /* SLVPostViewCells.h */,
 				6392D1F11EE7F92E0050728D /* SLVPostViewCells.m */,
-				635722F21EF5B091000BB6CD /* SLVPostView.h */,
-				635722F31EF5B091000BB6CD /* SLVPostView.m */,
+				635722F21EF5B091000BB6CD /* SLVPostNavigationBarView.h */,
+				635722F31EF5B091000BB6CD /* SLVPostNavigationBarView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -335,6 +333,8 @@
 				6392D1CF1EE04CFD0050728D /* SLVFavoritesViewController.m */,
 				6375B3D01F01202C00AA41B2 /* SLVFavoritesModel.h */,
 				6375B3D11F01202C00AA41B2 /* SLVFavoritesModel.m */,
+				6392D2201EEAC1090050728D /* SLVFavoritesCell.h */,
+				6392D2211EEAC1090050728D /* SLVFavoritesCell.m */,
 			);
 			name = Favorites;
 			sourceTree = "<group>";
@@ -353,7 +353,6 @@
 		6392D1F41EE84A580050728D /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				6392D1F51EE84A920050728D /* Model.xcdatamodeld */,
 				6392D20A1EE874BF0050728D /* SLVCoreDataStack.h */,
 				6392D20B1EE874BF0050728D /* SLVCoreDataStack.m */,
 				635723061EF6D06D000BB6CD /* SLVStorageProtocol.h */,
@@ -361,6 +360,15 @@
 				6392D21D1EE88F410050728D /* SLVStorageService.m */,
 			);
 			name = Storage;
+			sourceTree = "<group>";
+		};
+		63A890001F015B74008AAAF4 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				6392D1D41EE04CFD0050728D /* SLVSettingsViewController.h */,
+				6392D1D51EE04CFD0050728D /* SLVSettingsViewController.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		63ABAB891ED873D500941726 /* UnitTests */ = {
@@ -516,7 +524,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				635722F41EF5B091000BB6CD /* SLVPostView.m in Sources */,
+				635722F41EF5B091000BB6CD /* SLVPostNavigationBarView.m in Sources */,
 				6350EF8C1ED5843000D7C8CE /* SLVCollectionModel.m in Sources */,
 				6392D1EF1EE741BE0050728D /* SLVCollectionViewCell.m in Sources */,
 				6392D1E81EE04D4E0050728D /* UIFont+SLVFonts.m in Sources */,
@@ -525,7 +533,7 @@
 				6350EF8F1ED5923100D7C8CE /* SLVImageDownloadOperation.m in Sources */,
 				04E2FF9C1EBB90A50074C5D9 /* main.m in Sources */,
 				6375B3D21F01202C00AA41B2 /* SLVFavoritesModel.m in Sources */,
-				6392D20F1EE875790050728D /* Comment.m in Sources */,
+				6392D20F1EE875790050728D /* SLVComment.m in Sources */,
 				6392D1E01EE04D3A0050728D /* SLVCollectionNavigationBar.m in Sources */,
 				6392D1D61EE04CFD0050728D /* SLVCollectionViewController.m in Sources */,
 				6392D1F21EE7F92E0050728D /* SLVPostViewCells.m in Sources */,
@@ -538,7 +546,7 @@
 				6392D1D91EE04CFD0050728D /* SLVPostController.m in Sources */,
 				6392D20C1EE874BF0050728D /* SLVCoreDataStack.m in Sources */,
 				6392D21E1EE88F410050728D /* SLVStorageService.m in Sources */,
-				6392D2121EE875980050728D /* Human.m in Sources */,
+				6392D2121EE875980050728D /* SLVHuman.m in Sources */,
 				6392D1D71EE04CFD0050728D /* SLVCollectionViewDataProvider.m in Sources */,
 				635722F71EF5B1FC000BB6CD /* SLVPostDataProvider.m in Sources */,
 				6392D1F71EE84A920050728D /* Model.xcdatamodeld in Sources */,

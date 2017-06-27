@@ -9,15 +9,12 @@
 #import "SLVItem.h"
 #import "SLVFacade.h"
 
-static NSString *const entityName = @"SLVItem";
-
 @implementation SLVItem
 
+@dynamic location;
+@dynamic photoID;
+@dynamic photoSecret;
 @dynamic isFavorite;
-@dynamic numberOfLikes;
-@dynamic numberOfComments;
-@dynamic latitude;
-@dynamic longitude;
 @dynamic largePhotoURL;
 @dynamic thumbnailURL;
 @dynamic text;
@@ -26,27 +23,39 @@ static NSString *const entityName = @"SLVItem";
 @dynamic identifier;
 @dynamic searchRequest;
 
+@dynamic author;
+@dynamic comments;
+
 + (NSString *)identifierForItemWithDictionary:(NSDictionary *)dict storage:(id<SLVStorageProtocol>)storage forRequest:(NSString *)request {
     NSString *base = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@.jpg",
                       dict[@"farm"], dict[@"server"], dict[@"id"], dict[@"secret"]];
-    NSString *thumbnailUrl = [base stringByAppendingString:@""]; //_s//_n
-    NSString *imageUrl = [base stringByAppendingString:@""]; //z
+    NSString *thumbnailUrl = [base stringByAppendingString:@""]; //_n
+    NSString *imageUrl = [base stringByAppendingString:@""]; //_z
     NSString *identifier = thumbnailUrl;
     
-    SLVItem *item = (SLVItem *)[storage fetchEntity:entityName forKey:identifier];
+    SLVItem *item = (SLVItem *)[storage fetchEntity:NSStringFromClass([self class]) forKey:identifier];
     
     if (!item) {
-        [storage insertNewObjectForEntityForName:entityName withDictionary:@{
+        [storage insertNewObjectForEntityForName:NSStringFromClass([self class]) withDictionary:@{
                                                                             @"thumbnailURL":thumbnailUrl,
                                                                             @"largePhotoURL":imageUrl,
                                                                             @"text":dict[@"title"],
                                                                             @"identifier":thumbnailUrl,
-                                                                            @"searchRequest":request
+                                                                            @"searchRequest":request,
+                                                                            @"photoID":dict[@"id"],
+                                                                            @"photoSecret":dict[@"secret"]
                                                                             }];
     }
     return identifier;
 }
 
+- (void)addComments:(NSSet<SLVComment *> *)comments storage:(id<SLVStorageProtocol>)storage {
+    [storage saveObject:comments forEntity:NSStringFromClass([self class]) forAttribute:@"comments" forKey:self.identifier withCompletionHandler:nil];
+}
+
+- (void)addAuthor:(SLVHuman *)author storage:(id<SLVStorageProtocol>)storage {
+    [storage saveObject:author forEntity:NSStringFromClass([self class]) forAttribute:@"author" forKey:self.identifier withCompletionHandler:nil];
+}
 
 @end
 
