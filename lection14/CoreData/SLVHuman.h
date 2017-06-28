@@ -8,6 +8,7 @@
 
 #import <CoreData/CoreData.h>
 #import "SLVStorageService.h"
+#import "SLVNetworkProtocol.h"
 
 @class UIImage;
 
@@ -19,5 +20,7 @@
 @property (nonatomic, strong) UIImage *avatar;
 
 + (SLVHuman *)humanWithDictionary:(NSDictionary *)dict storage:(id<SLVStorageProtocol>)storage;
+
+- (void)getAvatarWithNetworkService:(id<SLVNetworkProtocol>)networkService storageService:(id<SLVStorageProtocol>)storageService completionHandler:(void (^)(UIImage *))completionHandler;
 
 @end

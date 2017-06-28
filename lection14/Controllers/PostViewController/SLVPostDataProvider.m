@@ -38,7 +38,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case 0: {
-            return 1;
+            return 2;
             break;
         } case 1: {
             return 3;
@@ -59,10 +59,11 @@
 - (UITableViewCell *)configureCellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case 0: {
-            return [self imageCellForTableView:tableView atIndexPath:indexPath];
+            if (indexPath.row == 0) return [self imageCellForTableView:tableView atIndexPath:indexPath];
+            if (indexPath.row == 1) return [self likesCellForTableView:tableView atIndexPath:indexPath];
             break;
         } case 1: {
-            SLVCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commentsCell"];
+            SLVCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SLVCommentsCell class])];
             cell.nameLabel.text = @"rebbdif";
             cell.eventLabel.text = @"liked photo";
             return cell;
@@ -74,7 +75,7 @@
 }
 
 - (SLVImageCell *)imageCellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath {
-    SLVImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell"];
+    SLVImageCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SLVImageCell class])];
     cell.delegate = self.controller;
     SLVItem *selectedItem = [self.model getSelectedItem];
     NSString *destinationPath = [NSHomeDirectory() stringByAppendingPathComponent:selectedItem.largePhoto];
@@ -99,6 +100,14 @@
     }
     cell.descriptionText.text = selectedItem.text;
     return cell;
+}
+
+- (SLVLikesCell *)likesCellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath {
+    SLVLikesCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SLVLikesCell class])];
+        SLVItem *selectedItem = [self.model getSelectedItem];
+        cell.likesLabel.text = [NSString stringWithFormat:@"%@ лайков", selectedItem.numberOfLikes];
+        cell.commentsLabel.text = [NSString stringWithFormat:@"%@ комментариев", selectedItem.numberOfComments];
+        return cell;
 }
 
 @end

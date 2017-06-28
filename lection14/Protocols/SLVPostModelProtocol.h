@@ -17,6 +17,9 @@ typedef void (^voidBlock)(void);
 
 @protocol SLVPostModelProtocol <NSObject>
 
+@property (nonatomic, strong, readonly) id<SLVStorageProtocol> storageService;
+@property (nonatomic, strong, readonly) id<SLVNetworkProtocol> networkManager;
+
 - (void)makeFavorite:(BOOL)favorite;
 
 - (void)passSelectedItem:(SLVItem *)selectedItem;
@@ -26,7 +29,5 @@ typedef void (^voidBlock)(void);
 - (void)loadImageForItem:(SLVItem *)item withCompletionHandler:(voidBlock)completionHandler;
 
 - (void)getMetadataForSelectedItemWithCompletionHandler:(voidBlock)completionHandler;
-
-- (void)getAvatarForHuman:(SLVHuman *)human withCompletionHandler:(void (^)(UIImage *avatar))completionHandler;
 
 @end

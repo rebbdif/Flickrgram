@@ -20,8 +20,6 @@ static NSString *const kItemEntity = @"SLVItem";
 
 @property (nonatomic, strong, readonly) id<SLVFacadeProtocol> facade;
 @property (nonatomic, strong) SLVItem *selectedItem;
-@property (nonatomic, strong, readonly) id<SLVStorageProtocol> storageService;
-@property (nonatomic, strong, readonly) id<SLVNetworkProtocol> networkManager;
 
 @end
 
@@ -62,40 +60,38 @@ static NSString *const kItemEntity = @"SLVItem";
     NSString *photoID = [NSString stringWithFormat:@"photo_id=%@", self.selectedItem.photoID];
     NSString *secret = [NSString stringWithFormat:@"secret=%@", self.selectedItem.photoSecret];
     
-    NSString *path = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&format=json&nojsoncallback=1&%@&%@&%@", apiKey, photoID, secret];
-    NSURL *url = [NSURL URLWithString:path];
-    [self.networkManager getJSONFromURL:url withCompletionHandler:^(NSDictionary *json) {
-        [self parse:json];
+    NSString *infoPath = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&format=json&nojsoncallback=1&%@&%@&%@", apiKey, photoID, secret];
+    NSURL *infoURL = [NSURL URLWithString:infoPath];
+    [self.networkManager getJSONFromURL:infoURL withCompletionHandler:^(NSDictionary *json) {
+        [self parseInfo:json];
+        if (completionHandler) completionHandler();
+    }];
+
+    NSString *favoritesPath = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.getFavorites&format=json&nojsoncallback=1&%@&%@&", apiKey, photoID];
+    NSURL *favoritesURL = [NSURL URLWithString:favoritesPath];
+    [self.networkManager getJSONFromURL:favoritesURL withCompletionHandler:^(NSDictionary *json) {
+        [self parseFavorites:json];
         if (completionHandler) completionHandler();
     }];
 }
 
-- (void)parse:(NSDictionary *)json {
+- (void)parseInfo:(NSDictionary *)json {
     NSDictionary *photo = json[@"photo"];
-    NSArray *comments = photo[@"comments"];
+    
     NSString *country = photo[@"location"][@"country"][@"_content"];
     NSString *city = photo[@"location"][@"locality"][@"_content"];
     NSString *location = [NSString stringWithFormat:@"%@, %@", city, country];
-    for (NSDictionary *comment in comments) {
-        SLVComment *newComent = [SLVComment commentWithDictionary:comment storage:self.storageService];
-        
-    }
+
     SLVHuman *owner = [SLVHuman humanWithDictionary:photo[@"owner"] storage:self.storageService];
     [self.selectedItem addAuthor:owner storage:self.storageService];
     self.selectedItem.location = location;
+    NSString *numberOfComments = photo[@"comments"][@"_content"];
+    self.selectedItem.numberOfComments = numberOfComments;
     [self.storageService save];
 }
 
-- (void)getAvatarForHuman:(SLVHuman *)human withCompletionHandler:(void (^)(UIImage *))completionHandler {
-    NSURL *url = [NSURL URLWithString:human.avatarURL];
-    __weak typeof(self)weakSelf = self;
-    [self.networkManager getDataFromURL:url withCompletionHandler:^(NSData *data) {
-        UIImage *avatar = [UIImage imageWithData:data];
-        human.avatar = avatar;
-        [weakSelf.storageService save];
-        completionHandler(avatar);
-    }];
+- (void)parseFavorites:(NSDictionary *)json {
+    
 }
-
 
 @end

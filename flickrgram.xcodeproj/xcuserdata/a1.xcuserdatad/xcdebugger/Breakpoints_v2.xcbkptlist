@@ -1459,11 +1459,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Views/Post/SLVPostViewCells.m"
-            timestampString = "520280631.39657"
+            timestampString = "520332024.219963"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
             landmarkName = "-initWithStyle:reuseIdentifier:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1475,11 +1475,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Views/Post/SLVPostViewCells.m"
-            timestampString = "520280631.39657"
+            timestampString = "520332024.219963"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "-initWithStyle:reuseIdentifier:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1491,7 +1491,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Views/Post/SLVPostViewCells.m"
-            timestampString = "520280631.39657"
+            timestampString = "520332024.219963"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "111"
@@ -1507,11 +1507,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Views/Post/SLVPostViewCells.m"
-            timestampString = "520280631.39657"
+            timestampString = "520332024.219963"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "-initWithStyle:reuseIdentifier:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2483,11 +2483,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Models/SLVPostModel.m"
-            timestampString = "520168702.778837"
+            timestampString = "520329712.024552"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "-makeFavorite:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2499,11 +2499,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Controllers/PostViewController/SLVPostDataProvider.m"
-            timestampString = "520177504.236171"
+            timestampString = "520331331.305361"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "-imageCellForTableView:atIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2531,11 +2531,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Controllers/PostViewController/SLVPostDataProvider.m"
-            timestampString = "520177504.236171"
+            timestampString = "520331331.305361"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "-imageCellForTableView:atIndexPath:"
             landmarkType = "7">
             <Locations>
@@ -2579,11 +2579,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Controllers/PostViewController/SLVPostDataProvider.m"
-            timestampString = "520177504.236171"
+            timestampString = "520331331.305361"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "-imageCellForTableView:atIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2595,11 +2595,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Controllers/PostViewController/SLVPostDataProvider.m"
-            timestampString = "520177504.236171"
+            timestampString = "520331331.305361"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "-imageCellForTableView:atIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2611,11 +2611,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Controllers/PostViewController/SLVPostDataProvider.m"
-            timestampString = "520177504.236171"
+            timestampString = "520331331.305361"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "-imageCellForTableView:atIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2643,11 +2643,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Controllers/PostViewController/SLVPostDataProvider.m"
-            timestampString = "519833873.614206"
+            timestampString = "520331331.305361"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "-imageCellForTableView:atIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2883,11 +2883,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Models/SLVPostModel.m"
-            timestampString = "520168702.778837"
+            timestampString = "520329712.024552"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "-makeFavorite:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3059,11 +3059,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/CoreData/SLVItem.m"
-            timestampString = "520279553.886267"
+            timestampString = "520329712.024552"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "+identifierForItemWithDictionary:storage:forRequest:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3267,11 +3267,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Controllers/PostViewController/SLVPostDataProvider.m"
-            timestampString = "520177504.236171"
+            timestampString = "520331331.305361"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "-imageCellForTableView:atIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3283,11 +3283,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Controllers/PostViewController/SLVPostDataProvider.m"
-            timestampString = "520177504.236171"
+            timestampString = "520331331.305361"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "-imageCellForTableView:atIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3426,7 +3426,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "91"
             endingLineNumber = "91"
-            landmarkName = "-test30Items"
+            landmarkName = "-testPrepareLayoutNormal1"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3733,11 +3733,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Models/SLVPostModel.m"
-            timestampString = "520168680.197054"
+            timestampString = "520329712.024552"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "-passSelectedItem:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3973,27 +3973,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Models/SLVPostModel.m"
-            timestampString = "520282322.777279"
+            timestampString = "520329712.024552"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "-parse:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lection14/Models/SLVPostModel.m"
-            timestampString = "520269617.940507"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "-getMetadataForSelectedItemWithCompletionHandler:"
             landmarkType = "7">
          </BreakpointContent>
@@ -4021,11 +4005,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/CoreData/SLVHuman.m"
-            timestampString = "520280082.333233"
+            timestampString = "520329712.024552"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
             landmarkName = "+humanWithDictionary:storage:"
             landmarkType = "7">
          </BreakpointContent>
@@ -4037,11 +4021,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/CoreData/SLVHuman.m"
-            timestampString = "520280135.194072"
+            timestampString = "520329712.024552"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
             landmarkName = "+humanWithDictionary:storage:"
             landmarkType = "7">
          </BreakpointContent>
@@ -4101,157 +4085,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Models/SLVPostModel.m"
-            timestampString = "520289489.46503"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "-parse:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lection14/Models/SLVPostModel.m"
-            timestampString = "520289489.46503"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "-parse:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lection14/Controllers/PostViewController/SLVPostController.m"
-            timestampString = "520287023.350651"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "-configureLeftBarButtonItem"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lection14/Controllers/PostViewController/SLVPostController.m"
-            timestampString = "520287023.350651"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "-configureLeftBarButtonItem"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lection14/Models/SLVPostModel.m"
-            timestampString = "520289489.46503"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "-parse:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SLVPostModel parse:]"
-                  moduleName = "lection14"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/a1/programming/ios/FlickrGram2/lection14/Models/SLVPostModel.m"
-                  timestampString = "520289998.394094"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "871">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SLVPostModel parse:]"
-                  moduleName = "lection14"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/a1/programming/ios/FlickrGram2/lection14/Models/SLVPostModel.m"
-                  timestampString = "520289998.396234"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "879">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lection14/Models/SLVPostModel.m"
-            timestampString = "520290037.926776"
+            timestampString = "520329712.024552"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
             endingLineNumber = "81"
-            landmarkName = "-parse:"
+            landmarkName = "-parseInfo:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SLVPostModel parse:]"
-                  moduleName = "lection14"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/a1/programming/ios/FlickrGram2/lection14/Models/SLVPostModel.m"
-                  timestampString = "520290037.940742"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "871">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SLVPostModel parse:]"
-                  moduleName = "lection14"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/a1/programming/ios/FlickrGram2/lection14/Models/SLVPostModel.m"
-                  timestampString = "520290037.943906"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "879">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lection14/Controllers/PostViewController/SLVPostController.m"
+            timestampString = "520330488.829521"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "-configureLeftBarButtonItem"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lection14/Models/SLVPostModel.m"
+            timestampString = "520330330.002544"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "-parseInfo:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

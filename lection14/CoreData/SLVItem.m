@@ -11,6 +11,8 @@
 
 @implementation SLVItem
 
+@dynamic numberOfLikes;
+@dynamic numberOfComments;
 @dynamic location;
 @dynamic photoID;
 @dynamic photoSecret;

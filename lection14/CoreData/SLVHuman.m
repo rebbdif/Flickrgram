@@ -7,6 +7,7 @@
 //
 
 #import "SLVHuman.h"
+@import UIKit;
 
 @implementation SLVHuman
 
@@ -29,5 +30,18 @@
     [storage save];
     return human;
 }
+
+- (void)getAvatarWithNetworkService:(id<SLVNetworkProtocol>)networkService storageService:(id<SLVStorageProtocol>)storageService completionHandler:(void (^)(UIImage *))completionHandler {
+    NSURL *url = [NSURL URLWithString:self.avatarURL];
+    __weak typeof(self)weakSelf = self;
+    [networkService getDataFromURL:url withCompletionHandler:^(NSData *data) {
+        __strong typeof(self)strongSelf = weakSelf;
+        UIImage *avatar = [UIImage imageWithData:data];
+        strongSelf.avatar = avatar;
+        [storageService save];
+        completionHandler(avatar);
+    }];
+}
+
 
 @end

@@ -20,6 +20,8 @@
         <attribute name="largePhoto" optional="YES" attributeType="String" storedInTruthFile="YES" syncable="YES"/>
         <attribute name="largePhotoURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="numberOfComments" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="numberOfLikes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoSecret" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="searchRequest" optional="YES" attributeType="String" syncable="YES"/>
@@ -32,6 +34,6 @@
     <elements>
         <element name="SLVComment" positionX="-324" positionY="150" width="128" height="103"/>
         <element name="SLVHuman" positionX="-54" positionY="63" width="128" height="133"/>
-        <element name="SLVItem" positionX="-261" positionY="-189" width="128" height="238"/>
+        <element name="SLVItem" positionX="-261" positionY="-189" width="128" height="268"/>
     </elements>
 </model>
