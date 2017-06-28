@@ -201,7 +201,9 @@
 }
 
 - (void)prepareForReuse {
-    
+    self.avatarImageView.image = nil;
+    self.nameLabel.text = nil;
+    self.eventLabel.text = nil;
 }
 
 @end
