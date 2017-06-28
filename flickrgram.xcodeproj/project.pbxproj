@@ -40,6 +40,7 @@
 		6392D2151EE875A50050728D /* SLVItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D2141EE875A50050728D /* SLVItem.m */; };
 		6392D21E1EE88F410050728D /* SLVStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D21D1EE88F410050728D /* SLVStorageService.m */; };
 		6392D2221EEAC1090050728D /* SLVFavoritesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D2211EEAC1090050728D /* SLVFavoritesCell.m */; };
+		63A890031F0428DB008AAAF4 /* SLVMetadataLoadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A890021F0428DB008AAAF4 /* SLVMetadataLoadOperation.m */; };
 		63ABAB831ED60E8900941726 /* SLVImageProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 63ABAB821ED60E8900941726 /* SLVImageProcessing.m */; };
 		63ACEF3E1EBD3F53007C0D41 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63ACEF3C1EBD3B37007C0D41 /* Masonry.framework */; };
 /* End PBXBuildFile section */
@@ -123,6 +124,8 @@
 		6392D21D1EE88F410050728D /* SLVStorageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVStorageService.m; path = CoreData/SLVStorageService.m; sourceTree = "<group>"; };
 		6392D2201EEAC1090050728D /* SLVFavoritesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVFavoritesCell.h; path = Views/Favorites/SLVFavoritesCell.h; sourceTree = "<group>"; };
 		6392D2211EEAC1090050728D /* SLVFavoritesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVFavoritesCell.m; path = Views/Favorites/SLVFavoritesCell.m; sourceTree = "<group>"; };
+		63A890011F0428DB008AAAF4 /* SLVMetadataLoadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVMetadataLoadOperation.h; path = Models/SLVMetadataLoadOperation.h; sourceTree = "<group>"; };
+		63A890021F0428DB008AAAF4 /* SLVMetadataLoadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVMetadataLoadOperation.m; path = Models/SLVMetadataLoadOperation.m; sourceTree = "<group>"; };
 		63ABAB811ED60E8900941726 /* SLVImageProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVImageProcessing.h; path = Services/SLVImageProcessing.h; sourceTree = "<group>"; };
 		63ABAB821ED60E8900941726 /* SLVImageProcessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVImageProcessing.m; path = Services/SLVImageProcessing.m; sourceTree = "<group>"; };
 		63ACEF3C1EBD3B37007C0D41 /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = Carthage/Build/iOS/Masonry.framework; sourceTree = "<group>"; };
@@ -297,6 +300,8 @@
 		6375B3C71EFD5CFB00AA41B2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				63A890011F0428DB008AAAF4 /* SLVMetadataLoadOperation.h */,
+				63A890021F0428DB008AAAF4 /* SLVMetadataLoadOperation.m */,
 				635722FB1EF5B4DC000BB6CD /* SLVPostModelProtocol.h */,
 				635722F81EF5B4A7000BB6CD /* SLVPostModel.h */,
 				635722F91EF5B4A7000BB6CD /* SLVPostModel.m */,
@@ -525,6 +530,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				635722F41EF5B091000BB6CD /* SLVPostNavigationBarView.m in Sources */,
+				63A890031F0428DB008AAAF4 /* SLVMetadataLoadOperation.m in Sources */,
 				6350EF8C1ED5843000D7C8CE /* SLVCollectionModel.m in Sources */,
 				6392D1EF1EE741BE0050728D /* SLVCollectionViewCell.m in Sources */,
 				6392D1E81EE04D4E0050728D /* UIFont+SLVFonts.m in Sources */,

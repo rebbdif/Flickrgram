@@ -51,12 +51,12 @@
     return identifier;
 }
 
-- (void)addComments:(NSSet<SLVComment *> *)comments storage:(id<SLVStorageProtocol>)storage {
-    [storage saveObject:comments forEntity:NSStringFromClass([self class]) forAttribute:@"comments" forKey:self.identifier withCompletionHandler:nil];
-}
-
-- (void)addAuthor:(SLVHuman *)author storage:(id<SLVStorageProtocol>)storage {
-    [storage saveObject:author forEntity:NSStringFromClass([self class]) forAttribute:@"author" forKey:self.identifier withCompletionHandler:nil];
+- (void)addComments:(NSSet<SLVComment *> *)comments {
+    __weak typeof(self)weakSelf = self;
+    dispatch_barrier_sync(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), ^{
+        __strong typeof(self)strongSelf = weakSelf;
+        strongSelf.comments = [strongSelf.comments setByAddingObjectsFromSet:comments];
+    });
 }
 
 @end

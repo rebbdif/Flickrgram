@@ -19,15 +19,25 @@
 + (SLVHuman *)humanWithDictionary:(NSDictionary *)dict storage:(id<SLVStorageProtocol>)storage {
     NSString *iconFarm = dict[@"iconfarm"];
     NSString *iconServer = dict[@"iconserver"];
-    NSString *nsid = dict[@"nsid"];
+    NSString *nsid;
+    if (dict[@"nsid"]) {
+        nsid = dict[@"nsid"];
+    } else if (dict[@"author"]) {
+        nsid = dict[@"author"];
+    }
     NSString *avatarURL = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/buddyicons/%@.jpg", iconFarm, iconServer, nsid];
     
     SLVHuman *human = nil;
     human = [storage insertNewObjectForEntity:NSStringFromClass([self class])];
-    human.name = dict[@"username"];
+    NSString *name;
+    if (dict[@"username"]) {
+        name = dict[@"username"];
+    } else if (dict[@"authorname"]) {
+        name = dict[@"authorname"];
+    }
+    human.name = name;
     human.avatarURL = avatarURL;
     
-    [storage save];
     return human;
 }
 
