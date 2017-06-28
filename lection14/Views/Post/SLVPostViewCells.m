@@ -31,6 +31,9 @@
         [self.contentView addSubview:_photoView];
         
         _descriptionText = [UILabel new];
+        _descriptionText.numberOfLines = 2;
+        UIFont *sfdm = [UIFont sanFranciscoDisplayMedium14];
+        _descriptionText.font = sfdm;
         [self.contentView addSubview:_descriptionText];
         
         _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -93,47 +96,50 @@
 @end
 
 
-#pragma mark - SLVLikesFooter
+#pragma mark - SLVLikesCell
 
-@implementation SLVLikesFooter
+@implementation SLVLikesCell
 
 + (BOOL)requiresConstraintBasedLayout {
     return YES;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    self.opaque = YES;
-    self = [super initWithFrame:frame];
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier: reuseIdentifier];
     if (self) {
+        self.backgroundColor = [UIColor myGray];
         _likesImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"heart"]];
-        [self addSubview:_likesImageView];
+        [self.contentView addSubview:_likesImageView];
         _likesLabel = [UILabel new];
-        [self addSubview:_likesLabel];
+        _likesLabel.font = [UIFont sanFranciscoDisplayMedium14];
+        [self.contentView addSubview:_likesLabel];
         
         _commentsImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"comment"]];
-        [self addSubview:_commentsImageView];
+        [self.contentView addSubview:_commentsImageView];
         _commentsLabel = [UILabel new];
-        [self addSubview:_commentsLabel];
+        [_commentsLabel setFont:[UIFont sanFranciscoDisplayMedium14]];
+        [self.contentView addSubview:_commentsLabel];
     }
     return self;
 }
 
 - (void)updateConstraints {
+    UIView *contentView = self.contentView;
     [_likesImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left).with.offset(16);
-        make.centerY.equalTo(self.mas_centerY);
+        make.left.equalTo(contentView.mas_left).with.offset(16);
+        make.centerY.equalTo(contentView.mas_centerY);
     }];
     [_likesLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_likesImageView.mas_right).with.offset(7.1);
-        make.centerY.equalTo(self.mas_centerY);
+        make.centerY.equalTo(contentView.mas_centerY);
     }];
     [_commentsImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left).with.offset(122.3);
-        make.centerY.equalTo(self.mas_centerY);
+        make.left.equalTo(contentView.mas_left).with.offset(122.3);
+        make.centerY.equalTo(contentView.mas_centerY);
     }];
     [_commentsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_commentsImageView.mas_right).with.offset(6);
-        make.centerY.equalTo(self.mas_centerY);
+        make.centerY.equalTo(contentView.mas_centerY);
     }];
     [super updateConstraints];
 }
@@ -195,7 +201,9 @@
 }
 
 - (void)prepareForReuse {
-    
+    self.avatarImageView.image = nil;
+    self.nameLabel.text = nil;
+    self.eventLabel.text = nil;
 }
 
 @end
