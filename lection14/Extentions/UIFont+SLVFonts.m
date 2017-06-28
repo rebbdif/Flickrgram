@@ -11,11 +11,12 @@
 @implementation UIFont (SLVFonts)
 
 + (UIFont *)sanFranciscoDisplayMedium14 {
-    return [UIFont fontWithName:@"SanFranciscoDisplay-Medium" size:14];
+    UIFont *font = [UIFont systemFontOfSize:14];
+    return font;
 }
 
 + (UIFont *)sanFranciscoDisplayMedium13 {
-    return [UIFont fontWithName:@"SanFranciscoDisplay-Medium" size:13];
+    return [UIFont systemFontOfSize:13];
 }
 
 @end

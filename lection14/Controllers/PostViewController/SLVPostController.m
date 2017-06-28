@@ -52,9 +52,12 @@
     [super viewDidAppear:animated];
     __weak typeof(self)weakSelf = self;
     [self.model getMetadataForSelectedItemWithCompletionHandler:^{
+     //   SLVItem *selectedItem = [self.model getSelectedItem];
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf configureLeftBarButtonItem];
-            [weakSelf.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+            [weakSelf.tableView reloadData];
+//            SLVLikesCell *cell = [weakSelf.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+//            cell.likesLabel.text = selectedItem.numberOfLikes;
         });
     }];
 }

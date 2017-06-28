@@ -11,8 +11,14 @@
 
 @class SLVHuman;
 
+typedef NS_ENUM(NSUInteger, SLVCommentType) {
+    SLVCommentTypeComment,
+    SLVCommentTypeLike,
+};
+
 @interface SLVComment : NSManagedObject
 
+@property (nonatomic, assign) SLVCommentType *commentType;
 @property (nonatomic, strong) NSString *comment;
 @property (nonatomic, strong) NSURL *url;
 @property (nonatomic, strong) SLVHuman *author;

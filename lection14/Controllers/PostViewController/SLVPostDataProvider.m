@@ -104,10 +104,14 @@
 
 - (SLVLikesCell *)likesCellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath {
     SLVLikesCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SLVLikesCell class])];
-        SLVItem *selectedItem = [self.model getSelectedItem];
-        cell.likesLabel.text = [NSString stringWithFormat:@"%@ лайков", selectedItem.numberOfLikes];
-        cell.commentsLabel.text = [NSString stringWithFormat:@"%@ комментариев", selectedItem.numberOfComments];
-        return cell;
+    SLVItem *selectedItem = [self.model getSelectedItem];
+    NSString *numberOfLikes = selectedItem.numberOfLikes;
+    if (!numberOfLikes) numberOfLikes = @" ";
+    cell.likesLabel.text = [NSString stringWithFormat:@"%@ лайков", numberOfLikes];
+    NSString *numberOfComments = selectedItem.numberOfComments;
+    if (!numberOfComments) numberOfComments = @" ";
+    cell.commentsLabel.text = [NSString stringWithFormat:@"%@ комментариев", numberOfComments];
+    return cell;
 }
 
 @end

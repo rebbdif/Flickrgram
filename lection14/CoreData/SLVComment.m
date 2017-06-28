@@ -11,6 +11,7 @@
 
 @implementation SLVComment
 
+@dynamic commentType;
 @dynamic comment;
 @dynamic url;
 @dynamic author;

@@ -91,7 +91,9 @@ static NSString *const kItemEntity = @"SLVItem";
 }
 
 - (void)parseFavorites:(NSDictionary *)json {
-    
+    NSString *numberOfLikes = json[@"photo"][@"total"];
+    self.selectedItem.numberOfLikes = numberOfLikes;
+    [self.storageService save];
 }
 
 @end
