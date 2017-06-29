@@ -17,6 +17,9 @@
 @dynamic avatar;
 
 + (SLVHuman *)humanWithDictionary:(NSDictionary *)dict storage:(id<SLVStorageProtocol>)storage {
+    NSAssert(dict[@"iconfarm"], @"iconfarmEmpty");
+    NSAssert(dict[@"iconserver"], @"iconserverEmpty");
+
     NSString *iconFarm = dict[@"iconfarm"];
     NSString *iconServer = dict[@"iconserver"];
     NSString *nsid;
@@ -24,6 +27,8 @@
         nsid = dict[@"nsid"];
     } else if (dict[@"author"]) {
         nsid = dict[@"author"];
+    } else {
+        abort();
     }
     NSString *avatarURL = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/buddyicons/%@.jpg", iconFarm, iconServer, nsid];
     
@@ -34,6 +39,8 @@
         name = dict[@"username"];
     } else if (dict[@"authorname"]) {
         name = dict[@"authorname"];
+    } else {
+        abort();
     }
     human.name = name;
     human.avatarURL = avatarURL;

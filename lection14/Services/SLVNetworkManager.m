@@ -42,7 +42,7 @@
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         });
     }];
-    task.priority=NSURLSessionTaskPriorityHigh;
+    task.priority = NSURLSessionTaskPriorityHigh;
     dispatch_async(dispatch_get_main_queue(), ^{
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     });

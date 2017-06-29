@@ -62,6 +62,8 @@
             }
         }
     }];
+    NSLock *lock = [NSLock new];
+    [lock lock];
     [self.stack.mainContext performBlockAndWait:^{
         if (self.stack.mainContext.hasChanges) {
             NSError *error = nil;
@@ -71,6 +73,7 @@
             }
         }
     }];
+    [lock unlock];
 }
 
 - (void)deleteEntities:(NSString *)entity withPredicate:(NSPredicate *)predicate {

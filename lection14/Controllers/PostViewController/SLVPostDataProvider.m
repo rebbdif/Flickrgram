@@ -10,6 +10,8 @@
 #import "SLVPostViewCells.h"
 #import "UIColor+SLVColor.h"
 #import "SLVItem.h"
+#import "SLVComment.h"
+#import "SLVHuman.h"
 
 @interface SLVPostDataProvider()
 
@@ -63,10 +65,7 @@
             if (indexPath.row == 1) return [self likesCellForTableView:tableView atIndexPath:indexPath];
             break;
         } case 1: {
-            SLVCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SLVCommentsCell class])];
-            cell.nameLabel.text = @"rebbdif";
-            cell.eventLabel.text = @"liked photo";
-            return cell;
+            return [self commentsCellForTableVies:tableView atIndexPath:indexPath];
             break;
         } default:
             break;
@@ -111,6 +110,27 @@
     NSString *numberOfComments = selectedItem.numberOfComments;
     if (!numberOfComments) numberOfComments = @" ";
     cell.commentsLabel.text = [NSString stringWithFormat:@"%@ комментариев", numberOfComments];
+    return cell;
+}
+
+- (SLVCommentsCell *)commentsCellForTableVies:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath {
+    SLVCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SLVCommentsCell class])];
+    SLVItem *item = [self.model getSelectedItem];
+    SLVComment *currentComment = item.commentsArray[indexPath.row];
+    SLVHuman *author = currentComment.author;
+    cell.nameLabel.text = author.name;
+    cell.eventLabel.text = currentComment.text;
+    UIImage *avatar = author.avatar;
+    if (!avatar) {
+        [author getAvatarWithNetworkService:self.model.networkManager storageService:self.model.storageService completionHandler:^(UIImage *avatar) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                SLVCommentsCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+                cell.avatarImageView.image = avatar;
+            });
+        }];
+    } else {
+        cell.avatarImageView.image = avatar;
+    }
     return cell;
 }
 
