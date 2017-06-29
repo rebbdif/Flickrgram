@@ -96,6 +96,20 @@
     self.tableView.dataSource = self.provider;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.section) {
+        case 0: {
+            if (indexPath.row == 0) return 312;
+            return 60;
+            break;
+        } case 1: {
+            tableView.rowHeight = UITableViewAutomaticDimension;
+            break;
+        }
+    }
+    return 60;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case 0: {
@@ -103,7 +117,7 @@
             return 60;
             break;
         } case 1: {
-            return 60;
+            tableView.rowHeight = UITableViewAutomaticDimension;
             break;
         }
     }

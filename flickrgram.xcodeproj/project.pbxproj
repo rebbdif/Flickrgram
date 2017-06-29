@@ -41,6 +41,8 @@
 		6392D21E1EE88F410050728D /* SLVStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D21D1EE88F410050728D /* SLVStorageService.m */; };
 		6392D2221EEAC1090050728D /* SLVFavoritesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D2211EEAC1090050728D /* SLVFavoritesCell.m */; };
 		63A890031F0428DB008AAAF4 /* SLVMetadataLoadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A890021F0428DB008AAAF4 /* SLVMetadataLoadOperation.m */; };
+		63A890051F051E03008AAAF4 /* SLVStringTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A890041F051E02008AAAF4 /* SLVStringTest.m */; };
+		63A890081F052F3C008AAAF4 /* NSString+SLVString.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A890071F052F3C008AAAF4 /* NSString+SLVString.m */; };
 		63ABAB831ED60E8900941726 /* SLVImageProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 63ABAB821ED60E8900941726 /* SLVImageProcessing.m */; };
 		63ACEF3E1EBD3F53007C0D41 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63ACEF3C1EBD3B37007C0D41 /* Masonry.framework */; };
 /* End PBXBuildFile section */
@@ -126,6 +128,9 @@
 		6392D2211EEAC1090050728D /* SLVFavoritesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVFavoritesCell.m; path = Views/Favorites/SLVFavoritesCell.m; sourceTree = "<group>"; };
 		63A890011F0428DB008AAAF4 /* SLVMetadataLoadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVMetadataLoadOperation.h; path = Models/SLVMetadataLoadOperation.h; sourceTree = "<group>"; };
 		63A890021F0428DB008AAAF4 /* SLVMetadataLoadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVMetadataLoadOperation.m; path = Models/SLVMetadataLoadOperation.m; sourceTree = "<group>"; };
+		63A890041F051E02008AAAF4 /* SLVStringTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVStringTest.m; path = lection14Tests/SLVStringTest.m; sourceTree = "<group>"; };
+		63A890061F052F3C008AAAF4 /* NSString+SLVString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SLVString.h"; sourceTree = "<group>"; };
+		63A890071F052F3C008AAAF4 /* NSString+SLVString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SLVString.m"; sourceTree = "<group>"; };
 		63ABAB811ED60E8900941726 /* SLVImageProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVImageProcessing.h; path = Services/SLVImageProcessing.h; sourceTree = "<group>"; };
 		63ABAB821ED60E8900941726 /* SLVImageProcessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVImageProcessing.m; path = Services/SLVImageProcessing.m; sourceTree = "<group>"; };
 		63ACEF3C1EBD3B37007C0D41 /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = Carthage/Build/iOS/Masonry.framework; sourceTree = "<group>"; };
@@ -351,6 +356,8 @@
 				6392D1E41EE04D4E0050728D /* UIColor+SLVColor.m */,
 				6392D1E51EE04D4E0050728D /* UIFont+SLVFonts.h */,
 				6392D1E61EE04D4E0050728D /* UIFont+SLVFonts.m */,
+				63A890061F052F3C008AAAF4 /* NSString+SLVString.h */,
+				63A890071F052F3C008AAAF4 /* NSString+SLVString.m */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -380,6 +387,7 @@
 			isa = PBXGroup;
 			children = (
 				6375B3AF1EFD20B000AA41B2 /* SLVLayoutTest.m */,
+				63A890041F051E02008AAAF4 /* SLVStringTest.m */,
 			);
 			name = UnitTests;
 			sourceTree = "<group>";
@@ -559,6 +567,7 @@
 				6392D2221EEAC1090050728D /* SLVFavoritesCell.m in Sources */,
 				6392D1D81EE04CFD0050728D /* SLVFavoritesViewController.m in Sources */,
 				6375B3B11EFD20E500AA41B2 /* SLVCollectionViewLayout.m in Sources */,
+				63A890081F052F3C008AAAF4 /* NSString+SLVString.m in Sources */,
 				6392D2151EE875A50050728D /* SLVItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -567,6 +576,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63A890051F051E03008AAAF4 /* SLVStringTest.m in Sources */,
 				6375B3B01EFD20B000AA41B2 /* SLVLayoutTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

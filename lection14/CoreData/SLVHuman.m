@@ -17,9 +17,6 @@
 @dynamic avatar;
 
 + (SLVHuman *)humanWithDictionary:(NSDictionary *)dict storage:(id<SLVStorageProtocol>)storage {
-    NSAssert(dict[@"iconfarm"], @"iconfarmEmpty");
-    NSAssert(dict[@"iconserver"], @"iconserverEmpty");
-
     NSString *iconFarm = dict[@"iconfarm"];
     NSString *iconServer = dict[@"iconserver"];
     NSString *nsid;

@@ -69,6 +69,9 @@
 
 - (void)updateConstraints {
     UIView *contentView = self.contentView;
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@313);
+    }];
     [_photoView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(contentView.mas_top);
         make.left.equalTo(contentView.mas_left).with.offset(1);
@@ -172,7 +175,7 @@
         _eventLabel = [UILabel new];
         _eventLabel.textColor = [UIColor grayColor];
         _eventLabel.font = [UIFont sanFranciscoDisplayMedium13];
-        _eventLabel.numberOfLines = 2;
+        _eventLabel.numberOfLines = 0;
         [self.contentView addSubview:_eventLabel];
     }
     return self;
