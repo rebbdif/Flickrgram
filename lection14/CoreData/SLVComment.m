@@ -12,9 +12,10 @@
 
 @implementation SLVComment
 
-@dynamic commentType;
+@synthesize commentType;
 @dynamic text;
 @dynamic author;
+
 
 + (SLVComment *)commentWithDictionary:(NSDictionary *)dict type:(SLVCommentType)type storage:(id<SLVStorageProtocol>)storage {
     SLVComment *comment = nil;
@@ -23,8 +24,7 @@
         case SLVCommentTypeComment: {
             comment.text = dict[@"_content"];
             break;
-        }
-        case SLVCommentTypeLike: {
+        } case SLVCommentTypeLike: {
             comment.text = @"оценил ваше фото.";
         }
     }
@@ -32,6 +32,19 @@
     SLVHuman *author = [SLVHuman humanWithDictionary:dict storage:storage];
     comment.author = author;
     return comment;
+}
+
+- (SLVCommentType)getCommentType {
+    switch ([self.commentType integerValue]) {
+        case 0: {
+            return SLVCommentTypeComment;
+            break;
+        } case 1: {
+            return SLVCommentTypeLike;
+            break;
+        }
+    }
+    return SLVCommentTypeComment;
 }
 
 @end

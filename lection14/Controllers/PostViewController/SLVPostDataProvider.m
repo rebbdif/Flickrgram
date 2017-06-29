@@ -43,7 +43,8 @@
             return 2;
             break;
         } case 1: {
-            return 3;
+            SLVItem *selectedItem = [self.model getSelectedItem];
+            return selectedItem.comments.count;
             break;
         } default:
             return 1;
@@ -65,7 +66,7 @@
             if (indexPath.row == 1) return [self likesCellForTableView:tableView atIndexPath:indexPath];
             break;
         } case 1: {
-            return [self commentsCellForTableVies:tableView atIndexPath:indexPath];
+            return [self commentsCellForTableView:tableView atIndexPath:indexPath];
             break;
         } default:
             break;
@@ -113,13 +114,28 @@
     return cell;
 }
 
-- (SLVCommentsCell *)commentsCellForTableVies:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath {
+- (SLVCommentsCell *)commentsCellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath {
     SLVCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SLVCommentsCell class])];
     SLVItem *item = [self.model getSelectedItem];
     SLVComment *currentComment = item.commentsArray[indexPath.row];
     SLVHuman *author = currentComment.author;
     cell.nameLabel.text = author.name;
-    cell.eventLabel.text = currentComment.text;
+    NSString *text = (currentComment.text ? currentComment.text : @" ");
+    switch ([currentComment.commentType integerValue]) {
+        case SLVCommentTypeComment: {
+            NSString *textWithIntroduction = [@"прокоментировал фото: \n"stringByAppendingString:text];
+            NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:textWithIntroduction];
+           // [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:40.0f / 255.0f green:171.0f / 255.0f blue:236.0f / 255.0f alpha:1.0f] range:NSMakeRange(22, 17)];
+            cell.eventLabel.attributedText = attributedString;
+            break;
+        } case SLVCommentTypeLike: {
+            [tableView setRowHeight:60];
+            NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text];
+            //[attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:255.0f / 255.0f green:38.0f / 255.0f blue:70.0f / 255.0f alpha:1.0f] range:NSMakeRange(0, 6)];
+            cell.eventLabel.attributedText = attributedString;
+            break;
+        }
+    }
     UIImage *avatar = author.avatar;
     if (!avatar) {
         [author getAvatarWithNetworkService:self.model.networkManager storageService:self.model.storageService completionHandler:^(UIImage *avatar) {

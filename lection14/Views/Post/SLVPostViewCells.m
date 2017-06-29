@@ -95,7 +95,6 @@
 
 @end
 
-
 #pragma mark - SLVLikesCell
 
 @implementation SLVLikesCell
@@ -173,6 +172,7 @@
         _eventLabel = [UILabel new];
         _eventLabel.textColor = [UIColor grayColor];
         _eventLabel.font = [UIFont sanFranciscoDisplayMedium13];
+        _eventLabel.numberOfLines = 2;
         [self.contentView addSubview:_eventLabel];
     }
     return self;
