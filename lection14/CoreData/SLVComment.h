@@ -12,17 +12,16 @@
 @class SLVHuman;
 
 typedef NS_ENUM(NSUInteger, SLVCommentType) {
-    SLVCommentTypeComment,
-    SLVCommentTypeLike,
+    SLVCommentTypeComment = 0,
+    SLVCommentTypeLike = 1,
 };
 
 @interface SLVComment : NSManagedObject
 
-@property (nonatomic, assign) SLVCommentType *commentType;
-@property (nonatomic, strong) NSString *comment;
-@property (nonatomic, strong) NSURL *url;
+@property (nonatomic, strong) NSNumber *commentType;
+@property (nonatomic, strong) NSString *text;
 @property (nonatomic, strong) SLVHuman *author;
 
-+ (SLVComment *)commentWithDictionary:(NSDictionary *)dict storage:(id<SLVStorageProtocol>)storage;
++ (SLVComment *)commentWithDictionary:(NSDictionary *)dict type:(SLVCommentType)type storage:(id<SLVStorageProtocol>)storage;
 
 @end

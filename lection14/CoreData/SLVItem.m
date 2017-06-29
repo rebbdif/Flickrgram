@@ -28,6 +28,8 @@
 @dynamic author;
 @dynamic comments;
 
+@synthesize commentsArray;
+
 + (NSString *)identifierForItemWithDictionary:(NSDictionary *)dict storage:(id<SLVStorageProtocol>)storage forRequest:(NSString *)request {
     NSString *base = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@.jpg",
                       dict[@"farm"], dict[@"server"], dict[@"id"], dict[@"secret"]];
@@ -51,12 +53,21 @@
     return identifier;
 }
 
-- (void)addComments:(NSSet<SLVComment *> *)comments storage:(id<SLVStorageProtocol>)storage {
-    [storage saveObject:comments forEntity:NSStringFromClass([self class]) forAttribute:@"comments" forKey:self.identifier withCompletionHandler:nil];
+- (void)addComments:(NSSet<SLVComment *> *)comments {
+    __weak typeof(self)weakSelf = self;
+    dispatch_barrier_sync(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), ^{
+        __strong typeof(self)strongSelf = weakSelf;
+        strongSelf.comments = [strongSelf.comments setByAddingObjectsFromSet:comments];
+        self.commentsArray = strongSelf.comments.allObjects;
+    });
 }
 
-- (void)addAuthor:(SLVHuman *)author storage:(id<SLVStorageProtocol>)storage {
-    [storage saveObject:author forEntity:NSStringFromClass([self class]) forAttribute:@"author" forKey:self.identifier withCompletionHandler:nil];
+- (NSArray<SLVComment *> *)getCommentsArray {
+    if (!self.commentsArray) {
+        return self.comments.allObjects;
+    } else {
+        return self.commentsArray;
+    }
 }
 
 @end

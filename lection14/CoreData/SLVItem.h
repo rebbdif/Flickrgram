@@ -32,10 +32,10 @@
 @property (nonatomic, strong) SLVHuman *author;
 @property (nonatomic, strong) NSSet<SLVComment *> *comments;
 
+@property (nonatomic, copy) NSArray<SLVComment *> *commentsArray;
+
 + (NSString *)identifierForItemWithDictionary:(NSDictionary *)dict storage:(id<SLVStorageProtocol>)storage forRequest:(NSString *)request;
 
-- (void)addComments:(NSSet<SLVComment *> *)comments storage:(id<SLVStorageProtocol>)storage;
-
-- (void)addAuthor:(SLVHuman *)author storage:(id<SLVStorageProtocol>)storage;
+- (void)addComments:(NSSet<SLVComment *> *)comments;
 
 @end

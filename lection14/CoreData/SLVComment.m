@@ -8,21 +8,29 @@
 
 #import "SLVComment.h"
 #import "SLVHuman.h"
+#import "UIColor+SLVColor.h"
 
 @implementation SLVComment
 
 @dynamic commentType;
-@dynamic comment;
-@dynamic url;
+@dynamic text;
 @dynamic author;
 
-+ (SLVComment *)commentWithDictionary:(NSDictionary *)dict storage:(id<SLVStorageProtocol>)storage {
++ (SLVComment *)commentWithDictionary:(NSDictionary *)dict type:(SLVCommentType)type storage:(id<SLVStorageProtocol>)storage {
     SLVComment *comment = nil;
-//    comment = [NSEntityDescription insertNewObjectForEntityForName:@"SLVComment" inManagedObjectContext:moc];
-//    comment.author = dict[@"author"];
-//    comment.url = dict[@"url"];
-//    comment.comment = dict[@"comment"];
+    comment = [storage insertNewObjectForEntity:NSStringFromClass([self class])];
+    switch (type) {
+        case SLVCommentTypeComment: {
+            comment.text = dict[@"_content"];
+            break;
+        }
+        case SLVCommentTypeLike: {
+            comment.text = @"оценил ваше фото.";
+        }
+    }
     
+    SLVHuman *author = [SLVHuman humanWithDictionary:dict storage:storage];
+    comment.author = author;
     return comment;
 }
 

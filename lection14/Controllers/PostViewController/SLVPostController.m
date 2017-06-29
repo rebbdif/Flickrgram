@@ -52,12 +52,9 @@
     [super viewDidAppear:animated];
     __weak typeof(self)weakSelf = self;
     [self.model getMetadataForSelectedItemWithCompletionHandler:^{
-     //   SLVItem *selectedItem = [self.model getSelectedItem];
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf configureLeftBarButtonItem];
             [weakSelf.tableView reloadData];
-//            SLVLikesCell *cell = [weakSelf.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-//            cell.likesLabel.text = selectedItem.numberOfLikes;
         });
     }];
 }
@@ -70,8 +67,9 @@
     if (!avatar) {
         __weak typeof(self)weakSelf = self;
         [author getAvatarWithNetworkService:self.model.networkManager storageService:self.model.storageService completionHandler:^(UIImage *avatar) {
+            __strong typeof(weakSelf)strongSelf = weakSelf;
             dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf configureLeftBarButtonItem];
+                [strongSelf configureLeftBarButtonItem];
             });
         }];
     } else {

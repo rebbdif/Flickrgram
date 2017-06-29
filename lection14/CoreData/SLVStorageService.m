@@ -53,16 +53,18 @@
 }
 
 - (void)save {
-    [self.stack.privateContext performBlockAndWait:^{
+    [self.stack.privateContext performBlock:^{
         if (self.stack.privateContext.hasChanges) {
             NSError *error = nil;
             [self.stack.privateContext save:&error];
             if (error) {
-                NSLog(@"storageService -%@", error.localizedDescription);
+                NSLog(@"storageService - %@", error.localizedDescription);
             }
         }
     }];
-    [self.stack.mainContext performBlock:^{
+    NSLock *lock = [NSLock new];
+    [lock lock];
+    [self.stack.mainContext performBlockAndWait:^{
         if (self.stack.mainContext.hasChanges) {
             NSError *error = nil;
             [self.stack.mainContext save:&error];
@@ -71,6 +73,7 @@
             }
         }
     }];
+    [lock unlock];
 }
 
 - (void)deleteEntities:(NSString *)entity withPredicate:(NSPredicate *)predicate {
@@ -88,7 +91,7 @@
     [self save];
 }
 
-- (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key withCompletionHandler:(void (^)(void))completionHandler {
+- (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key withCompletionHandler:(voidBlock)completionHandler {
     id fetchedEntity = [self fetchEntity:entity forKey:key];
     if (!fetchedEntity) {
         NSLog(@"storageService - saveObject couldn't fetch entity for key %@", key);
@@ -116,6 +119,13 @@
     id entity = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:self.stack.mainContext];
     [self save];
     return entity;
+}
+
+- (void)performBlockAsynchronously:(voidBlock)block withCompletion:(voidBlock)completion {
+    [self.stack.privateContext performBlock:^{
+        block();
+        if (completion) completion();
+    }];
 }
 
 @end
