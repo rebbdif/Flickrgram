@@ -29,7 +29,7 @@
 @end
 
 
-@interface SLVLikesFooter : UIView
+@interface SLVLikesCell : UITableViewCell
 
 @property (nonatomic,strong) UIImageView *likesImageView;
 @property (nonatomic,strong) UIImageView *commentsImageView;

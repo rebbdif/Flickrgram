@@ -53,16 +53,18 @@
 }
 
 - (void)save {
-    [self.stack.privateContext performBlockAndWait:^{
+    [self.stack.privateContext performBlock:^{
         if (self.stack.privateContext.hasChanges) {
             NSError *error = nil;
             [self.stack.privateContext save:&error];
             if (error) {
-                NSLog(@"storageService -%@", error.localizedDescription);
+                NSLog(@"storageService - %@", error.localizedDescription);
             }
         }
     }];
-    [self.stack.mainContext performBlock:^{
+    NSLock *lock = [NSLock new];
+    [lock lock];
+    [self.stack.mainContext performBlockAndWait:^{
         if (self.stack.mainContext.hasChanges) {
             NSError *error = nil;
             [self.stack.mainContext save:&error];
@@ -71,6 +73,7 @@
             }
         }
     }];
+    [lock unlock];
 }
 
 - (void)deleteEntities:(NSString *)entity withPredicate:(NSPredicate *)predicate {
@@ -78,23 +81,27 @@
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entity];
     request.predicate = predicate;
     NSArray *results = [self.stack.privateContext executeFetchRequest:request error:&error];
+    __weak typeof(self)weakSelf = self;
     [self.stack.privateContext performBlockAndWait:^{
+        __strong typeof(weakSelf)strongSelf = weakSelf;
         for (id item in results) {
-            [self.stack.privateContext deleteObject:item];
+            [strongSelf.stack.privateContext deleteObject:item];
         }
     }];
     [self save];
 }
 
-- (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key withCompletionHandler:(void (^)(void))completionHandler {
+- (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key withCompletionHandler:(voidBlock)completionHandler {
     id fetchedEntity = [self fetchEntity:entity forKey:key];
     if (!fetchedEntity) {
         NSLog(@"storageService - saveObject couldn't fetch entity for key %@", key);
     }
+    __weak typeof(self)weakSelf = self;
     [self.stack.privateContext performBlock:^{
+        __strong typeof(weakSelf)strongSelf = weakSelf;
         [fetchedEntity setValue:object forKey:attribute];
-        [self save];
-        completionHandler();
+        [strongSelf save];
+        if (completionHandler) completionHandler();
     }];
 }
 
@@ -105,6 +112,19 @@
             [entity setValue:attributes[attribute] forKey:attribute];
         }
         [self save];
+    }];
+}
+
+- (id)insertNewObjectForEntity:(NSString *)name {
+    id entity = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:self.stack.mainContext];
+    [self save];
+    return entity;
+}
+
+- (void)performBlockAsynchronously:(voidBlock)block withCompletion:(voidBlock)completion {
+    [self.stack.privateContext performBlock:^{
+        block();
+        if (completion) completion();
     }];
 }
 

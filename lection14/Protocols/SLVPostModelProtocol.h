@@ -11,8 +11,14 @@
 
 @class UIImage;
 @class SLVItem;
+@class SLVHuman;
+
+typedef void (^voidBlock)(void);
 
 @protocol SLVPostModelProtocol <NSObject>
+
+@property (nonatomic, strong, readonly) id<SLVStorageProtocol> storageService;
+@property (nonatomic, strong, readonly) id<SLVNetworkProtocol> networkManager;
 
 - (void)makeFavorite:(BOOL)favorite;
 
@@ -20,6 +26,8 @@
 
 - (SLVItem *)getSelectedItem;
 
-- (void)loadImageForItem:(SLVItem *)item withCompletionHandler:(void (^)(void))completionHandler;
+- (void)loadImageForItem:(SLVItem *)item withCompletionHandler:(voidBlock)completionHandler;
+
+- (void)getMetadataForSelectedItemWithCompletionHandler:(voidBlock)completionHandler;
 
 @end

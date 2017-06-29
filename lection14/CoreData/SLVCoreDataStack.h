@@ -14,10 +14,12 @@
 @property (nonatomic, strong, readonly) NSManagedObjectContext *mainContext;
 @property (nonatomic, strong, readonly) NSManagedObjectContext *privateContext;
 
-- (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
+- (instancetype)init NS_UNAVAILABLE;
 
-- (instancetype)initStack NS_DESIGNATED_INITIALIZER;
 + (instancetype)stack;
+- (instancetype)initStack NS_DESIGNATED_INITIALIZER;
+
+- (NSManagedObjectContext *)setupPrivateContext;
 
 @end

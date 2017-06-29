@@ -25,7 +25,7 @@
     return self;
 }
 
-- (void)getModelFromURL:(NSURL *)url withCompletionHandler:(void (^)(NSDictionary *json))completionHandler {
+- (void)getJSONFromURL:(NSURL *)url withCompletionHandler:(void (^)(NSDictionary *json))completionHandler {
     NSURLSessionDataTask *task = [self.session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (data) {
             NSError *jsonError=nil;
@@ -33,14 +33,30 @@
             if (!jsonError) {
                 completionHandler(json);
             } else {
-                NSLog(@"ERROR PARSING JSON %@",error.userInfo);
+                NSLog(@"ERROR PARSING JSON %@", error.userInfo);
             }
         } else if (error) {
-            NSLog(@"error while downloading data %@",error.userInfo);
+            NSLog(@"error while downloading data %@", error.userInfo);
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         });
+    }];
+    task.priority = NSURLSessionTaskPriorityHigh;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    });
+    [task resume];
+}
+
+- (void)getDataFromURL:(NSURL *)url withCompletionHandler:(void (^)(NSData *data))completionHandler {
+    NSURLSessionDataTask *task = [self.session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (data) {
+            completionHandler(data);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            });
+        }
     }];
     task.priority=NSURLSessionTaskPriorityHigh;
     dispatch_async(dispatch_get_main_queue(), ^{

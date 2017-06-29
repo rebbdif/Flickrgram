@@ -8,8 +8,12 @@
 
 #import "SLVPostModel.h"
 #import "SLVItem.h"
+#import "SLVHuman.h"
+#import "SLVComment.h"
 #import "SLVStorageProtocol.h"
 #import "SLVNetworkProtocol.h"
+#import "SLVMetadataLoadOperation.h"
+
 @import UIKit;
 
 static NSString *const kItemEntity = @"SLVItem";
@@ -18,8 +22,6 @@ static NSString *const kItemEntity = @"SLVItem";
 
 @property (nonatomic, strong, readonly) id<SLVFacadeProtocol> facade;
 @property (nonatomic, strong) SLVItem *selectedItem;
-@property (nonatomic, strong, readonly) id<SLVStorageProtocol> storageService;
-@property (nonatomic, strong, readonly) id<SLVNetworkProtocol> networkManager;
 
 @end
 
@@ -48,8 +50,18 @@ static NSString *const kItemEntity = @"SLVItem";
     [self.storageService save];
 }
 
-- (void)loadImageForItem:(SLVItem *)item withCompletionHandler:(void (^)(void))completionHandler {
+- (void)loadImageForItem:(SLVItem *)item withCompletionHandler:(voidBlock)completionHandler {
     [self.facade loadImageForEntity:kItemEntity withIdentifier:item.identifier forURL:item.largePhotoURL forAttribute:@"largePhoto" withCompletionHandler:completionHandler];
+}
+
+#pragma mark - metadata
+
+- (void)getMetadataForSelectedItemWithCompletionHandler:(voidBlock)completionHandler {
+    SLVMetadataLoadOperation *loadOperation = [[SLVMetadataLoadOperation alloc] initWithItem:self.selectedItem storageService:self.storageService networkManager:self.networkManager];
+    loadOperation.completionBlock = completionHandler;
+    NSOperationQueue *queue = [NSOperationQueue new];
+    queue.qualityOfService = QOS_CLASS_DEFAULT;
+    [queue addOperation:loadOperation];
 }
 
 @end

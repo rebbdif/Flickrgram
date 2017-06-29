@@ -45,7 +45,7 @@ static NSString *const kItemEntity = @"SLVItem";
 
 - (void)firstStart:(NSString *)searchRequest withCompletionHandler:(voidBlock)completionHandler {
     self.request = searchRequest;
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"searchRequest ==%@", searchRequest];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"searchRequest == %@", searchRequest];
     NSArray<SLVItem *> *fetchedItems = [self.storageService fetchEntities:kItemEntity withPredicate:predicate];
     NSUInteger index = 0;
     NSMutableDictionary<NSNumber *, NSString *> *newItems = [NSMutableDictionary new];
@@ -68,7 +68,7 @@ static NSString *const kItemEntity = @"SLVItem";
         self.request = request;
     }
     NSURL *url = [self constructURLForRequest:request];
-    [self.networkManager getModelFromURL:url withCompletionHandler:^(NSDictionary *json) {
+    [self.networkManager getJSONFromURL:url withCompletionHandler:^(NSDictionary *json) {
         NSDictionary<NSNumber *, NSString *> *newItems = [self parseData:json];
         NSMutableDictionary<NSNumber *, NSString *> *oldItems = [self.items mutableCopy];
         [oldItems addEntriesFromDictionary:newItems];
@@ -97,8 +97,10 @@ static NSString *const kItemEntity = @"SLVItem";
 - (NSURL *)constructURLForRequest:(NSString *)request {
     NSString *normalizedRequest = [request stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     NSString *escapedString = [normalizedRequest stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
-    NSString *apiKey = @"&api_key=6a719063cc95dcbcbfb5ee19f627e05e";
-    NSString *urls = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&per_page=30&tags=%@%@&page=%lu", escapedString, apiKey, self.page];
+    const char apiKeyChar[] = "&api_key=6a719063cc95dcbcbfb5ee19f627e05e";
+    NSString *apiKey = [NSString stringWithCString:apiKeyChar encoding:1];
+    NSString *sortBy = @"interestingness-desc";
+    NSString *urls = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&per_page=30&tags=%@%@&sort=%@&page=%lu", escapedString, apiKey, sortBy, self.page];
     return [NSURL URLWithString:urls];
 }
 

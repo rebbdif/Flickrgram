@@ -9,15 +9,14 @@
 #import "SLVItem.h"
 #import "SLVFacade.h"
 
-static NSString *const entityName = @"SLVItem";
-
 @implementation SLVItem
 
-@dynamic isFavorite;
 @dynamic numberOfLikes;
 @dynamic numberOfComments;
-@dynamic latitude;
-@dynamic longitude;
+@dynamic location;
+@dynamic photoID;
+@dynamic photoSecret;
+@dynamic isFavorite;
 @dynamic largePhotoURL;
 @dynamic thumbnailURL;
 @dynamic text;
@@ -26,27 +25,50 @@ static NSString *const entityName = @"SLVItem";
 @dynamic identifier;
 @dynamic searchRequest;
 
+@dynamic author;
+@dynamic comments;
+
+@synthesize commentsArray;
+
 + (NSString *)identifierForItemWithDictionary:(NSDictionary *)dict storage:(id<SLVStorageProtocol>)storage forRequest:(NSString *)request {
     NSString *base = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@.jpg",
                       dict[@"farm"], dict[@"server"], dict[@"id"], dict[@"secret"]];
-    NSString *thumbnailUrl = [base stringByAppendingString:@""]; //_s//_n
-    NSString *imageUrl = [base stringByAppendingString:@""]; //z
+    NSString *thumbnailUrl = [base stringByAppendingString:@""]; //_n
+    NSString *imageUrl = [base stringByAppendingString:@""]; //_z
     NSString *identifier = thumbnailUrl;
     
-    SLVItem *item = (SLVItem *)[storage fetchEntity:entityName forKey:identifier];
+    SLVItem *item = (SLVItem *)[storage fetchEntity:NSStringFromClass([self class]) forKey:identifier];
     
     if (!item) {
-        [storage insertNewObjectForEntityForName:entityName withDictionary:@{
+        [storage insertNewObjectForEntityForName:NSStringFromClass([self class]) withDictionary:@{
                                                                             @"thumbnailURL":thumbnailUrl,
                                                                             @"largePhotoURL":imageUrl,
                                                                             @"text":dict[@"title"],
                                                                             @"identifier":thumbnailUrl,
-                                                                            @"searchRequest":request
+                                                                            @"searchRequest":request,
+                                                                            @"photoID":dict[@"id"],
+                                                                            @"photoSecret":dict[@"secret"]
                                                                             }];
     }
     return identifier;
 }
 
+- (void)addComments:(NSSet<SLVComment *> *)comments {
+    __weak typeof(self)weakSelf = self;
+    dispatch_barrier_sync(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), ^{
+        __strong typeof(self)strongSelf = weakSelf;
+        strongSelf.comments = [strongSelf.comments setByAddingObjectsFromSet:comments];
+        self.commentsArray = strongSelf.comments.allObjects;
+    });
+}
+
+- (NSArray<SLVComment *> *)getCommentsArray {
+    if (!self.commentsArray) {
+        return self.comments.allObjects;
+    } else {
+        return self.commentsArray;
+    }
+}
 
 @end
 
