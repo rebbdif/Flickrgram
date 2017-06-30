@@ -11,7 +11,6 @@
 @interface SLVCoreDataStack ()
 
 @property (nonatomic, strong, readwrite) NSManagedObjectContext *mainContext;
-@property (nonatomic, strong, readwrite) NSManagedObjectContext *privateContext;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *coreDataPSC;
 
 @end
@@ -33,7 +32,6 @@
 - (void)setupCoreData {
     [self setupPersistentStoreCoordinator];
     [self setupMainContext];
-    self.privateContext = [self setupPrivateContext];
 }
 
 - (void)setupPersistentStoreCoordinator {

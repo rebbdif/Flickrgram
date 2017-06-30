@@ -31,9 +31,9 @@
         [self.contentView addSubview:_photoView];
         
         _descriptionText = [UILabel new];
-        _descriptionText.numberOfLines = 2;
-        UIFont *sfdm = [UIFont sanFranciscoDisplayMedium14];
-        _descriptionText.font = sfdm;
+        _descriptionText.adjustsFontSizeToFitWidth = NO;
+        _descriptionText.numberOfLines = 0;
+        _descriptionText.font = [UIFont sanFranciscoDisplayMedium14];
         [self.contentView addSubview:_descriptionText];
         
         _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -127,6 +127,9 @@
 
 - (void)updateConstraints {
     UIView *contentView = self.contentView;
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@55.5);
+    }];
     [_likesImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(contentView.mas_left).with.offset(16);
         make.centerY.equalTo(contentView.mas_centerY);
@@ -147,7 +150,6 @@
 }
 
 @end
-
 
 # pragma mark - SLVCommentsCell
 
@@ -175,6 +177,7 @@
         _eventLabel = [UILabel new];
         _eventLabel.textColor = [UIColor grayColor];
         _eventLabel.font = [UIFont sanFranciscoDisplayMedium13];
+        _eventLabel.adjustsFontSizeToFitWidth = NO;
         _eventLabel.numberOfLines = 0;
         [self.contentView addSubview:_eventLabel];
     }
@@ -191,13 +194,13 @@
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_avatarImageView.mas_right).with.offset(8);
         make.top.equalTo(contentView.mas_top).with.offset(14);
-        make.right.equalTo(contentView.mas_right).with.offset(8);
+        make.right.equalTo(contentView.mas_right).with.offset(-8);
     }];
     [_eventLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_avatarImageView.mas_right).with.offset(8);
         make.top.equalTo(_nameLabel.mas_bottom).with.offset(1);
-        make.right.equalTo(contentView.mas_right).with.offset(8);
-        make.height.equalTo(@16);
+        make.right.equalTo(contentView.mas_right).with.offset(-8);
+        make.bottom.equalTo(contentView.mas_bottom).with.offset(-16);
     }];
     
     [super updateConstraints];

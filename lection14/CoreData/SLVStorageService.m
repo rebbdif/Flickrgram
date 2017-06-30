@@ -52,12 +52,11 @@
     return fetchedArray;
 }
 
-- (void)save {
-    [self.stack.privateContext performBlock:^{
-        if (self.stack.privateContext.hasChanges) {
+- (void)savePrivateContext:(NSManagedObjectContext *)privateContext {
+    [privateContext performBlock:^{
+        if (privateContext.hasChanges) {
             NSError *error = nil;
-            [self.stack.privateContext save:&error];
-            if (error) {
+            if (![privateContext save:&error]) {
                 NSLog(@"storageService - %@", error.localizedDescription);
             }
         }
@@ -67,8 +66,7 @@
     [self.stack.mainContext performBlockAndWait:^{
         if (self.stack.mainContext.hasChanges) {
             NSError *error = nil;
-            [self.stack.mainContext save:&error];
-            if (error) {
+            if(![self.stack.mainContext save:&error]) {
                 NSLog(@"storageService - %@", error.localizedDescription);
             }
         }
@@ -76,54 +74,73 @@
     [lock unlock];
 }
 
+- (void)save {
+    NSLock *lock = [NSLock new];
+    [lock lock];
+    [self.stack.mainContext performBlockAndWait:^{
+        if (self.stack.mainContext.hasChanges) {
+            NSError *error = nil;
+            if(![self.stack.mainContext save:&error]) {
+                NSLog(@"storageService - %@", error.localizedDescription);
+                NSLog(@"storageService - %@", error.userInfo);
+            }
+        }
+    }];
+    [lock unlock];
+}
+
 - (void)deleteEntities:(NSString *)entity withPredicate:(NSPredicate *)predicate {
+    NSManagedObjectContext *privateContext = [self.stack setupPrivateContext];
     NSError *error;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entity];
     request.predicate = predicate;
-    NSArray *results = [self.stack.privateContext executeFetchRequest:request error:&error];
+    NSArray *results = [privateContext executeFetchRequest:request error:&error];
     __weak typeof(self)weakSelf = self;
-    [self.stack.privateContext performBlockAndWait:^{
+    [privateContext performBlockAndWait:^{
         __strong typeof(weakSelf)strongSelf = weakSelf;
         for (id item in results) {
-            [strongSelf.stack.privateContext deleteObject:item];
+            [privateContext deleteObject:item];
         }
+        [strongSelf savePrivateContext:privateContext];
     }];
-    [self save];
 }
 
 - (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key withCompletionHandler:(voidBlock)completionHandler {
+    NSManagedObjectContext *privateContext = [self.stack setupPrivateContext];
     id fetchedEntity = [self fetchEntity:entity forKey:key];
     if (!fetchedEntity) {
         NSLog(@"storageService - saveObject couldn't fetch entity for key %@", key);
     }
     __weak typeof(self)weakSelf = self;
-    [self.stack.privateContext performBlock:^{
+    [privateContext performBlockAndWait:^{
         __strong typeof(weakSelf)strongSelf = weakSelf;
         [fetchedEntity setValue:object forKey:attribute];
-        [strongSelf save];
+        [strongSelf savePrivateContext:privateContext];
         if (completionHandler) completionHandler();
     }];
 }
 
 - (void)insertNewObjectForEntityForName:(NSString *)name withDictionary:(NSDictionary<NSString *, id> *)attributes {
-    [self.stack.privateContext performBlock:^{
-        id entity = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:self.stack.privateContext];
+    NSManagedObjectContext *privateContext = [self.stack setupPrivateContext];
+    [privateContext performBlockAndWait:^{
+        id entity = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:privateContext];
         for (NSString *attribute in attributes) {
             [entity setValue:attributes[attribute] forKey:attribute];
         }
-        [self save];
+        [self savePrivateContext:privateContext];
     }];
 }
 
 - (id)insertNewObjectForEntity:(NSString *)name {
-    id entity = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:self.stack.mainContext];
-    [self save];
+    NSManagedObject *entity = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:self.stack.mainContext];
     return entity;
 }
 
 - (void)performBlockAsynchronously:(voidBlock)block withCompletion:(voidBlock)completion {
-    [self.stack.privateContext performBlock:^{
+    NSManagedObjectContext *privateContext = [self.stack setupPrivateContext];
+    [privateContext performBlockAndWait:^{
         block();
+        [self savePrivateContext:privateContext];
         if (completion) completion();
     }];
 }

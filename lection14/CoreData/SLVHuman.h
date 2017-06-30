@@ -11,13 +11,17 @@
 #import "SLVNetworkProtocol.h"
 
 @class UIImage;
+@class SLVComment;
+@class SLVItem;
 
 @interface SLVHuman : NSManagedObject
 
 @property (nonatomic, strong) NSString *avatarURL;
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *url;
 @property (nonatomic, strong) UIImage *avatar;
+
+@property (nonatomic, strong) NSSet<SLVComment *> *comment;
+@property (nonatomic, strong) NSSet<SLVItem *> *item;
 
 + (SLVHuman *)humanWithDictionary:(NSDictionary *)dict storage:(id<SLVStorageProtocol>)storage;
 

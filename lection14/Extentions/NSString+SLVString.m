@@ -11,14 +11,32 @@
 @implementation NSString (SLVString)
 
 + (NSString *)stringWithEscapedEmojis:(NSString *)emojiString {
-    NSString *escapedEmoji = [NSString stringWithCString:[emojiString cStringUsingEncoding:NSNonLossyASCIIStringEncoding] encoding:NSUTF8StringEncoding];
+    NSString *escapedEmoji;
+    if (!emojiString) {
+        escapedEmoji = @"";
+    } else {
+        escapedEmoji = [NSString stringWithCString:[emojiString cStringUsingEncoding:NSNonLossyASCIIStringEncoding] encoding:NSUTF8StringEncoding];
+    }
     return escapedEmoji;
-    
 }
 
 + (NSString *)stringWithUnescapedEmojis:(NSString *)escapedString {
-    NSString *unescapedEmoji = [NSString stringWithCString:[escapedString cStringUsingEncoding:NSUTF8StringEncoding] encoding:NSNonLossyASCIIStringEncoding];
+    NSString *unescapedEmoji;
+    if (!escapedString) {
+        unescapedEmoji = @"";
+    } else {
+        unescapedEmoji = [NSString stringWithCString:[escapedString cStringUsingEncoding:NSUTF8StringEncoding] encoding:NSNonLossyASCIIStringEncoding];
+    }
     return unescapedEmoji;
+}
+
++ (NSUInteger)realLength:(NSString *)string {
+    NSUInteger realLength = 0;
+    if (string) {
+        NSString *canonicalString = [string precomposedStringWithCanonicalMapping];
+        realLength = [canonicalString lengthOfBytesUsingEncoding:NSUTF32StringEncoding] / 4;
+    }
+    return realLength;
 }
 
 @end

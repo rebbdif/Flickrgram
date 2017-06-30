@@ -9,11 +9,9 @@
     <entity name="SLVHuman" representedClassName="SLVHuman" syncable="YES">
         <attribute name="avatar" optional="YES" attributeType="Transformable" storedInTruthFile="YES" syncable="YES"/>
         <attribute name="avatarURL" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="comment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SLVComment" inverseName="author" inverseEntity="SLVComment" syncable="YES"/>
-        <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SLVItem" inverseName="author" inverseEntity="SLVItem" syncable="YES"/>
+        <relationship name="comment" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SLVComment" inverseName="author" inverseEntity="SLVComment" syncable="YES"/>
+        <relationship name="item" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SLVItem" inverseName="author" inverseEntity="SLVItem" syncable="YES"/>
     </entity>
     <entity name="SLVItem" representedClassName="SLVItem" syncable="YES">
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
@@ -34,7 +32,7 @@
     </entity>
     <elements>
         <element name="SLVComment" positionX="-324" positionY="150" width="128" height="103"/>
-        <element name="SLVHuman" positionX="-54" positionY="63" width="128" height="148"/>
+        <element name="SLVHuman" positionX="-54" positionY="63" width="128" height="120"/>
         <element name="SLVItem" positionX="-261" positionY="-189" width="128" height="268"/>
     </elements>
 </model>

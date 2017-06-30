@@ -8,6 +8,7 @@
 
 #import "SLVItem.h"
 #import "SLVFacade.h"
+#import "NSString+SLVString.h"
 
 @implementation SLVItem
 
@@ -40,10 +41,11 @@
     SLVItem *item = (SLVItem *)[storage fetchEntity:NSStringFromClass([self class]) forKey:identifier];
     
     if (!item) {
+        NSString *escapedEmojiText = [NSString stringWithEscapedEmojis:dict[@"title"]];
         [storage insertNewObjectForEntityForName:NSStringFromClass([self class]) withDictionary:@{
                                                                             @"thumbnailURL":thumbnailUrl,
                                                                             @"largePhotoURL":imageUrl,
-                                                                            @"text":dict[@"title"],
+                                                                            @"text":escapedEmojiText,
                                                                             @"identifier":thumbnailUrl,
                                                                             @"searchRequest":request,
                                                                             @"photoID":dict[@"id"],

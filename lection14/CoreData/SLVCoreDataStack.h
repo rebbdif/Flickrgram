@@ -12,7 +12,6 @@
 @interface SLVCoreDataStack : NSObject
 
 @property (nonatomic, strong, readonly) NSManagedObjectContext *mainContext;
-@property (nonatomic, strong, readonly) NSManagedObjectContext *privateContext;
 
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;

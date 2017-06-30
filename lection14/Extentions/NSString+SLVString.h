@@ -26,4 +26,13 @@
  */
 + (NSString *)stringWithUnescapedEmojis:(NSString *)escapedString;
 
+
+/**
+ Возвращает фактическое количество символов в строке.
+ Например, для сложных эмодзи эта функция будет возвращать единицу.
+ 
+ @param string входная строка
+ @return фактическое количество символов в строке
+ */
++ (NSUInteger)realLength:(NSString *)string;
 @end

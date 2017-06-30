@@ -10,6 +10,7 @@
 #import "SLVStorageService.h"
 
 @class SLVHuman;
+@class SLVItem;
 
 typedef NS_ENUM(NSUInteger, SLVCommentType) {
     SLVCommentTypeComment = 0,
@@ -20,7 +21,9 @@ typedef NS_ENUM(NSUInteger, SLVCommentType) {
 
 @property (nonatomic, strong) NSNumber *commentType;
 @property (nonatomic, strong) NSString *text;
+
 @property (nonatomic, strong) SLVHuman *author;
+@property (nonatomic, strong) SLVItem *item;
 
 + (SLVComment *)commentWithDictionary:(NSDictionary *)dict type:(SLVCommentType)type storage:(id<SLVStorageProtocol>)storage;
 
