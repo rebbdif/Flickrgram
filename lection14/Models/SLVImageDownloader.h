@@ -11,7 +11,7 @@
 #import "SLVNetworkProtocol.h"
 #import "SLVStorageProtocol.h"
 
-@interface SLVFacade : NSObject <SLVFacadeProtocol>
+@interface SLVImageDownloader : NSObject <SLVFacadeProtocol>
 
 @property (nonatomic, strong) id<SLVNetworkProtocol> networkManager;
 @property (nonatomic, strong) id<SLVStorageProtocol> storageService;

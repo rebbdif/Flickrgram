@@ -12,16 +12,16 @@
 @interface SLVSettingsViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) id<SLVFacadeProtocol> model;
+@property (nonatomic, strong) id<SLVStorageProtocol> storage;
 
 @end
 
 @implementation SLVSettingsViewController
 
-- (instancetype)initWithModel:(id<SLVFacadeProtocol>)model {
+- (instancetype)initWithStorage:(id<SLVStorageProtocol>)storage {
     self = [super init];
     if (self) {
-        _model = model;
+        _storage = storage;
     }
     return self;
 }
@@ -82,7 +82,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 1) {
-        [self.model destroyEverything];
+        [self clearEntirely];
     }
 }
 
@@ -93,6 +93,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 10;
+}
+
+- (void)clearEntirely {
+    [self.storage deleteEntities:@"SLVItem" withPredicate:nil];
+    [self.storage deleteEntities:@"Human" withPredicate:nil];
+    [self.storage deleteEntities:@"Comment" withPredicate:nil];
 }
 
 @end

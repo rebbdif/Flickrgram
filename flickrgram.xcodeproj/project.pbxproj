@@ -17,7 +17,7 @@
 		635722F41EF5B091000BB6CD /* SLVPostNavigationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722F31EF5B091000BB6CD /* SLVPostNavigationBarView.m */; };
 		635722F71EF5B1FC000BB6CD /* SLVPostDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722F61EF5B1FC000BB6CD /* SLVPostDataProvider.m */; };
 		635722FA1EF5B4A7000BB6CD /* SLVPostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722F91EF5B4A7000BB6CD /* SLVPostModel.m */; };
-		635723001EF5F74C000BB6CD /* SLVFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722FF1EF5F74C000BB6CD /* SLVFacade.m */; };
+		635723001EF5F74C000BB6CD /* SLVImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 635722FF1EF5F74C000BB6CD /* SLVImageDownloader.m */; };
 		6375B3A71EFD0A8900AA41B2 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6375B3A51EFD089000AA41B2 /* OCMock.framework */; };
 		6375B3B01EFD20B000AA41B2 /* SLVLayoutTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6375B3AF1EFD20B000AA41B2 /* SLVLayoutTest.m */; };
 		6375B3B11EFD20E500AA41B2 /* SLVCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6392D1DF1EE04D3A0050728D /* SLVCollectionViewLayout.m */; };
@@ -82,8 +82,8 @@
 		635722F91EF5B4A7000BB6CD /* SLVPostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVPostModel.m; path = Models/SLVPostModel.m; sourceTree = "<group>"; };
 		635722FB1EF5B4DC000BB6CD /* SLVPostModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPostModelProtocol.h; path = Protocols/SLVPostModelProtocol.h; sourceTree = "<group>"; };
 		635722FD1EF5C2A0000BB6CD /* SLVFacadeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVFacadeProtocol.h; path = Protocols/SLVFacadeProtocol.h; sourceTree = "<group>"; };
-		635722FE1EF5F74C000BB6CD /* SLVFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVFacade.h; path = Models/SLVFacade.h; sourceTree = "<group>"; };
-		635722FF1EF5F74C000BB6CD /* SLVFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVFacade.m; path = Models/SLVFacade.m; sourceTree = "<group>"; };
+		635722FE1EF5F74C000BB6CD /* SLVImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVImageDownloader.h; path = Models/SLVImageDownloader.h; sourceTree = "<group>"; };
+		635722FF1EF5F74C000BB6CD /* SLVImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVImageDownloader.m; path = Models/SLVImageDownloader.m; sourceTree = "<group>"; };
 		635723061EF6D06D000BB6CD /* SLVStorageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVStorageProtocol.h; path = Services/SLVStorageProtocol.h; sourceTree = "<group>"; };
 		635723071EF6D0BA000BB6CD /* SLVNetworkProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVNetworkProtocol.h; path = Services/SLVNetworkProtocol.h; sourceTree = "<group>"; };
 		6375B3A51EFD089000AA41B2 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = Carthage/Build/iOS/OCMock.framework; sourceTree = "<group>"; };
@@ -201,9 +201,11 @@
 		04E2FFD11EBBABF70074C5D9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				6350EF8D1ED5923100D7C8CE /* SLVImageDownloadOperation.h */,
+				6350EF8E1ED5923100D7C8CE /* SLVImageDownloadOperation.m */,
 				635722FD1EF5C2A0000BB6CD /* SLVFacadeProtocol.h */,
-				635722FE1EF5F74C000BB6CD /* SLVFacade.h */,
-				635722FF1EF5F74C000BB6CD /* SLVFacade.m */,
+				635722FE1EF5F74C000BB6CD /* SLVImageDownloader.h */,
+				635722FF1EF5F74C000BB6CD /* SLVImageDownloader.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -217,8 +219,6 @@
 				6350EF851ED5841F00D7C8CE /* SLVNetworkManager.m */,
 				63ABAB811ED60E8900941726 /* SLVImageProcessing.h */,
 				63ABAB821ED60E8900941726 /* SLVImageProcessing.m */,
-				6350EF8D1ED5923100D7C8CE /* SLVImageDownloadOperation.h */,
-				6350EF8E1ED5923100D7C8CE /* SLVImageDownloadOperation.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -555,7 +555,7 @@
 				6392D1D61EE04CFD0050728D /* SLVCollectionViewController.m in Sources */,
 				6392D1F21EE7F92E0050728D /* SLVPostViewCells.m in Sources */,
 				6392D1DA1EE04CFD0050728D /* SLVSettingsViewController.m in Sources */,
-				635723001EF5F74C000BB6CD /* SLVFacade.m in Sources */,
+				635723001EF5F74C000BB6CD /* SLVImageDownloader.m in Sources */,
 				635722FA1EF5B4A7000BB6CD /* SLVPostModel.m in Sources */,
 				6392D1E71EE04D4E0050728D /* UIColor+SLVColor.m in Sources */,
 				6350EF861ED5841F00D7C8CE /* SLVNetworkManager.m in Sources */,

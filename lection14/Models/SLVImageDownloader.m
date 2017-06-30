@@ -6,10 +6,10 @@
 //  Copyright © 2017 serebryanyy. All rights reserved.
 //
 
-#import "SLVFacade.h"
+#import "SLVImageDownloader.h"
 #import "SLVImageDownloadOperation.h"
 
-@interface SLVFacade()
+@interface SLVImageDownloader()
 
 @property (nonatomic, strong) NSMutableDictionary<NSString *, SLVImageDownloadOperation *> *imageOperations;
 @property (nonatomic, strong) NSOperationQueue *imagesQueue;
@@ -35,8 +35,7 @@
 #pragma mark - Operations
 
 - (void)pauseOperations {
-    [self.imageOperations enumerateKeysAndObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id key, id object, BOOL *stop) {
-        SLVImageDownloadOperation *operation = (SLVImageDownloadOperation *)object;
+    [self.imageOperations enumerateKeysAndObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id key, SLVImageDownloadOperation *operation, BOOL *stop) {
         if (operation.isExecuting) {
             [operation pause];
         }
@@ -62,13 +61,5 @@
     }
 }
 
-#pragma mark - Storage
-
-- (void)destroyEverything {
-    [self.storageService deleteEntities:@"SLVItem" withPredicate:nil];
-    [self.storageService deleteEntities:@"Human" withPredicate:nil];
-    [self.storageService deleteEntities:@"Comment" withPredicate:nil];
-    [self.imageOperations removeAllObjects];
-}
 
 @end

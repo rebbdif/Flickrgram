@@ -121,7 +121,7 @@
 #pragma mark - CollectionView delegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    SLVPostModel *postModel = [[SLVPostModel alloc] initWithFacade:[self.model getFacade]];
+    SLVPostModel *postModel = [[SLVPostModel alloc] initWithNetworkManager:self.model.networkManager storageService:self.model.storageService];
     SLVItem *selectedItem = [self.model itemForIndex:indexPath.row];
     [postModel passSelectedItem:selectedItem];
     SLVPostController *postViewController = [[SLVPostController alloc] initWithModel:postModel];
@@ -177,7 +177,7 @@
 - (IBAction)gotoSettings:(id)sender {
     UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:newBackButton];
-    SLVSettingsViewController *settingsViewController = [[SLVSettingsViewController alloc] initWithModel:[self.model getFacade]];
+    SLVSettingsViewController *settingsViewController = [[SLVSettingsViewController alloc] initWithStorage:self.model.storageService];
     [self.navigationController pushViewController:settingsViewController animated:YES];
 }
 

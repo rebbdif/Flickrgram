@@ -16,9 +16,6 @@ static NSString *const kItemEntity = @"SLVItem";
 
 @interface SLVCollectionModel()
 
-@property (nonatomic, strong, readonly) id<SLVStorageProtocol> storageService;
-@property (nonatomic, strong, readonly) id<SLVNetworkProtocol> networkManager;
-@property (nonatomic, strong) id<SLVFacadeProtocol> facade;
 @property (nonatomic, assign) NSUInteger page;
 @property (nonatomic, copy) NSDictionary<NSNumber *, NSString *> *items;
 @property (nonatomic, copy) NSDictionary<NSNumber *, NSString *> *itemURLs;
@@ -28,15 +25,14 @@ static NSString *const kItemEntity = @"SLVItem";
 
 @implementation SLVCollectionModel
 
-- (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade {
+- (instancetype)initWithNetworkManager:(id<SLVNetworkProtocol>)networkManager storageService:(id<SLVStorageProtocol>)storageService {
     self = [super init];
     if (self) {
         _page = 1;
         _items = [NSDictionary new];
         _itemURLs = [NSDictionary new];
-        _facade = facade;
-        _storageService = facade.storageService;
-        _networkManager = facade.networkManager;
+        _storageService = storageService;
+        _networkManager = networkManager;
     }
     return self;
 }
@@ -139,10 +135,6 @@ static NSString *const kItemEntity = @"SLVItem";
     [self.facade clearOperations];
     NSPredicate *predicate  = [NSPredicate predicateWithFormat:@"isFavorite ==NO"];
     [self.storageService deleteEntities:kItemEntity withPredicate:predicate];
-}
-
-- (id<SLVFacadeProtocol>)getFacade {
-    return self.facade;
 }
 
 - (void)pauseDownloads {

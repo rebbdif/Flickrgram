@@ -10,25 +10,15 @@
 #import "SLVNetworkProtocol.h"
 #import "SLVStorageProtocol.h"
 
-@class UIImage;
-
-@protocol SLVFacadeProtocol <NSObject>
+@protocol SLVImageDownloaderProtocol <NSObject>
 
 @property (nonatomic, strong, readonly) id<SLVNetworkProtocol> networkManager;
 @property (nonatomic, strong, readonly) id<SLVStorageProtocol> storageService;
-
-#pragma mark - Operations
 
 - (void)pauseOperations;
 
 - (void)clearOperations;
 
-#pragma mark - Network
-
 - (void)loadImageForEntity:(NSString *)entityName withIdentifier:(NSString *)identifier forURL:(NSString *)url forAttribute:(NSString *)attribute withCompletionHandler:(void (^)(void))completionHandler;
-
-#pragma mark - Storage
-
-- (void)destroyEverything;
 
 @end

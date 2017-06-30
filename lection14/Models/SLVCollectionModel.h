@@ -8,15 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import "SLVCollectionModelProtocol.h"
-#import "SLVFacadeProtocol.h"
+#import "SLVStorageService.h"
+#import "SLVNetworkManager.h"
 
 @class SLVItem;
 @class NSManagedObjectContext;
 
 @interface SLVCollectionModel : NSObject <SLVCollectionModelProtocol>
 
+@property (nonatomic, strong, readonly) id<SLVStorageProtocol> storageService;
+@property (nonatomic, strong, readonly) id<SLVNetworkProtocol> networkManager;
+
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade;
+- (instancetype)initWithNetworkManager:(id<SLVNetworkProtocol>)networkManager storageService:(id<SLVStorageProtocol>)storageService;
 
 @end

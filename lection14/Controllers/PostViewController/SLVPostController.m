@@ -15,6 +15,7 @@
 #import "SLVCollectionModel.h"
 #import "SLVPostNavigationBarView.h"
 #import "UIColor+SLVColor.h"
+#import "NSString+SLVString.h"
 @import Masonry;
 
 @interface SLVPostController () <UITableViewDelegate, SLVCellsDelegate, UIScrollViewDelegate>
@@ -50,15 +51,20 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addToFavorites:)];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    __weak typeof(self)weakSelf = self;
-    [self.model getMetadataForSelectedItemWithCompletionHandler:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf configureLeftBarButtonItem];
-            [weakSelf.tableView reloadData];
-        });
-    }];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+  //  SLVItem *selectedItem = [self.model getSelectedItem];
+   // if (!selectedItem.author) {
+        __weak typeof(self)weakSelf = self;
+        [self.model getMetadataForSelectedItemWithCompletionHandler:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf configureLeftBarButtonItem];
+              //  weakSelf.tableView.visibleCells
+                [weakSelf.tableView reloadData];
+                sleep(2);
+            });
+        }];
+    //}
 }
 
 - (void)configureLeftBarButtonItem {
@@ -77,8 +83,8 @@
     } else {
         self.postNavigationBarView.avatarView.image = avatar;
     }
-    self.postNavigationBarView.nameLabel.text = selectedItem.author.name;
-    if (selectedItem.location) self.postNavigationBarView.locationLabel.text = selectedItem.location;
+    self.postNavigationBarView.nameLabel.text = [NSString stringWithUnescapedEmojis:selectedItem.author.name];
+    if (selectedItem.location) self.postNavigationBarView.locationLabel.text = [NSString stringWithUnescapedEmojis:selectedItem.location];
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.postNavigationBarView];
     [self.navigationItem setLeftBarButtonItem:barButtonItem];
     self.navigationItem.leftItemsSupplementBackButton = YES;
@@ -102,17 +108,11 @@
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    switch (indexPath.section) {
-        case 0: {
-            if (indexPath.row == 0) return 312;
-            else return 60;
-            break;
-        } case 1: {
-            tableView.rowHeight = UITableViewAutomaticDimension;
-            break;
-        }
-    }
-    return 60;
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            return 313;
+        } else return 57.5;
+    } else return 76;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
@@ -128,7 +128,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if (section == 0) return 1;
+    if (section == 0) return 0.5;
     else return 0;
 }
 

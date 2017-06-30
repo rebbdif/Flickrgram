@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "SLVPostModelProtocol.h"
-#import "SLVFacadeProtocol.h"
+#import "SLVStorageService.h"
+#import "SLVNetworkManager.h"
 
 @interface SLVPostModel : NSObject <SLVPostModelProtocol>
 
@@ -17,6 +18,5 @@
 
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade;
-
+- (instancetype)initWithNetworkManager:(id<SLVNetworkProtocol>)networkManager storageService:(id<SLVStorageProtocol>)storageService;
 @end

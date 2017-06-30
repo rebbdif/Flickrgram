@@ -20,19 +20,17 @@ static NSString *const kItemEntity = @"SLVItem";
 
 @interface SLVPostModel()
 
-@property (nonatomic, strong, readonly) id<SLVFacadeProtocol> facade;
 @property (nonatomic, strong) SLVItem *selectedItem;
 
 @end
 
 @implementation SLVPostModel
 
-- (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade {
+- (instancetype)initWithNetworkManager:(id<SLVNetworkProtocol>)networkManager storageService:(id<SLVStorageProtocol>)storageService {
     self = [super init];
     if (self) {
-        _facade = facade;
-        _storageService = facade.storageService;
-        _networkManager = facade.networkManager;
+        _storageService = storageService;
+        _networkManager = networkManager;
     }
     return self;
 }
