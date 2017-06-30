@@ -43,6 +43,7 @@
 		63A890031F0428DB008AAAF4 /* SLVMetadataLoadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A890021F0428DB008AAAF4 /* SLVMetadataLoadOperation.m */; };
 		63A890051F051E03008AAAF4 /* SLVStringTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A890041F051E02008AAAF4 /* SLVStringTest.m */; };
 		63A890081F052F3C008AAAF4 /* NSString+SLVString.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A890071F052F3C008AAAF4 /* NSString+SLVString.m */; };
+		63A8900A1F053995008AAAF4 /* SLVEntityCreationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A890091F053995008AAAF4 /* SLVEntityCreationTest.m */; };
 		63ABAB831ED60E8900941726 /* SLVImageProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 63ABAB821ED60E8900941726 /* SLVImageProcessing.m */; };
 		63ACEF3E1EBD3F53007C0D41 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63ACEF3C1EBD3B37007C0D41 /* Masonry.framework */; };
 /* End PBXBuildFile section */
@@ -131,6 +132,7 @@
 		63A890041F051E02008AAAF4 /* SLVStringTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVStringTest.m; path = lection14Tests/SLVStringTest.m; sourceTree = "<group>"; };
 		63A890061F052F3C008AAAF4 /* NSString+SLVString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SLVString.h"; sourceTree = "<group>"; };
 		63A890071F052F3C008AAAF4 /* NSString+SLVString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SLVString.m"; sourceTree = "<group>"; };
+		63A890091F053995008AAAF4 /* SLVEntityCreationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVEntityCreationTest.m; path = lection14Tests/SLVEntityCreationTest.m; sourceTree = "<group>"; };
 		63ABAB811ED60E8900941726 /* SLVImageProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVImageProcessing.h; path = Services/SLVImageProcessing.h; sourceTree = "<group>"; };
 		63ABAB821ED60E8900941726 /* SLVImageProcessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVImageProcessing.m; path = Services/SLVImageProcessing.m; sourceTree = "<group>"; };
 		63ACEF3C1EBD3B37007C0D41 /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = Carthage/Build/iOS/Masonry.framework; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 			children = (
 				6375B3AF1EFD20B000AA41B2 /* SLVLayoutTest.m */,
 				63A890041F051E02008AAAF4 /* SLVStringTest.m */,
+				63A890091F053995008AAAF4 /* SLVEntityCreationTest.m */,
 			);
 			name = UnitTests;
 			sourceTree = "<group>";
@@ -577,6 +580,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63A890051F051E03008AAAF4 /* SLVStringTest.m in Sources */,
+				63A8900A1F053995008AAAF4 /* SLVEntityCreationTest.m in Sources */,
 				6375B3B01EFD20B000AA41B2 /* SLVLayoutTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

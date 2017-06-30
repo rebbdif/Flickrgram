@@ -15,12 +15,12 @@
 
 @interface SLVItem : NSManagedObject
 
-@property (nonatomic, copy) NSString *numberOfLikes;
-@property (nonatomic, copy) NSString *numberOfComments;
-@property (nonatomic, copy) NSString *location;
 @property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, copy) NSString *largePhoto;
 @property (nonatomic, copy) NSString *largePhotoURL;
+@property (nonatomic, copy) NSString *location;
+@property (nonatomic, copy) NSString *numberOfComments;
+@property (nonatomic, copy) NSString *numberOfLikes;
 @property (nonatomic, copy) NSString *photoID;
 @property (nonatomic, copy) NSString *photoSecret;
 @property (nonatomic, copy) NSString *searchRequest;

@@ -28,5 +28,4 @@ typedef void (^voidBlock)(void);
 
 - (void)insertNewObjectForEntityForName:(NSString *)name withDictionary:(NSDictionary<NSString *, id> *)attributes;
 
-
 @end
