@@ -44,9 +44,7 @@
     NSAssert(_key, @"no key");
     NSLog(@"started");
     
-   // __weak typeof(self) weakSelf = self;
     self.downloadTask = [self.networkManager downloadImageFromURL:[NSURL URLWithString:self.url] withCompletionHandler:^(NSString *downloadedImageURL) {
-     //   __strong typeof(self) strongSelf = weakSelf;
         self.downloadedImageURL = downloadedImageURL;
         NSLog(@"downloaded");
         [self saveImage];
