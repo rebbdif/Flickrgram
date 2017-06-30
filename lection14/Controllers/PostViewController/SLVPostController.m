@@ -32,6 +32,8 @@
 
 @implementation SLVPostController
 
+#pragma mark - Lifecycle
+
 - (instancetype)initWithModel:(id<SLVPostModelProtocol>)model {
     self = [super init];
     if (self) {
@@ -94,19 +96,40 @@
     self.tableView.allowsSelection = NO;
     self.tableView.delegate = self;
     self.tableView.dataSource = self.provider;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        if (indexPath.row == 0) return 312;
-        return 60;
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.section) {
+        case 0: {
+            if (indexPath.row == 0) return 312;
+            else return 60;
+            break;
+        } case 1: {
+            tableView.rowHeight = UITableViewAutomaticDimension;
+            break;
+        }
+    }
+    return 60;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    if (section == 0) {
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 1)];
+        view.backgroundColor = [UIColor separatorColor];
+        view.layer.borderWidth = 0;
+        view.layer.borderColor = [UIColor separatorColor].CGColor;
+        return view;
     } else {
-        return 60;
+        return nil;
     }
 }
 
-- (IBAction)addToFavorites:(id)sender {
-    [self.model makeFavorite:YES];
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if (section == 0) return 1;
+    else return 0;
 }
 
 #pragma mark - SLVCellsDelegate
@@ -141,5 +164,10 @@
     [self.imageCell addGestures];
 }
 
+#pragma mark - other
+
+- (IBAction)addToFavorites:(id)sender {
+    [self.model makeFavorite:YES];
+}
 
 @end

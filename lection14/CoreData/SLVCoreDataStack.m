@@ -11,7 +11,6 @@
 @interface SLVCoreDataStack ()
 
 @property (nonatomic, strong, readwrite) NSManagedObjectContext *mainContext;
-@property (nonatomic, strong, readwrite) NSManagedObjectContext *privateContext;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *coreDataPSC;
 
 @end
@@ -20,9 +19,9 @@
 
 - (instancetype)initStack {
     self = [super init];
-    
-    [self setupCoreData];
-    
+    if (self) {
+        [self setupCoreData];
+    }
     return self;
 }
 
@@ -31,6 +30,11 @@
 }
 
 - (void)setupCoreData {
+    [self setupPersistentStoreCoordinator];
+    [self setupMainContext];
+}
+
+- (void)setupPersistentStoreCoordinator {
     NSURL *path = [[NSBundle mainBundle] URLForResource:@"Model" withExtension:@"momd"];
     NSManagedObjectModel *coreDataModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:path];
     
@@ -45,15 +49,18 @@
     }
     NSURL *url = [applicationSupportFolder URLByAppendingPathComponent:@"db.sqlite"];
     [self.coreDataPSC addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:nil error:&err];
-    
+}
+
+- (void)setupMainContext {
     self.mainContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     self.mainContext.persistentStoreCoordinator = self.coreDataPSC;
     self.mainContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy;
-    
-    self.privateContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-    [self.privateContext setParentContext:self.mainContext];
 }
 
-
+- (NSManagedObjectContext *)setupPrivateContext {
+    NSManagedObjectContext *privateContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    [privateContext setParentContext:self.mainContext];
+    return privateContext;
+}
 
 @end

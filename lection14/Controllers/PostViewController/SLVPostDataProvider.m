@@ -9,6 +9,7 @@
 #import "SLVPostDataProvider.h"
 #import "SLVPostViewCells.h"
 #import "UIColor+SLVColor.h"
+#import "NSString+SLVString.h"
 #import "SLVItem.h"
 #import "SLVComment.h"
 #import "SLVHuman.h"
@@ -43,7 +44,8 @@
             return 2;
             break;
         } case 1: {
-            return 3;
+            SLVItem *selectedItem = [self.model getSelectedItem];
+            return selectedItem.comments.count;
             break;
         } default:
             return 1;
@@ -65,7 +67,7 @@
             if (indexPath.row == 1) return [self likesCellForTableView:tableView atIndexPath:indexPath];
             break;
         } case 1: {
-            return [self commentsCellForTableVies:tableView atIndexPath:indexPath];
+            return [self commentsCellForTableView:tableView atIndexPath:indexPath];
             break;
         } default:
             break;
@@ -97,7 +99,7 @@
     } else {
         cell.photoView.image = image;
     }
-    cell.descriptionText.text = selectedItem.text;
+    cell.descriptionText.text = [NSString stringWithUnescapedEmojis:selectedItem.text];
     return cell;
 }
 
@@ -113,13 +115,14 @@
     return cell;
 }
 
-- (SLVCommentsCell *)commentsCellForTableVies:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath {
+- (SLVCommentsCell *)commentsCellForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath {
     SLVCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SLVCommentsCell class])];
     SLVItem *item = [self.model getSelectedItem];
     SLVComment *currentComment = item.commentsArray[indexPath.row];
     SLVHuman *author = currentComment.author;
-    cell.nameLabel.text = author.name;
-    cell.eventLabel.text = currentComment.text;
+    cell.nameLabel.text = [NSString stringWithUnescapedEmojis:author.name];
+    NSString *text = [NSString stringWithUnescapedEmojis:currentComment.text];
+    cell.eventLabel.attributedText = [self decorateText:text ofType:[currentComment.commentType integerValue]];
     UIImage *avatar = author.avatar;
     if (!avatar) {
         [author getAvatarWithNetworkService:self.model.networkManager storageService:self.model.storageService completionHandler:^(UIImage *avatar) {
@@ -132,6 +135,29 @@
         cell.avatarImageView.image = avatar;
     }
     return cell;
+}
+
+- (NSAttributedString *)decorateText:(NSString *)text ofType:(SLVCommentType)type {
+    NSMutableAttributedString *attributedString;
+    switch (type) {
+        case SLVCommentTypeComment: {
+            NSString *introduction = @"прокоментировал фото:\n";
+            NSUInteger introductionLength = [NSString realLength:introduction];
+            NSUInteger textLength = [NSString realLength:text];
+            NSString *textWithIntroduction = [introduction stringByAppendingString:text];
+            attributedString = [[NSMutableAttributedString alloc] initWithString:textWithIntroduction];
+            NSRange coloredRange = NSMakeRange(introductionLength, textLength);
+            [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:40.0f / 255.0f green:171.0f / 255.0f blue:236.0f / 255.0f alpha:1.0f] range:coloredRange];
+            break;
+        } case SLVCommentTypeLike: {
+            attributedString = [[NSMutableAttributedString alloc] initWithString:text];
+            if (text.length > 6) {
+                [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:255.0f / 255.0f green:38.0f / 255.0f blue:70.0f / 255.0f alpha:1.0f] range:NSMakeRange(0, 6)];
+            }
+            break;
+        }
+    }
+    return attributedString;
 }
 
 @end

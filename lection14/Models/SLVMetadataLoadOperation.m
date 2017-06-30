@@ -7,6 +7,7 @@
 //
 
 #import "SLVMetadataLoadOperation.h"
+#import "NSString+SLVString.h"
 #import "SLVHuman.h"
 #import "SLVItem.h"
 #import "SLVComment.h"
@@ -70,14 +71,16 @@ typedef void (^voidBlock)(void);
     dispatch_semaphore_wait(self.infoSemaphore, DISPATCH_TIME_FOREVER);
     dispatch_semaphore_wait(self.favoritesSemaphore, DISPATCH_TIME_FOREVER);
     dispatch_semaphore_wait(self.commentsSemaphore, DISPATCH_TIME_FOREVER);
-    [self.storageService save];
+    
 }
 
 - (void)parseInfo:(NSDictionary *)json {
     [self.storageService performBlockAsynchronously:^{
         NSString *country = json[@"photo"][@"location"][@"country"][@"_content"];
+        NSString *unicodeCountry = [NSString stringWithEscapedEmojis:country];
         NSString *city = json[@"photo"][@"location"][@"locality"][@"_content"];
-        NSString *location = [NSString stringWithFormat:@"%@, %@", city, country];
+        NSString *unicodeCity = [NSString stringWithEscapedEmojis:city];
+        NSString *location = [NSString stringWithFormat:@"%@, %@", unicodeCity, unicodeCountry];
         
         SLVHuman *owner = [SLVHuman humanWithDictionary:json[@"photo"][@"owner"] storage:self.storageService];
         self.selectedItem.author = owner;
@@ -115,8 +118,7 @@ typedef void (^voidBlock)(void);
         [self.selectedItem addComments:comments];
     } withCompletion:^{
         dispatch_semaphore_signal(self.commentsSemaphore);
-    }];
-    
+    }];    
 }
 
 @end

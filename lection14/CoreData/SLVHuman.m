@@ -7,19 +7,18 @@
 //
 
 #import "SLVHuman.h"
+#import "NSString+SLVString.h"
 @import UIKit;
 
 @implementation SLVHuman
 
 @dynamic avatarURL;
 @dynamic name;
-@dynamic url;
 @dynamic avatar;
+@dynamic item;
+@dynamic comment;
 
 + (SLVHuman *)humanWithDictionary:(NSDictionary *)dict storage:(id<SLVStorageProtocol>)storage {
-    NSAssert(dict[@"iconfarm"], @"iconfarmEmpty");
-    NSAssert(dict[@"iconserver"], @"iconserverEmpty");
-
     NSString *iconFarm = dict[@"iconfarm"];
     NSString *iconServer = dict[@"iconserver"];
     NSString *nsid;
@@ -36,9 +35,9 @@
     human = [storage insertNewObjectForEntity:NSStringFromClass([self class])];
     NSString *name;
     if (dict[@"username"]) {
-        name = dict[@"username"];
+        name = [NSString stringWithEscapedEmojis:dict[@"username"]];
     } else if (dict[@"authorname"]) {
-        name = dict[@"authorname"];
+        name = [NSString stringWithEscapedEmojis:dict[@"authorname"]];
     } else {
         abort();
     }

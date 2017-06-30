@@ -9,29 +9,44 @@
 #import "SLVComment.h"
 #import "SLVHuman.h"
 #import "UIColor+SLVColor.h"
+#import "NSString+SLVString.h"
 
 @implementation SLVComment
 
-@dynamic commentType;
+@synthesize commentType;
 @dynamic text;
 @dynamic author;
+@dynamic item;
 
 + (SLVComment *)commentWithDictionary:(NSDictionary *)dict type:(SLVCommentType)type storage:(id<SLVStorageProtocol>)storage {
     SLVComment *comment = nil;
     comment = [storage insertNewObjectForEntity:NSStringFromClass([self class])];
     switch (type) {
         case SLVCommentTypeComment: {
-            comment.text = dict[@"_content"];
+            comment.text = [NSString stringWithEscapedEmojis:dict[@"_content"]];
+            comment.commentType = @0;
             break;
-        }
-        case SLVCommentTypeLike: {
-            comment.text = @"оценил ваше фото.";
+        } case SLVCommentTypeLike: {
+            comment.text = [NSString stringWithEscapedEmojis:@"оценил ваше фото."];
+            comment.commentType = @1;
         }
     }
-    
     SLVHuman *author = [SLVHuman humanWithDictionary:dict storage:storage];
     comment.author = author;
     return comment;
+}
+
+- (SLVCommentType)getCommentType {
+    switch ([self.commentType integerValue]) {
+        case 0: {
+            return SLVCommentTypeComment;
+            break;
+        } case 1: {
+            return SLVCommentTypeLike;
+            break;
+        }
+    }
+    return SLVCommentTypeComment;
 }
 
 @end
