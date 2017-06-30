@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSString *attribute;
 @property (nonatomic, strong) NSString *entityName;
 @property (nonatomic, copy, nullable) void(^completion)(void);
+@property (nonatomic, strong) NSURLSessionDownloadTask *downloadTask;
 
 @end
 
@@ -41,24 +42,41 @@
 - (void)main {
     NSAssert(_url, @"no url");
     NSAssert(_key, @"no key");
+    NSLog(@"started");
     
-    __weak typeof(self) weakSelf = self;
-    [self.networkManager downloadImageFromURL:[NSURL URLWithString:self.url] withCompletionHandler:^(NSString *downloadedImageURL) {
-        __strong typeof(self) strongSelf = weakSelf;
-        strongSelf.downloadedImageURL = downloadedImageURL;
-        strongSelf.status = SLVImageStatusDownloaded;
-        [strongSelf saveImage];
+   // __weak typeof(self) weakSelf = self;
+    self.downloadTask = [self.networkManager downloadImageFromURL:[NSURL URLWithString:self.url] withCompletionHandler:^(NSString *downloadedImageURL) {
+     //   __strong typeof(self) strongSelf = weakSelf;
+        self.downloadedImageURL = downloadedImageURL;
+        NSLog(@"downloaded");
+        [self saveImage];
     }];
 }
 
 - (void)saveImage {
+    NSLog(@"saving...");
     __weak typeof(self) weakSelf = self;
     [self.storageService saveObject:self.downloadedImageURL forEntity:self.entityName forAttribute:self.attribute forKey:self.key withCompletionHandler:^{
         __strong typeof(weakSelf)strongSelf = weakSelf;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            strongSelf.completion();
-        });
+        if (!strongSelf.isCancelled) {
+            NSLog(@"saved");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                strongSelf.completion();
+            });
+        }  else {
+            NSLog(@"went wrong");
+        }
     }];
+}
+
+- (void)pause {
+    NSLog(@"cancelled");
+    [self.downloadTask suspend];
+    [self cancel];
+}
+
+- (void)dealloc {
+    NSLog(@"dealloc");
 }
 
 @end

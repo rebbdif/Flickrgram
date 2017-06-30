@@ -65,7 +65,7 @@
     [task resume];
 }
 
-- (NSURLSessionTask *)downloadImageFromURL:(NSURL *)url withCompletionHandler:(void (^)(NSString *dataURL))completionHandler {
+- (NSURLSessionDownloadTask *)downloadImageFromURL:(NSURL *)url withCompletionHandler:(void (^)(NSString *dataURL))completionHandler {
     NSURLSessionDownloadTask *task = [self.session downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
         if (httpResponse.statusCode != 200) {

@@ -80,7 +80,6 @@
 		635722F81EF5B4A7000BB6CD /* SLVPostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPostModel.h; path = Models/SLVPostModel.h; sourceTree = "<group>"; };
 		635722F91EF5B4A7000BB6CD /* SLVPostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVPostModel.m; path = Models/SLVPostModel.m; sourceTree = "<group>"; };
 		635722FB1EF5B4DC000BB6CD /* SLVPostModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVPostModelProtocol.h; path = Protocols/SLVPostModelProtocol.h; sourceTree = "<group>"; };
-		635722FD1EF5C2A0000BB6CD /* SLVImageDownloaderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVImageDownloaderProtocol.h; path = Protocols/SLVImageDownloaderProtocol.h; sourceTree = "<group>"; };
 		635722FE1EF5F74C000BB6CD /* SLVImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVImageDownloader.h; path = Models/SLVImageDownloader.h; sourceTree = "<group>"; };
 		635722FF1EF5F74C000BB6CD /* SLVImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLVImageDownloader.m; path = Models/SLVImageDownloader.m; sourceTree = "<group>"; };
 		635723061EF6D06D000BB6CD /* SLVStorageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLVStorageProtocol.h; path = Services/SLVStorageProtocol.h; sourceTree = "<group>"; };
@@ -195,21 +194,21 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		04E2FFD11EBBABF70074C5D9 /* Helpers */ = {
+		04E2FFD11EBBABF70074C5D9 /* ImageDownloader */ = {
 			isa = PBXGroup;
 			children = (
 				6350EF8D1ED5923100D7C8CE /* SLVImageDownloadOperation.h */,
 				6350EF8E1ED5923100D7C8CE /* SLVImageDownloadOperation.m */,
-				635722FD1EF5C2A0000BB6CD /* SLVImageDownloaderProtocol.h */,
 				635722FE1EF5F74C000BB6CD /* SLVImageDownloader.h */,
 				635722FF1EF5F74C000BB6CD /* SLVImageDownloader.m */,
 			);
-			name = Helpers;
+			name = ImageDownloader;
 			sourceTree = "<group>";
 		};
 		04E2FFD31EBBAC0F0074C5D9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				04E2FFD11EBBABF70074C5D9 /* ImageDownloader */,
 				6392D1F41EE84A580050728D /* Storage */,
 				635723071EF6D0BA000BB6CD /* SLVNetworkProtocol.h */,
 				6350EF841ED5841F00D7C8CE /* SLVNetworkManager.h */,
@@ -226,7 +225,6 @@
 				6375B3C61EFD5CEE00AA41B2 /* Post */,
 				6375B3C21EFD5C7E00AA41B2 /* Collection */,
 				6375B3C11EFD5C6800AA41B2 /* Entities */,
-				04E2FFD11EBBABF70074C5D9 /* Helpers */,
 			);
 			name = Classes;
 			sourceTree = "<group>";

@@ -10,8 +10,8 @@
 #import "SLVItem.h"
 #import "SLVHuman.h"
 #import "SLVComment.h"
-#import "SLVStorageProtocol.h"
-#import "SLVNetworkProtocol.h"
+#import "SLVImageDownloader.h"
+
 #import "SLVMetadataLoadOperation.h"
 
 @import UIKit;
@@ -21,6 +21,7 @@ static NSString *const kItemEntity = @"SLVItem";
 @interface SLVPostModel()
 
 @property (nonatomic, strong) SLVItem *selectedItem;
+@property (nonatomic, strong) SLVImageDownloader *imageDownloader;
 
 @end
 
@@ -31,6 +32,7 @@ static NSString *const kItemEntity = @"SLVItem";
     if (self) {
         _storageService = storageService;
         _networkManager = networkManager;
+        _imageDownloader = [[SLVImageDownloader alloc] initWithNetworkManager:_networkManager storageService:_storageService];
     }
     return self;
 }
@@ -49,7 +51,7 @@ static NSString *const kItemEntity = @"SLVItem";
 }
 
 - (void)loadImageForItem:(SLVItem *)item withCompletionHandler:(voidBlock)completionHandler {
-    [self.facade loadImageForEntity:kItemEntity withIdentifier:item.identifier forURL:item.largePhotoURL forAttribute:@"largePhoto" withCompletionHandler:completionHandler];
+    [self.imageDownloader loadImageForEntity:kItemEntity withIdentifier:item.identifier forURL:item.largePhotoURL forAttribute:@"largePhoto" withCompletionHandler:completionHandler];
 }
 
 #pragma mark - metadata

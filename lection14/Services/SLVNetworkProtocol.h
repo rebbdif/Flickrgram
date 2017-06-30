@@ -14,7 +14,6 @@
 
 - (void)getDataFromURL:(NSURL *)url withCompletionHandler:(void (^)(NSData *data))completionHandler;
 
-
-- (NSURLSessionTask *)downloadImageFromURL:(NSURL *)url withCompletionHandler:(void (^)(NSString *dataURL))completionHandler;
+- (NSURLSessionDownloadTask *)downloadImageFromURL:(NSURL *)url withCompletionHandler:(void (^)(NSString *dataURL))completionHandler;
 
 @end

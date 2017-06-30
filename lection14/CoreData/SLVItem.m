@@ -7,7 +7,6 @@
 //
 
 #import "SLVItem.h"
-#import "SLVFacade.h"
 #import "NSString+SLVString.h"
 
 @implementation SLVItem

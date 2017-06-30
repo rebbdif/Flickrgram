@@ -7,11 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SLVFacadeProtocol.h"
 #import "SLVNetworkProtocol.h"
 #import "SLVStorageProtocol.h"
 
-@interface SLVImageDownloader : NSObject <SLVImageDownloaderProtocol>
+@interface SLVImageDownloader : NSObject 
 
 @property (nonatomic, strong) id<SLVNetworkProtocol> networkManager;
 @property (nonatomic, strong) id<SLVStorageProtocol> storageService;
@@ -19,5 +18,9 @@
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithNetworkManager:(id<SLVNetworkProtocol>)networkManager storageService:(id<SLVStorageProtocol>) storageService;
+
+- (void)cancelOperations;
+
+- (void)loadImageForEntity:(NSString *)entityName withIdentifier:(NSString *)identifier forURL:(NSString *)url forAttribute:(NSString *)attribute withCompletionHandler:(void (^)(void))completionHandler;
 
 @end

@@ -46,6 +46,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tabBarController.tabBar.hidden = YES;
     [self configureTableView];
     [self configureLeftBarButtonItem];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addToFavorites:)];
@@ -53,18 +54,16 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-  //  SLVItem *selectedItem = [self.model getSelectedItem];
-   // if (!selectedItem.author) {
+    SLVItem *selectedItem = [self.model getSelectedItem];
+    if (!selectedItem.author) {
         __weak typeof(self)weakSelf = self;
         [self.model getMetadataForSelectedItemWithCompletionHandler:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weakSelf configureLeftBarButtonItem];
-              //  weakSelf.tableView.visibleCells
                 [weakSelf.tableView reloadData];
-                sleep(2);
             });
         }];
-    //}
+    }
 }
 
 - (void)configureLeftBarButtonItem {

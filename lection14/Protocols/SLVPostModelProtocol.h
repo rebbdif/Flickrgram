@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SLVFacadeProtocol.h"
+#import "SLVStorageProtocol.h"
+#import "SLVNetworkProtocol.h"
+
 
 @class UIImage;
 @class SLVItem;
