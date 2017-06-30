@@ -47,8 +47,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tabBarController.tabBar.hidden = YES;
-    [self configureTableView];
     [self configureLeftBarButtonItem];
+    [self configureTableView];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addToFavorites:)];
 }
 
@@ -77,6 +77,7 @@
             __strong typeof(weakSelf)strongSelf = weakSelf;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [strongSelf configureLeftBarButtonItem];
+                [self.tableView reloadData];
             });
         }];
     } else {
@@ -94,7 +95,6 @@
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), CGRectGetHeight(frame))];
     self.tableView.backgroundColor = [UIColor myGray];
     self.tableView.separatorColor = [UIColor separatorColor];
-    [self.view addSubview:self.tableView];
     [self.tableView registerClass:[SLVImageCell class] forCellReuseIdentifier:NSStringFromClass([SLVImageCell class])];
     [self.tableView registerClass:[SLVCommentsCell class] forCellReuseIdentifier:NSStringFromClass([SLVCommentsCell class])];
     [self.tableView registerClass:[SLVLikesCell class] forCellReuseIdentifier:NSStringFromClass([SLVLikesCell class])];
@@ -102,16 +102,21 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self.provider;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    [self.view addSubview:self.tableView];
 }
 
 #pragma mark - UITableViewDelegate
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView layoutSubviews];
+}
+
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            return 313;
+            return 313.0;
         } else return 57.5;
-    } else return 76;
+    } else return 76.0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {

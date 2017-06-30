@@ -80,7 +80,7 @@
 }
 
 - (void)savePrivateContext:(NSManagedObjectContext *)privateContext {
-    [privateContext performBlock:^{
+    [privateContext performBlockAndWait:^{
         if (privateContext.hasChanges) {
             NSError *error = nil;
             if (![privateContext save:&error]) {
@@ -134,9 +134,7 @@
 
 - (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key withCompletionHandler:(voidBlock)completionHandler {
     NSManagedObjectContext *privateContext = [self.stack setupPrivateContext];
-  //  __weak typeof(self)weakSelf = self;
     [privateContext performBlockAndWait:^{
-//        __strong typeof(weakSelf)strongSelf = weakSelf;
         id fetchedEntity = [self fetchEntity:entity forKey:key];
         if (!fetchedEntity) {
             NSLog(@"storageService - saveObject couldn't fetch entity for key %@", key);
@@ -170,7 +168,14 @@
     NSManagedObjectContext *privateContext = [self.stack setupPrivateContext];
     [privateContext performBlockAndWait:^{
         block();
-        [self savePrivateContext:privateContext];
+        [privateContext performBlockAndWait:^{
+            if (privateContext.hasChanges) {
+                NSError *error = nil;
+                if (![privateContext save:&error]) {
+                    NSLog(@"storageService - %@", error.localizedDescription);
+                }
+            }
+        }];
         if (completion) completion();
     }];
 }

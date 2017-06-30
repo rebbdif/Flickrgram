@@ -40,41 +40,28 @@
 }
 
 - (void)main {
-    NSAssert(_url, @"no url");
-    NSAssert(_key, @"no key");
-    NSLog(@"started");
-    
     self.downloadTask = [self.networkManager downloadImageFromURL:[NSURL URLWithString:self.url] withCompletionHandler:^(NSString *downloadedImageURL) {
         self.downloadedImageURL = downloadedImageURL;
-        NSLog(@"downloaded");
         [self saveImage];
     }];
 }
 
 - (void)saveImage {
-    NSLog(@"saving...");
     __weak typeof(self) weakSelf = self;
     [self.storageService saveObject:self.downloadedImageURL forEntity:self.entityName forAttribute:self.attribute forKey:self.key withCompletionHandler:^{
         __strong typeof(weakSelf)strongSelf = weakSelf;
         if (!strongSelf.isCancelled) {
-            NSLog(@"saved");
             dispatch_async(dispatch_get_main_queue(), ^{
                 strongSelf.completion();
             });
-        }  else {
-            NSLog(@"went wrong");
         }
     }];
 }
 
 - (void)pause {
-    NSLog(@"cancelled");
     [self.downloadTask suspend];
     [self cancel];
 }
 
-- (void)dealloc {
-    NSLog(@"dealloc");
-}
 
 @end

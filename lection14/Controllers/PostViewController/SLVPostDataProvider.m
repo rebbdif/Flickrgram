@@ -46,7 +46,6 @@
         } case 1: {
             SLVItem *selectedItem = [self.model getSelectedItem];
             NSUInteger numberOfRows = selectedItem.comments.count;
-            NSLog(@"number of rows == %lu", numberOfRows);
             return numberOfRows;
             break;
         } default:
