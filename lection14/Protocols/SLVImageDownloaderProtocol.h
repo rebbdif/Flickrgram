@@ -17,8 +17,6 @@
 
 - (void)pauseOperations;
 
-- (void)clearOperations;
-
 - (void)loadImageForEntity:(NSString *)entityName withIdentifier:(NSString *)identifier forURL:(NSString *)url forAttribute:(NSString *)attribute withCompletionHandler:(void (^)(void))completionHandler;
 
 @end
