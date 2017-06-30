@@ -201,8 +201,6 @@
 		04E2FFD11EBBABF70074C5D9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				6350EF8D1ED5923100D7C8CE /* SLVImageDownloadOperation.h */,
-				6350EF8E1ED5923100D7C8CE /* SLVImageDownloadOperation.m */,
 				635722FD1EF5C2A0000BB6CD /* SLVFacadeProtocol.h */,
 				635722FE1EF5F74C000BB6CD /* SLVFacade.h */,
 				635722FF1EF5F74C000BB6CD /* SLVFacade.m */,
@@ -219,6 +217,8 @@
 				6350EF851ED5841F00D7C8CE /* SLVNetworkManager.m */,
 				63ABAB811ED60E8900941726 /* SLVImageProcessing.h */,
 				63ABAB821ED60E8900941726 /* SLVImageProcessing.m */,
+				6350EF8D1ED5923100D7C8CE /* SLVImageDownloadOperation.h */,
+				6350EF8E1ED5923100D7C8CE /* SLVImageDownloadOperation.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";

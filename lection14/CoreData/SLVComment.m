@@ -24,12 +24,13 @@
     switch (type) {
         case SLVCommentTypeComment: {
             comment.text = [NSString stringWithEscapedEmojis:dict[@"_content"]];
+            comment.commentType = @0;
             break;
         } case SLVCommentTypeLike: {
             comment.text = [NSString stringWithEscapedEmojis:@"оценил ваше фото."];
+            comment.commentType = @1;
         }
     }
-    
     SLVHuman *author = [SLVHuman humanWithDictionary:dict storage:storage];
     comment.author = author;
     return comment;

@@ -56,12 +56,12 @@ typedef void (^voidBlock)(void);
         [weakSelf parseInfo:json];
     }];
 
-//    NSString *favoritesPath = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.getFavorites&format=json&nojsoncallback=1&%@&%@", apiKey, photoID];
-//    NSURL *favoritesURL = [NSURL URLWithString:favoritesPath];
-//    [self.networkManager getJSONFromURL:favoritesURL withCompletionHandler:^(NSDictionary *json) {
-//        [weakSelf parseFavorites:json];
-//    }];
-//
+    NSString *favoritesPath = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.getFavorites&format=json&nojsoncallback=1&%@&%@", apiKey, photoID];
+    NSURL *favoritesURL = [NSURL URLWithString:favoritesPath];
+    [self.networkManager getJSONFromURL:favoritesURL withCompletionHandler:^(NSDictionary *json) {
+        [weakSelf parseFavorites:json];
+    }];
+
     NSString *commetnsPath = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.comments.getList&format=json&nojsoncallback=1&%@&%@", apiKey, photoID];
     NSURL *commentsURL = [NSURL URLWithString:commetnsPath];
     [self.networkManager getJSONFromURL:commentsURL withCompletionHandler:^(NSDictionary *json) {
@@ -69,8 +69,9 @@ typedef void (^voidBlock)(void);
     }];
     
     dispatch_semaphore_wait(self.infoSemaphore, DISPATCH_TIME_FOREVER);
-//    dispatch_semaphore_wait(self.favoritesSemaphore, DISPATCH_TIME_FOREVER);
+    dispatch_semaphore_wait(self.favoritesSemaphore, DISPATCH_TIME_FOREVER);
     dispatch_semaphore_wait(self.commentsSemaphore, DISPATCH_TIME_FOREVER);
+    
 }
 
 - (void)parseInfo:(NSDictionary *)json {

@@ -126,12 +126,11 @@
         case SLVCommentTypeComment: {
             NSString *textWithIntroduction = [@"прокоментировал фото: \n"stringByAppendingString:text];
             NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:textWithIntroduction];
-           // [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:40.0f / 255.0f green:171.0f / 255.0f blue:236.0f / 255.0f alpha:1.0f] range:NSMakeRange(22, 17)];
-            cell.eventLabel.attributedText = attributedString;
+                cell.eventLabel.attributedText = attributedString;
             break;
         } case SLVCommentTypeLike: {
             NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text];
-            //[attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:255.0f / 255.0f green:38.0f / 255.0f blue:70.0f / 255.0f alpha:1.0f] range:NSMakeRange(0, 6)];
+            [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:255.0f / 255.0f green:38.0f / 255.0f blue:70.0f / 255.0f alpha:1.0f] range:NSMakeRange(0, 6)];
             cell.eventLabel.attributedText = attributedString;
             break;
         }

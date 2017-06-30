@@ -31,9 +31,9 @@
         [self.contentView addSubview:_photoView];
         
         _descriptionText = [UILabel new];
-        _descriptionText.numberOfLines = 2;
-        UIFont *sfdm = [UIFont sanFranciscoDisplayMedium14];
-        _descriptionText.font = sfdm;
+        _descriptionText.adjustsFontSizeToFitWidth = NO;
+        _descriptionText.numberOfLines = 0;
+        _descriptionText.font = [UIFont sanFranciscoDisplayMedium14];
         [self.contentView addSubview:_descriptionText];
         
         _spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
