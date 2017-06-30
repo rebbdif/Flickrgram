@@ -23,36 +23,48 @@
     XCTAssert([emojiString isEqualToString:unescapedEmoji]);
 }
 
-- (void)testRussian {
-    NSString *emojiString = @"балалайка";
-    NSString *escapedEmoji = [NSString stringWithEscapedEmojis:emojiString];
-    NSString *unescapedEmoji = [NSString stringWithUnescapedEmojis:escapedEmoji];
-    
-    XCTAssert([emojiString isEqualToString:unescapedEmoji]);
-}
-
-- (void)testEmojiEasy {
-    NSString *emojiString = @"👻😀👍🏻hello";
-    NSString *escapedEmoji = [NSString stringWithEscapedEmojis:emojiString];
-    NSString *unescapedEmoji = [NSString stringWithUnescapedEmojis:escapedEmoji];
-    
-    XCTAssert([emojiString isEqualToString:unescapedEmoji]);
-}
-
-- (void)testEmojiHard {
-    NSString *emojiString = @"👻😀👍🏻🤜🏻 привет";
-    NSString *escapedEmoji = [NSString stringWithEscapedEmojis:emojiString];
-    NSString *unescapedEmoji = [NSString stringWithUnescapedEmojis:escapedEmoji];
-    
-    XCTAssert([emojiString isEqualToString:unescapedEmoji]);
-}
-
-- (void)testEmojiJapaneese {
+- (void)testHard {
     NSString *emojiString = @"ウィキペディア👻😀👍🏻🤜🏻 привет";
     NSString *escapedEmoji = [NSString stringWithEscapedEmojis:emojiString];
     NSString *unescapedEmoji = [NSString stringWithUnescapedEmojis:escapedEmoji];
     
     XCTAssert([emojiString isEqualToString:unescapedEmoji]);
+}
+
+- (void)testNil {
+    NSString *emojiString = nil;
+    NSString *escapedEmoji = [NSString stringWithEscapedEmojis:emojiString];
+    XCTAssertNoThrow(@"nocrash");
+    XCTAssert([escapedEmoji isEqualToString:@""]);
+}
+
+- (void)testRealLengthNormal {
+    NSString *string = @"hello";
+    NSUInteger realLength = [NSString realLength:string];
+    XCTAssertEqual(realLength, 5);
+}
+
+- (void)testRealLengthEmoji {
+    NSString *string = @"🌍";
+    NSUInteger realLength = [NSString realLength:string];
+    XCTAssertEqual(realLength, 1);}
+
+- (void)testRealLengthCharSequence {
+    NSString *string = @"e\u0301";
+    NSUInteger realLength = [NSString realLength:string];
+    XCTAssertEqual(realLength, 1);
+}
+
+- (void)testRealLengthLineFeed {
+    NSString *string = @"abc\n";
+    NSUInteger realLength = [NSString realLength:string];
+    XCTAssertEqual(realLength, 4);
+}
+
+- (void)testRealLengthFormatters {
+    NSString *string = @"abc%lu";
+    NSUInteger realLength = [NSString realLength:string];
+    XCTAssertEqual(realLength, 6);
 }
 
 @end
