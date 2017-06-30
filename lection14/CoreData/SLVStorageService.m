@@ -134,15 +134,15 @@
 
 - (void)saveObject:(id)object forEntity:(NSString *)entity forAttribute:(NSString *)attribute forKey:(NSString *)key withCompletionHandler:(voidBlock)completionHandler {
     NSManagedObjectContext *privateContext = [self.stack setupPrivateContext];
-    __weak typeof(self)weakSelf = self;
+  //  __weak typeof(self)weakSelf = self;
     [privateContext performBlockAndWait:^{
-        __strong typeof(weakSelf)strongSelf = weakSelf;
+//        __strong typeof(weakSelf)strongSelf = weakSelf;
         id fetchedEntity = [self fetchEntity:entity forKey:key];
         if (!fetchedEntity) {
             NSLog(@"storageService - saveObject couldn't fetch entity for key %@", key);
         }
         [fetchedEntity setValue:object forKey:attribute];
-        [strongSelf savePrivateContext:privateContext];
+        [self savePrivateContext:privateContext];
         if (completionHandler) completionHandler();
     }];
 }

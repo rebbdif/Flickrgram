@@ -89,7 +89,6 @@ typedef void (^voidBlock)(void);
         self.selectedItem.author = owner;
         self.selectedItem.location = location;
     } withCompletion:^{
-        NSLog(@"parsed info");
         dispatch_semaphore_signal(self.infoSemaphore);
     }];
 }
@@ -105,7 +104,6 @@ typedef void (^voidBlock)(void);
         }
         [self.selectedItem addComments:favorited];
     } withCompletion:^{
-        NSLog(@"parsed favorites");
         dispatch_semaphore_signal(self.favoritesSemaphore);
     }];
 }
@@ -122,7 +120,6 @@ typedef void (^voidBlock)(void);
         }
         [self.selectedItem addComments:comments];
     } withCompletion:^{
-        NSLog(@"parsed comments");
         dispatch_semaphore_signal(self.commentsSemaphore);
     }];
 }
