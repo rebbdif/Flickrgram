@@ -63,6 +63,8 @@
                 [weakSelf.tableView reloadData];
             });
         }];
+    } else {
+        [self.tableView reloadData];
     }
 }
 
@@ -106,10 +108,6 @@
 }
 
 #pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.tableView layoutSubviews];
-}
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
