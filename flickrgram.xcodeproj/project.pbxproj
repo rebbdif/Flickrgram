@@ -220,10 +220,7 @@
 		6375B3C01EFD5B5D00AA41B2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				63A890001F015B74008AAAF4 /* Settings */,
-				6375B3CF1F011FB800AA41B2 /* Favorites */,
-				6375B3C61EFD5CEE00AA41B2 /* Post */,
-				6375B3C21EFD5C7E00AA41B2 /* Collection */,
+				63A8900B1F0726AB008AAAF4 /* UI */,
 				6375B3C11EFD5C6800AA41B2 /* Entities */,
 			);
 			name = Classes;
@@ -376,6 +373,17 @@
 				6392D1D51EE04CFD0050728D /* SLVSettingsViewController.m */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		63A8900B1F0726AB008AAAF4 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				63A890001F015B74008AAAF4 /* Settings */,
+				6375B3CF1F011FB800AA41B2 /* Favorites */,
+				6375B3C61EFD5CEE00AA41B2 /* Post */,
+				6375B3C21EFD5C7E00AA41B2 /* Collection */,
+			);
+			name = UI;
 			sourceTree = "<group>";
 		};
 		63ABAB891ED873D500941726 /* UnitTests */ = {

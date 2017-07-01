@@ -39,10 +39,10 @@
     _tableView.opaque = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview: _tableView];
-        
+    
     _tableView.delegate = self;
     _tableView.dataSource = self;
-
+    
     [_tableView setContentOffset:CGPointMake(0, -200)];
 }
 
@@ -66,7 +66,7 @@
             break;
     }
     if (indexPath.row != 1) {
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return cell;
 }
@@ -97,8 +97,6 @@
 
 - (void)clearEntirely {
     [self.storage deleteEntities:@"SLVItem" withPredicate:nil];
-    [self.storage deleteEntities:@"Human" withPredicate:nil];
-    [self.storage deleteEntities:@"Comment" withPredicate:nil];
 }
 
 @end

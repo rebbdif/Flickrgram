@@ -86,9 +86,14 @@
     NSString *searchRequest = [[NSUserDefaults standardUserDefaults] objectForKey:@"searchRequest"];
     if (searchRequest) {
         self.navBar.searchBar.text = searchRequest;
+        __weak typeof(self)weakself = self;
         [self.model firstStart:searchRequest withCompletionHandler:^{
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.collectionView reloadData];
+                if ([weakself.model numberOfItems] > 0) {
+                    [weakself.collectionView reloadData];
+                } else {
+                    [weakself.navBar.searchBar becomeFirstResponder];
+                }
             });
         }];
     } else {
@@ -112,7 +117,11 @@
         __weak typeof(self) weakself = self;
         [self.model getItemsForRequest:searchRequest withCompletionHandler:^{
             dispatch_async(dispatch_get_main_queue(), ^{
-                [weakself.collectionView reloadData];
+                if ([weakself.model numberOfItems] > 0) {
+                    [weakself.collectionView reloadData];
+                } else {
+                    [weakself.navBar.searchBar becomeFirstResponder];
+                }
             });
         }];
     }
