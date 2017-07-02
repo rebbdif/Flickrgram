@@ -44,8 +44,8 @@
     self.locationLabel.textColor = [UIColor colorWithRed:170/255.0 green:170/255.0 blue:170/255.0 alpha:1];
     [self addSubview:self.locationLabel];
     
-    self.nameLabel.text = @"rebbdifserebr";
-    self.locationLabel.text = @"Kauaii, Hawai";
+    self.nameLabel.text = @"";
+    self.locationLabel.text = @"";
     
     [self.avatarView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left);

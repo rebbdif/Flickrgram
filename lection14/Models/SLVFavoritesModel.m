@@ -16,17 +16,15 @@ static NSString *const kItemEntity = @"SLVItem";
 
 @property (nonatomic, strong) NSDictionary<NSNumber *, SLVItem *> *items;
 @property (nonatomic, strong, readonly) id<SLVStorageProtocol> storageService;
-@property (nonatomic, strong, readonly) id<SLVFacadeProtocol> facade;
 
 @end
 
 @implementation SLVFavoritesModel
 
-- (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade {
+- (instancetype)initWithStorageService:(id<SLVStorageProtocol>)storageService {
     self = [super init];
     if (self) {
-        _facade = facade;
-        _storageService = facade.storageService;
+        _storageService = storageService;
         _items = [NSDictionary new];
     }
     return self;
@@ -37,7 +35,7 @@ static NSString *const kItemEntity = @"SLVItem";
 }
 
 - (void)getFavoriteItemsWithCompletionHandler:(void (^)(void))completionHandler {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isFavorite ==YES"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isFavorite == YES"];
     NSArray *result = [self.storageService fetchEntities:kItemEntity withPredicate:predicate];
     NSUInteger index = 0;
     NSMutableDictionary *newItems = [NSMutableDictionary new];

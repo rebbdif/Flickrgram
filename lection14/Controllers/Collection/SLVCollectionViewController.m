@@ -86,9 +86,14 @@
     NSString *searchRequest = [[NSUserDefaults standardUserDefaults] objectForKey:@"searchRequest"];
     if (searchRequest) {
         self.navBar.searchBar.text = searchRequest;
+        __weak typeof(self)weakself = self;
         [self.model firstStart:searchRequest withCompletionHandler:^{
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.collectionView reloadData];
+                if ([weakself.model numberOfItems] > 0) {
+                    [weakself.collectionView reloadData];
+                } else {
+                    [weakself.navBar.searchBar becomeFirstResponder];
+                }
             });
         }];
     } else {
@@ -112,7 +117,11 @@
         __weak typeof(self) weakself = self;
         [self.model getItemsForRequest:searchRequest withCompletionHandler:^{
             dispatch_async(dispatch_get_main_queue(), ^{
-                [weakself.collectionView reloadData];
+                if ([weakself.model numberOfItems] > 0) {
+                    [weakself.collectionView reloadData];
+                } else {
+                    [weakself.navBar.searchBar becomeFirstResponder];
+                }
             });
         }];
     }
@@ -121,7 +130,7 @@
 #pragma mark - CollectionView delegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    SLVPostModel *postModel = [[SLVPostModel alloc] initWithFacade:[self.model getFacade]];
+    SLVPostModel *postModel = [[SLVPostModel alloc] initWithNetworkManager:self.model.networkManager storageService:self.model.storageService];
     SLVItem *selectedItem = [self.model itemForIndex:indexPath.row];
     [postModel passSelectedItem:selectedItem];
     SLVPostController *postViewController = [[SLVPostController alloc] initWithModel:postModel];
@@ -177,7 +186,7 @@
 - (IBAction)gotoSettings:(id)sender {
     UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setBackBarButtonItem:newBackButton];
-    SLVSettingsViewController *settingsViewController = [[SLVSettingsViewController alloc] initWithModel:[self.model getFacade]];
+    SLVSettingsViewController *settingsViewController = [[SLVSettingsViewController alloc] initWithStorage:self.model.storageService];
     [self.navigationController pushViewController:settingsViewController animated:YES];
 }
 

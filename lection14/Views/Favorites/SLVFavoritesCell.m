@@ -25,6 +25,7 @@
         _photoView = [UIImageView new];
         [_photoView setAutoresizingMask:YES];
         _photoView.clipsToBounds = YES;
+        _photoView.contentMode = UIViewContentModeScaleAspectFit;
         [self.contentView addSubview:_photoView];
         
         _descriptionText = [UILabel new];

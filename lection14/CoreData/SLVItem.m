@@ -7,7 +7,6 @@
 //
 
 #import "SLVItem.h"
-#import "SLVFacade.h"
 #import "NSString+SLVString.h"
 
 @implementation SLVItem
@@ -29,7 +28,7 @@
 @dynamic author;
 @dynamic comments;
 
-@synthesize commentsArray;
+@synthesize commentsArray = _commentsArray;
 
 + (NSString *)identifierForItemWithDictionary:(NSDictionary *)dict storage:(id<SLVStorageProtocol>)storage forRequest:(NSString *)request {
     NSString *base = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@.jpg",
@@ -60,15 +59,15 @@
     dispatch_barrier_sync(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), ^{
         __strong typeof(self)strongSelf = weakSelf;
         strongSelf.comments = [strongSelf.comments setByAddingObjectsFromSet:comments];
-        self.commentsArray = strongSelf.comments.allObjects;
+        strongSelf.commentsArray = strongSelf.comments.allObjects;
     });
 }
 
-- (NSArray<SLVComment *> *)getCommentsArray {
-    if (!self.commentsArray) {
+- (NSArray<SLVComment *> *)commentsArray {
+    if (!_commentsArray) {
         return self.comments.allObjects;
     } else {
-        return self.commentsArray;
+        return _commentsArray;
     }
 }
 

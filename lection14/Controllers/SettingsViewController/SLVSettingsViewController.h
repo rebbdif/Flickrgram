@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SLVFacadeProtocol.h"
+#import "SLVStorageProtocol.h"
 
 @interface SLVSettingsViewController : UIViewController
 
-- (instancetype)initWithModel:(id<SLVFacadeProtocol>)model;
+- (instancetype)initWithStorage:(id<SLVStorageProtocol>)storage;
 
 @end
