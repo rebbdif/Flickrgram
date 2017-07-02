@@ -274,11 +274,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Controllers/PostViewController/SLVPostController.m"
-            timestampString = "520566757.770402"
+            timestampString = "520681395.170887"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "-tableView:viewForFooterInSection:"
             landmarkType = "7">
          </BreakpointContent>
@@ -450,11 +450,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Controllers/PostViewController/SLVPostDataProvider.m"
-            timestampString = "520560289.231341"
+            timestampString = "520682947.854404"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "-decorateText:ofType:"
             landmarkType = "7">
          </BreakpointContent>
@@ -546,12 +546,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Controllers/PostViewController/SLVPostController.m"
-            timestampString = "520566757.770402"
+            timestampString = "520681395.170887"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "-tableView:estimatedHeightForRowAtIndexPath:"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "-tableView:viewForFooterInSection:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -562,13 +562,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lection14/Controllers/PostViewController/SLVPostController.m"
-            timestampString = "520566757.770402"
+            timestampString = "520680743.822233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "-tableView:estimatedHeightForRowAtIndexPath:"
-            landmarkType = "7">
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "@implementation SLVPostController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -696,6 +696,22 @@
             startingLineNumber = "66"
             endingLineNumber = "66"
             landmarkName = "-viewDidAppear:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lection14/Controllers/PostViewController/SLVPostController.m"
+            timestampString = "520680471.229507"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "-tableView:estimatedHeightForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

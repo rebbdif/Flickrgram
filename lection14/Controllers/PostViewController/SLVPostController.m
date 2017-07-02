@@ -117,6 +117,18 @@
     } else return 76.0;
 }
 
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    if (indexPath.section == 0) {
+//        if (indexPath.row == 0) {
+//            return 313.0;
+//        } else {
+//            return 57.5;
+//        }
+//    } else {
+//        CGRect textRect = [calculationLabel.text boundingRectWithSize:sizeForLabel options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:calculationLabel.font} context:ctx];
+//    }
+//}
+
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     if (section == 0) {
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 1)];

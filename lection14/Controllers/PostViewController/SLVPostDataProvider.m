@@ -135,6 +135,7 @@
     } else {
         cell.avatarImageView.image = avatar;
     }
+    [cell layoutIfNeeded];
     return cell;
 }
 

@@ -69,19 +69,19 @@
 
 - (void)updateConstraints {
     UIView *contentView = self.contentView;
-    [_photoView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_photoView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(contentView.mas_top);
         make.left.equalTo(contentView.mas_left).with.offset(1);
         make.right.equalTo(contentView.mas_right).with.offset(-1);
         make.height.equalTo(@248);
     }];
-    [_descriptionText mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_descriptionText mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_photoView.mas_bottom).with.offset(12);
         make.left.equalTo(contentView.mas_left).with.offset(16);
         make.bottom.equalTo(contentView.mas_bottom).with.offset(-12);
         make.right.equalTo(contentView.mas_right).with.offset(-16);
     }];
-    [_spinner mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_spinner mas_updateConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(_photoView.mas_centerX);
         make.centerY.equalTo(_photoView.mas_centerY);
     }];
@@ -125,22 +125,22 @@
 
 - (void)updateConstraints {
     UIView *contentView = self.contentView;
-    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.contentView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(@55.5);
     }];
-    [_likesImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_likesImageView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(contentView.mas_left).with.offset(16);
         make.centerY.equalTo(contentView.mas_centerY);
     }];
-    [_likesLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_likesLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_likesImageView.mas_right).with.offset(7.1);
         make.centerY.equalTo(contentView.mas_centerY);
     }];
-    [_commentsImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_commentsImageView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(contentView.mas_left).with.offset(122.3);
         make.centerY.equalTo(contentView.mas_centerY);
     }];
-    [_commentsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_commentsLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_commentsImageView.mas_right).with.offset(6);
         make.centerY.equalTo(contentView.mas_centerY);
     }];
@@ -185,22 +185,23 @@
 
 - (void)updateConstraints {
     UIView *contentView = self.contentView;
-    [_avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_avatarImageView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(contentView.mas_top).with.offset(11);
         make.size.equalTo(@38);
         make.left.equalTo(contentView.mas_left).with.offset(16);
+        make.bottom.lessThanOrEqualTo(contentView.mas_bottom).with.offset(-11);
     }];
-    [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_nameLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_avatarImageView.mas_right).with.offset(8);
         make.top.equalTo(contentView.mas_top).with.offset(14);
         make.right.equalTo(contentView.mas_right).with.offset(-8);
         make.height.equalTo(@16);
     }];
-    [_eventLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_eventLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_avatarImageView.mas_right).with.offset(8);
-        make.top.equalTo(_nameLabel.mas_bottom).with.offset(1);
+        make.top.equalTo(contentView.mas_top).with.offset(30);
         make.right.equalTo(contentView.mas_right).with.offset(-8);
-        make.bottom.equalTo(contentView.mas_bottom).with.offset(-16);
+        make.bottom.equalTo(contentView.mas_bottom).with.offset(-14);
     }];
     [super updateConstraints];
 }
