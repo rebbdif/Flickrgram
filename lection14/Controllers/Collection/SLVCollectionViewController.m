@@ -151,11 +151,7 @@
 #pragma mark - CollectionLayoutDelegate
 
 - (NSUInteger)numberOfItems {
-    if (![self.model numberOfItems]) {
-        return 0;
-    } else {
-        return [self.model numberOfItems];
-    }
+    return [self.model numberOfItems];
 }
 
 #pragma mark - UIScrollViewDelegate
