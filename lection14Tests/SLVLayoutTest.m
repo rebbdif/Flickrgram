@@ -60,14 +60,12 @@
 - (void)testCountDimensionsNormal {
     OCMStub([self.collectionLayoutDelegateMock numberOfItems]).andReturn(22);
     [self.layout countDimensions];
-    XCTAssert(self.layout.numberOfItems == 23);
     XCTAssert(self.layout.numberOfRows == 12);
 }
 
 - (void)testCountDimensionsOne {
     OCMStub([self.collectionLayoutDelegateMock numberOfItems]).andReturn(1);
     [self.layout countDimensions];
-    XCTAssert(self.layout.numberOfItems == 3);
     XCTAssert(self.layout.numberOfRows == 2);
 }
 
@@ -75,7 +73,6 @@
     OCMStub([self.collectionLayoutDelegateMock numberOfItems]).andReturn(0);
     [self.layout countDimensions];
     XCTAssert(self.layout.numberOfItems == 0);
-    XCTAssert(self.layout.numberOfRows == 0);
 }
 
 - (void)testPrepareLayoutNormal30 {

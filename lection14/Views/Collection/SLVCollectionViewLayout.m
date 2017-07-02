@@ -46,13 +46,7 @@
 - (void)countDimensions {
     self.numberOfColumns = 3;
     self.numberOfItems = [self.delegate numberOfItems];
-    NSUInteger numberOfItemsWithExtraCells = self.numberOfItems;
-    if (self.numberOfItems < 3 && self.numberOfItems > 0) {
-        numberOfItemsWithExtraCells = 3;
-    } else {
-        NSUInteger extraCells = self.numberOfItems % 3;
-        numberOfItemsWithExtraCells += extraCells;
-    }
+    NSUInteger numberOfItemsWithExtraCells = (self.numberOfItems + 3) - (self.numberOfItems + 3) % 3;
     self.numberOfRows = (numberOfItemsWithExtraCells + 1) / 2;
     self.defaultCellWidth = CGRectGetWidth(self.collectionView.frame) / 3;
 }

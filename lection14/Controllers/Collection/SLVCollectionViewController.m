@@ -117,10 +117,21 @@
         __weak typeof(self) weakself = self;
         [self.model getItemsForRequest:searchRequest withCompletionHandler:^{
             dispatch_async(dispatch_get_main_queue(), ^{
+                [weakself.collectionView reloadData];
                 if ([weakself.model numberOfItems] > 0) {
-                    [weakself.collectionView reloadData];
                 } else {
-                    [weakself.navBar.searchBar becomeFirstResponder];
+                    CGRect frame = self.view.frame;
+                    UILabel *nothingFoundLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(frame) / 2 - 100, CGRectGetHeight(frame) / 2 - 80, 200, 80)];
+                    nothingFoundLabel.textAlignment = NSTextAlignmentCenter;
+                    nothingFoundLabel.numberOfLines = 2;
+                    nothingFoundLabel.text = @"Ничего не найдено.\nВведите другой запрос";
+                    [self.collectionView addSubview:nothingFoundLabel];
+                    [UIView animateWithDuration:2 animations:^{
+                        nothingFoundLabel.layer.opacity = 0;
+                    } completion:^(BOOL finished) {
+                        nothingFoundLabel.hidden = YES;
+                        [weakself.navBar.searchBar becomeFirstResponder];
+                    }];
                 }
             });
         }];
