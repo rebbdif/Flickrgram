@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SLVFacadeProtocol.h"
+#import "SLVStorageProtocol.h"
 
 @class SLVItem;
 
 @interface SLVFavoritesModel : NSObject
 
-- (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade;
+- (instancetype)initWithStorageService:(id<SLVStorageProtocol>)storageService;
 
 - (void)getFavoriteItemsWithCompletionHandler:(void (^)(void))completionHandler;
 

@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SLVFacadeProtocol.h"
+#import "SLVStorageProtocol.h"
+#import "SLVNetworkProtocol.h"
 
 @class UIImage;
 @class SLVItem;
@@ -15,6 +16,9 @@
 typedef void (^voidBlock)(void);
 
 @protocol SLVCollectionModelProtocol <NSObject>
+
+@property (nonatomic, strong, readonly) id<SLVStorageProtocol> storageService;
+@property (nonatomic, strong, readonly) id<SLVNetworkProtocol> networkManager;
 
 - (NSUInteger)numberOfItems;
 
@@ -27,8 +31,6 @@ typedef void (^voidBlock)(void);
 - (void)getItemsForRequest:(NSString *)request withCompletionHandler:(voidBlock)completionHandler;
 
 - (void)clearModel;
-
-- (id<SLVFacadeProtocol>)getFacade;
 
 - (void)pauseDownloads;
 

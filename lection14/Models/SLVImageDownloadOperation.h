@@ -7,24 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SLVFacadeProtocol.h"
-@import UIKit;
+#import "SLVNetworkProtocol.h"
+#import "SLVStorageProtocol.h"
 
 @class SLVItem;
 @class SLVNetworkManager;
 
-typedef NS_ENUM(NSInteger, SLVImageStatus) {
-    SLVImageStatusDownloading,
-    SLVImageStatusDownloaded,
-    SLVImageStatusFiltered,
-    SLVImageStatusCropped,
-    SLVImageStatusCancelled,
-    SLVImageStatusNone
-};
-
 @interface SLVImageDownloadOperation : NSOperation
-
-@property (nonatomic, assign) SLVImageStatus status;
 
 + (instancetype)new NS_UNAVAILABLE;
 
@@ -33,17 +22,14 @@ typedef NS_ENUM(NSInteger, SLVImageStatus) {
 /**
  Инициализатор операции
 
- @param facade фасад
  @param entityName тип объекта, для которого происходит загрузка
  @param key ключ объекта, для которого происходит загрузка
  @param url url, c которого происходит загрузка
  @param attribute атрибут объекта, в который сохраняем
  */
-- (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade entity:(NSString *)entityName key:(NSString *)key url:(NSString *)url attribute:(NSString *)attribute;
+
+- (instancetype)initWithNetworkManager:(id<SLVNetworkProtocol>)networkManager storageService:(id<SLVStorageProtocol>)storageService entity:(NSString *)entityName key:(NSString *)key url:(NSString *)url attribute:(NSString *)attribute completion:(void (^)(void))completion;
 
 - (void)pause;
-
-- (void)resume;
-
 
 @end

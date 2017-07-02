@@ -32,7 +32,7 @@
     return self;
 }
 
-#pragma mark - TableView
+#pragma mark - TableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
@@ -45,7 +45,8 @@
             break;
         } case 1: {
             SLVItem *selectedItem = [self.model getSelectedItem];
-            return selectedItem.comments.count;
+            NSUInteger numberOfRows = selectedItem.comments.count;
+            return numberOfRows;
             break;
         } default:
             return 1;
@@ -134,6 +135,7 @@
     } else {
         cell.avatarImageView.image = avatar;
     }
+    [cell layoutIfNeeded];
     return cell;
 }
 

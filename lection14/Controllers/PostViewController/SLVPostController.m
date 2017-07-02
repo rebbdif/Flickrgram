@@ -15,6 +15,7 @@
 #import "SLVCollectionModel.h"
 #import "SLVPostNavigationBarView.h"
 #import "UIColor+SLVColor.h"
+#import "NSString+SLVString.h"
 @import Masonry;
 
 @interface SLVPostController () <UITableViewDelegate, SLVCellsDelegate, UIScrollViewDelegate>
@@ -45,20 +46,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configureTableView];
+    self.tabBarController.tabBar.hidden = YES;
     [self configureLeftBarButtonItem];
+    [self configureTableView];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addToFavorites:)];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    __weak typeof(self)weakSelf = self;
-    [self.model getMetadataForSelectedItemWithCompletionHandler:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf configureLeftBarButtonItem];
-            [weakSelf.tableView reloadData];
-        });
-    }];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    SLVItem *selectedItem = [self.model getSelectedItem];
+    if (!selectedItem.author) {
+        __weak typeof(self)weakSelf = self;
+        [self.model getMetadataForSelectedItemWithCompletionHandler:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf configureLeftBarButtonItem];
+                [weakSelf.tableView reloadData];
+            });
+        }];
+    } else {
+        [self.tableView reloadData];
+    }
 }
 
 - (void)configureLeftBarButtonItem {
@@ -72,13 +79,14 @@
             __strong typeof(weakSelf)strongSelf = weakSelf;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [strongSelf configureLeftBarButtonItem];
+                [self.tableView reloadData];
             });
         }];
     } else {
         self.postNavigationBarView.avatarView.image = avatar;
     }
-    self.postNavigationBarView.nameLabel.text = selectedItem.author.name;
-    if (selectedItem.location) self.postNavigationBarView.locationLabel.text = selectedItem.location;
+    self.postNavigationBarView.nameLabel.text = [NSString stringWithUnescapedEmojis:selectedItem.author.name];
+    if (selectedItem.location) self.postNavigationBarView.locationLabel.text = [NSString stringWithUnescapedEmojis:selectedItem.location];
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.postNavigationBarView];
     [self.navigationItem setLeftBarButtonItem:barButtonItem];
     self.navigationItem.leftItemsSupplementBackButton = YES;
@@ -89,7 +97,6 @@
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(frame), CGRectGetHeight(frame))];
     self.tableView.backgroundColor = [UIColor myGray];
     self.tableView.separatorColor = [UIColor separatorColor];
-    [self.view addSubview:self.tableView];
     [self.tableView registerClass:[SLVImageCell class] forCellReuseIdentifier:NSStringFromClass([SLVImageCell class])];
     [self.tableView registerClass:[SLVCommentsCell class] forCellReuseIdentifier:NSStringFromClass([SLVCommentsCell class])];
     [self.tableView registerClass:[SLVLikesCell class] forCellReuseIdentifier:NSStringFromClass([SLVLikesCell class])];
@@ -97,23 +104,30 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self.provider;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    [self.view addSubview:self.tableView];
 }
 
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    switch (indexPath.section) {
-        case 0: {
-            if (indexPath.row == 0) return 312;
-            else return 60;
-            break;
-        } case 1: {
-            tableView.rowHeight = UITableViewAutomaticDimension;
-            break;
-        }
-    }
-    return 60;
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            return 313.0;
+        } else return 57.5;
+    } else return 76.0;
 }
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    if (indexPath.section == 0) {
+//        if (indexPath.row == 0) {
+//            return 313.0;
+//        } else {
+//            return 57.5;
+//        }
+//    } else {
+//        CGRect textRect = [calculationLabel.text boundingRectWithSize:sizeForLabel options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:calculationLabel.font} context:ctx];
+//    }
+//}
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     if (section == 0) {
@@ -128,7 +142,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if (section == 0) return 1;
+    if (section == 0) return 0.5;
     else return 0;
 }
 

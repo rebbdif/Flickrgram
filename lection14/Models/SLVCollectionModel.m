@@ -10,33 +10,33 @@
 #import "SLVItem.h"
 #import "SLVStorageProtocol.h"
 #import "SLVNetworkManager.h"
+#import "SLVImageDownloader.h"
+
 @import UIKit;
 
 static NSString *const kItemEntity = @"SLVItem";
 
 @interface SLVCollectionModel()
 
-@property (nonatomic, strong, readonly) id<SLVStorageProtocol> storageService;
-@property (nonatomic, strong, readonly) id<SLVNetworkProtocol> networkManager;
-@property (nonatomic, strong) id<SLVFacadeProtocol> facade;
 @property (nonatomic, assign) NSUInteger page;
 @property (nonatomic, copy) NSDictionary<NSNumber *, NSString *> *items;
 @property (nonatomic, copy) NSDictionary<NSNumber *, NSString *> *itemURLs;
 @property (nonatomic, copy) NSString *request;
+@property (nonatomic, strong) SLVImageDownloader *imageDownloader;
 
 @end
 
 @implementation SLVCollectionModel
 
-- (instancetype)initWithFacade:(id<SLVFacadeProtocol>)facade {
+- (instancetype)initWithNetworkManager:(id<SLVNetworkProtocol>)networkManager storageService:(id<SLVStorageProtocol>)storageService {
     self = [super init];
     if (self) {
         _page = 1;
         _items = [NSDictionary new];
         _itemURLs = [NSDictionary new];
-        _facade = facade;
-        _storageService = facade.storageService;
-        _networkManager = facade.networkManager;
+        _storageService = storageService;
+        _networkManager = networkManager;
+        _imageDownloader = [[SLVImageDownloader alloc] initWithNetworkManager:_networkManager storageService:_storageService];
     }
     return self;
 }
@@ -117,7 +117,7 @@ static NSString *const kItemEntity = @"SLVItem";
 - (void)loadImageForIndex:(NSUInteger)index withCompletionHandler:(void (^)(void))completionHandler {
     NSString *identifier = self.items[@(index)];
     NSString *url = self.itemURLs[@(index)];
-    [self.facade loadImageForEntity:kItemEntity withIdentifier:identifier forURL:url forAttribute:@"thumbnail" withCompletionHandler:completionHandler];
+    [self.imageDownloader loadImageForEntity:kItemEntity withIdentifier:identifier forURL:url forAttribute:@"thumbnail" withCompletionHandler:completionHandler];
 }
 
 - (NSUInteger)numberOfItems {
@@ -136,17 +136,13 @@ static NSString *const kItemEntity = @"SLVItem";
 - (void)clearModel {
     self.items = [NSDictionary new];
     self.page = 1;
-    [self.facade clearOperations];
+    [self.imageDownloader cancelOperations];
     NSPredicate *predicate  = [NSPredicate predicateWithFormat:@"isFavorite ==NO"];
     [self.storageService deleteEntities:kItemEntity withPredicate:predicate];
 }
 
-- (id<SLVFacadeProtocol>)getFacade {
-    return self.facade;
-}
-
 - (void)pauseDownloads {
-    [self.facade pauseOperations];
+    [self.imageDownloader cancelOperations];
 }
 
 @end
