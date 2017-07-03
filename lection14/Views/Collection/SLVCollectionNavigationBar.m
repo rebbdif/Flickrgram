@@ -21,6 +21,7 @@
         self.searchBar.backgroundImage = [UIImage imageNamed:@"rectangle121"];
         [self.searchBar setSearchFieldBackgroundImage: [UIImage imageNamed:@"rectangle121"] forState:UIControlStateNormal];
         [self addSubview:self.searchBar];
+        [self.searchBar sizeToFit];
         
         self.settingsButton = [UIButton new];
         [self.settingsButton setBackgroundImage:[UIImage imageNamed:@"icSettings"] forState:UIControlStateNormal];

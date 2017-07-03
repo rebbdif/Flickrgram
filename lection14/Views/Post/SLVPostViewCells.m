@@ -74,6 +74,7 @@
         make.left.equalTo(contentView.mas_left).with.offset(1);
         make.right.equalTo(contentView.mas_right).with.offset(-1);
         make.height.equalTo(@248);
+        make.bottom.greaterThanOrEqualTo(contentView.mas_bottom).with.offset(-64);
     }];
     [_descriptionText mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_photoView.mas_bottom).with.offset(12);
@@ -127,6 +128,8 @@
     UIView *contentView = self.contentView;
     [self.contentView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(@55.5);
+        CGFloat width = contentView.frame.size.width;
+        make.width.equalTo(@(width));
     }];
     [_likesImageView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(contentView.mas_left).with.offset(16);
