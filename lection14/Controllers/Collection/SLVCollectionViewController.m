@@ -93,6 +93,7 @@
                     [weakself.collectionView reloadData];
                 } else {
                     [weakself.navBar.searchBar becomeFirstResponder];
+                    [weakself.collectionView reloadData];
                 }
             });
         }];

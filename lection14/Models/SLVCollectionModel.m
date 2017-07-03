@@ -137,7 +137,26 @@ static NSString *const kItemEntity = @"SLVItem";
     self.items = [NSDictionary new];
     self.page = 1;
     [self.imageDownloader cancelOperations];
-    NSPredicate *predicate  = [NSPredicate predicateWithFormat:@"isFavorite ==NO"];
+    NSPredicate *predicate  = [NSPredicate predicateWithFormat:@"isFavorite == NO"];
+    NSArray<SLVItem *> *items = [self.storageService fetchEntities:@"SLVItem" withPredicate:predicate];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    for (SLVItem *item in items) {
+        NSString *thumbnailFilePath = [NSHomeDirectory() stringByAppendingPathComponent:item.thumbnail];
+        NSError *error = nil;
+        if (item.thumbnail) {
+            if (![fileManager removeItemAtPath:thumbnailFilePath error:&error]) {
+                NSLog(@"Could not delete file -:%@ ",[error localizedDescription]);
+                NSLog(@"%@", error.userInfo);
+            }
+        }
+        if (item.largePhoto) {
+            NSString *photoFilePath = [NSHomeDirectory() stringByAppendingPathComponent:item.largePhoto];
+            [fileManager removeItemAtPath:photoFilePath error:&error];
+        }
+    }
+    
     [self.storageService deleteEntities:kItemEntity withPredicate:predicate];
 }
 
