@@ -8,6 +8,7 @@
 
 #import "SLVSettingsViewController.h"
 #import "UIColor+SLVColor.h"
+#import "SLVItem.h"
 
 @interface SLVSettingsViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -96,6 +97,25 @@
 }
 
 - (void)clearEntirely {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSArray<SLVItem *> *items = [self.storage fetchEntities:@"SLVItem" withPredicate:nil];
+    
+    for (SLVItem *item in items) {
+        NSString *thumbnailFilePath = [NSHomeDirectory() stringByAppendingPathComponent:item.thumbnail];
+        NSError *error = nil;
+        if (item.thumbnail) {
+            if (![fileManager removeItemAtPath:thumbnailFilePath error:&error]) {
+                NSLog(@"Could not delete file -:%@ ",[error localizedDescription]);
+                NSLog(@"%@", error.userInfo);
+            }
+        }
+        if (item.largePhoto) {
+            NSString *photoFilePath = [NSHomeDirectory() stringByAppendingPathComponent:item.largePhoto];
+            [fileManager removeItemAtPath:photoFilePath error:&error];
+        }
+    }
+    
     [self.storage deleteEntities:@"SLVItem" withPredicate:nil];
 }
 

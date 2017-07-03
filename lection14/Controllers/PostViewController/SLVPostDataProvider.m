@@ -58,6 +58,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self configureCellForTableView:tableView atIndexPath:indexPath];
+    [cell layoutIfNeeded];
     return cell;
 }
 
@@ -135,7 +136,6 @@
     } else {
         cell.avatarImageView.image = avatar;
     }
-    [cell layoutIfNeeded];
     return cell;
 }
 
